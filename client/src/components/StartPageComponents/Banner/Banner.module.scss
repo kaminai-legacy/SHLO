@@ -1,0 +1,154 @@
+.banner {
+  width: 80vw;
+  left: 10vw;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  color: #333;
+  padding-top: 75px;
+  text-align: center;
+  @media (max-width: 992px) {
+    width: 100%;
+
+  }
+  margin-bottom: 30px;
+}
+
+.bannerContent {
+  width: 80vw;
+  position: relative;
+  color: #333;
+  text-align: center;
+  @media (max-width: 992px) {
+    width: 100%;
+
+  }
+}
+
+
+.loadingBar {
+  font-size: 36px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  overflow: hidden;
+  vertical-align: top;
+  font-weight: 900;
+  //padding:2em 0;
+  position: relative;
+  text-align: left;
+}
+
+.loading:after {
+  top: 45px;
+  animation-iteration-count: infinite;
+  animation-name: loadingIn;
+  animation-duration: 3s;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: #28d2d0;
+  z-index: 2;
+  // transition: width .3s -0.1s
+}
+
+.underLoading {
+  width: 100%;
+  position: absolute;
+  background: #28d2d0;
+  height: 3px;
+  margin-top: 5px;
+}
+
+@keyframes loadingIn {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.myAnimation {
+  top: 45px;
+  position: absolute;
+  height: 3px;
+  background: #28d2d0;
+  animation-iteration-count: infinite;
+  animation-name: loadingIn;
+  animation-duration: 3s;
+}
+
+.flexForLoading {
+  display: inline-block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.bannerContent p {
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.flexList {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+
+}
+
+.startContestButton {
+  cursor: pointer;
+  color: white;
+  border: 2px solid #28d2d0 !important;
+  padding: 14px 20px !important;
+  background: #28d2d0;
+  font: 14px "Lato";
+  display: inline-block;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+.startContestButton:hover {
+  background: #1fbfbd !important;
+  color: white;
+}
+
+.exploreButton {
+  cursor: pointer;
+  color: black;
+  font-weight: 500;
+  border: 2px solid #28d2d0 !important;
+  padding: 14px 20px !important;
+  background: none;
+  font: 14px "Lato";
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.exploreButton:hover {
+  color: #28d2d0;
+}
+
+.textOr {
+  line-height: 49px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+

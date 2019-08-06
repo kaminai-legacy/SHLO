@@ -1,0 +1,95 @@
+.carousel {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background: #fafafa;;
+}
+
+.content {
+  max-width: 1170px;
+  width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navTabs {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.newTabsButton {
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  line-height: 32px;
+  float: none;
+  display: inline-block;
+  padding: 0 15px;
+  margin: 0 10px;
+}
+
+.newTabsButton:hover {
+  background: white;
+  border-bottom: 3px solid #28d2d0;
+  border-radius: 5px 5px 0 0;
+}
+
+#navTabsSelect {
+  border-bottom: 3px solid #28d2d0;
+}
+
+.carouselN1 {
+  height: 375px;
+}
+
+.moreName {
+  height: 91px;
+  text-align: center;
+}
+
+//#23527c
+
+.exploreButton {
+  cursor: pointer;
+  margin-top: 30px;
+  padding: 18px 60px;
+  border: 2px solid #28d2d0;
+  color: #49538b !important;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  background: none;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.exploreButton:hover {
+  background: #28d2d0;
+}
+
+.imgSlideRow{
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.imgSlide{
+  margin-top:22px;
+  width: 348px;
+  height:348px;
+  border:3px solid #28d2d0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.btn{
+  background: #0B3157;
+  width: 20px;
+  height: 20px;
+}

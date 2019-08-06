@@ -1,0 +1,217 @@
+.mainHeaderBottom {
+  font-family: 'Raleway', sans-serif;
+  @font-face {
+    font-family: 'Raleway-medium'
+  }
+  @font-face {
+    font-family: 'sans-serif-medium'
+  }
+}
+
+.mainHeaderBottomContainer {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.mainHeaderBottomRow {
+  max-width: 1170px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainHeaderBottomLogo {
+  height: 100%;
+}
+
+.mainHeaderBottomLists {
+  position: relative;
+  left: 8%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainHeaderBottomButton {
+  cursor: pointer;
+  border: 2px solid #28d2d0 !important;
+  padding: 14px 18px !important;
+  background: none !important;
+  font: 14px "Lato";
+  display: inline-block;
+  text-transform: uppercase;
+  border-radius: 5px;
+  color: #28d2d0;
+}
+
+.mainLogo {
+  width: 158px;
+  height: 53px;
+  display: inline-block;
+  vertical-align: top;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  zoom: 1;
+  background-image: url(../../../images/squadhelp-logo-color.jpg);
+}
+
+.mainHeaderBottomLogo a {
+  width: 158px;
+  height: 53px;
+}
+
+.mainHeaderBottomButton:hover {
+  background: #28d2d0 !important;
+  color: white;
+}
+
+.SublistTitle {
+  padding-top: 15px;
+  position: relative;
+  margin-right: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #495d8b;
+  padding-bottom: 15px;
+}
+
+.SublistTitle:hover {
+  margin-right: 30px;
+  font-size: 16px;
+  color: #f27e51;
+}
+
+.mainHeaderBottomFlexListsBlog:hover .mainHeaderBottomSubListsBlog {
+  display: block;
+}
+
+.mainHeaderBottomSubListsBlog:hover .mainHeaderBottomSubListsBlog {
+  display: block;
+}
+
+.mainHeaderBottomFlexLists:hover .mainHeaderBottomSubLists {
+  display: block;
+}
+
+.mainHeaderBottomSubLists:hover .mainHeaderBottomSubLists {
+  display: block;
+}
+
+
+.SublistTitle i {
+  color: #ccc;
+}
+
+.mainHeaderBottomFlexLists {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+}
+
+.mainHeaderBottomSubLists:before {
+  position: absolute;
+  height: 0;
+  top: -15px;
+  left: 25px;
+  content: "";
+  border: 7px solid transparent;
+  border-bottom: 7px solid #b4b4b4;
+}
+
+.mainHeaderBottomFlexListsBlog {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+}
+
+.mainHeaderBottomSubLists {
+  z-index:10;
+  background: white;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 22px;
+  text-align: left;
+  display: none;
+  min-width: 160px;
+}
+
+.mainHeaderBottomSubListsBlog {
+  z-index: 10;
+  background: white;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 22px;
+  text-align: left;
+  display: none;
+  min-width: 240px;
+}
+
+.mainHeaderBottomSubListsBlog:before {
+  position: absolute;
+  height: 0;
+  top: -15px;
+  left: 25px;
+  content: "";
+  border: 7px solid transparent;
+  border-bottom: 7px solid #b4b4b4;
+}
+
+.mainHeaderBottomSubListsBlog li {
+  min-width: 160px;
+  height: 18px;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 8px 15px 8px 15px;
+  color: black !important;
+}
+
+.mainHeaderBottomSubListsBlog li a {
+  color: black !important;
+  width: 100%;
+  height: 100%;
+}
+
+.mainHeaderBottomSubListsBlog li:hover {
+  background: #f5f5f5
+}
+
+.mainHeaderBottomSubLists li {
+  min-width: 160px;
+  height: 18px;
+  font-size: 13px;
+  line-height: 18px;
+  padding: 8px 15px 8px 15px;
+  color: black !important;
+}
+
+.mainHeaderBottomSubLists li a {
+  color: black !important;
+  width: 100%;
+  height: 100%;
+}
+
+.mainHeaderBottomSubLists li:hover {
+  background: #f5f5f5
+}

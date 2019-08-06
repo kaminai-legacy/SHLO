@@ -1,0 +1,25 @@
+.body {
+  font-size: 16px;
+  width: 100%;
+  color: #363945;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
+
+.main {
+  width: 150px;
+  height: 60px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  border-radius: 100px;
+  margin-top: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  background-color: #28d2d0;
+}
