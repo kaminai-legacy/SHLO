@@ -57,16 +57,16 @@ function Carousel() {
                                 <div className={style.imgSlide} style={{backgroundImage:"url(https://imgng.gdeslon.ru/commodities/152394652/pictures/8a4268dd0508225403dc1cbf5501f889/big.jpg)"}}/>
                                 </div>
                                 </div>
-                                <div className="carousel-item ">
+                            { /*       <div className="carousel-item ">
                                 <div className={style.imgSlide} style={{backgroundImage:"url(https://imgng.gdeslon.ru/commodities/152394652/pictures/8a4268dd0508225403dc1cbf5501f889/big.jpg)"}}/>
                             </div>
                             <div className="carousel-item">
                                 <div className={style.imgSlide} style={{backgroundImage:"url(https://imgng.gdeslon.ru/commodities/152394652/pictures/8a4268dd0508225403dc1cbf5501f889/big.jpg)"}}/>
-                            </div>
+                            </div>*/}
                         </div>
 
-                        <div className={style.btn} data-slide="prev"> <span className="sr-only">Previous</span></div>
-                        <div className={style.btn} data-slide="next"> <span className="sr-only">Next</span></div>
+                        { /*  <div className={style.btn} data-slide="prev"> <span className="sr-only">Previous</span></div>
+                        <div className={style.btn} data-slide="next"> <span className="sr-only">Next</span></div>*/}
 
                         <a className="carousel-control-prev" href="#carouselExampleControls" role="button"
                            data-slide="prev">

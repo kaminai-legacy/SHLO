@@ -15,7 +15,8 @@ class AdminP extends Component {
     }
 
     render() {
-        const ARRAY = (this.props.users === null) ? {} : <List array={this.props.users}/>;
+        if (this.props.user === null || (this.props.user.role === "USER")) {return <Redirect to="/notFound"/>}
+        const ARRAY = ((this.props.users === null) || (!this.props.users)) ? {} : <List array={this.props.users}/>;
 
         return (
             <div className={style.body}>
@@ -28,9 +29,10 @@ class AdminP extends Component {
         );
     }
 
-    componentDidMount() {
-        if (this.props.user === null || (this.props.user.role === "USER")) return <Redirect to="/notFound"/>;
-    }
+  /*  componentDidMount() {
+        console.log(this.props.user);
+       // if (this.props.user === null || (this.props.user.role === "USER")) {return <Redirect to="/notFound"/>}
+    }*/
 }
 
 const mapStateToProps = (state) => {

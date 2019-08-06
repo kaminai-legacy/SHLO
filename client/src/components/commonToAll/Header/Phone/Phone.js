@@ -6,7 +6,7 @@ function Phone() {
     return (
         <div className={style.main}>
             <div className={style.mainContactDetails}>
-                <i className="fa fa-phone"/>
+                <i className="fa fa-flip-horizontal fa-phone"/>
                 &nbsp;
                 <Link to="/sssss" className={style.anchorPhone}>(877)&nbsp;355-3585</Link>
             </div>

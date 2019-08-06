@@ -53,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     isBaned: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
     },
     role: {
       type: DataTypes.STRING,

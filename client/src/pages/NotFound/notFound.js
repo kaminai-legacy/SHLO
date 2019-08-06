@@ -2,6 +2,7 @@ import React from 'react';
 import style from './notFound.module.scss';
 import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router';
+import history from "../../boot/browserHistory";
 
 
 function notFound() {

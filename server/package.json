@@ -51,7 +51,7 @@
     "yup": "^0.26.6"
   },
   "devDependencies": {
-    "eslint": "^5.3.0",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0"
   }
