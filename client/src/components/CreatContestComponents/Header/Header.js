@@ -18,7 +18,7 @@ function Header() {
                             instantly!
                         </div>
                     </div>
-                    <Processing text={"1. Select Csssontest Type"} number={2}/>
+                    <Processing text={"1. Select Contest Type"} number={1}/>
                 </div>
             </div>
         </div>

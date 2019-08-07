@@ -8,6 +8,7 @@ import {Route , Switch , Router} from "react-router-dom";
 import history from './boot/browserHistory';
 import CheckUser from './components/HOC/checkUser';
 import NotFound from './pages/NotFound/notFound';
+import  Form from './components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
 
 function App (){
     return (
@@ -18,6 +19,7 @@ function App (){
             <Route path="/login/"  exact component={Login} />
             <Route path="/signup/" exact component={SignUp} />
             <Route path="/admin_panel/" exact component={AdminPanel} />
+            <Route path="/contest_creating_step1/" exact component={Form} />
             <Route path="/contest_creating/" exact component={CreateContest} />
             <Route component={NotFound} />
           </Switch>

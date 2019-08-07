@@ -139,7 +139,6 @@ function Form(props) {
 Form = reduxForm({
     form: 'register',
     validate,
-    asyncChangeFields: ['email', 'password'],
 })(Form);
 
 const mapStateToProps = (state) => {
