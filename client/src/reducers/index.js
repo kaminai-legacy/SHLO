@@ -2,12 +2,12 @@ import {combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import userReducers from './userReducers';
 import getAllUsersReducer from './getAllUsersReducer';
-import manageElementsReducers from './manageElementsReducers';
+//import manageElementsReducers from './manageElementsReducers';
 
 const appReducer = combineReducers({
     userReducers,
     getAllUsersReducer,
-    manageElementsReducers,
+   // manageElementsReducers,
     form: formReducer,
 });
 

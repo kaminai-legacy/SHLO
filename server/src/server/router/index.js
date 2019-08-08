@@ -16,13 +16,7 @@ router.post('/refresh', verifyRefreshToken.check,refreshTokenFindAndCount.check,
 router.post('/login', verifyUser.verify, checkCountRefreshToken.check, userController.loginUser);
 router.post('/banStatusUpdate/:id',verifyAccessToken.check, userController.userBanStatusUpdate);
 router.delete('/logout', userController.logout);
-/*router.post('/ban/:id', (req, res, next) => {
-  res.send('Hello world');
-});*/
 
-router.get('/test', (req, res, next) => {
-  res.send('Hello world');
-});
 
 module.exports = router;
 

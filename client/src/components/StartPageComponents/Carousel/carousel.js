@@ -6,10 +6,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 
-function CarouselElement() {
-    const prevIcon = <span className={style.toLeft} ><i className="fas fa-chevron-left"/></span>;
-    const nextIcon = <span className={style.toRight}><i className="fas fa-chevron-right"/></span>;
-    const responsive = {
+function carouselElement() {
+   /* const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1170 },
             items: 3,
@@ -26,7 +24,7 @@ function CarouselElement() {
             items: 1,
             slidesToSlide: 1, // optional, default to 1.
         },
-    };
+    };*/
     return (
         <div className={style.carousel}>
             <div className={style.content}>
@@ -42,35 +40,58 @@ function CarouselElement() {
                     </div>
                 </div>
                 <div className={style.carouselN1}>
-                    <Carousel
+                      <Carousel
                        customTransition="all 0.4s cubic-bezier(0,0,1,1) 0s"
+                          //customTransition="transform 1000ms cubic-bezier(0,0,1,1)"
                         swipeable={false}
                         draggable={true}
                         centerMode={false}
                         showDots={false}
-                        responsive={responsive}
+                        responsive={{
+                            desktop: {
+                                breakpoint: { max: 3000, min: 1170 },
+                                items: 3,
+                                slidesToSlide: 3, // optional, default to 1.
+
+                            },
+                            tablet: {
+                                breakpoint: { max: 1170, min: 780 },
+                                items: 2,
+                                slidesToSlide: 2, // optional, default to 1.
+                            },
+                            mobile: {
+                                breakpoint: { max: 780, min: 0 },
+                                items: 1,
+                                slidesToSlide: 1, // optional, default to 1.
+                            }}}
                         infinite={true}
                         focusOnSelect={false}
                         minimumTouchDrag={80}
                         arrows={true}
                        autoPlay
-                        customLeftArrow={prevIcon}
-                        customRightArrow={nextIcon}
+                        customLeftArrow={<span className={style.toLeft} ><i className="fas fa-chevron-left"/></span>}
+                        customRightArrow={<span className={style.toRight}><i className="fas fa-chevron-right"/></span>}
                         autoPlaySpeed={5000}
                         itemClass=""
                         containerClass=""
                         removeArrowOnDeviceType={["tablet", "mobile"]}
                     >
-                        <div className={style.imgSlide} style={{backgroundImage:"url(https://imgng.gdeslon.ru/commodities/152394652/pictures/8a4268dd0508225403dc1cbf5501f889/big.jpg)"}}/>
-                        <div className={style.imgSlide} style={{backgroundImage:"url(http://wallperio.com/data/out/322/peter-lik-wallpaper_613984928.jpg)"}}/>
-                        <div className={style.imgSlide} style={{backgroundImage:"url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrT1K8sMHKYmXOzVuhnCbq0CXsNLcLxt913qS_9vLQhcXpGI6t)"}}/>
-                        <div className={style.imgSlide} style={{backgroundImage:"url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0wvD3qaUlZbS67ljuQ3a3T9_Gxvn_NPbTVPQOH3kUMcrRUeKc)"}}/>
-                        <div className={style.imgSlide} style={{backgroundImage:"url(http://catalyst.ca/wp-content/uploads/0598_CatalystGraphs_HomeUse-348x348.jpg)"}}/>
-                        <div className={style.imgSlide} style={{backgroundImage:"url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjvYM1WsKrBfzGP--Fk6jK6qOPaG92IgsrP8nSNvS0SwHCyLsx)"}}/>
-                        <div className={style.imgSlide} style={{borderColor:"red",backgroundImage:"url(https://imgng.gdeslon.ru/commodities/152394652/pictures/8a4268dd0508225403dc1cbf5501f889/big.jpg)"}}/>
-                        <div className={style.imgSlide} style={{backgroundImage:"url(http://wallperio.com/data/out/322/peter-lik-wallpaper_613984928.jpg)"}}/>
-                        <div className={style.imgSlide} style={{backgroundImage:"url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrT1K8sMHKYmXOzVuhnCbq0CXsNLcLxt913qS_9vLQhcXpGI6t)"}}/>
-                    </Carousel>;
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_P_42_Avanti.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_AL_48_urbanpaces.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/VisualNames_onpoint.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_Z_19_AnalytIQ.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_AA_48_StyleRevolver.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_L_09_lush.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_AD_32_Monvelli.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/B_1_01.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_N_04_talentera.png)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/39.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/21..jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_AN_34_innerworks.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/B_2_15.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_Y_29_Vechetti.jpg)"}}/>
+                        <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/07_77.jpg)"}}/>
+                    </Carousel>
 
                 </div>
                 <div className={style.moreName}>
@@ -85,4 +106,4 @@ function CarouselElement() {
     )
 }
 
-export default CarouselElement;
+export default carouselElement;

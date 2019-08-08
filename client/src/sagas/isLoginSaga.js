@@ -6,6 +6,7 @@ import {userIsLogin} from '../api/rest/restContoller';
 export function* isLoginSaga() {
     try {
         const token = localStorage.getItem(TOKENS_KEY);
+
         if (token) {
             const {data} = yield userIsLogin();
             yield put({type: ACTION.SET_USER, user: data});

@@ -46,6 +46,10 @@ module.exports.createUser = async (req, res, next) => {
   }
 };
 
+
+
+
+
 module.exports.refreshUser = async (req, res, next) => {
   const id = req.id;
   try {
@@ -75,17 +79,8 @@ module.exports.loginUser = async (req, res, next) => {
       });
 
     const user = req.user;
-    for (let key in user) {
-      if (user.hasOwnProperty(key)) {
 
-        if(OTHER_FIELDS.includes(key)){
-
-          delete user[key];
-
-        }
-      }
-    }
-
+    OTHER_FIELDS.forEach((field)=> delete user[field]);
 
     const tokenPair = { access: accessToken, refresh: createdRefreshToken.dataValues.tokenString };
     res.send({ user: req.user, tokenPair: tokenPair });
@@ -127,32 +122,21 @@ module.exports.getAllUsers = async (req, res, next) => {
 };
 
 module.exports.userBanStatusUpdate = async (req, res, next) => {
-  try {
-
     const result = await User.update(
     {isBaned: !req.body.banStatus},
     {returning: true,where: {id:req.params.id}}
   );
-    const newResult = result[1][0].dataValues;
-    res.send(newResult);
-  }
-  catch (e){
-      next({ status: 404, message: 'Users not found' });
-    }
-};
+    const [,[newResult]] = result;
+
+    res.send(newResult.dataValues);
+  };
 
 module.exports.logout = async (req, res, next) => {
-  try {
-    const numberOfField = await RefreshToken.destroy({
+    await RefreshToken.destroy({
       where: {
        tokenString:req.body.data.token
       }
     });
     res.send("OK");
-  }
-  catch (e){
-    next(/*{ status: 404, message: 'Error' }*/e);
-  }
 };
-
 

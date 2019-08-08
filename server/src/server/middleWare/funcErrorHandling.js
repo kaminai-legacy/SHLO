@@ -7,6 +7,13 @@ function catched(err, req, res, next) {
         res.status(err.status).send(err.message);
       }
       break;
+    case 401:
+      if (!err.message) {
+        res.status(err.status).send('Unauthorized');
+      } else {
+        res.status(err.status).send(err.message);
+      }
+      break;
 
     case 403:
       if (!err.message) {

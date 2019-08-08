@@ -28,6 +28,4 @@ export const logout = () => ({
     type: ACTION.IS_LOGOUT,
 });
 
-export const dashboard = () => ({
-    type: ACTION.DASHBOARD,
-});
+

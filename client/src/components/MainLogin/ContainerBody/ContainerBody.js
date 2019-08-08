@@ -8,12 +8,13 @@ import connect from 'react-redux/es/connect/connect';
 const yup = require('yup');
 const schema = require('../../../models/userSchema');
 const promises = () => new Promise(resolve => resolve());
-let resEmail;
+
 
 function ContainerBody(props) {
 
     const submit = (values) => {
         return promises().then(async () => {
+            let resEmail;
             try {
                 resEmail = await yup.reach(schema, 'email').isValid(values.email);
             } catch (e) {

@@ -20,7 +20,7 @@ function ContainerBody(props) {
                     password: values.password,
 
                 };
-                console.log(dataToSend);
+                //console.log(dataToSend);
                 props.userSignUp(dataToSend);
             } catch (e) {
             }

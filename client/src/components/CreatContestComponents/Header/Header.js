@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Header.module.scss';
 import Processing from '../Processing/Processing';
+//import {TEXT_PROGRESSING} from '../../../constants/consts';
 
 function Header() {
     return (
@@ -18,7 +19,7 @@ function Header() {
                             instantly!
                         </div>
                     </div>
-                    <Processing text={"1. Select Contest Type"} number={1}/>
+                    <Processing number={1}/>
                 </div>
             </div>
         </div>

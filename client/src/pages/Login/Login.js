@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Login.module.scss';
-import MainLoginContainer from '../../components/Main/Main';
+import MainLoginContainer from '../../components/MainLogin/Main';
 import {USER_KEY} from '../../constants/consts';
 import {Redirect} from 'react-router';
 

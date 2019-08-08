@@ -8,9 +8,10 @@
   color: #333;
   padding-top: 75px;
   text-align: center;
-  @media (max-width: 992px) {
+  @media (max-width: 1200px) {
     width: 100%;
-
+    left: 0;
+    padding:0;
   }
   margin-bottom: 30px;
 }
@@ -26,7 +27,6 @@
   }
 }
 
-
 .loadingBar {
   font-size: 36px;
   margin-top: 20px;
@@ -38,6 +38,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+
 }
 
 .loading {

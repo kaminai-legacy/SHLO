@@ -99,10 +99,17 @@
   margin: 0 25px 29px 25px;
   width: 335px;
   height:335px;
-  border:3px solid #28d2d0;
+  border:2px solid #28d2d0;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  /*@media (max-width: 400px) and (min-width: 0px) {
+    width: 290px;
+    height:290px;
+    //margin: 0 auto 29px auto;
+    position: relative;
+    left:2vw;
+  }*/
 }
 
 .btn{

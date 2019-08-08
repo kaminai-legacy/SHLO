@@ -67,4 +67,4 @@ const mapDispatchToProps = (dispatch) => ({
     userBaned: (id,status) => dispatch(userBaned(id,status)),
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)( Contacts);
+export default connect(mapStateToProps,mapDispatchToProps)(Contacts);

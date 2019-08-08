@@ -16,11 +16,10 @@ class AdminP extends Component {
 
     render() {
         if (this.props.user === null || (this.props.user.role === "USER")) {return <Redirect to="/notFound"/>}
-        const ARRAY = ((this.props.users === null) || (!this.props.users)) ? {} : <List array={this.props.users}/>;
 
         return (
             <div className={style.body}>
-                {ARRAY}
+                {(this.props.users) ? {} : <List array={this.props.users}/>}
                 <ToastContainer/>
                 <Link to="/">
                     <div className={style.main}>Home</div>
