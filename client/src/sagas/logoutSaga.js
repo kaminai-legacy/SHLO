@@ -8,9 +8,10 @@ export function* logoutSaga() {
 
     try {
 
-        const token = JSON.parse(localStorage.getItem(TOKENS_KEY));
+        const token=(sessionStorage.getItem(TOKENS_KEY))?sessionStorage.getItem(TOKENS_KEY):localStorage.getItem(TOKENS_KEY);
         const data = {token: token.refresh};
         yield logout(data);
+        sessionStorage.clear();
         localStorage.clear();
         const userToRead = null;
         yield put({type: ACTION.DASHBOARD_CHANGED});

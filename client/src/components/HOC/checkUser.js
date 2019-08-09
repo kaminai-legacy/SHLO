@@ -6,7 +6,7 @@ import {userIsLogin} from '../../actions/actionCreator';
 class UserLoader extends Component {
     componentWillMount() {
         const user = this.props.user;
-        if (!user && localStorage.getItem(TOKENS_KEY)) {
+        if (!user && (localStorage.getItem(TOKENS_KEY)||sessionStorage.getItem(TOKENS_KEY))) {
             this.props.userIsLogin();
         }
     }

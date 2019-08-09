@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import style from './Adminpanel.module.scss';
-import List from '../../components/UsersList/contacts';
+import List from '../../components/UsersList/userList';
 import {Link} from 'react-router-dom';
 import {getAllUsers} from '../../actions/actionCreator';
 import connect from 'react-redux/es/connect/connect';
@@ -9,17 +9,15 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class AdminP extends Component {
-
     componentWillMount() {
         this.props.getAllUsers();
     }
-
     render() {
         if (this.props.user === null || (this.props.user.role === "USER")) {return <Redirect to="/notFound"/>}
 
         return (
             <div className={style.body}>
-                {(this.props.users) ? {} : <List array={this.props.users}/>}
+                {(this.props.users) ? <List users={this.props.users}/> :{} }
                 <ToastContainer/>
                 <Link to="/">
                     <div className={style.main}>Home</div>
@@ -27,11 +25,6 @@ class AdminP extends Component {
             </div>
         );
     }
-
-  /*  componentDidMount() {
-        console.log(this.props.user);
-       // if (this.props.user === null || (this.props.user.role === "USER")) {return <Redirect to="/notFound"/>}
-    }*/
 }
 
 const mapStateToProps = (state) => {

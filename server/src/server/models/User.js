@@ -22,13 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
-    customerStatus: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
     displayName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -58,11 +51,6 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'USER',
-      validate: {
-        min: 4,
-        max: 5,
-      },
     },
   });
   User.associate = function (models) {

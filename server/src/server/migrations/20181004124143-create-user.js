@@ -23,11 +23,6 @@ module.exports = {
       role: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 0,
-        validate: {
-          min: 4,
-          max: 5,
-        },
       },
       firstName: {
         type: Sequelize.STRING,
@@ -37,13 +32,6 @@ module.exports = {
         },
       },
       lastName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
-      },
-      customerStatus: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {

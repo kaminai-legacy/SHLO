@@ -2,11 +2,11 @@ import React from 'react';
 import style from './ContainerBody.module.scss';
 import Form from './Form/Form';
 import {SubmissionError} from 'redux-form';
-import {userLogin} from '../../../actions/actionCreator';
+import {userLogin} from '../../../../actions/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 
 const yup = require('yup');
-const schema = require('../../../models/userSchema');
+const schema = require('../../../../models/userSchema');
 const promises = () => new Promise(resolve => resolve());
 
 
@@ -30,9 +30,11 @@ function ContainerBody(props) {
                     _error: 'Login failed!',
                 });
             }
+            console.log("ALL props",values);
             const dataToSend = {
                 email: values.email,
                 password: values.password,
+                rememberMe:(!!values.rememberMe)
             };
             props.userLogin(dataToSend);
         });

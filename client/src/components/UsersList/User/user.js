@@ -1,7 +1,7 @@
 import React from 'react';
-import style from './contact.module.scss';
+import style from './user.module.scss';
 
-function Contact(props) {
+function User(props) {
     const Color = props.isBanned ? "red" : "green";
     const status = props.isBanned ? <i className="fa fa-ban" aria-hidden="true"/> :
         <i className="fas fa-check-circle"/>;
@@ -17,7 +17,7 @@ function Contact(props) {
                         {props.displayName}
                     </div>
                     <div className={style.position}>
-                        position: {props.position}
+                        role: {props.role}
                     </div>
                 </div>
             </div>
@@ -25,9 +25,8 @@ function Contact(props) {
                 style={{color: Color}}
                 className={style.icon}>
                 {status}
-
             </div>
         </div>);
 }
 
-export default Contact;
+export default User;

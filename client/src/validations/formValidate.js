@@ -1,12 +1,12 @@
 const validate = (values) => {
     const errors = {};
     if (!values.firstName) {
-      errors.firstName = 'Required'
+      errors.firstName = 'RequiredO'
     } else if (values.firstName.length > 15) {
       errors.firstName = 'Must be 15 characters or less'
     }
     if (!values.lastName) {
-      errors.lastName = 'Required'
+      errors.lastName = 'RequiredI'
     } else if (values.lastName.length > 15) {
       errors.lastName = 'Must be 15 characters or less'
     }

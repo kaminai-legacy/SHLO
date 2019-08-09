@@ -8,12 +8,11 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [{
       email: email,
-        password: bcrypt.hashSync('1qaz2w3e4r', bcrypt.genSaltSync(8)),
-      firstName: 'ORDO',
-      lastName: 'ORDO',
+        password: bcrypt.hashSync('333666999', bcrypt.genSaltSync(8)),
+      firstName: 'Genre',
+      lastName: 'Thompson',
       displayName: 'Tra-ta-ta',
-      customerStatus: 'Buyer',
-      role: 'USER',
+      role: 'ADMIN',
       createdAt: new Date(),
       updatedAt: new Date(),
     }], {});

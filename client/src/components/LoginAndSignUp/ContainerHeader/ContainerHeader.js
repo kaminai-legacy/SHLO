@@ -3,14 +3,13 @@ import style from './ContainerHeader.module.scss';
 import Logo from './Logo/Logo';
 import Button from './Button/Button';
 
-function Main() {
-
+function Logotype(props) {
     return (
         <div className={style.main}>
             <Logo/>
-            <Button/>
+            <Button text={props.text} link={props.link}/>
         </div>
     );
 }
 
-export default Main;
+export default Logotype;

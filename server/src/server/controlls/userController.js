@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const  _ = require('lodash');
 const { User, RefreshToken } = require('../models/index');
 const  {
   SECRETS_ACCESS,
@@ -10,35 +11,33 @@ const  {
 } = require('../utils/Consts');
 const tokenController = require('./tokenController');
 
-module.exports.createUser = async (req, res, next) => {
-  const user = req.body;
-  const password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8));
-  const DataToCreate = Object.assign({},user,{password:password});
-  try {
-
-    const currentUser = await User.create(
-      DataToCreate
-    );
-    const id = currentUser.dataValues.id;
-    const refreshTokenString = await tokenController.createToken(id, SECRETS_REFRESH, LIVE_TIME_REFRESH, ALGORITHM);
-    const accessToken = await tokenController.createToken(id, SECRETS_ACCESS, LIVE_TIME_ACCESS, ALGORITHM);
-    const refreshToken = await RefreshToken
+const createTokenPair=async (id)=>{
+  try{
+  const refreshTokenString = await tokenController.createToken(id, SECRETS_REFRESH, LIVE_TIME_REFRESH, ALGORITHM);
+  const accessToken = await tokenController.createToken(id, SECRETS_ACCESS, LIVE_TIME_ACCESS, ALGORITHM);
+  const refreshToken = await RefreshToken
       .create({
         userId: id,
         tokenString: refreshTokenString,
       });
-    const tokenPair = { access: accessToken, refresh: refreshToken.dataValues.tokenString };
-    const userToSend=currentUser.dataValues;
-    for (let key in userToSend) {
-      if (userToSend.hasOwnProperty(key)) {
-        if(OTHER_FIELDS.includes(key)){
-          delete userToSend[key];
-        }
-      }
-    }
+    return { access: accessToken, refresh: refreshToken.dataValues.tokenString };
+  }
+  catch (e) {
+    return e
+  }
+};
 
+module.exports.createUser = async (req, res, next) => {
+  const user = req.body;
+  try {
+    const password = await bcrypt.hashSync(user.password, bcrypt.genSaltSync(8));
+    const DataToCreate = await Object.assign({},user,{password:password});
+    const createdUser = await User.create(DataToCreate);
+    const id = createdUser.dataValues.id;
+    const tokenPair= await createTokenPair(id);
+    const  userForSend = await  _.omit(createdUser.dataValues,OTHER_FIELDS);
     res.send({
-      user: userToSend,
+      user: userForSend,
       tokenPair,
     });
   } catch (e) {
@@ -46,21 +45,10 @@ module.exports.createUser = async (req, res, next) => {
   }
 };
 
-
-
-
-
 module.exports.refreshUser = async (req, res, next) => {
   const id = req.id;
   try {
-    const refreshTokenString = await tokenController.createToken(id, SECRETS_REFRESH, LIVE_TIME_REFRESH, ALGORITHM);
-    const accessToken = await tokenController.createToken(id, SECRETS_ACCESS, LIVE_TIME_ACCESS, ALGORITHM);
-    const createdRefreshToken = await RefreshToken
-      .create({
-        userId: id,
-        tokenString: refreshTokenString,
-      });
-    const tokenPair = { access: accessToken, refresh: createdRefreshToken.dataValues.tokenString };
+    const tokenPair= await createTokenPair(id);
     res.send({ tokenPair });
   } catch (e) {
     next({ status: 401, message: 'Your session ended. Please re login.' });
@@ -70,20 +58,10 @@ module.exports.refreshUser = async (req, res, next) => {
 module.exports.loginUser = async (req, res, next) => {
   try {
     const id = req.user.id;
-    const refreshTokenString = await tokenController.createToken(id, SECRETS_REFRESH, LIVE_TIME_REFRESH, ALGORITHM);
-    const accessToken = await tokenController.createToken(id, SECRETS_ACCESS, LIVE_TIME_ACCESS, ALGORITHM);
-    const createdRefreshToken = await RefreshToken
-      .create({
-        userId: id,
-        tokenString: refreshTokenString,
-      });
-
     const user = req.user;
-
-    OTHER_FIELDS.forEach((field)=> delete user[field]);
-
-    const tokenPair = { access: accessToken, refresh: createdRefreshToken.dataValues.tokenString };
-    res.send({ user: req.user, tokenPair: tokenPair });
+    const tokenPair= await createTokenPair(id);
+    const  userForSend = _.omit(user,OTHER_FIELDS);
+    res.send({ user: userForSend, tokenPair: tokenPair });
   } catch (e) {
     next({ status: 404, message: 'User not found' });
   }
@@ -91,19 +69,11 @@ module.exports.loginUser = async (req, res, next) => {
 
 module.exports.getUser = async (req, res, next) => {
   const id = req.id;
-
-
   try {
     const result = await User.findOne({ where: { id } });
     const user = result.dataValues;
-    for (let key in user) {
-      if (user.hasOwnProperty(key)) {
-        if(OTHER_FIELDS.includes(key)){
-          delete user[key];
-        }
-      }
-    }
-    res.send(user);
+    const  userForSend = _.omit(user,OTHER_FIELDS);
+    res.send(userForSend);
   } catch (e) {
     next({ status: 404, message: 'User not found' });
   }
@@ -114,20 +84,18 @@ module.exports.getAllUsers = async (req, res, next) => {
     const result = await User.findAll({order: [
         ['id', 'ASC'],
       ]});
-
     res.send(result);
   } catch (e) {
     next({ status: 404, message: 'Users not found' });
   }
 };
 
-module.exports.userBanStatusUpdate = async (req, res, next) => {
+module.exports.updateUserBanStatus = async (req, res, next) => {
     const result = await User.update(
-    {isBaned: !req.body.banStatus},
+    {isBaned: req.body.banStatus},
     {returning: true,where: {id:req.params.id}}
   );
     const [,[newResult]] = result;
-
     res.send(newResult.dataValues);
   };
 

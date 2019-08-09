@@ -3,17 +3,21 @@ import ACTION from '../actions/actiontsTypes';
 import {getUserLogin, signUpLogin} from '../api/rest/restContoller';
 import {TOKENS_KEY} from '../constants/consts';
 import history from '../boot/browserHistory';
+const  _ = require('lodash');
 
 export function* getLoginSaga({dataToSend}) {
-
     try {
-        const RES = yield getUserLogin(dataToSend);
+        const rememberMeStatus=_.pick(dataToSend,["rememberMe"]);
+        const RES = yield getUserLogin(_.omit(dataToSend,["rememberMe"]));
         if (RES.data) {
             const USER = RES.data.user;
             const TOKENS = RES.data.tokenPair;
             yield put({type: ACTION.SET_USER, user: USER});
             const TOKENS_JSON = JSON.stringify(TOKENS);
-            localStorage.setItem(TOKENS_KEY, TOKENS_JSON);
+            if(rememberMeStatus)
+                {sessionStorage.setItem(TOKENS_KEY, TOKENS_JSON);}
+            else
+                {localStorage.setItem(TOKENS_KEY, TOKENS_JSON);}
             yield call(history.push('/'));
         } else if (RES.response.data === "User is baned") {
             yield put({type: ACTION.LOGIN_BANNED});
@@ -30,7 +34,7 @@ export function* signUpSaga({dataToSend}) {
         const USER = data.user;
         const TOKENS = data.tokenPair;
         const TOKENS_JSON = JSON.stringify(TOKENS);
-        localStorage.setItem(TOKENS_KEY, TOKENS_JSON);
+        sessionStorage.setItem(TOKENS_KEY, TOKENS_JSON);
         yield put({type: ACTION.SET_USER, user: USER});
         yield call(history.push('/'));
     } catch (e) {

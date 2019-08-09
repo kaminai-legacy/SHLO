@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ContainerBody.module.scss';
 import Form from './Form/Form';
-import {userSignUp} from '../../../actions/actionCreator';
+import {userSignUp} from '../../../../actions/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 
 const promises = () => new Promise(resolve => resolve());
@@ -11,16 +11,15 @@ function ContainerBody(props) {
     const submit = (values) => {
         return promises().then(async () => {
             try {
+                console.log("register ", values);
                 const dataToSend = {
                     firstName: values.firstName,
                     lastName: values.lastName,
                     displayName: values.displayName,
-                    customerStatus: values.customerStatus,
+                    role: values.role,
                     email: values.email,
                     password: values.password,
-
                 };
-                //console.log(dataToSend);
                 props.userSignUp(dataToSend);
             } catch (e) {
             }

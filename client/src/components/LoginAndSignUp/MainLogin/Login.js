@@ -1,18 +1,18 @@
 import React from 'react';
-import style from './Main.module.scss';
+import style from './Login.module.scss';
 
-import ContainerHeader from './ContainerHeader/ContainerHeader';
+import ContainerHeader from '../ContainerHeader/ContainerHeader';
 import ContainerBody from './ContainerBody/ContainerBody';
 
-function Main() {
-    /*submit = values => {
+function Login() {
+   /* submit = values => {
         window.alert(JSON.stringify(values));
     };*/
     return (
         <div className={style.main}>
             <div className={style.mainContainer}>
                 <div className={style.mainContentContainer}>
-                    <ContainerHeader/>
+                    <ContainerHeader text={"SignUp"} link={'/signup'}/>
                     <ContainerBody/>
                 </div>
             </div>
@@ -20,4 +20,4 @@ function Main() {
     );
 }
 
-export default Main;
+export default Login;

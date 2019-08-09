@@ -1,7 +1,5 @@
 const { RefreshToken } = require('../models/index');
 
-const { Secrets } = require('../utils/Consts');
-
 module.exports.check = async (req, res, next) => {
   try {
     const id = req.user.id;

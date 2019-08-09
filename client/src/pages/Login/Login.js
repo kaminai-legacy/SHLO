@@ -1,17 +1,17 @@
 import React from 'react';
 import style from './Login.module.scss';
-import MainLoginContainer from '../../components/MainLogin/Main';
+import Login from '../../components/LoginAndSignUp/MainLogin/Login';
 import {USER_KEY} from '../../constants/consts';
 import {Redirect} from 'react-router';
 
-function Login() {
+function LoginPage() {
     const user = localStorage.getItem(USER_KEY);
     if (user) return <Redirect to="/"/>;
     return (
         <div className={style.body}>
-            <MainLoginContainer/>
+            <Login/>
         </div>
     );
 }
 
-export default Login;
+export default LoginPage;

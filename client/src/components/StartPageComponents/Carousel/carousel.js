@@ -40,7 +40,7 @@ function carouselElement() {
                     </div>
                 </div>
                 <div className={style.carouselN1}>
-                      <Carousel
+                    Х       <Carousel
                        customTransition="all 0.4s cubic-bezier(0,0,1,1) 0s"
                           //customTransition="transform 1000ms cubic-bezier(0,0,1,1)"
                         swipeable={false}
