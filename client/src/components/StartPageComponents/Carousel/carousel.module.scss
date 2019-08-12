@@ -1,3 +1,10 @@
+%carouselIcon{
+font: normal normal normal 28px FontAwesome;
+                             text-rendering: auto;
+                             color: #666;
+                             text-align: center;
+                             text-shadow: 0 1px 2px rgba(0,0,0,.6);}
+
 .carousel {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -5,7 +12,7 @@
 }
 
 .content {
-  max-width: 1170px;
+  max-width: 1200px;
   width: 100vw;
   margin-left: auto;
   margin-right: auto;
@@ -147,5 +154,3 @@ position:absolute;
   font-size:30px;
   cursor:pointer;
 }
-
-

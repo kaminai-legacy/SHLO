@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './PackagesAndOther.module.scss';
-import Title from '../Title/Title';
+import Title from '../../commonToAll/Title/Title';
 import CardCategories from '../CardCategories/CardCategories';
 import {CONTEST_IMGS} from '../../../constants/contestImgs';
 

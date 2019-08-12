@@ -1,12 +1,29 @@
-import React from 'react';
+import React,{useState} from 'react';
 //import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import style from './carousel.module.scss';
-import Carousel from "react-multi-carousel";
+//import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Carousel } from 'react-bootstrap';
+//import "bootstrap/dist/css/bootstrap.css";
+import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
+ import MyCarousel from './carouselComponent/carousel';
+
 
 
 function carouselElement() {
+
+    const prevIcon = <span className={style.carouselIconPrev}><i className="fas fa-chevron-left"/></span>;
+    const nextIcon = <span className={style.carouselIconNext}><i className="fas fa-chevron-right"/></span>;
+
+    const [index, setIndex] = useState(0);
+    const [direction, setDirection] = useState(null);
+
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+        setDirection(e.direction);
+    };
+
    /* const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1170 },
@@ -39,8 +56,7 @@ function carouselElement() {
                         Logo Design
                     </div>
                 </div>
-                <div className={style.carouselN1}>
-                    Х       <Carousel
+                   {/*}       <Carousel
                        customTransition="all 0.4s cubic-bezier(0,0,1,1) 0s"
                           //customTransition="transform 1000ms cubic-bezier(0,0,1,1)"
                         swipeable={false}
@@ -91,9 +107,9 @@ function carouselElement() {
                         <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/B_2_15.jpg)"}}/>
                         <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_Y_29_Vechetti.jpg)"}}/>
                         <div className={style.imgSlide} style={{backgroundImage:"url(https://www.squadhelp.com/story_images/visual_images/07_77.jpg)"}}/>
-                    </Carousel>
+                    </Carousel>  style={{display:"flex",flexDirection:"row"}}*/}
 
-                </div>
+                <MyCarousel/>
                 <div className={style.moreName}>
                     <Link to="/ss">
                         <div className={style.exploreButton}>
@@ -102,7 +118,12 @@ function carouselElement() {
                     </Link>
                 </div>
             </div>
+
+
+
         </div>
+
+
     )
 }
 

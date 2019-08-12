@@ -2,7 +2,7 @@ import React from 'react';
 import style from './contestCategories.module.scss';
 import CardCategories from '../CardCategories/CardCategories';
 import {CONTEST_IMGS} from '../../../constants/contestImgs';
-import Title from '../Title/Title';
+import Title from '../../commonToAll/Title/Title';
 
 function ContestCategories() {
     return (

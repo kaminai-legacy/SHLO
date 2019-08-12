@@ -5,7 +5,7 @@ import Button from './Button/Button';
 
 function Logotype(props) {
     return (
-        <div className={style.main}>
+        <div className={style.mainContainerHeader}>
             <Logo/>
             <Button text={props.text} link={props.link}/>
         </div>

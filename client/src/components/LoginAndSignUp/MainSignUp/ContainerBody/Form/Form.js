@@ -4,145 +4,60 @@ import {Field, Fields , reduxForm} from 'redux-form';
 import connect from 'react-redux/es/connect/connect';
 import validate from '../../../../../validations/formValidate';
 
-// const renderField = ({
-//                          input,
-//                          label,
-//                          type,
-//                          meta: {asyncValidating, touched, error},
-//                      }) => (
-//     <div>
-//         <div className={style.Field}>
-//             <input {...input} type={type} placeholder={label}
-//                    style={{borderColor: (error && touched) ? "red" : "white"}}/>
-//             {touched && error && <div className={style.errorContainer}>{error}</div>}
-//         </div>
-//     </div>
-// );
+const renderTwoFields = (field1,field2,otherProps) => {
+   console.log(field1,field2,otherProps);
+   let firstFieldColor="white";
+   if ((field1.meta.touched && field1.meta.error)){firstFieldColor="red";}
+   else
+   if(field1.meta.touched ){firstFieldColor="green";}
+    let secondFieldColor="white";
+    if ((field2.meta.touched && field2.meta.error)){secondFieldColor="red";}
+    else
+    if(field2.meta.touched ){secondFieldColor="green";}
 
-const renderFields = (fields) => {
-    console.log(fields);
-    return  <div className={style.displayColumn}>
+    return  <div className={style.displayTwoFields}>
         <div className={style.Row}>
-            <div className={style.Field}>
-            <input {...fields.firstName.input} type={fields.otherProps[0].type} placeholder={fields.otherProps[0].label} autocomplete="off"/>
+            <div className={style.Field} >
+                <input style={{border:"2px solid "+firstFieldColor}} {...field1.input} type={otherProps[0].type} placeholder={otherProps[0].label} autoComplete="off"/>
 
-        </div>
+            </div>
             <div className={style.Field}>
-            <input {...fields.lastName.input} type={fields.otherProps[1].type} placeholder={fields.otherProps[1].label} autocomplete="off"/>
+                <input style={{border:"2px solid "+secondFieldColor}} {...field2.input} type={otherProps[1].type} placeholder={otherProps[1].label} autoComplete="off"/>
 
             </div>
         </div>
-        { <div className={style.errorContainer}>{
-            (fields.firstName.meta.touched && fields.firstName.meta.error && fields.firstName.meta.error)||
-            fields.lastName.meta.touched && fields.lastName.meta.error && fields.lastName.meta.error
+        {((field1.meta.touched && field1.meta.error)&&(field2.meta.active))&& <div className={style.errorContainer}>{
+            field1.meta.error
+        }
+        </div>}
+        {((field2.meta.touched && field2.meta.error)&&(field1.meta.active))&& <div className={style.errorContainer}>{
+            field2.meta.error
+        }</div>}
+        {((!field1.meta.active)&&(!field2.meta.active)&&( field1.meta.error || field2.meta.error)&&( field1.meta.visited || field2.meta.visited))&& <div className={style.errorContainer}>{
+            field1.meta.error || field2.meta.error
         }
         </div>}
     </div>
+
+
 };
 
-
-
-const renderField = ({  data,
-                         meta: {asyncValidating, touched, error},
-                     }) => {
-   const {firstFiled,secondField} =data;
-   console.log("error",error,data);
-   return(
-       <div className={style.displayColumn}>
-       <div className={style.Row}>
-        <div className={style.Field}>
-            <input {...firstFiled.input} name={firstFiled.name} type={firstFiled.type} placeholder={firstFiled.label}
-                   style={{borderColor: (error && touched) ? "red" : "white"}}/>
-        </div>
-        <div className={style.Field}>
-            <input {...secondField.input} name={secondField.name} type={secondField.type} placeholder={secondField.label}
-                   style={{borderColor: (error && touched) ? "red" : "white"}}/>
-        </div>
-    </div>
-           { <div className={style.errorContainer}>{error}</div>}
-           </div>
-)};
-
-const firstPairField={firstFiled:{name:"firstName",type:"text",label:"First name"},secondField:{name:"lastName",type:"text",label:"Last name"}};
-console.log(firstPairField);
-/*
-{
-    firstName: { input: {name:"firstName",type:"text",label:"First name"}, meta: { touched, error} },
-    lastName: { input: {name:"lastName",type:"text",label:"Last name"}, meta: { touched, error} }
-    email: { input: { ... }, meta: { ... } },
-    address: {
-        street: { input: { ... }, meta: { ... } },
-        city: { input: { ... }, meta: { ... } },
-        postalCode: { input: { ... }, meta: { ... } }
-    }
-*/
+const renderFields = (fields) => {
+    return <>
+        {renderTwoFields(fields.firstName,fields.lastName,[fields.otherProps[0],fields.otherProps[1]])}
+        {renderTwoFields(fields.displayName,fields.email,[fields.otherProps[2],fields.otherProps[3]])}
+        {renderTwoFields(fields.password,fields.passwordConfirmation,[fields.otherProps[4],fields.otherProps[5]])}
+        </>
+};
 
 function Form(props) {
     const {handleSubmit, submitting} = props;
     return (
 
         <form onSubmit={handleSubmit(props.submit)}>
-
-            {/*<div className={style.Row}>*/}
-            {/*    <Field className={style.Field}*/}
-            {/*           name="firstName"*/}
-            {/*           component={renderField}*/}
-            {/*           type="text"*/}
-            {/*           label="First name"*/}
-            {/*    />*/}
-
-            {/*} {{firstName:{input:{name:"firstName",type:"text",label:"First name"},meta: {  }},
-                lastName:{input:{name:"firstName",type:"text",label:"First name"},meta: {  }}}}
-*/}
-
-            {/*    <Field className={style.Field}*/}
-            {/*           name="lastName"*/}
-            {/*           component={renderField}*/}
-            {/*           type="text"*/}
-            {/*           label="Last name"*/}
-            {/*    />*/}
-            {/*</div>*/}
-            <Fields names={['firstName','lastName']} otherProps={[{type:"text",label:"First name"},{type:"text",label:"Last name"}]} component={renderFields}/>
-
-            {/*<div className={style.Row}>
-                <Field className={style.Field}
-                        data={firstPairField}
-                       component={renderField}
-                />
-            </div>*/}
-
-
-
-            {/*} <div className={style.Row}>
-                <Field className={style.Field}
-                       name="displayName"
-                       component={renderField}
-                       type="text"
-                       label="Display Name"
-                />
-
-                <Field className={style.Field}
-                       name="email"
-                       component={renderField}
-                       type="text"
-                       label="Email Address"
-                />
-            </div>
-            <div className={style.Row}>
-                <Field className={style.Field}
-                       name="password"
-                       component={renderField}
-                       type="password"
-                       label="Password"
-                />
-
-                <Field className={style.Field}
-                       name="PasswordConfirmation"
-                       component={renderField}
-                       type="password"
-                       label="Password Confirmation"
-                />
-            </div>*/}
+            <Fields names={['firstName','lastName','displayName','email','password','passwordConfirmation']}
+                    otherProps={[{type:"text",label:"First name"},{type:"text",label:"Last name"},{type:"text",label:"Display Name"},{type:"text",label:"Email Address"},{type:"password",label:"Password"},{type:"password",label:"Password Confirmation"}]}
+                    component={renderFields}/>
             <div className={style.Row}>
                 <div className={style.insideRow}>
                     <span className={style.miniElem}><Field name="role" component="input" type="radio"
