@@ -1,0 +1,61 @@
+.statusBlock{
+  font-family: 'Raleway', sans-serif;
+  padding: 10px;
+  border: 1px solid rgba(54,64,74,0.05);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-clip: padding-box;
+  background-color: #fff;
+  height:128px;
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: flex-end;
+  margin-right:20px;
+}
+
+.statusBlockColumn{
+  float: right;
+  display: flex;
+  text-align: right;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-content: flex-end ;
+}
+
+.statusBlockImg{
+  margin-top:10px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  min-width:60px;
+  max-width:60px;
+  max-height:60px;
+  min-height:60px;
+  border-radius: 50px;
+
+  .statusBlockImgIcon{
+    font-size: 12px;
+    color:white;
+    width:20px;
+    height:20px;
+  }
+}
+
+.statusBlockCount{
+  font-weight: 700;
+  font-size:30px;
+  padding-bottom: 25px;
+}
+
+.statusBlockText{
+  color: #777;
+  padding-bottom: 25px;
+}
+
+.statusBlockLink{
+  color: #337ab7;
+  text-decoration: none;
+  font-size: 12px;
+}

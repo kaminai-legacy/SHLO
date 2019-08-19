@@ -17,7 +17,7 @@ function HeaderBottom() {
                     <ul className={style.mainHeaderBottomLists}>
 
                         <li className={style.mainHeaderBottomFlexLists}>
-                            <div className={style.SublistTitle}> Name Ideas <i className="fa fa-angle-down"/></div>
+                            <div className={style.SublistTitle}> NAME IDEAS <i className="fa fa-angle-down"/></div>
                             <ul className={style.mainHeaderBottomSubLists}>
                                 <BottomHeaderList key={"Name"} list={NameIdeals}/>
                             </ul>
@@ -25,7 +25,7 @@ function HeaderBottom() {
 
 
                         <li className={style.mainHeaderBottomFlexLists}>
-                            <div className={style.SublistTitle}> Contests <i className="fa fa-angle-down"/></div>
+                            <div className={style.SublistTitle}> CONTESTS <i className="fa fa-angle-down"/></div>
                             <ul className={style.mainHeaderBottomSubLists}>
                                 <BottomHeaderList key={"Contests"} list={Contests}/>
                             </ul>
@@ -33,7 +33,7 @@ function HeaderBottom() {
 
 
                         <li className={style.mainHeaderBottomFlexLists}>
-                            <div className={style.SublistTitle}> Our Work <i className="fa fa-angle-down"/></div>
+                            <div className={style.SublistTitle}> OUR WORK <i className="fa fa-angle-down"/></div>
                             <ul className={style.mainHeaderBottomSubLists}>
                                 <BottomHeaderList key={"Work"} list={OurWork}/>
                             </ul>
@@ -41,7 +41,7 @@ function HeaderBottom() {
 
 
                         <li className={style.mainHeaderBottomFlexLists}>
-                            <div className={style.SublistTitle}> Names For Sale <i className="fa fa-angle-down"/></div>
+                            <div className={style.SublistTitle}> NAMES FOR SALE <i className="fa fa-angle-down"/></div>
                             <ul className={style.mainHeaderBottomSubLists}>
                                 <BottomHeaderList key={"Names"} list={NamesForSale}/>
                             </ul>
@@ -49,7 +49,7 @@ function HeaderBottom() {
 
 
                         <li className={style.mainHeaderBottomFlexListsBlog}>
-                            <div className={style.SublistTitle}> Blog <i className="fa fa-angle-down"/></div>
+                            <div className={style.SublistTitle}> BLOG <i className="fa fa-angle-down"/></div>
                             <ul className={style.mainHeaderBottomSubListsBlog}>
                                 <BottomHeaderList key={"Blog"} list={Blog}/>
                             </ul>
