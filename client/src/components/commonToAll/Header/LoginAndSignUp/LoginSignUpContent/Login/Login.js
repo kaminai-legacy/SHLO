@@ -19,7 +19,7 @@ function onClickedDashboard(){
 const AdminP = (props.state.userReducers.user && props.state.userReducers.user.role==="ADMIN")?<Link to="/admin_panel/"><li>Admin panel</li></Link>:<></>;
     const list = dashboardView && <div className={style.dashboard} >
       <ul className={style.dashboardList}>
-        <li>View Dashboard</li>
+          <Link to="/dashboard/"><li>View Dashboard</li></Link>
         <li>My account</li>
         <li>Messages</li>
           {AdminP}

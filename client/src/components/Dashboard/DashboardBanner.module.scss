@@ -1,0 +1,54 @@
+.blueBanner{
+  color: #fff;
+  background: #455a89;
+  padding: 44px 0;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.dashboardAva{
+  margin: 0 30px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width:50px;
+  height:50px;
+  border-radius: 50px;
+  font-size: 12px;
+  .upload{
+    padding-left: 19px;
+    padding-top: 37px;
+
+    .uploadFile{
+      position: relative;
+      display: none;
+      top:5px;
+      left:-27px;
+      font-size: 12px;
+      color: white;
+      white-space: pre;
+    }
+  }
+  .upload:hover{
+    cursor: pointer;
+  }
+  .upload:hover .uploadFile{
+    display: block;
+  }
+}
+
+.textBlock{
+  margin-left:20px ;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
+  color: #fff;
+  .rowName{
+    font-size: 20px;
+  }
+  .rowEmail{
+    font-size: 14px;
+  }
+}
