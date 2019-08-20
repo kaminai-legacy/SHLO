@@ -1,4 +1,8 @@
 .statusBlock{
+  @media (min-width: 992px) {
+    margin-right:20px;
+    width: 25%;
+  }
   font-family: 'Raleway', sans-serif;
   padding: 10px;
   border: 1px solid rgba(54,64,74,0.05);
@@ -7,12 +11,15 @@
   background-clip: padding-box;
   background-color: #fff;
   height:128px;
-  width: 25%;
+
+
+}
+
+.intermediateLayer{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-content: flex-end;
-  margin-right:20px;
 }
 
 .statusBlockColumn{
@@ -25,6 +32,12 @@
 }
 
 .statusBlockImg{
+  color:white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size:45px;
   margin-top:10px;
   background-position: center;
   background-size: contain;

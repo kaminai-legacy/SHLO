@@ -4,9 +4,8 @@ import connect from 'react-redux/es/connect/connect';
 
 function dashboardBanner(props) {
     return (
-
+        <div className={style.preBlueBanner}>
             <div className={style.blueBanner}>
-
                 <div className={style.dashboardAva} style={{backgroundImage:"url(https://www.squadhelp.com/images/user_image/thumb/Ava-avatar.jpg)"}}>
                     <div className={style.upload}><i className="fa fa-camera"/>
                         <div className={style.uploadFile}>Upload Picture</div>
@@ -22,7 +21,8 @@ function dashboardBanner(props) {
                         {(props.user)?props.user.email:""}
                     </div>
                 </div>
-            </div>);
+            </div>
+        </div>);
 }
 
 const mapStateToProps = (state) => {

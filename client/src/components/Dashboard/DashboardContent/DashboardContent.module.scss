@@ -35,29 +35,6 @@ width:100%;
   padding: 0 20px;
 }
 
-//.contestInDraft{
-//  /*background: #f9fafb;
-//  height:265px;
-//  width:100%;
-//  padding:35px 20px 60px 20px;*/
-//  padding: 10px 0 50px 0;
-//}
-//
-//.contestInDraftContainer{
-//  padding-right: 15px;
-//  padding-left: 15px;
-//  margin-right: auto;
-//  margin-left: auto;
-//}
-//
-//.contestInDraftContainerRow{
-//  padding: 0 20px;
-//  float: left;
-//  margin-right: -15px;
-//  margin-left: -15px;
-//}
-
-
 .contestInDraft{
   width:100%;
 }
@@ -68,14 +45,28 @@ width:100%;
 }
 
 .contestInDraftContainerInside{
-  padding:30px 20px 10px 20px;
-
+  padding:30px 20px 40px 20px;
+  @media (min-width: 992px) {
+    padding:30px 20px 10px 20px;
+  }
 }
 
 .contestInDraftContainerRow{
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  .button{
+    @media (min-width: 992px) {
+
+    }
+    max-height: 46px;
+    background-color: #28d2d0;
+    color: #fff;
+    display: block;
+    padding: 13px 0;
+    text-align: center;
+  }
 }
 .contestInDraftContainerSecondRow{
 
@@ -88,5 +79,64 @@ width:100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height:255px;
+  height:225px;
+  .sixthRow{
+    //color: #f9fafb;
+   // background: #999;
+    font-size: 26px;
+    padding:25px 15px;
+  }
+  .fifthRow{
+    padding-top:34px;
+    color: #465a89;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+  }
+}
+
+.contestInDraftContainerRowInsideColumn{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .firstRow{
+    padding-bottom: 15px;
+    color: #556da5;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .secondRow{
+    padding-bottom:20px;
+    color: #666;
+    font-size: 13px;
+    line-height: 18px;
+    word-break: break-all;
+  }
+  .thirdRow{
+    padding-bottom:10px;
+    color: #666;
+    font-size: 13px;
+    line-height: 18px;
+    word-break: break-all;
+  }
+  .fourthRow{
+    color: #666;
+    font-size: 13px;
+    line-height: 18px;
+    word-break: break-all;
+  }
+
+}
+
+.buttonPosition{
+  position:absolute;
+  width:100%;
+  top:215px;
+  @media (min-width: 992px) {
+    position: static;
+    max-width:272px;
+  }
 }

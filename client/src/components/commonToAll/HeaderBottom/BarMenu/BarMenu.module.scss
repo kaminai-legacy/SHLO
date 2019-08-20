@@ -1,0 +1,41 @@
+.mainHeaderBottom {
+  height:53px;
+  @media (min-width: 768px) {
+    height:auto;
+    margin-bottom: 10px;
+  }
+  font-family: 'Raleway', sans-serif;
+  @font-face {
+    font-family: 'Raleway-medium'
+  }
+  @font-face {
+    font-family: 'sans-serif-medium'
+  }
+  @media (max-width: 1200px) {
+    width: 100vw;
+    padding:0;
+
+  }
+}
+
+.mainHeaderBottomContainer {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @media (max-width: 1200px) {
+    width: 100vw;
+    padding:0;
+  }
+}
+
+.mainHeaderBottomLists {
+  z-index: 20;
+  background: white;
+  position: absolute;
+  overflow: hidden;
+  transition:max-height 0.2s ease-out;
+  border: 1px solid #cacaca;
+  padding: 0;
+  min-width: 100vw;
+}

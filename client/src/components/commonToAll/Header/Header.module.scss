@@ -1,4 +1,8 @@
-.main {
+.mainHeader {
+  @media (min-width: 768px) {
+    display: inherit;
+  }
+  display: none;
   height: 40px;
 
   font-family: 'Raleway', sans-serif;

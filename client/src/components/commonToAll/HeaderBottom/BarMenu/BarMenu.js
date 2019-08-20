@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './StartPageBottomHeaderList.module.scss';
+import style from './BarMenu.module.scss';
 import ListElement from '../../../../constants/StartPageBottomHeaderLists';
 import {LIST_NAMES} from '../../../../constants/consts';
 import { Link } from 'react-router-dom';
@@ -33,7 +33,7 @@ function BottomHeaderList(props) {
     number++
   }
   return(
-      <ul className={style.mainHeaderBottomLists}>
+      <ul className={style.mainHeaderBottomLists}  style={{maxHeight:props.height,border:props.border}}>
       {RESULT}
       </ul>
   );

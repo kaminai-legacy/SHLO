@@ -21,27 +21,44 @@ function dashboardContent(props) {
                             <div className={style.contestInDraftContainerInside}>
                                 <div className={style.contestInDraftContainerColumn}>
                                 <div className={style.contestInDraftContainerRow}>
-                                    <div >
-1
+                                    <div className={style.contestInDraftContainerRowInsideColumn}>
+                                        <div className={style.firstRow}>
+                                            <Link to=""> #474673 - Name for a Consulting Agency</Link>
+                                        </div>
+                                        <div className={style.secondRow}>
+                                            <Link to=""> Naming / Tagline</Link> (Saved 20 hours ago)
+                                        </div>
                                     </div>
-                                    <div >
-2
-                                    </div>
+                                <div className={style.buttonPosition}>
+                                    <Link to=""><div className={style.button}>
+                                        <i className="fas fa-pen-square"/> Continue Editing
+                                    </div></Link> </div>
                                 </div>
                                 <div className={style.contestInDraftContainerRow}>
-                                    <div >
-                                        1
+                                    <div className={style.contestInDraftContainerRowInsideColumn}>
+                                        <div className={style.thirdRow}>
+                                            sadfry rtuj rt666asdasda
+                                        </div>
+                                        <div className={style.fourthRow}>
+                                           ..
+                                        </div>
                                     </div>
                                     <div >
                                         {}
                                     </div>
                                 </div>
                                 <div className={style.contestInDraftContainerRow}>
-                                    <div >
-                                        1
+                                    <div className={style.fifthRow}>
+                                        <div >
+                                            <i className="far fa-star"/>
+                                            <i className="far fa-star"/>
+                                            <i className="far fa-star"/>
+                                            <i className="far fa-star"/>
+                                            <i className="far fa-star"/>&nbsp;&nbsp; Kaminai   &nbsp;&nbsp;&nbsp; <i className="far fa-gem"/> $0
+                                        </div>
                                     </div>
-                                    <div >
-                                        2
+                                    <div className={style.sixthRow}>
+                                      <i className="fas fa-trash-alt"/>
                                     </div>
                                 </div>
                                 </div>
@@ -74,7 +91,6 @@ function dashboardContent(props) {
                         TEMP.map((Recommendation,id)=>{
                             return<div className={style.Recommendation} key={id}>
                                 <div className={style.RecommendationImg}>
-                                    {console.log(Recommendation.img)}
                                     <Link className={style.RecommendationLink} to={Recommendation.link}>
                                     <img alt={"Recommendation"} className={style.RecommendationImgInside} src={Recommendation.img}>
 

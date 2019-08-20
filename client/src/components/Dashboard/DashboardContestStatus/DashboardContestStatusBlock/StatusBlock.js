@@ -5,9 +5,9 @@ import {Link} from "react-router-dom";
 function statusBlock(props) {
     return (
             <div className={style.statusBlock}>
-                {console.log(props.imgIcon)}
+                <div className={style.intermediateLayer}>
                 <div className={style.statusBlockImg}  style={{backgroundColor:props.imgColor}}>
-
+                    <div>{props.imgIcon}</div>
                 </div>
                 <div className={style.statusBlockColumn}>
 
@@ -21,7 +21,7 @@ function statusBlock(props) {
                         <Link to={props.link} className={style.anchorPhone}>{props.linkText}</Link>
 
                     </div>
-
+                </div>
                 </div>
             </div>);
 }

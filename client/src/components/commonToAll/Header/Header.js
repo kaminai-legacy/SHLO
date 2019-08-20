@@ -5,7 +5,7 @@ import LoginAndSignUp from './LoginAndSignUp/LoginAndSignUp';
 
 function Header() {
     return (
-        <div className={style.main}>
+        <div className={style.mainHeader}>
             <div className={style.mainHeaderTop}>
                 <div className={style.mainContainer}>
                     <div className={style.mainRow}>

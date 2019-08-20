@@ -1,4 +1,4 @@
-const NameIdeals = [
+const NAME_IDEALS = [
     {
         text: "Beauty",
         link: "/Beauty"
@@ -36,7 +36,7 @@ const NameIdeals = [
     }
 ];
 
-const Contests = [
+const CONTESTS = [
     {
         text: "How It Works",
         link: "/Beauty"
@@ -73,7 +73,7 @@ const Contests = [
     }
 ];
 
-const OurWork = [
+const OUR_WORK = [
     {
         text: "Names",
         link: "/Beauty"
@@ -95,7 +95,7 @@ const OurWork = [
     }
 ];
 
-const NamesForSale = [
+const NAMES_FOR_SALE = [
     {
         text: "Popular Names",
         link: "/Beauty"
@@ -125,7 +125,7 @@ const NamesForSale = [
     }
 ];
 
-const Blog = [
+const BLOG = [
     {
         text: "Ultimate Naming Guide",
         link: "/ECommerce"
@@ -147,11 +147,13 @@ const Blog = [
     }
 ];
 
+
+
 module.exports =
     {
-        NameIdeals,
-        Contests,
-        OurWork,
-        NamesForSale,
-        Blog
+         NAME_IDEALS,
+         CONTESTS,
+         OUR_WORK,
+         NAMES_FOR_SALE,
+         BLOG
     };

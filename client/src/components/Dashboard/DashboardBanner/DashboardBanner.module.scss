@@ -1,14 +1,29 @@
+.preBlueBanner{
+  min-width:100%;
+  background: #455a89;
+}
 .blueBanner{
+  max-width: 1140px;
+  margin:0 auto;
   color: #fff;
   background: #455a89;
   padding: 44px 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
   align-content: center;
+  @media (min-width: 992px) {
+    justify-content: flex-start;
+    flex-direction: row;
+  }
 }
 
 .dashboardAva{
-  margin: 0 30px;
+  margin: 0 auto;
+  @media (min-width: 992px) {
+    margin: 0 30px;
+  }
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -17,8 +32,11 @@
   border-radius: 50px;
   font-size: 12px;
   .upload{
-    padding-left: 19px;
-    padding-top: 37px;
+    position: relative;
+    left:19px;
+    top:37px;
+    max-height: 12px;
+    max-width: 12px;
 
     .uploadFile{
       position: relative;
@@ -39,14 +57,23 @@
 }
 
 .textBlock{
-  margin-left:20px ;
+  padding-top:20px ;
+  margin-left:0 ;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: space-around;
   color: #fff;
+  @media (min-width: 992px) {
+    margin-left:20px ;
+    padding-top:0 ;
+  }
   .rowName{
     font-size: 20px;
+    padding-bottom:10px ;
+    @media (min-width: 992px) {
+     padding-bottom:0 ;
+    }
   }
   .rowEmail{
     font-size: 14px;
