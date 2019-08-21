@@ -4,13 +4,11 @@ import Form from './Form/Form';
 import {userSignUp} from '../../../../actions/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 
-const promises = () => new Promise(resolve => resolve());
+//const promises = () => new Promise(resolve => resolve());
 
 function ContainerBody(props) {
 
     const submit = (values) => {
-        return promises().then(async () => {
-            try {
                 console.log("register ", values);
                 const dataToSend = {
                     firstName: values.firstName,
@@ -21,9 +19,6 @@ function ContainerBody(props) {
                     password: values.password,
                 };
                 props.userSignUp(dataToSend);
-            } catch (e) {
-            }
-        });
     };
     return (
         <div className={style.main}>

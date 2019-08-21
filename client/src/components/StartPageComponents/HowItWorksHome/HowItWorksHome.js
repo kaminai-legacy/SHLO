@@ -11,7 +11,7 @@ function HowItWorksHome() {
                    text={""}
                    color={"black"} borderColor={"transparent"}
             />
-</div>
+        </div>
     )
 
 }

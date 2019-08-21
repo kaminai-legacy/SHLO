@@ -15,7 +15,8 @@ function ContestCategories() {
                 <div className={style.flexCategories}>
                     <CardCategories name={"Name"} text={"Get up and running with the perfect name. "}
                                     img={[CONTEST_IMGS.name[0]]}
-                                    imgHover={[CONTEST_IMGS.name[1]]} styles={"white"} link={'/contest_creating_step1'}/>
+                                    imgHover={[CONTEST_IMGS.name[1]]} styles={"white"}
+                                    link={'/contest_creating_step1'}/>
                     <CardCategories name={"Logo"} text={"Kickstart your venture with a unique, memorable logo "}
                                     img={[CONTEST_IMGS.logo[0]]}
                                     imgHover={[CONTEST_IMGS.logo[1]]} styles={"white"} link={'/home'}/>

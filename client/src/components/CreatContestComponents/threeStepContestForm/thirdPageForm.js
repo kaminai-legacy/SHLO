@@ -1,13 +1,14 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import validate from './validate';
+
 const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
 //import {renderColorSelector as Selector} from './renderField';
 //import render from'./renderField';
 //const render=require('./renderField');
 
 const WizardFormThirdPage = props => {
-    const { handleSubmit, pristine, previousPage, submitting } = props;
+    const {handleSubmit, pristine, previousPage, submitting} = props;
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -29,7 +30,7 @@ const WizardFormThirdPage = props => {
             <div>
                 <label>Notes</label>
                 <div>
-                    <Field name="notes" component="textarea" placeholder="Notes" />
+                    <Field name="notes" component="textarea" placeholder="Notes"/>
                 </div>
             </div>
             <div>

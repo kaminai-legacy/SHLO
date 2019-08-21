@@ -5,7 +5,7 @@ import CardCategories from '../CardCategories/CardCategories';
 import {CONTEST_IMGS} from '../../../constants/contestImgs';
 
 function PackagesAndOther(props) {
-  //  console.log(props.text);
+    //  console.log(props.text);
     return (
         <>
             <Title title={"Save With Our Bundle Packages"}

@@ -12,12 +12,15 @@ class AdminP extends Component {
     componentWillMount() {
         this.props.getAllUsers();
     }
+
     render() {
-        if (this.props.user === null || (this.props.user.role === "USER")) {return <Redirect to="/notFound"/>}
+        if (this.props.user === null || (this.props.user.role === "USER")) {
+            return <Redirect to="/notFound"/>
+        }
 
         return (
             <div className={style.body}>
-                {(this.props.users) ? <List users={this.props.users}/> :{} }
+                {(this.props.users) ? <List users={this.props.users}/> : {}}
                 <ToastContainer/>
                 <Link to="/">
                     <div className={style.main}>Home</div>

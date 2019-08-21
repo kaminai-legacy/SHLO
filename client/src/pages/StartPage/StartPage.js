@@ -9,7 +9,6 @@ import HowItWorksHome from '../../components/StartPageComponents/HowItWorksHome/
 import Carousel from '../../components/StartPageComponents/Carousel/carousel';
 
 
-
 function StartPage() {
 
     return (

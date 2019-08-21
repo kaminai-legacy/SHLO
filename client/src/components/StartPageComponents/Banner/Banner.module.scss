@@ -1,28 +1,42 @@
+@mixin button($property1,$property2,$property3) {
+  cursor: pointer;
+  color: $property1;
+  font-weight: 500;
+  border: 2px solid #28d2d0 !important;
+  background: $property2;
+  font: 14px "Lato";
+  display: inline-block;
+  border-radius: 5px;
+  text-transform: $property3;
+  padding: 14px 0;
+  @media (min-width: 768px) {
+    padding: 14px 20px !important;
+  }
+}
+
 .banner {
-  width: 80vw;
-  left: 10vw;
+  max-width: 1170px;
+  width: 100%;
+  left: 0;
+  margin: 0 auto 30px auto;
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
   color: #333;
-  padding-top: 75px;
+  padding-top: 10vw;
   text-align: center;
   @media (max-width: 1200px) {
-    width: 100%;
-    left: 0;
-    padding:0;
   }
-  margin-bottom: 30px;
+  //margin-bottom: ;
 }
 
 .bannerContent {
-  width: 80vw;
+  //width: 100%;
+  padding: 0 15px;
   position: relative;
   color: #333;
   text-align: center;
   @media (max-width: 992px) {
-    width: 100%;
+
 
   }
 }
@@ -111,23 +125,37 @@
 }
 
 .flexList {
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+
+  .item {
+    width: 100%;
+    @media (min-width: 768px) {
+      width: auto;
+    }
+
+    .itemIntermediateLayer {
+      padding: 0 20px;
+      @media (min-width: 768px) {
+        padding: 0;
+      }
+    }
+  }
 
 }
 
 .startContestButton {
-  cursor: pointer;
-  color: white;
-  border: 2px solid #28d2d0 !important;
-  padding: 14px 20px !important;
-  background: #28d2d0;
-  font: 14px "Lato";
-  display: inline-block;
-  text-transform: uppercase;
-  border-radius: 5px;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: auto;
+  }
+  @include button(white, #28d2d0, uppercase);
 }
 
 .startContestButton:hover {
@@ -136,15 +164,11 @@
 }
 
 .exploreButton {
-  cursor: pointer;
-  color: black;
-  font-weight: 500;
-  border: 2px solid #28d2d0 !important;
-  padding: 14px 20px !important;
-  background: none;
-  font: 14px "Lato";
-  display: inline-block;
-  border-radius: 5px;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: auto;
+  }
+  @include button(black, none, none);
 }
 
 .exploreButton:hover {

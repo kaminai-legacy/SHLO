@@ -5,9 +5,9 @@ import ContainerHeader from '../ContainerHeader/ContainerHeader';
 import ContainerBody from './ContainerBody/ContainerBody';
 
 function Login() {
-   /* submit = values => {
-        window.alert(JSON.stringify(values));
-    };*/
+    /* submit = values => {
+         window.alert(JSON.stringify(values));
+     };*/
     return (
         <div className={style.main}>
             <div className={style.mainContainer}>

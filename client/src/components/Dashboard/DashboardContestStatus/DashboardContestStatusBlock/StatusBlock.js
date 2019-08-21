@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 
 function statusBlock(props) {
     return (
-            <div className={style.statusBlock}>
-                <div className={style.intermediateLayer}>
-                <div className={style.statusBlockImg}  style={{backgroundColor:props.imgColor}}>
+        <div className={style.statusBlock}>
+            <div className={style.intermediateLayer}>
+                <div className={style.statusBlockImg} style={{backgroundColor: props.imgColor}}>
                     <div>{props.imgIcon}</div>
                 </div>
                 <div className={style.statusBlockColumn}>
@@ -22,7 +22,8 @@ function statusBlock(props) {
 
                     </div>
                 </div>
-                </div>
-            </div>);
+            </div>
+        </div>);
 }
+
 export default statusBlock;

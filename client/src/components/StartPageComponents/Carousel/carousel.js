@@ -1,14 +1,13 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 //import { Carousel } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import style from './carousel.module.scss';
 //import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Carousel } from 'react-bootstrap';
+import {Carousel} from 'react-bootstrap';
 //import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
- import MyCarousel from './carouselComponent/carousel';
-
+import MyCarousel from './carouselComponent/carousel';
 
 
 function carouselElement() {
@@ -24,24 +23,24 @@ function carouselElement() {
         setDirection(e.direction);
     };
 
-   /* const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1170 },
-            items: 3,
-            slidesToSlide: 3, // optional, default to 1.
+    /* const responsive = {
+         desktop: {
+             breakpoint: { max: 3000, min: 1170 },
+             items: 3,
+             slidesToSlide: 3, // optional, default to 1.
 
-        },
-        tablet: {
-            breakpoint: { max: 1170, min: 780 },
-            items: 2,
-            slidesToSlide: 2, // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 780, min: 0 },
-            items: 1,
-            slidesToSlide: 1, // optional, default to 1.
-        },
-    };*/
+         },
+         tablet: {
+             breakpoint: { max: 1170, min: 780 },
+             items: 2,
+             slidesToSlide: 2, // optional, default to 1.
+         },
+         mobile: {
+             breakpoint: { max: 780, min: 0 },
+             items: 1,
+             slidesToSlide: 1, // optional, default to 1.
+         },
+     };*/
     return (
         <div className={style.carousel}>
             <div className={style.content}>
@@ -56,7 +55,7 @@ function carouselElement() {
                         Logo Design
                     </div>
                 </div>
-                   {/*}       <Carousel
+                {/*}       <Carousel
                        customTransition="all 0.4s cubic-bezier(0,0,1,1) 0s"
                           //customTransition="transform 1000ms cubic-bezier(0,0,1,1)"
                         swipeable={false}
@@ -118,7 +117,6 @@ function carouselElement() {
                     </Link>
                 </div>
             </div>
-
 
 
         </div>

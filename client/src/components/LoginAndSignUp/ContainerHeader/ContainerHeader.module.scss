@@ -1,12 +1,12 @@
 .mainContainerHeader {
-  @media (max-width:500px){
+  @media (max-width: 500px) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 0 10px;
     padding: 0 10px;
   }
-  @media (min-width:500px){
+  @media (min-width: 500px) {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

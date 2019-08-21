@@ -28,14 +28,14 @@
 }
 
 .Row {
-  @media (max-width:500px) {
-  position: relative;
-  flex: 1 0 auto;
-  min-width: 200px;
-  box-sizing: border-box;
-  padding: 0 5px 1.15rem;
-}
-  @media (min-width:500px) {
+  @media (max-width: 500px) {
+    position: relative;
+    flex: 1 0 auto;
+    min-width: 200px;
+    box-sizing: border-box;
+    padding: 0 5px 1.15rem;
+  }
+  @media (min-width: 500px) {
     position: relative;
     flex: 1 0 auto;
     min-width: 200px;

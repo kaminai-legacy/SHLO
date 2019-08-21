@@ -1,4 +1,4 @@
-.main{
+.main {
   position: relative;
   text-align: -webkit-match-parent;
   font-size: 16px;
@@ -9,31 +9,34 @@
   box-sizing: border-box;
 }
 
-a{color: #337ab7;
+a {
+  color: #337ab7;
   text-decoration: none;
   background-color: transparent;
 }
-.toClick{
+
+.toClick {
   cursor: pointer;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: right;
   align-items: center;
 
 }
-.ava{
+
+.ava {
   background-image: url("http://www.simonhoegsberg.com/faces_of_new_york/images/11_faces.jpg");
   width: 25px;
   height: 25px;
   background-position: center;
   background-size: cover;
-  border: white 0 ;
+  border: white 0;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
 
-.hi{
+.hi {
   color: #718888;
   font-weight: 500;
   font-size: 13.5px;
@@ -41,45 +44,47 @@ a{color: #337ab7;
   white-space: pre;
 }
 
-.flax{
+.flax {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
 
-.dashboard{
+.dashboard {
   font-weight: 500;
   text-align: left;
   background: white;
   z-index: 7;
-  width:170px;
+  width: 170px;
   position: absolute;
-  top:40px;
+  top: 40px;
   border: 1px solid #cacaca;
   font-size: 13px;
   color: #718888;
 }
 
-.dashboard a{
+.dashboard a {
   color: #718888;
-  text-decoration:none;
-}
-.dashboard a:hover{
-  color: black;
-  text-decoration:none;
+  text-decoration: none;
 }
 
-.dashboardList li{
-  padding:5px 10px 5px 10px ;
+.dashboard a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.dashboardList li {
+  padding: 5px 10px 5px 10px;
   cursor: pointer;
 }
+
 .dashboardList li:hover {
-  color:black;
-    background:#f5f5f5
- }
+  color: black;
+  background: #f5f5f5
+}

@@ -1,60 +1,68 @@
-.tabContent{
-width: min-content;
-margin-bottom: 20px;
-    .carouselIconPrev{
-      @extend %carouselIcon;
-      margin-right: 12vw};
-    .carouselIconNext{
-      @extend %carouselIcon;
-      margin-left: 12vw}
+.tabContent {
+  width: min-content;
+  margin-bottom: 20px;
 
-    .carousel{
-      display: flex;
-      flex-direction: row}
+  .carouselIconPrev {
+    @extend %carouselIcon;
+    margin-right: 12vw
+  }
+;
 
-    .item{
-      background-size: contain;
-      background-repeat: no-repeat;
-      width: 330px;
-      height: 330px;
-      margin: 25px;}
+  .carouselIconNext {
+    @extend %carouselIcon;
+    margin-left: 12vw
+  }
+
+  .carousel {
+    display: flex;
+    flex-direction: row
+  }
+
+  .item {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 330px;
+    height: 330px;
+    margin: 25px;
+  }
 }
-%carouselIcon{
+
+%carouselIcon {
   font: normal normal normal 28px FontAwesome;
   text-rendering: auto;
   color: #666;
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0,0,0,.6)
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6)
 }
 
-.carouselBody{
+.carouselBody {
   max-height: 375px;
-  height:100vw;
+  height: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
   max-width: 1200px;
-  width:100vw ;
-    .icon{
-      cursor:pointer  ;
-      position: relative;
-      top:45%;
-      text-align: center;
-      width:30px;
-      color: #666;
-      height: 28px;
-      vertical-align: center;
-      font: normal normal normal 28px FontAwesome;
-    }
+  width: 100vw;
 
-  .carouselInner{
+  .icon {
+    cursor: pointer;
+    position: relative;
+    top: 45%;
+    text-align: center;
+    width: 30px;
+    color: #666;
+    height: 28px;
+    vertical-align: center;
+    font: normal normal normal 28px FontAwesome;
+  }
+
+  .carouselInner {
     overflow: hidden;
     max-width: 1134px;
 
 
-
-    .carouselSlider{
+    .carouselSlider {
       position: relative;
       display: flex;
       flex-direction: row;
@@ -65,10 +73,11 @@ margin-bottom: 20px;
 
   }
 }
-.carouselItem{
+
+.carouselItem {
   margin: 0 15px 23px 15px;
   min-width: 348px;
-  min-height:348px;
+  min-height: 348px;
   //border:2px solid #28d2d0;
   background-size: contain;
   background-position: center;

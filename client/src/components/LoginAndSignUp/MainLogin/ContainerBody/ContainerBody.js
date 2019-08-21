@@ -24,17 +24,17 @@ function ContainerBody(props) {
                     email: 'Email is not valid format',
                     _error: 'Login failed!',
                 });
-            } else if (!values.password) {
+            }else if (!values.password) {
                 throw new SubmissionError({
                     password: 'Required',
                     _error: 'Login failed!',
                 });
             }
-            console.log("ALL props",values);
+            console.log("ALL props", values);
             const dataToSend = {
                 email: values.email,
                 password: values.password,
-                rememberMe:(!!values.rememberMe)
+                rememberMe: (!!values.rememberMe)
             };
             props.userLogin(dataToSend);
         });

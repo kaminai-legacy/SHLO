@@ -1,8 +1,8 @@
-.dropList{
-  height:35px;
-  padding-top:18px;
-  margin-right:30px;
-  font-size:19px;
+.dropList {
+  height: 35px;
+  padding-top: 18px;
+  margin-right: 30px;
+  font-size: 19px;
   font-weight: 200;
 
   display: flex;
@@ -14,20 +14,20 @@
   }
   border-left: 1px solid #ebebeb;
 
-  .listElem{
-    font-size:14px;
+  .listElem {
+    font-size: 14px;
     padding: 0 15px;
     cursor: pointer;
     border-right: 1px solid #ebebeb;
     position: relative;
-    margin-bottom:10px;
+    margin-bottom: 10px;
   }
 }
 
 .mainHeaderBottom {
-  height:53px;
+  height: 53px;
   @media (min-width: 768px) {
-    height:auto;
+    height: auto;
     margin-bottom: 10px;
     border-bottom: none;
   }
@@ -38,7 +38,6 @@
   @font-face {
     font-family: 'sans-serif-medium'
   }
-
 
 
 }
@@ -70,13 +69,14 @@
   padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
-    width: 100vw;
+  width: 100vw;
 }
 
 .mainHeaderBottomRow {
   max-width: 1170px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 15px;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
@@ -84,13 +84,15 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  .list{
+
+  .list {
     display: none;
     @media (min-width: 768px) {
-     display: block;
+      display: block;
     }
   }
-  .button{
+
+  .button {
     display: none;
     @media (min-width: 768px) {
       display: block;
@@ -99,18 +101,18 @@
 }
 
 .mainHeaderBottomLogo {
-  padding: 12px 15px  0 15px;
+  padding: 12px 15px 0 15px;
   height: 33px;
   @media (min-width: 768px) {
     height: 100%;
     margin-left: 0;
     padding: 0;
   }
-  a{
-    height:100%;
+
+  a {
+    height: 100%;
   }
 }
-
 
 
 .mainHeaderBottomButton {
@@ -134,34 +136,34 @@
 }
 
 
-
 .mainHeaderBottomButton:hover {
   background: #28d2d0 !important;
   color: white;
 }
 
 
-.toClick{
+.toClick {
   cursor: pointer;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: right;
   align-items: center;
 
 }
-.ava{
+
+.ava {
   background-image: url("http://www.simonhoegsberg.com/faces_of_new_york/images/11_faces.jpg");
   width: 25px;
   height: 25px;
   background-position: center;
   background-size: cover;
-  border: white 0 ;
+  border: white 0;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
 
-.hi{
+.hi {
   color: #718888;
   font-weight: 500;
   font-size: 13.5px;
@@ -169,26 +171,29 @@
   white-space: pre;
 }
 
-.flax{
+.flax {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
 
-.dashboard{
-  transition: max-height 0.2s ease-out;
-  top:0;
+.dashboard {
+  @media (min-width: 768px) {
+    display: none;
+  }
+  transition: max-height 0.4s ease-out;
+  top: 0;
   font-weight: 500;
   text-align: left;
   background: white;
   z-index: 7;
-  width:100vw;
+  width: 100vw;
   position: relative;
 
   font-size: 13px;
@@ -196,27 +201,31 @@
   overflow: hidden;
 }
 
-.dashboard a{
+.dashboard a {
   color: #718888;
-  text-decoration:none;
-}
-.dashboard a:hover{
-  color: black;
-  text-decoration:none;
+  text-decoration: none;
 }
 
-.dashboardList li{
-  padding:5px 10px 5px 10px ;
+.dashboard a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.dashboardList li {
+  padding: 5px 10px 5px 10px;
   cursor: pointer;
 }
+
 .dashboardList li:hover {
-  color:black;
-  background:#f5f5f5
+  color: black;
+  background: #f5f5f5
 }
 
-.miniView{
+.miniView {
+  //overflow: hidden;
   position: relative;
-  display: block;
+  //width:100vw;
+  display: inline-block;
   @media (min-width: 992px) {
     display: none;
 

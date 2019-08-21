@@ -9,7 +9,8 @@ const renderField = ({
                          type,
                          meta: {asyncValidating, touched, error},
                      }) => {
-                         console.log(input);return<div>
+    //console.log(input);
+    return <div>
         <div className={asyncValidating ? 'async-validating' : ''}>
             <input {...input} type={type} placeholder={label} style={{borderColor: error ? "red" : "white"}}/>
             {touched && error && <div className={style.errorContainer}>{error}</div>}
@@ -46,7 +47,7 @@ function Form(props) {
            <span className={style.RememberMe}>
              <div className={style.flexBox}>
                <span style={{width: '24px', height: '13px'}}>
-                 <Field name="rememberMe" component="input" type="checkbox" value={true} />
+                 <Field name="rememberMe" component="input" type="checkbox" value={true}/>
                  </span>
                <span><label>Remember&nbsp;</label></span><span><label>me</label></span>
              </div>

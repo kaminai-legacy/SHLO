@@ -1,4 +1,19 @@
+
+.preProgressMain{
+  margin: 0 33px;
+  @media (min-width: 768px) {
+    max-width: 595px;
+    margin: 0 20px;
+    width: auto;
+  }
+  width: 100%;
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
 .progressMain {
+
   padding: 0 15px;
   width: 100%;
   max-width: 60%;
@@ -113,7 +128,7 @@
     }
   }
 
-  .tube{
+  .tube {
     //top:15px;
     position: relative;
     z-index: 2;

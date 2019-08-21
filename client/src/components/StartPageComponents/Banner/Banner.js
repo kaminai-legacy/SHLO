@@ -34,22 +34,26 @@ function Banner() {
                     agency-level naming process.<br/>
                     Or, explore our hand-picked collection of premium names available for immediate purchase.</p>
                 <div className={style.flexList}>
-                    <div>
-                        <Link to="/contest_creating/">
-                            <div className={style.startContestButton}>
-                                START A CONTEST
-                            </div>
-                        </Link>
+                    <div className={style.item}>
+                        <div className={style.itemIntermediateLayer}>
+                            <Link to="/contest_creating/">
+                                <div className={style.startContestButton}>
+                                    START A CONTEST
+                                </div>
+                            </Link>
+                        </div>
                     </div>
                     <div className={style.textOr}>
                         Or
                     </div>
-                    <div>
-                        <Link to="/ss">
-                            <div className={style.exploreButton}>
-                                Explore Names For Sale
-                            </div>
-                        </Link>
+                    <div className={style.item}>
+                        <div className={style.itemIntermediateLayer}>
+                            <Link to="/ss">
+                                <div className={style.exploreButton}>
+                                    Explore Names For Sale
+                                </div>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

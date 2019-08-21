@@ -8,7 +8,7 @@ function GrowBusiness() {
 
     return (<div className={style.mainGrowBusiness}>
 
-</div>
+        </div>
     )
 
 }

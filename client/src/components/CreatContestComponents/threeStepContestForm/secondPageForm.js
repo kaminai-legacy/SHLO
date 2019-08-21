@@ -1,31 +1,31 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import validate from './validate'
-import render from'./renderField';
+import render from './renderField';
 //const render=require('./renderField');
 
-const renderError = ({ meta: { touched, error } }) =>
+const renderError = ({meta: {touched, error}}) =>
     touched && error ? <span>{error}</span> : false;
 
 const WizardFormSecondPage = props => {
-    const { handleSubmit, previousPage } = props;
+    const {handleSubmit, previousPage} = props;
     return (
         <form onSubmit={handleSubmit}>
-               <Field name="email" type="email" component={render.renderField} label="Email" />
+            <Field name="email" type="email" component={render.renderField} label="Email"/>
             <div>
                 <label>Sex</label>
                 <div>
                     <label>
-                        <Field name="sex" component="input" type="radio" value="male" />
+                        <Field name="sex" component="input" type="radio" value="male"/>
                         {' '}
                         Male
                     </label>
                     <label>
-                        <Field name="sex" component="input" type="radio" value="female" />
+                        <Field name="sex" component="input" type="radio" value="female"/>
                         {' '}
                         Female
                     </label>
-                    <Field name="sex" component={renderError} />
+                    <Field name="sex" component={renderError}/>
                 </div>
             </div>
             <div>

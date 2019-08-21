@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Header.module.scss';
 import Processing from '../Processing/Processing';
+
 //import {TEXT_PROGRESSING} from '../../../constants/consts';
 
 function Header() {

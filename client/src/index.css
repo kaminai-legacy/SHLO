@@ -59,3 +59,8 @@ table {
 ins {
   text-decoration: none;
 }
+#root{
+  width:100vw;
+  margin: 0 auto;
+  min-height:100vh;
+}

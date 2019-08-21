@@ -1,7 +1,8 @@
 .main {
   display: flex;
   flex-flow: row wrap;
-  min-width: 321px;
+  max-width: 595px;
+  width: 100vw;
   margin-right: -15px;
   margin-left: -15px;
   text-align: center;
@@ -18,13 +19,17 @@
 }
 
 
-.displayTwoFields{
+.displayTwoFields {
+  max-width: 595px;;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
-
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
+
 .Rows {
 
   margin-right: -15px;
@@ -42,20 +47,34 @@
   margin-left: auto;
   margin-right: auto;
 
-  @media (max-width:600px) {
+  @media (max-width: 600px) {
     flex-direction: column;
+    min-width: 0;
+    width: 100%;
   }
 }
 
 .Field {
   position: relative;
   flex: 1 0 auto;
-  min-width: 297px;
+
+  //min-width: 297px;
   box-sizing: border-box;
   padding: 0 14px 1.15rem;
 }
 
-.FieldSocial{
+
+.preFieldSocial {
+  margin: 0 33px;
+  @media (max-width: 600px) {
+    max-width: 595px;
+    margin: 0 20px;
+    width: auto;
+  }
+  width: 100%;
+}
+
+.FieldSocial {
   line-height: 33px;
   background-color: #2d4373;
   color: white;
@@ -68,7 +87,6 @@
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   padding: 6px 12px;
-  margin-bottom: 0;
   font-size: 14px;
   font-weight: 400;
   text-align: center;
@@ -79,6 +97,14 @@
 
 
 .RememberMe {
+  // margin: 0 33px;
+  @media (max-width: 600px) {
+    max-width: 595px;
+    margin: 0 20px;
+    width: auto;
+  }
+  width: 100%;
+  margin: 0 auto;
   float: left;
   padding: 0 14px 1.15rem;
   color: #fff;
@@ -101,25 +127,29 @@
 }
 
 .errorContainer {
-  width: 566px;
-  margin:0 0 14px 15px;
- // margin-top: 15px;
+  //width: 566px;
+  // margin-top: 15px;
   border: 1px solid #b72522;
   font-size: 14px;
   color: #fff;
-  padding: 5px 15px;
+  padding: 5px 0;
   text-align: center;
   display: block;
   box-sizing: border-box;
-
-  @media (max-width:600px) {
-    width:auto;
-    min-width: 293px;
-    max-width: 293px;
-    margin:0 auto 10px auto;
+  //margin-bottom: 14px
+  margin: 0 33px 14px 33px;
+  @media (max-width: 600px) {
+    margin: 0 14px 14px 14px;
   }
 
 }
+
+.preErrorContainer {
+  width: 100%;
+  min-width: 293px;
+  max-width: 595px;
+}
+
 
 input {
   color: #9ca8b7;
@@ -148,22 +178,31 @@ input {
   line-height: 1.42857143;
 }
 
+.preInsideRow {
+  margin: 15px 33px;
+
+  @media (max-width: 600px) {
+    max-width: 595px;
+    margin: 15px 20px;
+    width: auto;
+  }
+  width: 100%;
+
+}
+
 .insideRow {
   border: 1px solid #fff;
-  margin: 15px;
+
   display: flex;
   flex-flow: row;
-  min-width: 525px;
+
   color: white;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   padding: 15px;
+  //margin:0 15px;
 
-  @media (max-width:600px) {
-    min-width: 0;
-    max-width:600px;
-  }
 }
 
 .textBefore {
@@ -189,7 +228,18 @@ input {
   font-size: 15px;
 }
 
+.preCreate {
+  margin: 0 33px;
+  width: 100%;
+  @media (max-width: 600px) {
+    width: auto;
+    margin: 0 20px;
+  }
+  max-width: 595px;
+}
+
 .create {
+  width: 100%;
   background-color: #28d2d0;
   -moz-transition: all .05s ease-in;
   -o-transition: all .05s ease-in;
@@ -201,16 +251,18 @@ input {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   height: 64px;
-  width: 100%;
   border-width: 0;
   font-size: 20px;
   font-weight: 500;
   border-color: #28d2d0;
   color: white;
   cursor: pointer;
+
 }
 
 .underCreate {
+  margin: 0 20px;
+  max-width: 595px;
   font-weight: 200;
   font-size: 16px;
   min-width: 555px;
@@ -218,7 +270,7 @@ input {
   white-space: normal;
   color: #fff;
   line-height: 1.42857143;
-  @media (max-width:600px) {
+  @media (max-width: 600px) {
     min-width: 0;
   }
 }
@@ -230,7 +282,7 @@ input {
   margin-block-end: 1em;
   margin-inline-start: 0;
   margin-inline-end: 0;
-  @media (max-width:600px) {
+  @media (max-width: 600px) {
     white-space: pre-wrap;
   }
 }

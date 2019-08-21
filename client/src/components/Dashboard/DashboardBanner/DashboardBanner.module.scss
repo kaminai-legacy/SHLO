@@ -1,10 +1,11 @@
-.preBlueBanner{
-  min-width:100%;
+.preBlueBanner {
+  min-width: 100%;
   background: #455a89;
 }
-.blueBanner{
+
+.blueBanner {
   max-width: 1140px;
-  margin:0 auto;
+  margin: 0 auto;
   color: #fff;
   background: #455a89;
   padding: 44px 0;
@@ -19,7 +20,7 @@
   }
 }
 
-.dashboardAva{
+.dashboardAva {
   margin: 0 auto;
   @media (min-width: 992px) {
     margin: 0 30px;
@@ -27,55 +28,60 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  width:50px;
-  height:50px;
+  width: 50px;
+  height: 50px;
   border-radius: 50px;
   font-size: 12px;
-  .upload{
+
+  .upload {
     position: relative;
-    left:19px;
-    top:37px;
+    left: 19px;
+    top: 37px;
     max-height: 12px;
     max-width: 12px;
 
-    .uploadFile{
+    .uploadFile {
       position: relative;
       display: none;
-      top:5px;
-      left:-35px;
+      top: 5px;
+      left: -35px;
       font-size: 12px;
       color: white;
       white-space: pre;
     }
   }
-  .upload:hover{
+
+  .upload:hover {
     cursor: pointer;
   }
-  .upload:hover .uploadFile{
+
+  .upload:hover .uploadFile {
     display: block;
   }
 }
 
-.textBlock{
-  padding-top:20px ;
-  margin-left:0 ;
+.textBlock {
+  padding-top: 20px;
+  margin-left: 0;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: space-around;
   color: #fff;
   @media (min-width: 992px) {
-    margin-left:20px ;
-    padding-top:0 ;
+    margin-left: 20px;
+    padding-top: 0;
   }
-  .rowName{
+
+  .rowName {
     font-size: 20px;
-    padding-bottom:10px ;
+    padding-bottom: 10px;
     @media (min-width: 992px) {
-     padding-bottom:0 ;
+      padding-bottom: 0;
     }
   }
-  .rowEmail{
+
+  .rowEmail {
     font-size: 14px;
   }
 }
