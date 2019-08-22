@@ -163,13 +163,13 @@ function Form(props) {
 
 Form = reduxForm({
     form: 'register',
+    asyncValidate,
     asyncBlurFields: ['firstName','lastName','displayName','email','password','passwordConfirmation']
 })(Form);
 
 const mapStateToProps = (state) => {
     return {
         state,
-        asyncValidate,
         fromStore: state.userReducers.data,
     };
 };

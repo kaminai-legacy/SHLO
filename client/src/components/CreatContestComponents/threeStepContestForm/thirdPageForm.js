@@ -1,6 +1,7 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import validate from './validate';
+import style from "./threeStepContestForm.module.scss";
 
 const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
 //import {renderColorSelector as Selector} from './renderField';
@@ -11,6 +12,8 @@ const WizardFormThirdPage = props => {
     const {handleSubmit, pristine, previousPage, submitting} = props;
     return (
         <form onSubmit={handleSubmit}>
+            <div className={style.preBusinessStepForm}>
+                <div className={style.businessStepForm}>
             <div>
                 <label>Favorite Color</label>
                 {/*}<Field name="favoriteColor" component={render.renderColorSelector}*/}
@@ -33,12 +36,27 @@ const WizardFormThirdPage = props => {
                     <Field name="notes" component="textarea" placeholder="Notes"/>
                 </div>
             </div>
-            <div>
-                <button type="button" className="previous" onClick={previousPage}>
-                    Previous
-                </button>
-                <button type="submit" disabled={pristine || submitting}>Submit</button>
+                </div>
             </div>
+
+                <div className={style.preButtonOnForm}>
+                    <div className={style.ButtonOnForm}>
+
+                        <div className={style.text}>
+                            You are almost finished. Select a pricing package in the next step
+                        </div>
+                        <div className={style.buttons}>
+                            <button type="button"  className={style.prev} onClick={previousPage}>
+                                Back
+                            </button>
+                            <button type="submit"  className={style.next}>
+                                Submit
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
         </form>
     );
 };

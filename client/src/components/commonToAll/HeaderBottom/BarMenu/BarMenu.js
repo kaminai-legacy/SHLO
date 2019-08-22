@@ -17,17 +17,19 @@ function BottomHeaderList(props) {
     });
 
     function onClickedBarMenu(name) {
-        setViewStatus(
-            {
-                ...viewStatus,
-                [name]: !viewStatus[name]
-            }
-        );
-    }
+        if (viewStatus.hasOwnProperty(name))
+        {
+            setViewStatus(
+                {
+                    ...viewStatus,
+                    [name]: !viewStatus[name]
+                }
+            );
+        }
 
+    }
     const RESULT = [];
     for (let key in ListElement) {
-
         let LIST = [];
         if (ListElement.hasOwnProperty(key)) {//console.log(viewStatus);
             const LIST_NAME = ListElement[key].name;

@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import {getAllUsers} from '../../actions/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 import {Redirect} from 'react-router';
-import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class AdminP extends Component {
@@ -21,7 +20,7 @@ class AdminP extends Component {
         return (
             <div className={style.body}>
                 {(this.props.users) ? <List users={this.props.users}/> : {}}
-                <ToastContainer/>
+
                 <Link to="/">
                     <div className={style.main}>Home</div>
                 </Link>

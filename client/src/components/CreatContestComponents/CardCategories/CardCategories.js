@@ -11,6 +11,7 @@ function CardCategories(props) {
     });
     return (
         <Link to={props.link} key={props.name}>
+            <div className={style.preCardCategories} >
             <div className={style.cardCategories} style={{backgroundColor: props.styles}}>
                 <div className={style.flexImg}>
                     {arrayStandard}
@@ -19,6 +20,7 @@ function CardCategories(props) {
                 <h5>{props.name}</h5>
                 <hr/>
                 <p>{props.text}</p>
+            </div>
             </div>
         </Link>
     );

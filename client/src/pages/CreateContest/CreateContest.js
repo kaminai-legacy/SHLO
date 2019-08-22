@@ -7,7 +7,7 @@ import ContestCategories from '../../components/CreatContestComponents/contestCa
 import PackagesAndOther from '../../components/CreatContestComponents/PackagesAndOther/PackagesAndOther';
 import Form from '../../components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
 
-const STAGE = 1;
+const STAGE = 2;
 
 function CreateContest() {
     const content = (STAGE === 1) ? <> <ContestCategories/>

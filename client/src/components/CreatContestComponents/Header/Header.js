@@ -20,7 +20,7 @@ function Header() {
                             instantly!
                         </div>
                     </div>
-                    <Processing number={1}/>
+                    <Processing number={4}/>
                 </div>
             </div>
         </div>

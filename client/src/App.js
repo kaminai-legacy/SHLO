@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import {Route , Switch , Router} from "react-router-dom";
 import history from './boot/browserHistory';
 import CheckUser from './components/HOC/checkUser';
+import {ToastContainer} from 'react-toastify';
 
 import NotFound from './pages/NotFound/notFound';
 import  Form from './components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
@@ -15,6 +16,7 @@ import  Form from './components/CreatContestComponents/threeStepContestForm/thre
 function App (){
     return (
       <CheckUser>
+          <ToastContainer/>
         <Router history={history}>
           <Switch>
             <Route path="/" exact component={StartPage} />

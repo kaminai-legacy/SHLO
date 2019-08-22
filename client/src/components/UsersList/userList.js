@@ -4,7 +4,7 @@ import style from './userList.module.scss';
 import {userBaned} from '../../actions/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+//import 'react-toastify/dist/ReactToastify.css';
 
 function UserList(props) {
     const notify = () => toast.error("You cannot ban administrators", {

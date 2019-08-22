@@ -118,7 +118,7 @@ const HELP = {
 
 const START_CONTEST = {
     name:"Start Contest",
-    link:"http://192.168.0.111:5000/contest_creating/",
+    link:"/contest_creating/",
     list:null
 };
 

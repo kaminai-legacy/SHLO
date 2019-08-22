@@ -6,7 +6,7 @@ function User(props) {
     const status = props.isBanned ? <i className="fa fa-ban" aria-hidden="true"/> :
         <i className="fas fa-check-circle"/>;
     return (
-        <div onClick={() => props.click(props.id, props.isBanned)} className={style.list}>
+        <div onClick={() => console.log(props.click,props.click())/*props.click(props.id, props.isBanned)*/} className={style.list}>
             <div className={style.listLeft}>
                 <div className={style.avatar} style={{backgroundImage: "url(" + props.img + ")"}}/>
                 <div className={style.boxForNameAndLvl}>

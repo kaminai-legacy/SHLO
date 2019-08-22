@@ -1,31 +1,39 @@
-import React, {Component, useState} from 'react';
-import PropTypes from 'prop-types';
+import React, { useState} from 'react';
 import style from './threeStepContestForm.module.scss';
-import WizardFormFirstPage from './firstPageForm';
-import WizardFormSecondPage from './secondPageForm';
-import WizardFormThirdPage from './thirdPageForm';
+import FormFirstPage from './firstPageForm';
+import FormSecondPage from './secondPageForm';
+import FormThirdPage from './thirdPageForm';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function WizardForm(props) {
+const notify = (msg) => toast.error(msg, {
+    position: toast.POSITION.TOP_CENTER,
+    autoClose: 6000,
+});
+const func = notify;
+function contestForm(props) {
     const [page, setPage] = useState(1);
     const {onSubmit} = props;
     return (
-        <div className={style.businessStepForm}>
-            {page === 1 && <WizardFormFirstPage onSubmit={() => setPage(page + 1)}/>}
+     <div >
+         {page === 1 && <FormFirstPage nextPage={() => setPage(page + 1)}  notify={notify}
+
+            />}
             {page === 2 &&
-            <WizardFormSecondPage
+            <FormSecondPage
                 previousPage={() => setPage(page - 1)}
-                onSubmit={() => setPage(page + 1)}
+                nextPage={() => setPage(page + 1)}
+                notify={notify}
             />}
             {page === 3 &&
-            <WizardFormThirdPage
+            <FormThirdPage
                 previousPage={() => setPage(page - 1)}
                 onSubmit={onSubmit}
+                notify={notify}
             />}
-        </div>
+     </div>
+
+
     );
 }
-
-WizardForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-};
-export default WizardForm;
+export default contestForm;

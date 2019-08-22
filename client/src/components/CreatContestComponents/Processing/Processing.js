@@ -11,8 +11,10 @@ function Processing(props) {
                     <React.Fragment key={TEXT_PROGRESSING[props.number - 1] + i}>
                         <div className={style.circleDone}>
                             <div className={style.label}/>
-                            <div className={style.title}>
-                                {TEXT_PROGRESSING[props.number - 1]}
+                            <div className={style.preTitle}>
+                                <div className={style.title}>
+                                    {TEXT_PROGRESSING[props.number - 1]}
+                                </div>
                             </div>
                         </div>
                     </React.Fragment>
@@ -22,8 +24,10 @@ function Processing(props) {
                     <React.Fragment key={TEXT_PROGRESSING[props.number - 1] + i}>
                         <div className={style.circleDone}>
                             <div className={style.label}/>
+                            <div className={style.preTitle}>
                             <div className={style.title}>
                                 {TEXT_PROGRESSING[props.number - 1]}
+                            </div>
                             </div>
                         </div>
                         <div className={style.tube}/>
