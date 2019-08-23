@@ -9,9 +9,9 @@ const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
 //const render=require('./renderField');
 
 const WizardFormThirdPage = props => {
-    const {handleSubmit, pristine, previousPage, submitting} = props;
+    const {handleSubmit, pristine, previousPage, submitting,textSubmit} = props;
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(props.onSubmit)}>
             <div className={style.preBusinessStepForm}>
                 <div className={style.businessStepForm}>
             <div>
@@ -49,8 +49,8 @@ const WizardFormThirdPage = props => {
                             <button type="button"  className={style.prev} onClick={previousPage}>
                                 Back
                             </button>
-                            <button type="submit"  className={style.next}>
-                                Submit
+                            <button  type="submit" className={style.next} >
+                               {textSubmit}
                             </button>
                         </div>
 

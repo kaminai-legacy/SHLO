@@ -10,7 +10,8 @@ function CardCategories(props) {
         return <div key={item} className={style.imageHover} style={{backgroundImage: item}}/>
     });
     return (
-        <Link to={props.link} key={props.name}>
+
+            <div className={style.contestButton} onClick={()=>{props.click(props.contestType);props.alsoClick(props.currentStage)}}>
             <div className={style.preCardCategories} >
             <div className={style.cardCategories} style={{backgroundColor: props.styles}}>
                 <div className={style.flexImg}>
@@ -22,8 +23,13 @@ function CardCategories(props) {
                 <p>{props.text}</p>
             </div>
             </div>
-        </Link>
+            </div>
+
     );
 }
+/*
 
+  <Link to={props.link} key={props.name}>
+   </Link>
+ */
 export default CardCategories;

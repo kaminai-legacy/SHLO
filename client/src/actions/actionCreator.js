@@ -28,4 +28,16 @@ export const logout = () => ({
     type: ACTION.IS_LOGOUT,
 });
 
+export const selectedContestType = (contestTypes) =>{
+   // console.log("catch");
+    return ({
+    type: ACTION.SELECTED_CONTEST_TYPE,
+   contestTypes
+})};
 
+export const contestProgressing = (stage) =>{
+    console.log("catch",stage,"empty");
+    return ({
+        type: ACTION.CONTEST_PROGRESSING,
+        stage
+    })};

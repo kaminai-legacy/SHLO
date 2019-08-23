@@ -4,7 +4,8 @@ import BottomHeaderList from './StartPageBottomHeaderList/StartPageBottomHeaderL
 import BarMenu from './BarMenu/BarMenu';
 import connect from 'react-redux/es/connect/connect';
 import {Link} from 'react-router-dom';
-import {logout} from "../../../actions/actionCreator";
+import {logout,contestProgressing} from "../../../actions/actionCreator";
+import {startValueContestProgressing} from '../../../constants/consts'
 import Accordion from 'react-bootstrap/Accordion';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -16,6 +17,10 @@ function HeaderBottom(props) {
     function onClicked() {
         props.logout();
         setDashboardView(!dashboardView);
+    }
+
+    function onClickedStartContest() {
+        props.contestProgressing(startValueContestProgressing)
     }
 
     function onClickedDashboard() {
@@ -78,8 +83,8 @@ function HeaderBottom(props) {
                         <div className={style.list}>
                             <BottomHeaderList/>
                         </div>
-                        <div className={style.button}><Link to="/contest_creating">
-                            <div className={style.mainHeaderBottomButton}>
+                        <div className={style.button} ><Link to="/contest_creating" >
+                            <div className={style.mainHeaderBottomButton} onClick={onClickedStartContest}>
                                 START CONTEST
                             </div>
                         </Link></div>
@@ -109,5 +114,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => ({
     logout: () => dispatch(logout()),
+    contestProgressing: (startValueContestProgressing) => dispatch(contestProgressing(startValueContestProgressing)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderBottom);

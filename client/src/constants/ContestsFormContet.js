@@ -1,4 +1,4 @@
-const FIRST_PAGE={
+const LOGO={
     fields:[
         {
             type:"text",
@@ -34,8 +34,9 @@ const FIRST_PAGE={
             component:"renderFieldSelect",
             placeholder:"Select Your Industry",
             label:"Type of Industry",
+            isMulti:true,
             options:[
-                { value: 'accounting', label: 'Accounting' },
+                { value: "accounting", label: "Accounting" },
                 { value: 'A&G-bikeRentals', label: 'Activity & Games - Bike Rentals' },
                 { value: 'A&G-boating ', label: 'Activity & Games - Boating' },
                 { value: 'A&G-dancing&A ', label: 'Activity & Games - Dancing & Aerobics' },
@@ -54,16 +55,50 @@ const FIRST_PAGE={
             placeholder:"i.e. designers, developers",
             label:"Who are your target customers?"
         },
-    ]
+        {
+            type:"text",
+            name:"visualBrandStyle",
+            component:"renderFieldSelect",
+            //defaultValue: { value: '3d', label: '3 days' },
+            isMulti:true,
+            //placeholder:"Select Contest time duration",
+            label:"Select visual style of your brand",
+            options:[
+                { value: 'techy', label: 'Techy' },
+                { value: 'fun', label: 'Fun' },
+                { value: 'fancy', label: 'Fancy' },
+                { value: 'minimal', label: 'Minimal' },
+                { value: 'brickMortar', label: 'Brick & Mortar' },
+                { value: 'photoBased', label: 'Photo-based' },
+            ]
+        },
+       /* {
+            type:"text",
+            name:"contestDuration",
+            component:"renderFieldSelect",
+            defaultValue: { value: '3d', label: '3 days' },
+            isMulti:false,
+            //placeholder:"Select Contest time duration",
+            label:"Set up contest duration",
+            options:[
+                { value: '3d', label: '3 days' },
+                { value: '5d', label: '5 days' },
+                { value: '7d', label: '7 days' },
+                { value: '10d', label: '10 days' },
+                { value: '12d', label: '12 days' },
+            ]
+        },*/
+    ],
+    required:['titleOfContest','TypeOfIndustry','nameOfCompanyBusiness','whatDoesCompanyOrBusinessDo']
 };
 
-const SECOND_PAGE={
+const NAME={
     fields:[
 
     ]
 };
 
-const THIRD_PAGE={
+const TAGLINE_OR_SLOGAN={
     fields:[
 
     ]
@@ -71,8 +106,8 @@ const THIRD_PAGE={
 
 module.exports =
     {
-        FIRST_PAGE,
-        SECOND_PAGE,
-        THIRD_PAGE,
+        LOGO,
+        NAME,
+        TAGLINE_OR_SLOGAN,
     };
 //options

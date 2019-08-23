@@ -9,9 +9,9 @@ const renderError = ({meta: {touched, error}}) =>
     touched && error ? <span>{error}</span> : false;
 
 const WizardFormSecondPage = props => {
-    const {handleSubmit, previousPage,nextPage} = props;
+    const {handleSubmit, previousPage,nextPage,textSubmit} = props;
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(props.onSubmit)}>
             <div className={style.preBusinessStepForm}>
                 <div className={style.businessStepForm}>
             <Field name="email" type="email" component={render.renderField} label="Email"/>
@@ -43,8 +43,8 @@ const WizardFormSecondPage = props => {
                         <button type="button"  className={style.prev} onClick={previousPage}>
                             Back
                         </button>
-                        <button type="button"  className={style.next} onClick={nextPage}>
-                            Next
+                        <button  type="submit" className={style.next} >
+                            {textSubmit}
                         </button>
                     </div>
 

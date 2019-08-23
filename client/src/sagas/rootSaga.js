@@ -5,6 +5,7 @@ import {isLoginSaga} from './isLoginSaga';
 import {getAllUsersSaga} from './getAllUsersSaga';
 import {changeBanStatusSaga} from './changeBanStatusSaga';
 import {logoutSaga} from './logoutSaga';
+import {selectedTypes} from './contestSaga';
 //import {dashboardChange} from './manageToElements';
 
 function* rootSaga() {
@@ -14,6 +15,7 @@ function* rootSaga() {
     yield takeLatest(ACTION.USER_IS_LOGIN, isLoginSaga);
     yield takeLatest(ACTION.CHANGE_IS_BANED, changeBanStatusSaga);
     yield takeLatest(ACTION.IS_LOGOUT, logoutSaga);
+    yield takeLatest(ACTION.SELECTED_CONTEST_TYPE, selectedTypes);
     //yield takeLatest(ACTION.DASHBOARD, dashboardChange);
 }
 

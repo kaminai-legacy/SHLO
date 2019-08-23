@@ -6,21 +6,30 @@ import HeaderCreateContest from '../../components/CreatContestComponents/Header/
 import ContestCategories from '../../components/CreatContestComponents/contestCategories/contestCategories';
 import PackagesAndOther from '../../components/CreatContestComponents/PackagesAndOther/PackagesAndOther';
 import Form from '../../components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
+import connect from "react-redux/es/connect/connect";
 
-const STAGE = 2;
+//const STAGE = 1;
 
-function CreateContest() {
-    const content = (STAGE === 1) ? <> <ContestCategories/>
-        <PackagesAndOther/></> : <Form onSubmit={(values) => console.log(values)}/>
+function CreateContest(props) {
+    //console.log(props.stage);
+    const contestStage =(props.stage)?props.stage:1;
+    const content = (contestStage === 1) ? <> <ContestCategories/>
+        <PackagesAndOther/></> : <Form/>;
     return (
         <div className={style.body}>
-            <Header/>
+            <Header />
             <HeaderBottom/>
             <HeaderCreateContest/>
             {content}
         </div>
     );
 }
-
-export default CreateContest;
+const mapStateToProps = (state) => {
+    return {
+        state,
+        stage:state.contestReducers.contestStage
+    };
+};
+export default connect(mapStateToProps)(CreateContest);
+//export default CreateContest;
 

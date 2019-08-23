@@ -46,6 +46,22 @@
   zoom: 1;
   position: relative;
 
+  input {
+    color: #9ca8b7;
+    margin: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-size: 16px;
+    height: auto;
+    padding: 21px 23px;
+    display: inline-block;
+    border: 2px solid white;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+  }
+
 }
 
 .mainWrapper {

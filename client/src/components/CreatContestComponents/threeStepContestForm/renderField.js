@@ -10,25 +10,31 @@ const forInputs=style.forInputs;
 const customStyles = {
     container: (base, state) => ({
         ...base,
-        height: "48px",
+        minHeight: "40px",
         border: "none",
         boxShadow: "none",
         fontSize: "16px",
-        maxWidth:"100%!important",
         borderRadius: "7px",
+        width:"100%",
     }),
     control: (base, state) => ({
         ...base,
-        height: "48px",
-        border: "2px solid #d0d0d0!important",
+        minHeight: "40px",
+        border: "2px solid #d0d0d0",
+        borderColor:state.isActive?"#28d2d0":"#d0d0d0",
         boxShadow: "none",
-        padding: "0 8px",
         backgroundColor: "white",
+    }),
+    input: (base, state) => ({
+        ...base,
+        minHeight: "36px",
+        boxShadow: "none",
+        backgroundColor: "white",
+        maxWidth:"100%!important",
     }),
     valueContainer: (base, state) => ({
         ...base,
-        height: "44px",
-
+        minHeight: "32px",
     }),
     multiValue: (base, state) => ({
         ...base,
@@ -49,31 +55,39 @@ const customStyles = {
     }),
 };
 
-const renderFieldSelect = ({input,placeholder, label, type,options, meta: {touched, error, active}}) => {
+const renderFieldSelect = ({input,placeholder, label, type,options,isMulti,defaultValue, meta: {touched, error, active}}) => {
     const color = active?"#28d2d0":"#d0d0d0";
-    return <div className={style.renderField}>
+    return <div className={style.renderFieldForSelect}>
         <label className={style.forLabel}>{label}</label>
-        <div className={style.forSelect}>
-        <Select
-            isMulti
-            placeholder={"Select Your Industry"}
-            //value={"chocolate"}
-            styles={customStyles}
-            options={options}
-        />
-        {touched && error && <span>{error}</span>}
+            <div className={style.forSelect}>
+                <Select style={{borderColor:color}}
+                        value={input.value}
+                        name={input.name}
+                        onChange={(value)=> input.onChange(value)}
+                        type={type}
+                        placeholder={placeholder}
+                        styles={customStyles}
+                        options={options}
+                        isMulti={isMulti}
+                        defaultValue={defaultValue}
+                />
+                {touched && error && <span className={style.errorMsg}>{error}</span>}
         </div>
     </div>
 };
 
 
 
-const renderField = ({input,placeholder, label, type, meta: {touched, error, active}}) => {
+const renderField = ({input,placeholder, label, type,meta, meta: {touched, error, active}}) => {
+
     const color = active?"#28d2d0":"#d0d0d0";
+   // console.log(color,error,meta);
     return <div className={style.renderField}>
         <label className={style.forLabel}>{label}</label>
-            <input className={ style.forInputs} style={{borderColor:color}} {...input} placeholder={placeholder} type={type}/>
-            {touched && error && <span>{error}</span>}
+        <div className={ style.preForInputs} style={{borderColor:color}}>
+        <input className={ style.forInputs}  {...input} placeholder={placeholder} type={type}/>
+        </div>
+        {touched && error && <span className={style.errorMsg}>{error}</span>}
 
     </div>
 };
@@ -86,18 +100,20 @@ const renderDropdownList = ({input, data, valueField, textField}) =>
                   textField={textField}
                   onChange={input.onChange}/>;
 
-const renderMultiselect = ({input, data, valueField, textField,label,meta: {touched, error, active},placeholder}) =>{
+const renderMultiselect = ({input, data, valueField, options,textField,label,meta: {touched, error, active},placeholder}) =>{
     return<div className={style.renderField}>
         <label className={style.forLabel}>{label}</label>
-    <Multiselect
-                 {...input}
-                 placeholder={placeholder}
-                 onBlur={() => input.onBlur()}
-                 value={input.value || []} // requires value to be an array
-                 data={data}
-                 valueField={valueField}
-                 textField={textField}
-    />  {touched && error && <span>{error}</span>}
+        <Multiselect
+            {...input}
+
+            options={options}
+            placeholder={placeholder}
+            onBlur={() => input.onBlur()}
+            value={input.value || []} // requires value to be an array
+            data={data}
+            valueField={valueField}
+            textField={textField}
+        />  {touched && error && <span>{error}</span>}
     </div>
 };
 

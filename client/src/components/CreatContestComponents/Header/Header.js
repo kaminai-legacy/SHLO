@@ -1,12 +1,14 @@
 import React from 'react';
 import style from './Header.module.scss';
 import Processing from '../Processing/Processing';
+import connect from "react-redux/es/connect/connect";
 
 //import {TEXT_PROGRESSING} from '../../../constants/consts';
 
-function Header() {
+function Header(props) {
     return (
         <div className={style.startContestSteps}>
+            {console.log(props,"props.stage")}
             <div className={style.insideStartContestSteps}>
                 <div className={style.contestStepsRow}>
                     <div className={style.contestStepsTip}>
@@ -20,12 +22,18 @@ function Header() {
                             instantly!
                         </div>
                     </div>
-                    <Processing number={4}/>
+                    <Processing number={(props.stage)?props.stage:1}/>
                 </div>
             </div>
         </div>
     )
 
 }
-
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        state,
+        stage:state.contestReducers.contestStage
+    };
+};
+export default connect(mapStateToProps)(Header);
+//export default Header;

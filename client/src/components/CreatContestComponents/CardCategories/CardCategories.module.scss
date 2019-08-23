@@ -1,3 +1,6 @@
+.contestButton{
+  cursor: pointer;
+}
 .preCardCategories{
 
   @media (max-width: 768px) {
@@ -12,6 +15,7 @@
 }
 
 .cardCategories {
+
   margin: 0 25px 30px 25px;
   background: #fff;
   display: flex ;
@@ -30,6 +34,7 @@
     margin: 3px;
     max-width: none;
     min-width: 0;
+    min-height: 100%;
   }
   hr {
 

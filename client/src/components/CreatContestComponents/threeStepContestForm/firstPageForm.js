@@ -3,30 +3,21 @@ import { connect } from 'react-redux';
 import {Field, reduxForm, formValueSelector} from 'redux-form';
 import 'react-widgets/dist/css/react-widgets.css';
 import validate from '../../../validations/asyncValidateContestForm';
-import {FIRST_PAGE} from '../../../constants/ContestsFormContet';
+import {LOGO} from '../../../constants/ContestsFormContet';
 import renderField from './renderField';
 import style from "./threeStepContestForm.module.scss";
 
 let WizardFormFirstPage = props => {
-    const {handleSubmit,nextPage,fields,notify} = props;
-    const validation = async props => {
-        try{
-            const res = await validate(props);
-            if(res===null){
-                console.log(fields);
-                nextPage()}
-        }
-        catch (e) {
-            notify(e[Object.keys(e)[0]]);
-            console.log(e);
-        }
-    };
+    const {handleSubmit,nextPage,fields,notify,previousPage,textSubmit} = props;
+
+
     return (
-        <form>
+        <form onSubmit={handleSubmit(props.onSubmit)}>
+        {/*console.log(fields)*/}
             <div className={style.preBusinessStepForm}>
                 <div className={style.businessStepForm}>
 
-                    {FIRST_PAGE.fields.map((field,id)=>{
+                    {LOGO.fields.map((field,id)=>{
                         return  <Field key={id} {...field} component={renderField[field.component]}/>
                     })}
                     {/*} <Field name="titleOfContest" type="text" component={renderField.renderField}
@@ -50,11 +41,11 @@ let WizardFormFirstPage = props => {
                             You are almost finished. Select a pricing package in the next step
                         </div>
                         <div className={style.buttons}>
-                            <button type="button"  className={style.prev} onClick={()=>console.log("back")}>
+                            <button type="button"  className={style.prev} onClick={previousPage}>
                                 Back
                             </button>
-                            <button type="button"  className={style.next} onClick={()=>validation({titleOfContest:fields.titleOfContest})}>
-                                Next
+                            <button  type="submit" className={style.next} >
+                                {textSubmit}
                             </button>
                         </div>
 
@@ -64,7 +55,7 @@ let WizardFormFirstPage = props => {
         </form>
     );
 };
-//nextPage
+//nextPage  onClick={()=>validation({titleOfContest:fields.titleOfContest})}
 
 WizardFormFirstPage = reduxForm({
     form: 'wizard', //                 <------ same form name
@@ -75,10 +66,9 @@ WizardFormFirstPage = reduxForm({
 })(WizardFormFirstPage);
 
 const selector = formValueSelector('wizard');
-
 WizardFormFirstPage = connect(state => {
     // can select values individually
-    const fields = selector(state, 'titleOfContest','whatDoesCompanyOrBusinessDo');
+    const fields = selector(state, ...(LOGO.fields.map((item)=>{return item.name})));
     // or together as a group
     //const { firstName, lastName } = selector(state, 'firstName', 'lastName');
     return {
@@ -91,7 +81,7 @@ export default WizardFormFirstPage;
 
 
 
-{/*<label>Favorite Color</label>
+/*<label>Favorite Color</label>
             <Field
                 name="favoriteColor"
                 component={renderField.renderDropdownList}
@@ -103,4 +93,11 @@ export default WizardFormFirstPage;
                 name="hobbies"
                 component={renderField.renderMultiselect}
                 data={['Guitar', 'Cycling', 'Hiking']}/>
-*/}
+*/
+
+/*
+
+
+
+
+ */

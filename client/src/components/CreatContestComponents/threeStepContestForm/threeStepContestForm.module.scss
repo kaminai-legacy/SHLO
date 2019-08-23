@@ -87,17 +87,32 @@
   float: left;
 }
 
-.forInputs{
+
+.preForInputs{
   @media (max-width: 992px) {
     max-width:100%!important;  }
-  height: 48px;
-  border: 2px solid #d0d0d0;
-  box-shadow: none;
-  padding: 0 8px;
-  margin-bottom: 15px;
-  font-size: 16px;
   width:100vw;
   max-width:50%!important;
+  border: 2px solid #d0d0d0;
+  //padding: 0 8px;
+  border-radius: 4px;
+}
+
+.forInputs{
+  box-sizing: border-box;
+  height: 48px;
+  border-radius: 4px;
+  padding: 0 8px;
+  box-shadow: none;
+  //margin-left:-8px;
+  //padding-right: 6px;
+
+  //padding-left:8px;
+  //margin: 0 -16px 15px 0;
+  //margin-bottom: 15px;
+  font-size: 16px;
+  width:100%;
+  //max-width:50%!important;
 }
 
 .renderField{
@@ -105,24 +120,53 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-
+  //margin-left:-8px;
   input{
     @media (max-width: 992px) {
       max-width:100%!important;  }
     height: 48px;
-
+    border:none ;
     box-shadow: none;
-    padding: 0 8px;
+    //padding: 0 8px;
     //margin-bottom: 15px;
     font-size: 16px;
-    width:100vw;
-    max-width:50%!important;
+    display: inline-block;
+    //width:100%;
+    //max-width:50%!important;
   }
 }
+
+.renderFieldForSelect{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-right:-4px;
+  input{
+    min-height: 36px;
+    box-shadow: none;
+    //padding: 0 8px;
+    //margin-bottom: 15px;
+    font-size: 16px;
+  }
+}
+
+
 
 .forSelect{
   @media (max-width: 992px) {
     max-width:100%!important;  }
   width:100vw;
   max-width:50%!important;
+  min-height: 48px;
+  box-shadow: none;
+  //padding: 0 2px;
+  font-size: 16px;
+}
+
+.errorMsg{
+  color:red;
+  font-size:18px;
+  padding:10px 10px 10px 0;
+
 }
