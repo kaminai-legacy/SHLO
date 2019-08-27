@@ -17,16 +17,16 @@ function ContestCategories(props) {
                 />
                 <div className={style.flexCategories}>
                     <CardCategories name={"Name"} text={"Get up and running with the perfect name. "}
-                                    img={[CONTEST_IMGS.name[0]]} contestType={['NAME']} currentStage={3}
-                                    imgHover={[CONTEST_IMGS.name[1]]} styles={"white"}
+                                    img={[CONTEST_IMGS.name]} contestType={['NAME']} currentStage={2}
+                                    styles={"white"}
                                     link={'/contest_creating_step1'} click={props.selectedContestType} alsoClick={props.contestProgressing}/>
                     <CardCategories name={"Logo"} text={"Kickstart your venture with a unique, memorable logo "}
-                                    img={[CONTEST_IMGS.logo[0]]} contestType={['LOGO']} currentStage={2}
-                                    imgHover={[CONTEST_IMGS.logo[1]]} styles={"white"} link={'/home'} click={props.selectedContestType} alsoClick={props.contestProgressing}/>
+                                    img={[CONTEST_IMGS.logo]} contestType={['LOGO']} currentStage={2}
+                                    styles={"white"} link={'/home'} click={props.selectedContestType} alsoClick={props.contestProgressing}/>
                     <CardCategories name={"Tagline or Slogan"} contestType={['TAGLINE_OR_SLOGAN']}
                                     text={"Connect deeply with your target audience with an on-target tagline "}
-                                    img={[CONTEST_IMGS.taglineOrSlogan[0]]} currentStage={2}
-                                    imgHover={[CONTEST_IMGS.taglineOrSlogan[1]]} styles={"white"} link={'/home'} click={props.selectedContestType} alsoClick={props.contestProgressing}/>
+                                    img={[CONTEST_IMGS.taglineOrSlogan]} currentStage={2}
+                                    styles={"white"} link={'/home'} click={props.selectedContestType} alsoClick={props.contestProgressing}/>
                 </div>
             </div>
         </div>

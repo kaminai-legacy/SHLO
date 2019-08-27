@@ -51,6 +51,7 @@
     justify-content: space-between;
     align-items: center;
     .next{
+      cursor: pointer;
       background: #f3875d;
       width: 275px;
       height: 60px;
@@ -65,6 +66,7 @@
       text-align: center;
     }
     .prev{
+      cursor: pointer;
       background: #888;
       font-size: 15px;
       line-height: 21px;
@@ -168,5 +170,8 @@
   color:red;
   font-size:18px;
   padding:10px 10px 10px 0;
+}
 
+.inputFile{
+  margin:10px 20px;
 }

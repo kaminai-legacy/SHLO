@@ -1,37 +1,24 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {Field, reduxForm, formValueSelector} from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import 'react-widgets/dist/css/react-widgets.css';
-import validate from '../../../validations/asyncValidateContestForm';
-import {LOGO} from '../../../constants/ContestsFormContet';
 import renderField from './renderField';
 import style from "./threeStepContestForm.module.scss";
 
-let WizardFormFirstPage = props => {
-    const {handleSubmit,nextPage,fields,notify,previousPage,textSubmit} = props;
 
+
+
+
+let WizardFormFirstPage = props => {
+    const {handleSubmit,previousPage,textSubmit,formContent} = props;
 
     return (
         <form onSubmit={handleSubmit(props.onSubmit)}>
-        {/*console.log(fields)*/}
             <div className={style.preBusinessStepForm}>
                 <div className={style.businessStepForm}>
-
-                    {LOGO.fields.map((field,id)=>{
+                    {formContent.fields.map((field,id)=>{
                         return  <Field key={id} {...field} component={renderField[field.component]}/>
                     })}
-                    {/*} <Field name="titleOfContest" type="text" component={renderField.renderField}
-                           placeholder="e.g. Need a name for Social Networking website" label="Title of your contest"/>
-                    {/*<Field name="whatDoesCompanyOrBusinessDo" type="text" component={renderField.renderField}
-                           placeholder="e.g. Marketing Platform for Small Businesses" label="What does your company or business do?"/>
-                    <Field name="nameOfCompanyBusiness" type="text" component={renderField.renderField}
-                           placeholder="e.g. Marketing Platform for Small Businesses" label="Name of the company / business?"/>
-                    <Field name="websiteUrl" type="text" component={renderField.renderField}
-                           placeholder="e.g. http://www.google.com/" label="Your website url (if you have one)?"/>
-                    <Field name="TypeOfIndustry" type="text" component={renderField.renderFieldSelect} options={options}
-                           placeholder="Select Your Industry" label="Type of Industry"/>
-                    <Field name="targetCustomers" type="text" component={renderField.renderField}
-                           placeholder="i.e. designers, developers" label="Who are your target customers?"/>*/}
+                    {/*-} <Field name="attachment" component={renderField.renderFileInput} type="file"/>*/}
                 </div>
             </div>
                 <div className={style.preButtonOnForm}>
@@ -55,49 +42,11 @@ let WizardFormFirstPage = props => {
         </form>
     );
 };
-//nextPage  onClick={()=>validation({titleOfContest:fields.titleOfContest})}
 
 WizardFormFirstPage = reduxForm({
-    form: 'wizard', //                 <------ same form name
-    destroyOnUnmount: false, //        <------ preserve form data
+    form: 'contest', //                 <------ same form name
+    destroyOnUnmount: true, //        <------ preserve form data
     forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
-    /*asyncValidate,
-    asyncBlurFields: ['titleOfContest'],*/
 })(WizardFormFirstPage);
-
-const selector = formValueSelector('wizard');
-WizardFormFirstPage = connect(state => {
-    // can select values individually
-    const fields = selector(state, ...(LOGO.fields.map((item)=>{return item.name})));
-    // or together as a group
-    //const { firstName, lastName } = selector(state, 'firstName', 'lastName');
-    return {
-        fields
-    }
-})(WizardFormFirstPage);
-
 
 export default WizardFormFirstPage;
-
-
-
-/*<label>Favorite Color</label>
-            <Field
-                name="favoriteColor"
-                component={renderField.renderDropdownList}
-                data={colors}
-                valueField="value"
-                textField="color"/>
-            <label>Hobbies</label>
-            <Field
-                name="hobbies"
-                component={renderField.renderMultiselect}
-                data={['Guitar', 'Cycling', 'Hiking']}/>
-*/
-
-/*
-
-
-
-
- */

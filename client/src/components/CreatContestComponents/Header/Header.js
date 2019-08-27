@@ -2,27 +2,30 @@ import React from 'react';
 import style from './Header.module.scss';
 import Processing from '../Processing/Processing';
 import connect from "react-redux/es/connect/connect";
-
+import {CONTEST_HEADER} from '../../../constants/consts';
 //import {TEXT_PROGRESSING} from '../../../constants/consts';
 
 function Header(props) {
+    let header;
+    console.log("START",props.stage,1+props.amountOfStages,props.stage<1+props.amountOfStages)
+    if(props.stage===1){ header='START';console.log("START")}
+    else if(props.stage<props.amountOfStages){ header=props.selectedContestTypes[props.stage-2];console.log("middle")}
+    else { header='CHECKOUT';console.log("CHECKOUT")}
+    //const header=(props.stage!==1)?props.selectedContestTypes[props.stage-2]:'START';
     return (
         <div className={style.startContestSteps}>
-            {console.log(props,"props.stage")}
+            {console.log(header)}
             <div className={style.insideStartContestSteps}>
                 <div className={style.contestStepsRow}>
                     <div className={style.contestStepsTip}>
                         <div className={style.title}>
-                            START A CONTEST
+                            {CONTEST_HEADER[header].label}
                         </div>
                         <div className={style.content}>
-                            Launching a contest on Squadhelp is very simple. Select the type of contest you would like
-                            to launch from the list below.
-                            Provide a detailed brief and select a pricing package. Begin receiving submissions
-                            instantly!
+                            {CONTEST_HEADER[header].text}
                         </div>
                     </div>
-                    <Processing number={(props.stage)?props.stage:1}/>
+                    <Processing text={header} stage={(props.stage)?props.stage:1} number={(props.selectedContestTypes.length)?props.selectedContestTypes.length+2:3}/>
                 </div>
             </div>
         </div>
@@ -32,7 +35,9 @@ function Header(props) {
 const mapStateToProps = (state) => {
     return {
         state,
-        stage:state.contestReducers.contestStage
+        stage:state.contestReducers.contestStage,
+        selectedContestTypes:state.contestReducers.selectedContestTypes,
+        amountOfStages:state.contestReducers.amountOfStages
     };
 };
 export default connect(mapStateToProps)(Header);

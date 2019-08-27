@@ -3,20 +3,19 @@ import style from './CardCategories.module.scss';
 import {Link} from 'react-router-dom';
 
 function CardCategories(props) {
-    const arrayStandard = (props.img).map((item) => {
-        return <div key={item} className={style.imageStandard} style={{backgroundImage: item}}/>
+    const IMAGES= (props.img).map((item) => {
+        return <div key={item} className={style.image} style={{backgroundImage: item}}/>
     });
-    const arrayHover = (props.imgHover).map((item) => {
+  /*  const arrayHover = (props.imgHover).map((item) => {
         return <div key={item} className={style.imageHover} style={{backgroundImage: item}}/>
-    });
+    });*/
     return (
 
             <div className={style.contestButton} onClick={()=>{props.click(props.contestType);props.alsoClick(props.currentStage)}}>
             <div className={style.preCardCategories} >
             <div className={style.cardCategories} style={{backgroundColor: props.styles}}>
                 <div className={style.flexImg}>
-                    {arrayStandard}
-                    {arrayHover}
+                    {IMAGES}
                 </div>
                 <h5>{props.name}</h5>
                 <hr/>

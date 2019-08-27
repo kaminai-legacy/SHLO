@@ -36,8 +36,15 @@ export const selectedContestType = (contestTypes) =>{
 })};
 
 export const contestProgressing = (stage) =>{
-    console.log("catch",stage,"empty");
+    //console.log("catch",stage,"empty");
     return ({
         type: ACTION.CONTEST_PROGRESSING,
         stage
+    })};
+
+export const sendContest = (dataToSend) =>{
+    console.log(dataToSend,"dataToSend");
+    return ({
+        type: ACTION.SEND_CONTEST,
+        dataToSend
     })};

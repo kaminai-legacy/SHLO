@@ -7,6 +7,7 @@ export const signUpLogin = data => axios.post(`${restURL}/user`, (data));
 export const getAllUsers= () => axios.get(`${restURL}/getAllUsers`);
 export const userBanStatusUpdate = (id,data) => axios.post(`${restURL}/banStatusUpdate/${id}`,(data));
 export const logout = (data) => axios.delete(`${restURL}/logout`,{data:{data}});
+export const createContest = (dataToSend) => axios.post(`${restURL}/contest`,dataToSend);
 
 
 

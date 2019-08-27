@@ -2,7 +2,8 @@ import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
     selectedContestTypes:[],
-    contestStage:null,
+    contestStage:1,
+    amountOfStages:1,
 };
 
 export default function (state = initialState, action) {
@@ -12,6 +13,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 selectedContestTypes:action.contestTypes,
+                amountOfStages:(action.contestTypes.length)?action.contestTypes.length+2:1
             };
         }
         case ACTION.CONTEST_PROGRESSING: {

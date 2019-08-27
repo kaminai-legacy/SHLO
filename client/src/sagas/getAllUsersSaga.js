@@ -10,4 +10,3 @@ export function* getAllUsersSaga() {
         yield put({type: ACTION.GET_ALL_USERS_ERROR, error: e});
     }
 }
-

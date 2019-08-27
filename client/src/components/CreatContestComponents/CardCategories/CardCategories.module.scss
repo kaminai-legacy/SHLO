@@ -49,7 +49,7 @@
 
 }
 
-.imageStandard {
+.image {
   margin: 20px 2px;
   width: 48px;
   height: 48px;
@@ -57,7 +57,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  filter: grayscale(100%);
 }
+
+
 
 .imageHover {
   margin: 20px 2px;
@@ -73,16 +76,14 @@
 .cardCategories:hover {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 
-  .imageHover {
-    display: block;
-  }
+
 
   hr {
     border-top: 1px solid #28d2d0;
   }
 
-  .imageStandard {
-    display: none;
+  .image{
+    filter: none;
   }
 }
 

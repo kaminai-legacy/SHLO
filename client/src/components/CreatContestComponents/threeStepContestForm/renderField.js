@@ -16,6 +16,7 @@ const customStyles = {
         fontSize: "16px",
         borderRadius: "7px",
         width:"100%",
+        marginBottom:"10px"
     }),
     control: (base, state) => ({
         ...base,
@@ -53,6 +54,27 @@ const customStyles = {
         fontSize: "16px",
         cursor: "pointer",
     }),
+};
+
+const renderFileInput = ({
+                       input: {value: omitValue, onChange, onBlur, ...inputProps },
+                       meta: omitMeta,
+                       ...props
+                   }) => {
+    const adaptFileEventToValue = delegate => e => delegate(e.target.files);
+    return (
+        <div className={style.renderField}>
+            <label className={style.forLabel}>{props.label}</label>
+        <input className={style.inputFile}
+            onChange={adaptFileEventToValue(onChange)}
+            onBlur={adaptFileEventToValue(onBlur)}
+            type="file"
+            multiple
+            {...props.input}
+            {...props}
+        />
+        </div>
+    );
 };
 
 const renderFieldSelect = ({input,placeholder, label, type,options,isMulti,defaultValue, meta: {touched, error, active}}) => {
@@ -136,7 +158,8 @@ export default {
     renderMultiselect,
     renderSelectList,
     renderColorSelector,
-    renderFieldSelect
+    renderFieldSelect,
+    renderFileInput
 }
 
 /*module.exports =

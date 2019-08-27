@@ -11,7 +11,7 @@ import connect from "react-redux/es/connect/connect";
 //const STAGE = 1;
 
 function CreateContest(props) {
-    //console.log(props.stage);
+    console.log(props.stage,props.selectedContestTypes);
     const contestStage =(props.stage)?props.stage:1;
     const content = (contestStage === 1) ? <> <ContestCategories/>
         <PackagesAndOther/></> : <Form/>;
@@ -27,7 +27,8 @@ function CreateContest(props) {
 const mapStateToProps = (state) => {
     return {
         state,
-        stage:state.contestReducers.contestStage
+        stage:state.contestReducers.contestStage,
+        selectedContestTypes:state.contestReducers.selectedContestTypes
     };
 };
 export default connect(mapStateToProps)(CreateContest);

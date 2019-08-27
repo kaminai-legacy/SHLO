@@ -1,11 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import style from './Banner.module.scss';
 import {Link} from 'react-router-dom';
-import {LOADING_ITEMS} from '../../../constants/consts';
+import {LOADING_ITEMS, startValueContestProgressing} from '../../../constants/consts';
+import {contestProgressing} from "../../../actions/actionCreator";
+import connect from "react-redux/es/connect/connect";
 
 let number = 0;
 
-function Banner() {
+
+function Banner(props) {
+    function onClickedStartContest() {
+        props.contestProgressing(startValueContestProgressing)
+    }
     const [text, setText] = useState(null);
     useEffect(() => {
         const timeout = setInterval(() => {
@@ -36,8 +42,8 @@ function Banner() {
                 <div className={style.flexList}>
                     <div className={style.item}>
                         <div className={style.itemIntermediateLayer}>
-                            <Link to="/contest_creating/">
-                                <div className={style.startContestButton}>
+                            <Link to="/contest_creating/" >
+                                <div className={style.startContestButton} onClick={onClickedStartContest}>
                                     START A CONTEST
                                 </div>
                             </Link>
@@ -61,6 +67,9 @@ function Banner() {
     )
 
 }
+const mapDispatchToProps = (dispatch) => ({
+    contestProgressing: (value) => dispatch(contestProgressing(value)),
+});
+export default connect(null,mapDispatchToProps)(Banner);
 
-
-export default Banner;
+//export default Banner;
