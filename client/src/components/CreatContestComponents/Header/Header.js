@@ -7,14 +7,12 @@ import {CONTEST_HEADER} from '../../../constants/consts';
 
 function Header(props) {
     let header;
-    console.log("START",props.stage,1+props.amountOfStages,props.stage<1+props.amountOfStages)
-    if(props.stage===1){ header='START';console.log("START")}
-    else if(props.stage<props.amountOfStages){ header=props.selectedContestTypes[props.stage-2];console.log("middle")}
-    else { header='CHECKOUT';console.log("CHECKOUT")}
+    if(props.stage===1){ header='START';}
+    else if(props.stage<props.amountOfStages){ header=props.selectedContestTypes[props.stage-2];}
+    else { header='CHECKOUT';}
     //const header=(props.stage!==1)?props.selectedContestTypes[props.stage-2]:'START';
     return (
         <div className={style.startContestSteps}>
-            {console.log(header)}
             <div className={style.insideStartContestSteps}>
                 <div className={style.contestStepsRow}>
                     <div className={style.contestStepsTip}>

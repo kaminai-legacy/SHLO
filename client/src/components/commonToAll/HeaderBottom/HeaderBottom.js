@@ -52,7 +52,7 @@ function HeaderBottom(props) {
             <li>Admin panel</li>
         </Link> : <></>;
     const LIST = <div className={style.dashboard} style={{
-        maxHeight: dashboardView ? "50vh" : "0", border: dashboardView ? " 1px solid #cacaca" : "none",
+        maxHeight: dashboardView ? "50vh" : "0", borderTop: dashboardView ? " 1px solid #cacaca" : "none",
         borderBottom: ((barMenuView && dashboardView) || (dashboardView === false && barMenuView === false)) ? "none" : " 1px solid #ccc"
     }}>
         <ul className={style.dashboardList}>

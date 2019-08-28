@@ -13,12 +13,19 @@ import {ToastContainer} from 'react-toastify';
 import NotFound from './pages/NotFound/notFound';
 import  Form from './components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
 
+history.listen( _ => {
+    window.scrollTo(0, 0)
+});
+
 function App (){
     return (
       <CheckUser>
           <ToastContainer/>
         <Router history={history}>
           <Switch>
+              {
+                  console.log("scroll")
+              }
             <Route path="/" exact component={StartPage} />
             <Route path="/login/"  exact component={Login} />
             <Route path="/signup/" exact component={SignUp} />

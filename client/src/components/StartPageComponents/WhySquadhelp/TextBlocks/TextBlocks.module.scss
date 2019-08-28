@@ -3,7 +3,7 @@
   width: 100vw;
 
   @media (min-width: 992px) {
-    min-width: 360px;
+    max-width: 330px;
   }
 
   .image {
@@ -29,4 +29,5 @@
 
 .mainTextBlocksInside {
   margin: 0 15px;
+  box-sizing:  border-box;
 }

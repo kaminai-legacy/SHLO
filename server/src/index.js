@@ -10,6 +10,7 @@ import multer from 'multer';
 const funcErrorHandling = require('./server/middleWare/funcErrorHandling');
 const PORT = process.env.PORT || 3000;
 const app = express();
+//app.use("/static", express.static(__dirname + "/server/ContestUpload/"));
 app.use(cors());
 app.use(express.json());
 

@@ -4,6 +4,7 @@ module.exports.check = async (req, res, next) => {
   try {
     const token = req.body.refresh;
     const refreshToken = await RefreshToken.findOne({ where: { tokenString: token } });
+    console.log()
     if (refreshToken==null){
       next({ status: 401, message: 'Problem with session please re login' });
     }

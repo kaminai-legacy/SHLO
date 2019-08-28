@@ -11,7 +11,7 @@ import connect from "react-redux/es/connect/connect";
 //const STAGE = 1;
 
 function CreateContest(props) {
-    console.log(props.stage,props.selectedContestTypes);
+  //  console.log(props.stage,props.selectedContestTypes);
     const contestStage =(props.stage)?props.stage:1;
     const content = (contestStage === 1) ? <> <ContestCategories/>
         <PackagesAndOther/></> : <Form/>;

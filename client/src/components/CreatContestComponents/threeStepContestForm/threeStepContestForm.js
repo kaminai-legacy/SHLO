@@ -39,6 +39,7 @@ function contestForm(props) {
         });
      //   console.log(errors);
         if(isEmpty(errors)){
+            window.scrollTo(0, 0);
             console.log("YES");
             console.log(props.types.length-1>form.id,props.types.length-1,form.id,"props.types.length-1<page.id");
             if (props.types.length-1>form.id){
@@ -93,7 +94,7 @@ function contestForm(props) {
 
     return (
      <div >
-         {  console.log(" submit2",form)}
+         {/*  console.log(" submit2",form)*/}
          {form.contestTypes === 'LOGO' && renderForm(FromContent.LOGO,'LOGO')}
          {form.contestTypes === 'NAME' && renderForm(FromContent.NAME,'NAME')}
          {form.contestTypes === 'TAGLINE_OR_SLOGAN' && renderForm(FromContent.TAGLINE_OR_SLOGAN,'TAGLINE_OR_SLOGAN')}

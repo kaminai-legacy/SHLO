@@ -2,7 +2,7 @@ import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
     data: {},
-    isFetching: false,
+    isFetching: true,
     error: null,
     loginFailed: false,
     user: null,
@@ -63,15 +63,13 @@ export default function (state = initialState, action) {
                 banned: false,
                 user: action.user,
                 loginFailed: false,
+                isFetching: false,
             };
         }
         case ACTION.GET_USER: {
             return {
                 ...state,
-                banned: false,
-                user: action.user,
-                loginFailed: false,
-                updated: true,
+                isFetching: true,
             };
         }
         default: {

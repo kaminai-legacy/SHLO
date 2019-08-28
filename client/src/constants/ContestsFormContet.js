@@ -9,7 +9,7 @@ const LOGO={
         },
         {
             type:"text",
-            name:"TypeOfIndustry",
+            name:"typeOfIndustry",
             component:"renderFieldSelect",
             placeholder:"Select Your Industry",
             label:"Select the industry associated with your venture",
@@ -72,7 +72,7 @@ const LOGO={
         },
 
     ],
-    required:['titleOfContest','TypeOfIndustry','inputNameOfTheirVenture','whatVentureDoes',"visualBrandStyle"]
+    required:['titleOfContest','typeOfIndustry','inputNameOfTheirVenture','whatVentureDoes',"visualBrandStyle"]
 };
 
 const NAME={
@@ -99,7 +99,7 @@ const NAME={
         },
         {
             type:"text",
-            name:"TypeOfIndustry",
+            name:"typeOfIndustry",
             component:"renderFieldSelect",
             placeholder:"Select Your Industry",
             label:"Select the industry associated with your venture",
@@ -154,7 +154,7 @@ const NAME={
             label:"Do you have any documents that might be helpful (Optional)?"
         },
     ],
-    required:['titleOfContest','typeOfName','TypeOfIndustry','whatVentureDoes',"targetCustomers"]
+    required:['titleOfContest','typeOfName','typeOfIndustry','whatVentureDoes',"targetCustomers"]
 };
 
 const TAGLINE_OR_SLOGAN={
@@ -168,7 +168,7 @@ const TAGLINE_OR_SLOGAN={
         },
         {
             type:"text",
-            name:"TypeOfIndustry",
+            name:"typeOfIndustry",
             component:"renderFieldSelect",
             placeholder:"Select Your Industry",
             label:"Select the industry associated with your venture",
@@ -231,7 +231,7 @@ const TAGLINE_OR_SLOGAN={
         },
 
     ],
-    required:['titleOfContest','TypeOfIndustry','inputNameOfTheirVenture','whatVentureDoes',"targetCustomers","preferenceForTagline"]
+    required:['titleOfContest','typeOfIndustry','inputNameOfTheirVenture','whatVentureDoes',"targetCustomers","preferenceForTagline"]
 };
 
 module.exports =
@@ -257,4 +257,12 @@ module.exports =
               { value: '10d', label: '10 days' },
               { value: '12d', label: '12 days' },
           ]
-      },*/
+      },
+
+       required:['titleOfContest','typeOfIndustry','whatVentureDoes',"targetCustomers",'typeOfName']
+
+       required:['titleOfContest','typeOfIndustry','inputNameOfTheirVenture','whatVentureDoes',"targetCustomers","preferenceForTagline"]
+
+       required:['titleOfContest','typeOfIndustry','inputNameOfTheirVenture','whatVentureDoes',"visualBrandStyle"]
+
+      */

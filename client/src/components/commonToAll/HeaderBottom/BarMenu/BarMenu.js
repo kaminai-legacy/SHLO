@@ -90,7 +90,7 @@ function BottomHeaderList(props) {
 
     return (
         <ul className={style.mainHeaderBottomLists}
-            style={{maxHeight: props.height, border: props.border, borderTop: props.borderTop}}>
+            style={{maxHeight: props.height, borderBottom: props.border, borderTop: props.borderTop}}>
             {RESULT}
         </ul>
     );

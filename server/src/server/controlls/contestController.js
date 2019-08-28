@@ -1,28 +1,40 @@
 const bcrypt = require('bcrypt');
 const  _ = require('lodash');
-
+const fs = require('fs');
+const { Contest } = require('../models/index');
+const MODELS_INDEX = require('../models/index');
 
 module.exports.createContest = async (req, res, next) => {
-    console.log("createContest-----------------------------------------------------");
-    console.log("req = ", req.files);
-    const user = req.body;
-    const file = req.files;
-    const otherField = req.otherField;
+    const pathsForFiles=[];
+    const files=req.files;
+    const payload = req.body;
+   console.log(!!MODELS_INDEX['Contest'],!!MODELS_INDEX['Contests'],"new value");
 
-    try {/*
-        const password = await bcrypt.hashSync(user.password, bcrypt.genSaltSync(8));
-        const DataToCreate = await Object.assign({},user,{password:password});
-        const createdUser = await User.create(DataToCreate);
-        const id = createdUser.dataValues.id;
-        const tokenPair= await createTokenPair(id);
-        const  userForSend = await  _.omit(createdUser.dataValues,OTHER_FIELDS);
+    try {
+
+        files.map(async(file)=>{
+            const path = __dirname+'/../ContestUpload/'+Date.now()+'_'+file.originalname;
+            pathsForFiles.push(path);
+            await fs.writeFile(path, file.buffer,(e)=>{console.log("success",e)});
+        });
+        const data ={
+            userId:1,
+            media:pathsForFiles
+        };
+        const props = await Object.keys(payload);
+        for(let key in payload){
+            if(props.includes(key)){
+                 data[key]=await JSON.parse(payload[key])
+            }
+        }
+        const createdContest = await Contest.create(data);
         res.send({
-            user: userForSend,
-            tokenPair,
-        });*/
-        console.log(user,"sended contest-----------------------------------------------------",user.file);
+            contest: createdContest,
+        });
+
     } catch (e) {
-        next({ status: 400, message: 'Entered relevant data' });
+        console.log(e);
+        next(e);
     }
 };
 

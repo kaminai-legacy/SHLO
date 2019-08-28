@@ -11,7 +11,7 @@ function CardCategories(props) {
     });*/
     return (
 
-            <div className={style.contestButton} onClick={()=>{props.click(props.contestType);props.alsoClick(props.currentStage)}}>
+            <div className={style.contestButton} onClick={()=>{props.click(props.contestType);props.alsoClick(props.currentStage);window.scrollTo(0, 0);}}>
             <div className={style.preCardCategories} >
             <div className={style.cardCategories} style={{backgroundColor: props.styles}}>
                 <div className={style.flexImg}>

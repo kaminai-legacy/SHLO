@@ -15,9 +15,11 @@ export function* getLoginSaga({dataToSend}) {
             yield put({type: ACTION.SET_USER, user: USER});
             const TOKENS_JSON = JSON.stringify(TOKENS);
             if(rememberMeStatus)
-                {sessionStorage.setItem(TOKENS_KEY, TOKENS_JSON);}
+            {localStorage.setItem(TOKENS_KEY, TOKENS_JSON);
+             }
             else
-                {localStorage.setItem(TOKENS_KEY, TOKENS_JSON);}
+            {sessionStorage.setItem(TOKENS_KEY, TOKENS_JSON);
+              }
             yield call(history.push('/'));
         } else if (RES.response.data === "User is baned") {
             yield put({type: ACTION.LOGIN_BANNED});
