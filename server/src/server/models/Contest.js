@@ -22,6 +22,13 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
+      typeOfContest: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+              notEmpty: true,
+          },
+      },
     typeOfIndustry: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
       allowNull: false,
@@ -71,6 +78,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       defaultValue:null,
     },
+      price: {
+          allowNull: false,
+          type: DataTypes.INTEGER,
+          defaultValue:33,
+      },
+      paid: {
+          type: DataTypes.BOOLEAN,
+          allowNull: false,
+          defaultValue:false,
+      },
   });
 
 

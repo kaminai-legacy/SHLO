@@ -1,36 +1,8 @@
 import 'babel-polyfill';
 import express from 'express';
 import multer from 'multer';
-/*const multerConf={
-    storage:multer.diskStorage({
-        destination: function (req,file,next) {
-            next(null,'./public/images');
-        },
-        filename:function (req,file,next) {
-         //   const ext= file.mimetype.split('/')[1];
-          //  next(null,file);
-            console.log(file);
-
-        }
-    }),
-   /* fileFilter : function (req , file, next) {
-        if(!file){
-            next();
-        }
-        const image = file.mimetype.startsWidth('image/');
-        if (image){
-            next(null,true)
-        }else{
-            next({message:"File type not supported"},false);
-        }
-
-
-    }
-
-};*/
 const {ROLE_BUYER,ROLE_CREATIVE,CREATE, CHANGE, WATCH ,CONTESTS} = require('../utils/Consts');
 const RIGHTS_OF_USERS = require('../utils/Permisions');
-
 
 const router = express.Router();
 const userController = require('../controlls/userController');
@@ -41,6 +13,7 @@ const refreshTokenFindAndCount = require('../middleWare/refreshTokenFindAndCount
 const verifyUser = require('../middleWare/verifyUser');
 const checkCountRefreshToken = require('../middleWare/checkCountRefreshToken');
 const role = require('../middleWare/checkPermissions');
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, '/tmp/my-uploads')
@@ -49,6 +22,7 @@ var storage = multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now())
     }
 });
+
 const upload = multer(storage);
 
 

@@ -1,3 +1,53 @@
+const TYPE_OF_INDUSTRY_OPTIONS = [
+    { value: "accounting", label: "Accounting" },
+    { value: 'A&G-bikeRentals', label: 'Activity & Games - Bike Rentals' },
+    { value: 'A&G-boating ', label: 'Activity & Games - Boating' },
+    { value: 'A&G-dancing&A ', label: 'Activity & Games - Dancing & Aerobics' },
+    { value: 'A&G-gun&R ', label: 'Activity & Games - Gun & Rifle Ranges' },
+    { value: 'A&G-gymnastics ', label: 'Activity & Games - Gymnastics' },
+    { value: 'A&G-horseRacing ', label: 'Activity & Games - Horse Racing' },
+    { value: 'A&G-horsebackRiding ', label: 'Activity & Games - Horseback Riding' },
+    { value: 'A&G-lakes ', label: 'Activity & Games - Lakes' },
+    { value: 'A&G-other ', label: 'Activity & Games - Other' },
+];
+
+const VISUAL_BRAND_STYLE_OPTIONS=
+[
+    { value: 'techy', label: 'Techy' },
+    { value: 'fun', label: 'Fun' },
+    { value: 'fancy', label: 'Fancy' },
+    { value: 'minimal', label: 'Minimal' },
+    { value: 'brickMortar', label: 'Brick & Mortar' },
+    { value: 'photoBased', label: 'Photo-based' },
+];
+
+const PREFERENCE_FOR_NAME_OPTIONS=
+    [
+        { value: 'techy', label: 'Techy' },
+        { value: 'fun', label: 'Fun' },
+        { value: 'fancy', label: 'Fancy' },
+        { value: 'minimal', label: 'Minimal' },
+        { value: 'brickMortar', label: 'Brick & Mortar' },
+        { value: 'photoBased', label: 'Photo-based' },
+    ];
+
+const PREFERENCE_FOR_TAGLINE_OPTIONS=
+    [
+        { value: 'classic', label: 'Classic' },
+        { value: 'fun', label: 'Fun' },
+        { value: 'powerful', label: 'Powerful' },
+        { value: 'descriptive', label: 'Descriptive' },
+        { value: 'modern', label: 'Modern' },
+        { value: 'any', label: 'Any' },
+    ];
+
+const TYPE_OF_NAME_OPTIONS=
+    [
+        { value: "company", label: "Company" },
+        { value: 'product', label: 'Product' },
+        { value: 'project', label: 'Project' },
+    ];
+
 const LOGO={
     fields:[
         {
@@ -14,18 +64,7 @@ const LOGO={
             placeholder:"Select Your Industry",
             label:"Select the industry associated with your venture",
             isMulti:true,
-            options:[
-                { value: "accounting", label: "Accounting" },
-                { value: 'A&G-bikeRentals', label: 'Activity & Games - Bike Rentals' },
-                { value: 'A&G-boating ', label: 'Activity & Games - Boating' },
-                { value: 'A&G-dancing&A ', label: 'Activity & Games - Dancing & Aerobics' },
-                { value: 'A&G-gun&R ', label: 'Activity & Games - Gun & Rifle Ranges' },
-                { value: 'A&G-gymnastics ', label: 'Activity & Games - Gymnastics' },
-                { value: 'A&G-horseRacing ', label: 'Activity & Games - Horse Racing' },
-                { value: 'A&G-horsebackRiding ', label: 'Activity & Games - Horseback Riding' },
-                { value: 'A&G-lakes ', label: 'Activity & Games - Lakes' },
-                { value: 'A&G-other ', label: 'Activity & Games - Other' },
-            ]
+            options:TYPE_OF_INDUSTRY_OPTIONS
         },
         {
             type:"text",
@@ -55,14 +94,7 @@ const LOGO={
             isMulti:true,
             placeholder:"Select visual style",
             label:"Select visual style of your brand",
-            options:[
-                { value: 'techy', label: 'Techy' },
-                { value: 'fun', label: 'Fun' },
-                { value: 'fancy', label: 'Fancy' },
-                { value: 'minimal', label: 'Minimal' },
-                { value: 'brickMortar', label: 'Brick & Mortar' },
-                { value: 'photoBased', label: 'Photo-based' },
-            ]
+            options:VISUAL_BRAND_STYLE_OPTIONS,
         },
         {
             type:"file",
@@ -91,11 +123,7 @@ const NAME={
             placeholder:"Select Type",
             label:"Select the type of name you are looking for",
             isMulti:false,
-            options:[
-                { value: "company", label: "Company" },
-                { value: 'product', label: 'Product' },
-                { value: 'project', label: 'Project' },
-            ]
+            options:TYPE_OF_NAME_OPTIONS,
         },
         {
             type:"text",
@@ -104,18 +132,7 @@ const NAME={
             placeholder:"Select Your Industry",
             label:"Select the industry associated with your venture",
             isMulti:true,
-            options:[
-                { value: "accounting", label: "Accounting" },
-                { value: 'A&G-bikeRentals', label: 'Activity & Games - Bike Rentals' },
-                { value: 'A&G-boating ', label: 'Activity & Games - Boating' },
-                { value: 'A&G-dancing&A ', label: 'Activity & Games - Dancing & Aerobics' },
-                { value: 'A&G-gun&R ', label: 'Activity & Games - Gun & Rifle Ranges' },
-                { value: 'A&G-gymnastics ', label: 'Activity & Games - Gymnastics' },
-                { value: 'A&G-horseRacing ', label: 'Activity & Games - Horse Racing' },
-                { value: 'A&G-horsebackRiding ', label: 'Activity & Games - Horseback Riding' },
-                { value: 'A&G-lakes ', label: 'Activity & Games - Lakes' },
-                { value: 'A&G-other ', label: 'Activity & Games - Other' },
-            ]
+            options:TYPE_OF_INDUSTRY_OPTIONS,
         },
         {
             type:"text",
@@ -138,14 +155,7 @@ const NAME={
             isMulti:true,
             placeholder:"Select preference(s)",
             label:"Select preference(s) for name style",
-            options:[
-                { value: 'techy', label: 'Techy' },
-                { value: 'fun', label: 'Fun' },
-                { value: 'fancy', label: 'Fancy' },
-                { value: 'minimal', label: 'Minimal' },
-                { value: 'brickMortar', label: 'Brick & Mortar' },
-                { value: 'photoBased', label: 'Photo-based' },
-            ]
+            options:PREFERENCE_FOR_NAME_OPTIONS,
         },
         {
             type:"file",
@@ -173,18 +183,7 @@ const TAGLINE_OR_SLOGAN={
             placeholder:"Select Your Industry",
             label:"Select the industry associated with your venture",
             isMulti:true,
-            options:[
-                { value: "accounting", label: "Accounting" },
-                { value: 'A&G-bikeRentals', label: 'Activity & Games - Bike Rentals' },
-                { value: 'A&G-boating ', label: 'Activity & Games - Boating' },
-                { value: 'A&G-dancing&A ', label: 'Activity & Games - Dancing & Aerobics' },
-                { value: 'A&G-gun&R ', label: 'Activity & Games - Gun & Rifle Ranges' },
-                { value: 'A&G-gymnastics ', label: 'Activity & Games - Gymnastics' },
-                { value: 'A&G-horseRacing ', label: 'Activity & Games - Horse Racing' },
-                { value: 'A&G-horsebackRiding ', label: 'Activity & Games - Horseback Riding' },
-                { value: 'A&G-lakes ', label: 'Activity & Games - Lakes' },
-                { value: 'A&G-other ', label: 'Activity & Games - Other' },
-            ]
+            options:TYPE_OF_INDUSTRY_OPTIONS
         },
         {
             type:"text",
@@ -214,14 +213,7 @@ const TAGLINE_OR_SLOGAN={
             isMulti:true,
             placeholder:"Select preference(s)",
             label:"Select preference(s) for name style",
-            options:[
-                { value: 'classic', label: 'Classic' },
-                { value: 'fun', label: 'Fun' },
-                { value: 'powerful', label: 'Powerful' },
-                { value: 'descriptive', label: 'Descriptive' },
-                { value: 'modern', label: 'Modern' },
-                { value: 'any', label: 'Any' },
-            ]
+            options:PREFERENCE_FOR_TAGLINE_OPTIONS,
         },
         {
             type:"file",
@@ -239,6 +231,11 @@ module.exports =
         LOGO,
         NAME,
         TAGLINE_OR_SLOGAN,
+        TYPE_OF_INDUSTRY_OPTIONS,
+        VISUAL_BRAND_STYLE_OPTIONS,
+        PREFERENCE_FOR_NAME_OPTIONS,
+        PREFERENCE_FOR_TAGLINE_OPTIONS,
+        TYPE_OF_NAME_OPTIONS,
     };
 
 

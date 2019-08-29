@@ -24,6 +24,13 @@ module.exports = {
                 notEmpty: true,
             },
         },
+        typeOfContest: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+            },
+        },
         typeOfIndustry: {
             type: Sequelize.ARRAY(Sequelize.TEXT),
             allowNull: false,
@@ -72,6 +79,16 @@ module.exports = {
             type: Sequelize.ARRAY(Sequelize.TEXT),
             allowNull: true,
             defaultValue:null,
+        },
+        price: {
+            allowNull: false,
+            type: Sequelize.INTEGER,
+            defaultValue:33,
+        },
+        paid: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false,
+            defaultValue:false,
         },
         createdAt: {
             allowNull: false,

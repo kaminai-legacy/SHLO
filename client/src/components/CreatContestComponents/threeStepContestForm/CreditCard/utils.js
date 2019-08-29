@@ -1,4 +1,4 @@
-/*import Payment from 'payment';
+import Payment from 'payment';
 
 function clearNumber(value = '') {
     return value.replace(/\D+/g, '');
@@ -62,4 +62,3 @@ export function formatExpirationDate(value) {
 export function formatFormData(data) {
     return Object.keys(data).map(d => `${d}: ${data[d]}`);
 }
-*/

@@ -1,16 +1,22 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, formValueSelector} from 'redux-form';
 import 'react-widgets/dist/css/react-widgets.css';
 import renderField from './renderField';
 import style from "./threeStepContestForm.module.scss";
+import connect from "react-redux/es/connect/connect";
+
+let formName = 'form';
 
 
 
 
-
-let WizardFormFirstPage = props => {
-    const {handleSubmit,previousPage,textSubmit,formContent} = props;
-
+let formPage = props => {
+    console.log(props.temp);
+    console.log(props.typeOfIndustry);
+    formName=props['formName'];
+    console.log(formName);
+    const {handleSubmit,previousPage,textSubmit,formContent,load} = props;
+    //props.load('sad');
     return (
         <form onSubmit={handleSubmit(props.onSubmit)}>
             <div className={style.preBusinessStepForm}>
@@ -18,7 +24,6 @@ let WizardFormFirstPage = props => {
                     {formContent.fields.map((field,id)=>{
                         return  <Field key={id} {...field} component={renderField[field.component]}/>
                     })}
-                    {/*-} <Field name="attachment" component={renderField.renderFileInput} type="file"/>*/}
                 </div>
             </div>
                 <div className={style.preButtonOnForm}>
@@ -28,7 +33,7 @@ let WizardFormFirstPage = props => {
                             You are almost finished. Select a pricing package in the next step
                         </div>
                         <div className={style.buttons}>
-                            <button type="button"  className={style.prev} onClick={previousPage}>
+                            <button type="button"  className={style.prev} onClick={()=>previousPage("values")}>
                                 Back
                             </button>
                             <button  type="submit" className={style.next} >
@@ -43,10 +48,26 @@ let WizardFormFirstPage = props => {
     );
 };
 
-WizardFormFirstPage = reduxForm({
-    form: 'contest', //                 <------ same form name
+formPage = reduxForm({
+     //                 <------ same form name
     destroyOnUnmount: true, //        <------ preserve form data
-    forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
-})(WizardFormFirstPage);
+    forceUnregisterOnUnmount: false,
+    enableReinitialize: true,// <------ unregister fields on unmount
+})(formPage);
 
-export default WizardFormFirstPage;
+ // <-- same as form name
+
+const mapStateToProps = (state) => {
+    const selector = formValueSelector(state.contestReducers.currentContestForm);
+console.log(state);
+    const typeOfIndustry = selector(state, 'typeOfIndustry');
+    return {
+        state,
+        types:state.contestReducers.selectedContestTypes,
+        formNames:state.contestReducers.currentContestForm,
+        temp:state.contestReducers.tempContests,
+        typeOfIndustry
+    };
+};
+
+export default connect(mapStateToProps)(formPage);

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import style from './Banner.module.scss';
 import {Link} from 'react-router-dom';
 import {LOADING_ITEMS, startValueContestProgressing} from '../../../constants/consts';
-import {contestProgressing} from "../../../actions/actionCreator";
+import {contestProgressing, selectedContestType} from "../../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
 
 let number = 0;
@@ -10,7 +10,8 @@ let number = 0;
 
 function Banner(props) {
     function onClickedStartContest() {
-        props.contestProgressing(startValueContestProgressing)
+        props.contestProgressing(startValueContestProgressing,null);
+        props.selectedContestType([]);
     }
     const [text, setText] = useState(null);
     useEffect(() => {
@@ -67,9 +68,16 @@ function Banner(props) {
     )
 
 }
+const mapStateToProps = (state) => {
+    return {
+        state,
+        types:state.contestReducers.selectedContestTypes
+    };
+};
 const mapDispatchToProps = (dispatch) => ({
-    contestProgressing: (value) => dispatch(contestProgressing(value)),
+    selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
+    contestProgressing: (firstValue,secondValue) => dispatch(contestProgressing(firstValue,secondValue)),
 });
-export default connect(null,mapDispatchToProps)(Banner);
+export default connect(mapStateToProps,mapDispatchToProps)(Banner);
 
 //export default Banner;

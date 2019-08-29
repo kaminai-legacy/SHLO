@@ -44,6 +44,14 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
+    balance: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      validate: {
+        notEmpty: true,
+      },
+    },
     isBaned: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

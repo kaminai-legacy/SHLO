@@ -4,7 +4,7 @@ import BottomHeaderList from './StartPageBottomHeaderList/StartPageBottomHeaderL
 import BarMenu from './BarMenu/BarMenu';
 import connect from 'react-redux/es/connect/connect';
 import {Link} from 'react-router-dom';
-import {logout,contestProgressing} from "../../../actions/actionCreator";
+import {logout, contestProgressing, selectedContestType} from "../../../actions/actionCreator";
 import {startValueContestProgressing} from '../../../constants/consts'
 import Accordion from 'react-bootstrap/Accordion';
 import Card from "react-bootstrap/Card";
@@ -20,7 +20,8 @@ function HeaderBottom(props) {
     }
 
     function onClickedStartContest() {
-        props.contestProgressing(startValueContestProgressing)
+        props.contestProgressing(startValueContestProgressing,null);
+        props.selectedContestType([]);
     }
 
     function onClickedDashboard() {
@@ -109,11 +110,13 @@ function HeaderBottom(props) {
 
 const mapStateToProps = (state) => {
     return {
-        state
+        state,
+        types:state.contestReducers.selectedContestTypes
     };
 };
 const mapDispatchToProps = (dispatch) => ({
     logout: () => dispatch(logout()),
-    contestProgressing: (startValueContestProgressing) => dispatch(contestProgressing(startValueContestProgressing)),
+    selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
+    contestProgressing: (firstValue,secondValue) => dispatch(contestProgressing(firstValue,secondValue)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderBottom);

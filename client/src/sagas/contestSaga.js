@@ -1,9 +1,7 @@
 import {put, call} from 'redux-saga/effects';
 import ACTION from '../actions/actiontsTypes';
-import {createContest} from '../api/rest/restContoller';
-
-import {TOKENS_KEY} from '../constants/consts';
-import history from '../boot/browserHistory';
+import {createContest,sendContestPayment} from '../api/rest/restContoller';
+import pagesContent from '../constants/ContestsFormContet';
 const  _ = require('lodash');
 function getClass(obj) {
     return {}.toString.call(obj).slice(8, -1);
@@ -53,7 +51,25 @@ export function* sendContest({dataToSend}) {
     }
     console.log(FinalDataToSend);
     const {data} = yield createContest(FinalDataToSend);
+    const newProps=_.pick(data.contest,['paid','id','price']);
+
+    console.log(data,newProps);
+
+/*
+    const preData = _.cloneDeep(data);//_.startCase
+    const typeOfIndustry = preData['typeOfIndustry'];
+    preData['typeOfIndustry']=typeOfIndustry.map((item)=>{
+        const labels = pagesContent.TYPE_OF_INDUSTRY_OPTIONS.map(()=>)
+        return{value:item,label:pagesContent.TYPE_OF_INDUSTRY_OPTIONS[item]}});
+*/
+    yield put({type: ACTION.TEMP_CONTEST, data: {...newProps,...dataToSend}});
 }
+
+export function* contestPayment({dataToSend}) {
+    const {data} = yield sendContestPayment(dataToSend);
+}
+
+
 
 export function* signUpSaga({dataToSend}) {
     try {

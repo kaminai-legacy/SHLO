@@ -85,6 +85,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => ({
     selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
-    contestProgressing: (currentStage) => dispatch(contestProgressing(currentStage)),
+    contestProgressing: (currentStage,type) => dispatch(contestProgressing(currentStage,type)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(PackagesAndOther);

@@ -4,6 +4,8 @@ const initialState = {
     selectedContestTypes:[],
     contestStage:1,
     amountOfStages:1,
+    currentContestForm:null,
+    tempContests:{},
 };
 
 export default function (state = initialState, action) {
@@ -20,7 +22,26 @@ export default function (state = initialState, action) {
             console.log(action);
             return {
                 ...state,
-                contestStage:action.stage
+                contestStage:action.stage,
+                currentContestForm:action.form
+            };
+        }
+        case ACTION.TEMP_CONTEST: {
+            console.log(action);
+            const field=action['data']['typeOfContest'];
+           // console.log(  action['data'] );
+           // console.log(  action['data']['contest']['typeOfContest'] );
+
+          /*  console.log( {
+                [field]:action.data.contest
+            });*/
+            const oldTempContests=state.tempContests
+            return {
+                ...state,
+                tempContests:{
+                    ...oldTempContests,
+                    [field]:action.data
+                },
             };
         }
         default: {
