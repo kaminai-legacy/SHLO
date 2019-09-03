@@ -16,7 +16,6 @@ export function* logoutSaga() {
         const userToRead = null;
         yield put({type: ACTION.DASHBOARD_CHANGED});
         yield put({type: ACTION.USER_LOGOUT, userToRead});
-        yield call(history.push('/'));
     } catch (e) {
     }
 }

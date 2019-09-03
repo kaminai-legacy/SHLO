@@ -51,7 +51,7 @@ export const sendContest = (dataToSend) =>{
     })};
 
 export const contestPayment = (dataToSend) =>{
-    console.log(dataToSend,"реквизиты");
+  //  console.log(dataToSend,"реквизиты");
     return ({
         type: ACTION.CONTEST_PAYMENT,
         dataToSend
@@ -64,4 +64,23 @@ export const contestPayment = (dataToSend) =>{
         data
     })};*/
 
-export const loadInitialValue = data => ({ type: ACTION.LOAD_INITIAL_VALUES, data });
+export const createOrUpdateTempContest = (dataToSend) =>{
+  ///  console.log(dataToSend,"реквизиты");
+    return ({
+        type: ACTION.TEMP_CONTEST,
+        data:dataToSend
+    })};
+export const sendCard = (dataToSend) =>{
+      console.log(dataToSend,"реквизиты");
+       return ({
+        type: ACTION.SEND_CARD_REQUISITES,
+        data:dataToSend
+    })};
+export const checkEmail = (dataToSend) =>{
+    console.log(dataToSend,"checkEmail");
+    return ({
+        type: ACTION.CHECK_USER_EMAIL,
+        dataToSend
+    })};
+
+//export const loadInitialValue = data => ({ type: ACTION.LOAD_INITIAL_VALUES, data });

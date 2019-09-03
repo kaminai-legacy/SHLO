@@ -1,60 +1,62 @@
 import React from 'react';
-import {Field, reduxForm, formValueSelector,getFormValues,} from 'redux-form';
+import {Field, reduxForm, formValueSelector, getFormValues, SubmissionError,} from 'redux-form';
 import 'react-widgets/dist/css/react-widgets.css';
-import renderField from './renderField';
 import style from "./threeStepContestForm.module.scss";
 import connect from "react-redux/es/connect/connect";
+import {checkEmail} from "../../../actions/actionCreator";
+const promises = () => new Promise(resolve => resolve());
+const yup = require('yup');
+const schema = require('../../../models/userSchema');
 
-let formName = 'form';
+const renderField = ({input, placeholder, label, type, meta, meta: {touched, error, active}}) => {
+    return <div >
+            <input  className={style.inputEmail}{...input} placeholder={placeholder} type={type}/>
+        {touched && error && <div className={style.errorMsg}>{error}</div>}
+    </div>
+};
 
 
 
-
-let formPage = props => {
-    //console.log(props.temp);
-    //console.log(props.typeOfIndustry);
-    formName=props['formName'];
-   // console.log(formName);
+let formGetEmail = props => {
     const {handleSubmit,previousPage,textSubmit,formContent,formValues} = props;
-    //console.log(props.formValues);
-    //props.load('sad');
+
+    const submit = (values) => {
+        return promises().then(async () => {
+            let resEmail;
+            try {
+                resEmail = await yup.reach(schema, 'email').isValid(values.email);
+            } catch (e) {
+            }
+            if (!resEmail) {
+                throw new SubmissionError({
+                    email: 'Email is not valid format',
+                    _error: 'Login failed!',
+                });
+            }
+            console.log("ALL props", values);
+            props.checkEmail(values);
+        });
+    };
+
     return (
-        <form onSubmit={handleSubmit(props.onSubmit)}>
-            <div className={style.preBusinessStepForm}>
-                <div className={style.businessStepForm}>
-                    {formContent.fields.map((field,id)=>{
-                        return  <Field key={id} {...field} component={renderField[field.component]}/>
-                    })}
-                </div>
-            </div>
-                <div className={style.preButtonOnForm}>
-                    <div className={style.ButtonOnForm}>
-
-                        <div className={style.text}>
-                            You are almost finished. Select a pricing package in the next step
-                        </div>
-                        <div className={style.buttons}>
-                            <button type="button"  className={style.prev} onClick={()=>previousPage(formValues)}>
-                                Back
-                            </button>
-                            <button  type="submit" className={style.next} >
-                                {textSubmit}
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-
+        <form onSubmit={handleSubmit(submit)} className={style.formGetEmail}>
+            <div className={style.title}>Let's Get Started</div>
+            <div className={style.preInput}>First, tell us your email address so we can automatically save your contest brief. This way you can get back to it at any time.</div>
+           <Field name={'email'} type={'email'} component={renderField}/>
+            <button  type="submit" className={style.button} >
+               Continue Your Brief
+            </button>
         </form>
     );
 };
 
-formPage = reduxForm({
+formGetEmail = reduxForm({
+    form:'formGetEmail',
      //                 <------ same form name
     destroyOnUnmount: true, //        <------ preserve form data
     forceUnregisterOnUnmount: false,
     enableReinitialize: true,// <------ unregister fields on unmount
-})(formPage);
+})(formGetEmail);
 
  // <-- same as form name
 
@@ -64,12 +66,10 @@ const mapStateToProps = (state) => {
     //const typeOfIndustry = selector(state, 'typeOfIndustry');
     return {
         state,
-        types:state.contestReducers.selectedContestTypes,
-        formNames:state.contestReducers.currentContestForm,
-        temp:state.contestReducers.tempContests,
-        formValues: getFormValues(state.contestReducers.currentContestForm)(state),
        // typeOfIndustry
     };
 };
-
-export default connect(mapStateToProps)(formPage);
+const mapDispatchToProps = (dispatch) => ({
+    checkEmail: (values) => dispatch(checkEmail(values)),
+});
+export default connect(mapStateToProps,mapDispatchToProps)(formGetEmail);

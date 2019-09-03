@@ -79,6 +79,23 @@ module.exports.getUser = async (req, res, next) => {
   }
 };
 
+module.exports.hasEmail = async (req, res, next) => {
+  const payload = req.body;
+  //console.log(req.body,"req.body req.body req.bodyreq.bodyreq.bodyreq.bodyreq.body");
+  try {
+    const result = await User.findOne({ where: payload });
+    //console.log(result);
+    if(result) {
+      res.send({result:'has Email'});
+    }else{
+      res.send({result:'hasn\'t Email'});
+    }
+
+  } catch (e) {
+
+  }
+};
+
 module.exports.getAllUsers = async (req, res, next) => {
   try {
     const result = await User.findAll({order: [
@@ -100,6 +117,7 @@ module.exports.updateUserBanStatus = async (req, res, next) => {
   };
 
 module.exports.logout = async (req, res, next) => {
+  console.log("logout                                   ",req.body);
     await RefreshToken.destroy({
       where: {
        tokenString:req.body.data.token
@@ -107,4 +125,4 @@ module.exports.logout = async (req, res, next) => {
     });
     res.send("OK");
 };
-
+//justin333@gmail.com

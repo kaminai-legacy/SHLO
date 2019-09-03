@@ -1,6 +1,6 @@
 import {put, call} from 'redux-saga/effects';
 import ACTION from '../actions/actiontsTypes';
-import {getUserLogin, signUpLogin} from '../api/rest/restContoller';
+import {getUserLogin, signUpLogin,checkEmail} from '../api/rest/restContoller';
 import {TOKENS_KEY} from '../constants/consts';
 import history from '../boot/browserHistory';
 const  _ = require('lodash');
@@ -20,7 +20,8 @@ export function* getLoginSaga({dataToSend}) {
             else
             {sessionStorage.setItem(TOKENS_KEY, TOKENS_JSON);
               }
-            yield call(history.push('/'));
+            history.goBack();
+           // yield call(history.push('/'));
         } else if (RES.response.data === "User is baned") {
             yield put({type: ACTION.LOGIN_BANNED});
         } else if (RES.response.data === "User not founds") {
@@ -33,14 +34,28 @@ export function* getLoginSaga({dataToSend}) {
 export function* signUpSaga({dataToSend}) {
     try {
         const {data} = yield signUpLogin(dataToSend);
+        console.log(data);
         const USER = data.user;
         const TOKENS = data.tokenPair;
         const TOKENS_JSON = JSON.stringify(TOKENS);
         sessionStorage.setItem(TOKENS_KEY, TOKENS_JSON);
         yield put({type: ACTION.SET_USER, user: USER});
-        yield call(history.push('/'));
+        history.goBack();
+        // yield call(history.push('/'));
     } catch (e) {
         yield put({type: ACTION.USER_ERROR, error: e});
     }
 }
 
+export function* checkUserEmail({dataToSend}) {
+    try {
+        const {data} = yield checkEmail(dataToSend);
+        if(data.result==="has Email"){
+            history.push('/login');
+        }else{
+            history.push('/signup');
+        }
+    } catch (e) {
+        yield put({type: ACTION.USER_ERROR, error: e});
+    }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm, formValueSelector} from 'redux-form';
+import {Field, reduxForm, formValueSelector,getFormValues,} from 'redux-form';
 import 'react-widgets/dist/css/react-widgets.css';
 import renderField from './renderField';
 import style from "./threeStepContestForm.module.scss";
@@ -11,11 +11,12 @@ let formName = 'form';
 
 
 let formPage = props => {
-    console.log(props.temp);
-    console.log(props.typeOfIndustry);
+    //console.log(props.temp);
+    //console.log(props.typeOfIndustry);
     formName=props['formName'];
-    console.log(formName);
-    const {handleSubmit,previousPage,textSubmit,formContent,load} = props;
+   // console.log(formName);
+    const {handleSubmit,previousPage,textSubmit,formContent,formValues} = props;
+    //console.log(props.formValues);
     //props.load('sad');
     return (
         <form onSubmit={handleSubmit(props.onSubmit)}>
@@ -33,7 +34,7 @@ let formPage = props => {
                             You are almost finished. Select a pricing package in the next step
                         </div>
                         <div className={style.buttons}>
-                            <button type="button"  className={style.prev} onClick={()=>previousPage("values")}>
+                            <button type="button"  className={style.prev} onClick={()=>previousPage(formValues)}>
                                 Back
                             </button>
                             <button  type="submit" className={style.next} >
@@ -58,15 +59,16 @@ formPage = reduxForm({
  // <-- same as form name
 
 const mapStateToProps = (state) => {
-    const selector = formValueSelector(state.contestReducers.currentContestForm);
-console.log(state);
-    const typeOfIndustry = selector(state, 'typeOfIndustry');
+    //const selector = formValueSelector(state.contestReducers.currentContestForm);
+//console.log(state,state.contestReducers.currentContestForm);
+    //const typeOfIndustry = selector(state, 'typeOfIndustry');
     return {
         state,
         types:state.contestReducers.selectedContestTypes,
         formNames:state.contestReducers.currentContestForm,
         temp:state.contestReducers.tempContests,
-        typeOfIndustry
+        formValues: getFormValues(state.contestReducers.currentContestForm)(state),
+       // typeOfIndustry
     };
 };
 

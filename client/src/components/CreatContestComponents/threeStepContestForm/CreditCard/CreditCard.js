@@ -62,6 +62,8 @@ export default class CreditCard extends React.Component {
                 return acc;
             }, {});
         console.log(formData);
+        this.props.submit(formData);
+       /// console.log(this.props.onSubmit,"this.props.onSubmit");
         this.setState({ formData });
         this.form.reset();
     };
@@ -86,8 +88,9 @@ export default class CreditCard extends React.Component {
                     </div>
                     <div className={style.preBusinessStepForm}>
                         <div className={style.businessStepForm}>
-                    <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}
-                    className={style.displayForForm}>
+                    {/*<form ref={c => (this.form = c)} onSubmit={this.handleSubmit(this.props.onSubmit)}*/}
+                            <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}
+                                  className={style.displayForForm}>
                         <div className={`${style.preForInputs} ${style.forCardField}`}>
                             <input className={`${style.forInputs} ${style.forCardField}`}
                                 type="tel"

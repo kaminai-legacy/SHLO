@@ -29,12 +29,6 @@ export default function (state = initialState, action) {
         case ACTION.TEMP_CONTEST: {
             console.log(action);
             const field=action['data']['typeOfContest'];
-           // console.log(  action['data'] );
-           // console.log(  action['data']['contest']['typeOfContest'] );
-
-          /*  console.log( {
-                [field]:action.data.contest
-            });*/
             const oldTempContests=state.tempContests
             return {
                 ...state,

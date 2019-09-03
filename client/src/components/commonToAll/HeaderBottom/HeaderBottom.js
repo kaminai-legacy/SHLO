@@ -84,7 +84,7 @@ function HeaderBottom(props) {
                         <div className={style.list}>
                             <BottomHeaderList/>
                         </div>
-                        <div className={style.button} ><Link to="/contest_creating" >
+                        <div className={style.button} ><Link to="/contest_creating_choose_type" >
                             <div className={style.mainHeaderBottomButton} onClick={onClickedStartContest}>
                                 START CONTEST
                             </div>

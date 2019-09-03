@@ -81,6 +81,8 @@ function Form(props) {
 
 Form = reduxForm({
     form: 'login',
+    destroyOnUnmount: true,
+
 })(Form);
 
 const mapStateToProps = (state) => {

@@ -7,20 +7,18 @@ import ContestCategories from '../../components/CreatContestComponents/contestCa
 import PackagesAndOther from '../../components/CreatContestComponents/PackagesAndOther/PackagesAndOther';
 import Form from '../../components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
 import connect from "react-redux/es/connect/connect";
+import {Redirect} from 'react-router';
 
 //const STAGE = 1;
 
 function CreateContest(props) {
-  //  console.log(props.stage,props.selectedContestTypes);
-    const contestStage =(props.stage)?props.stage:1;
-    const content = (contestStage === 1) ? <> <ContestCategories/>
-        <PackagesAndOther/></> : <Form/>;
     return (
         <div className={style.body}>
+            {(props.stage===1)?<Redirect to="/contest_creating_choose_type"/>:<></>}
             <Header />
             <HeaderBottom/>
             <HeaderCreateContest/>
-            {content}
+            <Form/>
         </div>
     );
 }
