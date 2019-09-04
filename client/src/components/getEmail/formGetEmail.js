@@ -20,7 +20,7 @@ const renderField = ({input, placeholder, label, type, meta, meta: {touched, err
 let formGetEmail = props => {
     const {handleSubmit,previousPage,textSubmit,formContent,formValues} = props;
 
-    const submit = (values) => {
+  /*  const submit = (values) => {
         return promises().then(async () => {
             let resEmail;
             try {
@@ -36,10 +36,10 @@ let formGetEmail = props => {
             console.log("ALL props", values);
             props.checkEmail(values);
         });
-    };
+    };*/
 
     return (
-        <form onSubmit={handleSubmit(submit)} className={style.formGetEmail}>
+        <form onSubmit={handleSubmit(props.onSubmit)} className={style.formGetEmail}>
             <div className={style.title}>Let's Get Started</div>
             <div className={style.preInput}>First, tell us your email address so we can automatically save your contest brief. This way you can get back to it at any time.</div>
            <Field name={'email'} type={'email'} component={renderField}/>
