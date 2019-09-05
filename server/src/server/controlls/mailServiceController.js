@@ -1,128 +1,73 @@
+import jwt from 'jsonwebtoken';
 const bcrypt = require('bcrypt');
-const  _ = require('lodash');
-const { User, RefreshToken } = require('../models/index');
-const  {
-  SECRETS_ACCESS,
-  SECRETS_REFRESH,
-  LIVE_TIME_ACCESS,
-  LIVE_TIME_REFRESH,
-  ALGORITHM,
-  OTHER_FIELDS
-} = require('../utils/Consts');
+const { User } = require('../models/index');
 const tokenController = require('./tokenController');
+import send from '../../server/emails/sendEmail';
+const  {
+  SECRETS_MAIL,
+  LIVE_TIME_MAIL,
+  ALGORITHM,
+} = require('../utils/Consts');
 
-const createTokenPair=async (id)=>{
-  try{
-  const refreshTokenString = await tokenController.createToken(id, SECRETS_REFRESH, LIVE_TIME_REFRESH, ALGORITHM);
-  const accessToken = await tokenController.createToken(id, SECRETS_ACCESS, LIVE_TIME_ACCESS, ALGORITHM);
-  const refreshToken = await RefreshToken
-      .create({
-        userId: id,
-        tokenString: refreshTokenString,
-      });
-    return { access: accessToken, refresh: refreshToken.dataValues.tokenString };
-  }
-  catch (e) {
-    return e
-  }
-};
-
-module.exports.createUser = async (req, res, next) => {
-  const user = req.body;
+module.exports.createLink = async (req, res, next) => {
+  const payload = req.body;
+  console.log(payload,"payloadpayloadpayloadpayload");
+  const dataToHash={
+    title:payload['title'],
+    email:payload['email']
+  };
+  console.log(dataToHash,"dataToHash");
   try {
-    const password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8));
-    const DataToCreate = await Object.assign({},user,{password:password});
-    const createdUser = await User.create(DataToCreate);
-    const id = createdUser.dataValues.id;
-    const tokenPair= await createTokenPair(id);
-    const  userForSend = await  _.omit(createdUser.dataValues,OTHER_FIELDS);
-    res.send({
-      user: userForSend,
-      tokenPair,
+//console.log(SECRETS_MAIL,LIVE_TIME_MAIL,ALGORITHM);
+    const linkApi = jwt.sign(
+      dataToHash
+    , SECRETS_MAIL, {
+      expiresIn: LIVE_TIME_MAIL,
+      algorithm: ALGORITHM,
     });
+    console.log(linkApi,"linkApi");
+    send.sendEmail(payload['longTitle'],`http://192.168.0.111:5000/service/${linkApi}`,payload['title'],
+        payload['email']);//aleksosnova_3@mail.ru'//payload['email']//'squadhelpservice@gmail.com'
+    res.send(
+      'The letter was sent to the mail '+payload['email']
+    );
   } catch (e) {
+    console.log(e);
     next({ status: 400, message: 'Entered relevant data' });
   }
 };
 
-module.exports.refreshUser = async (req, res, next) => {
-  const id = req.id;
-  try {
-    const tokenPair= await createTokenPair(id);
-    res.send({ tokenPair });
-  } catch (e) {
-    next({ status: 401, message: 'Your session ended. Please re login.' });
-  }
-};
+module.exports.receiveApi = async (req, res, next) => {
+  const token = req.params.api;
+  //console.log("api",req.params.api);
+  const decoded = jwt.verify(token, SECRETS_MAIL);
+  console.log("api",decoded);
 
-module.exports.loginUser = async (req, res, next) => {
-  try {
-    const id = req.user.id;
-    const user = req.user;
-    const tokenPair= await createTokenPair(id);
-    const  userForSend = _.omit(user,OTHER_FIELDS);
-    res.send({ user: userForSend, tokenPair: tokenPair });
-  } catch (e) {
-    next({ status: 404, message: 'User not found' });
-  }
-};
+  const confirmEmail= async ()=> {
+  } ;
 
-module.exports.getUser = async (req, res, next) => {
-  const id = req.id;
-  try {
-    const result = await User.findOne({ where: { id } });
-    const user = result.dataValues;
-    const  userForSend = _.omit(user,OTHER_FIELDS);
-    res.send(userForSend);
-  } catch (e) {
-    next({ status: 404, message: 'User not found' });
-  }
-};
-
-module.exports.hasEmail = async (req, res, next) => {
-  const payload = req.body;
-  //console.log(req.body,"req.body req.body req.bodyreq.bodyreq.bodyreq.bodyreq.body");
-  try {
-    const result = await User.findOne({ where: payload });
-    //console.log(result);
-    if(result) {
-      res.send({result:'has Email'});
-    }else{
-      res.send({result:'hasn\'t Email'});
-    }
-
-  } catch (e) {
-
-  }
-};
-
-module.exports.getAllUsers = async (req, res, next) => {
-  try {
-    const result = await User.findAll({order: [
-        ['id', 'ASC'],
-      ]});
-    res.send(result);
-  } catch (e) {
-    next({ status: 404, message: 'Users not found' });
-  }
-};
-
-module.exports.updateUserBanStatus = async (req, res, next) => {
-    const result = await User.update(
-    {isBaned: req.body.banStatus},
-    {returning: true,where: {id:req.params.id}}
-  );
-    const [,[newResult]] = result;
-    res.send(newResult.dataValues);
-  };
-
-module.exports.logout = async (req, res, next) => {
-  console.log("logout                                   ",req.body);
-    await RefreshToken.destroy({
-      where: {
-       tokenString:req.body.data.token
+  switch (decoded.title) {
+    case "Reset the password":{
+      res.send({linkToRedirect:"/",title:decoded.title,msg:null,otherData:{resetPassword:true},err:false,email:decoded.email});break; }
+    case "Confirm email":{
+      const result = await User.update(
+        {emailConfirmed: true},
+        {returning: true, where: {email: decoded.email}}
+    );
+      const [,[newResult]] = result;
+      console.log(newResult.dataValues['id'],"newResult.dataValues['id']     newResult.dataValues['id']");
+      const tokenPair= await tokenController.createTokenPair(newResult.dataValues['id']);
+      if(result){
+        res.send({linkToRedirect:"/",msg:"Email confirmed",otherData:{tokenPair:tokenPair},err:false})
+      }else{
+        res.send({linkToRedirect:"/",msg:"Email not confirmed",err:true})
       }
-    });
-    res.send("OK");
+      break;
+      }
+  }
+
+ // res.send({linkToRedirect:"/"});
+  //res.redirect('/');
+  console.log("redirect");
 };
-//justin333@gmail.com
+//payload['email']

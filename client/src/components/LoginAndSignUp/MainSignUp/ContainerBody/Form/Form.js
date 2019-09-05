@@ -3,6 +3,8 @@ import style from './Form.module.scss';
 import {Field, Fields, reduxForm} from 'redux-form';
 import connect from 'react-redux/es/connect/connect';
 import asyncValidate from '../../../../../validations/asyncValidate';
+import {userSignUp} from "../../../../../actions/actionCreator";
+
 
 const renderTwoFields = (field1, field2, otherProps) => {
 
@@ -18,7 +20,6 @@ const renderTwoFields = (field1, field2, otherProps) => {
     } else if (field2.meta.touched && !field2.meta.active) {
         secondFieldColor = "green";
     }
-    if (field1.input.name==="displayName") {console.log(field1.meta,field1.meta.touched,field1.meta.invalid,firstFieldColor);}
     return <div className={style.displayTwoFields}>
         <div className={style.Row}>
             <div className={style.Field}>
@@ -77,9 +78,21 @@ const renderFields = (fields) => {
 };
 
 function Form(props) {
+    const submit = (values) => {
+        const dataToSend = {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            displayName: values.displayName,
+            role: values.role,
+            email: values.email,
+            password: values.password,
+        };
+
+        props.userSignUp({dataToSend:dataToSend,pageToRedirect:props.pageToRedirect});
+    };
     const {handleSubmit, submitting} = props;
     return (
-        <form onSubmit={handleSubmit(props.submit)}>
+        <form onSubmit={handleSubmit(submit)}>
             <Fields names={['firstName', 'lastName', 'displayName', 'email', 'password', 'passwordConfirmation']}
                     otherProps={[{type: "text", label: "First name"}, {type: "text", label: "Last name"}, {type: "text", label: "Display Name"},
                         {type: "text", label: "Email Address"}, {type: "password", label: "Password"}, {type: "password", label: "Password Confirmation"}]}
@@ -163,6 +176,7 @@ function Form(props) {
 
 Form = reduxForm({
     form: 'register',
+    destroyOnUnmount: true,
     asyncValidate,
     asyncBlurFields: ['firstName','lastName','displayName','email','password','passwordConfirmation']
 })(Form);
@@ -171,7 +185,10 @@ const mapStateToProps = (state) => {
     return {
         state,
         fromStore: state.userReducers.data,
+        pageToRedirect:state.siteNavigationReducers.pageToRedirect,
     };
 };
-
-export default connect(mapStateToProps)(Form);
+const mapDispatchToProps = (dispatch) => ({
+    userSignUp: (dataToSend) => dispatch(userSignUp(dataToSend)),
+});
+export default connect(mapStateToProps,mapDispatchToProps)(Form);

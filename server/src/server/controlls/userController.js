@@ -2,45 +2,28 @@ const bcrypt = require('bcrypt');
 const  _ = require('lodash');
 const { User, RefreshToken } = require('../models/index');
 const  {
-  SECRETS_ACCESS,
-  SECRETS_REFRESH,
-  LIVE_TIME_ACCESS,
-  LIVE_TIME_REFRESH,
-  ALGORITHM,
   OTHER_FIELDS
 } = require('../utils/Consts');
 const tokenController = require('./tokenController');
 
-const createTokenPair=async (id)=>{
-  try{
-  const refreshTokenString = await tokenController.createToken(id, SECRETS_REFRESH, LIVE_TIME_REFRESH, ALGORITHM);
-  const accessToken = await tokenController.createToken(id, SECRETS_ACCESS, LIVE_TIME_ACCESS, ALGORITHM);
-  const refreshToken = await RefreshToken
-      .create({
-        userId: id,
-        tokenString: refreshTokenString,
-      });
-    return { access: accessToken, refresh: refreshToken.dataValues.tokenString };
-  }
-  catch (e) {
-    return e
-  }
-};
+
 
 module.exports.createUser = async (req, res, next) => {
   const user = req.body;
   try {
-    const password = await bcrypt.hashSync(user.password, bcrypt.genSaltSync(8));
+    const password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8));
     const DataToCreate = await Object.assign({},user,{password:password});
     const createdUser = await User.create(DataToCreate);
     const id = createdUser.dataValues.id;
-    const tokenPair= await createTokenPair(id);
+    console.log(tokenController.createTokenPair);
+    const tokenPair= await tokenController.createTokenPair(id);
     const  userForSend = await  _.omit(createdUser.dataValues,OTHER_FIELDS);
     res.send({
       user: userForSend,
       tokenPair,
     });
   } catch (e) {
+    console.log(e);
     next({ status: 400, message: 'Entered relevant data' });
   }
 };
@@ -48,7 +31,7 @@ module.exports.createUser = async (req, res, next) => {
 module.exports.refreshUser = async (req, res, next) => {
   const id = req.id;
   try {
-    const tokenPair= await createTokenPair(id);
+    const tokenPair= await tokenController.createTokenPair(id);
     res.send({ tokenPair });
   } catch (e) {
     next({ status: 401, message: 'Your session ended. Please re login.' });
@@ -59,7 +42,7 @@ module.exports.loginUser = async (req, res, next) => {
   try {
     const id = req.user.id;
     const user = req.user;
-    const tokenPair= await createTokenPair(id);
+    const tokenPair= await tokenController.createTokenPair(id);
     const  userForSend = _.omit(user,OTHER_FIELDS);
     res.send({ user: userForSend, tokenPair: tokenPair });
   } catch (e) {
@@ -81,7 +64,7 @@ module.exports.getUser = async (req, res, next) => {
 
 module.exports.hasEmail = async (req, res, next) => {
   const payload = req.body;
-  //console.log(req.body,"req.body req.body req.bodyreq.bodyreq.bodyreq.bodyreq.body");
+  console.log(payload,"req.body req.body req.bodyreq.bodyreq.bodyreq.bodyreq.body");
   try {
     const result = await User.findOne({ where: payload });
     //console.log(result);
@@ -90,7 +73,6 @@ module.exports.hasEmail = async (req, res, next) => {
     }else{
       res.send({result:'hasn\'t Email'});
     }
-
   } catch (e) {
 
   }
@@ -108,6 +90,7 @@ module.exports.getAllUsers = async (req, res, next) => {
 };
 
 module.exports.updateUserBanStatus = async (req, res, next) => {
+
     const result = await User.update(
     {isBaned: req.body.banStatus},
     {returning: true,where: {id:req.params.id}}
@@ -116,13 +99,26 @@ module.exports.updateUserBanStatus = async (req, res, next) => {
     res.send(newResult.dataValues);
   };
 
+module.exports.changeUserPassword = async (req, res, next) => {
+  const password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
+  const result = await User.update(
+      {password: password},
+      {returning: true,where: {email:req.body.email}}
+  );
+  const [,[newResult]] = result;
+  if(newResult){res.send({linkToRedirect:"/",msg:"Password has been changed",err:false})}else{
+    res.send({linkToRedirect:"/",msg:"Error something went wrong",err:true})
+  }
+};
+
 module.exports.logout = async (req, res, next) => {
-  console.log("logout                                   ",req.body);
-    await RefreshToken.destroy({
+  console.log("logout  ",req.body);
+      const smt = await RefreshToken.destroy({returning: true,
       where: {
        tokenString:req.body.data.token
       }
     });
+      console.log(smt,"destroy   destroy   destroy   destroy   destroy   destroy   destroy   destroy   ");
     res.send("OK");
 };
 //justin333@gmail.com

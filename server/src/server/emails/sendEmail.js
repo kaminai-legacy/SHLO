@@ -1,22 +1,33 @@
-import express from 'express';
-import router from './server/router/index';
-import cors from 'cors';
-const bodyParser = require("body-parser");
-import multer from 'multer';
-const nodemailer = require('nodemailer');
+let nodemailer = require('nodemailer');
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'squadhelpservice@gmail.com',
+        pass: 'ServiceecivreS'
+    }
+});
+const createHtml = (href,title) => {//width:min-content;
+    const anchor=(href.length>40)?href.slice(0,40)+'...':href;
+    return '<table style="box-sizing:border-box;font-family:Raleway,sans-serif;background:#e9e9e9;padding:10px;text-align:center;">' +
+        '<caption style="box-sizing:border-box;font-size:36px;color:#28d2d0;font-weight:600;background:#e9e9e9;">Squadhelp</caption>' +
+       '<tbody><td><span style="font-size:24px;color:black;font-weight:600;margin-bottom:10px;">'+title+'</span></td></tr>'+
+       '<tr><td><a href="'+href+'" style="color:white;font-weight:500;text-align:center;background:#28d2d0;text-decoration:none;cursor:pointer;' +
+       'font-size:18px;margin-bottom:10px;padding:3px;">'+anchor+'</a></td></tr>'+
+       '<tr><td><span style="font-size:20px;color:black;font-weight:400;">Thank you for choosing us</span></td></tr></</tbody>'+
+        '</table>'
+};
 
-//var io = require('socket.io')(http);
-
-const funcErrorHandling = require('./server/middleWare/funcErrorHandling');
-const PORT = process.env.PORT || 3000;
-const app = express();
-//app.use("/static", express.static(__dirname + "/server/ContestUpload/"));
-app.use(cors());
-app.use(express.json());
-
-app.use('/api', router);
-app.use(funcErrorHandling);
-
-app.listen(PORT);
-
-
+module.exports.sendEmail=(htmlTitle,confirmApi,subject,to)=>{
+    const mailOptions = {
+        from: 'squadhelpservice@gmail.com',
+        to,
+        subject,
+        html:createHtml(confirmApi,htmlTitle),
+    };
+    transporter.sendMail(mailOptions, function (err, info) {
+        if(err)
+            console.log(err);
+        else
+            console.log(info);
+    });
+};

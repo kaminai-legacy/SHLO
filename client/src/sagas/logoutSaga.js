@@ -7,9 +7,9 @@ import {TOKENS_KEY} from '../constants/consts';
 export function* logoutSaga() {
 
     try {
-
-        const token=(sessionStorage.getItem(TOKENS_KEY))?sessionStorage.getItem(TOKENS_KEY):localStorage.getItem(TOKENS_KEY);
-        const data = {token: token.refresh};
+        const tokens=(sessionStorage.getItem(TOKENS_KEY))?sessionStorage.getItem(TOKENS_KEY):localStorage.getItem(TOKENS_KEY);
+        const tokensParse=JSON.parse(tokens);
+        const data = {token: tokensParse.refresh};
         yield logout(data);
         sessionStorage.clear();
         localStorage.clear();

@@ -39,8 +39,8 @@ function BottomHeaderList(props) {
                 const SUB_LIST = ListElement[key].list.map((item, id) => {
                     const link = item.link;
                     const name = item.name;
-                    return <Link to={link}>
-                        <li key={id}>{name}</li>
+                    return <Link key={id} to={link}>
+                        <li >{name}</li>
                     </Link>;
                 });
                 LIST.push(SUB_LIST)

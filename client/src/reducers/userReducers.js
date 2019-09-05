@@ -7,7 +7,7 @@ const initialState = {
     loginFailed: false,
     user: null,
     updated: false,
-    banned: false
+    banned: false,
 };
 
 export default function (state = initialState, action) {
@@ -66,10 +66,17 @@ export default function (state = initialState, action) {
                 isFetching: false,
             };
         }
+        case ACTION.CHECK_USER_EMAIL: {
+            return {
+                ...state,
+                isFetching: false,
+            };
+        }
         case ACTION.GET_USER: {
             return {
                 ...state,
                 isFetching: true,
+                loginFailed:false
             };
         }
         default: {

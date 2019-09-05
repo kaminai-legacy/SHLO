@@ -3,7 +3,12 @@ import {reducer as formReducer} from 'redux-form';
 import userReducers from './userReducers';
 import getAllUsersReducer from './getAllUsersReducer';
 import contestReducers from './contestReducers';
-import creditCardReducers from './creditCardReducers'
+import creditCardReducers from './creditCardReducers';
+import mailServiceReducers from './mailServiceReducers';
+import modalReducers from './modalReducers';
+import siteNavigationReducers from './siteNavigationReducers';
+import userContestsReducers from './userContestsReducers';
+
 
 //import manageElementsReducers from './manageElementsReducers';
 
@@ -12,6 +17,10 @@ const appReducer = combineReducers({
     getAllUsersReducer,
     contestReducers,
     creditCardReducers,
+    mailServiceReducers,
+    modalReducers,
+    siteNavigationReducers,
+    userContestsReducers,
    // manageElementsReducers,
     form: formReducer,
 });

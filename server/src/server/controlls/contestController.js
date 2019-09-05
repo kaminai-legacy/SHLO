@@ -18,9 +18,9 @@ const pathsToFiles=async(files)=>{
     }
 };
 
-const preparingData=async(payload,pathsForFiles)=>{
+const preparingData=async(payload,pathsForFiles,id)=>{
 try{
-    const data ={userId:1};
+    const data ={userId:id};
     const props = await Object.keys(payload);
     for(let key in payload){
         if(props.includes(key)){
@@ -50,10 +50,11 @@ const deleteOldFiles=async(pathsForFiles)=>{
 module.exports.createContest = async (req, res, next) => {
     const files=req.files;
     const payload = req.body;
+    const id = req.params.id;
     const {fileNames}=_.pick(payload,'fileNames');
     try {
         const savedFiles=await pathsToFiles(files);
-        const data = await preparingData(payload,savedFiles);
+        const data = await preparingData(payload,savedFiles,id);
         const createdContest = await Contest.create(data);
         res.send({
             contest:createdContest.dataValues
@@ -68,11 +69,12 @@ module.exports.createContest = async (req, res, next) => {
 module.exports.updateContest = async (req, res, next) => {
     const files=req.files;
     const payload = req.body;
+    const id = req.params.id;
     try {
         const savedFiles=await pathsToFiles(files);
         const media = await JSON.parse(payload['media']);
         await deleteOldFiles(media);
-        const data =await preparingData(payload,savedFiles);
+        const data =await preparingData(payload,savedFiles,id);
         const [,[updatedContest]] = await Contest.update(data, {returning: true,where: {id:data.id}});
         res.send({
             contest: updatedContest.dataValues
@@ -109,6 +111,21 @@ module.exports.payment = async (req, res, next) => {
         next(e);
     }
 };
+
+module.exports.receiveContests = async (req, res, next) => {
+    console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
+    const id = req.params.id;
+    try {
+       const result = await Contest.findAll({ where: {userId: id}});
+        console.log(result,"result result result result result result result result result result")
+       res.send(result)
+    } catch (e) {
+        console.log(e)
+        next(e);
+    }
+};
+
+
 //9494 9494 9494 9494
 
 //sequelize.literal('balance + '+payload.amountPayable)

@@ -5,6 +5,7 @@ const schema = yup.object().shape({
         .email("Invalid email address")
         .required("Required"),
     password: yup.string()
+        .required("Required")
         .min(8, 'at least 8 chars')
         .matches(/[a-z]/, 'at least one lowercase char')
         .matches(/[A-Z]/, 'at least one uppercase char')

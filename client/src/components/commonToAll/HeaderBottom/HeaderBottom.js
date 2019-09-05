@@ -4,16 +4,17 @@ import BottomHeaderList from './StartPageBottomHeaderList/StartPageBottomHeaderL
 import BarMenu from './BarMenu/BarMenu';
 import connect from 'react-redux/es/connect/connect';
 import {Link} from 'react-router-dom';
-import {logout, contestProgressing, selectedContestType} from "../../../actions/actionCreator";
+import {logout, contestProgressing, selectedContestType, setSiteNavigation} from "../../../actions/actionCreator";
 import {startValueContestProgressing} from '../../../constants/consts'
 import Accordion from 'react-bootstrap/Accordion';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import history from "../../../boot/browserHistory";
 
 function HeaderBottom(props) {
     const [dashboardView, setDashboardView] = useState(false);
     const [barMenuView, setBarMenuView] = useState(false);
-
+    const toRedirect=history.location.pathname;
     function onClicked() {
         props.logout();
         setDashboardView(!dashboardView);
@@ -33,7 +34,7 @@ function HeaderBottom(props) {
     }
 
     const content = (!props.state.userReducers.user) ?
-        <Link to="/login">Login</Link> :
+        <Link to="/login" onClick={()=>props.setSiteNavigation({pageToRedirect:toRedirect})}>Login</Link> :
         <span className={style.toClick} onClick={onClickedDashboard}>
           <div className={style.ava}/>
         <span className={style.hi}> <i className="fa fa-angle-down"/></span>
@@ -118,5 +119,6 @@ const mapDispatchToProps = (dispatch) => ({
     logout: () => dispatch(logout()),
     selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
     contestProgressing: (firstValue,secondValue) => dispatch(contestProgressing(firstValue,secondValue)),
+    setSiteNavigation: (data) => dispatch(setSiteNavigation(data)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderBottom);

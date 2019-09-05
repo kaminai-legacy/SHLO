@@ -1,13 +1,13 @@
 import {takeLatest} from 'redux-saga/effects';
 import ACTION from '../actions/actiontsTypes';
-import {getLoginSaga, signUpSaga,checkUserEmail} from './usersSaga';
+import {getLoginSaga, signUpSaga,checkUserEmail,changeUserPassword} from './usersSaga';
 import {isLoginSaga} from './isLoginSaga';
 import {getAllUsersSaga} from './getAllUsersSaga';
 import {changeBanStatusSaga} from './changeBanStatusSaga';
 import {logoutSaga} from './logoutSaga';
-import {selectedTypes,sendContest,contestPayment} from './contestSaga';
+import {sendContest,receiveUserContests} from './contestSaga';
+import {sendApiToServer} from './mailServicesSaga';
 import {sendRequisites} from './creditCardSaga';
-//import {dashboardChange} from './manageToElements';
 
 function* rootSaga() {
     yield takeLatest(ACTION.GET_ALL_USERS, getAllUsersSaga);
@@ -16,12 +16,13 @@ function* rootSaga() {
     yield takeLatest(ACTION.USER_IS_LOGIN, isLoginSaga);
     yield takeLatest(ACTION.CHANGE_IS_BANED, changeBanStatusSaga);
     yield takeLatest(ACTION.IS_LOGOUT, logoutSaga);
-    //yield takeLatest(ACTION.SELECTED_CONTEST_TYPE, selectedTypes);
     yield takeLatest(ACTION.SEND_CONTEST, sendContest);
-    yield takeLatest(ACTION.CONTEST_PAYMENT, contestPayment);
     yield takeLatest(ACTION.SEND_CARD_REQUISITES, sendRequisites);
     yield takeLatest(ACTION.CHECK_USER_EMAIL, checkUserEmail);
-    //yield takeLatest(ACTION.DASHBOARD, dashboardChange);sendContest
+    yield takeLatest(ACTION.MAIL_SERVICE, sendApiToServer);
+    yield takeLatest(ACTION.CHANGE_USER_PASSWORD, changeUserPassword);
+    yield takeLatest(ACTION.GET_USER_CONTESTS, receiveUserContests);
+    //yield takeLatest(ACTION.CREATE_LINK_FOR_MAIL, createLink);
 }
-
+//createLink
 export default rootSaga;

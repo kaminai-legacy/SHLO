@@ -1,4 +1,4 @@
-'use strict';
+'use strict';223
 
 module.exports = (sequelize, DataTypes) => {
   const RefreshToken = sequelize.define('RefreshToken', {
@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       references: {
         key: 'id',
-        model: 'Users',
+        model: 'User',
       },
     },
     tokenString: {

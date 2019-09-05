@@ -1,5 +1,6 @@
 const yup = require('yup');
 const schema = require('../models/userSchema');
+const  _ = require('lodash');
 const promises = () => new Promise(resolve => resolve());
 const asyncValidate = (values /*, dispatch */) => {
     return promises().then(async () => {
@@ -11,7 +12,7 @@ const asyncValidate = (values /*, dispatch */) => {
             const resDisplayName=await yup.reach(schema, 'displayName').isValid(values.displayName);
             const resPasswordConfirmation=await yup.reach(schema, 'password').isValid(values.passwordConfirmation);
             const resPassword=await  yup.reach(schema, 'password').isValid(values.password);
-            console.log('Check',resEmail,resFirstName,resLastName,resDisplayName,resPassword,resPasswordConfirmation);
+           // console.log('Check',resEmail,resFirstName,resLastName,resDisplayName,resPassword,resPasswordConfirmation);
 
             if (!values.firstName) {
                 errors.firstName = 'Field cannot be empty';}else
@@ -50,7 +51,11 @@ const asyncValidate = (values /*, dispatch */) => {
         catch (e){
 
         }
-       return await Promise.reject(errors)
+        if(_.isEmpty(errors)){
+            return errors
+        }
+        else{ return await Promise.reject(errors)}
+
     });
 };
 

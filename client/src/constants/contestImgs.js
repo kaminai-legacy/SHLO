@@ -20,7 +20,6 @@ const FIRST_CAROUSEL = [
     "https://www.squadhelp.com/story_images/visual_images/B_2_15.jpg",
     "https://www.squadhelp.com/story_images/visual_images/Banner_Visual_Name_Y_29_Vechetti.jpg",
     "https://www.squadhelp.com/story_images/visual_images/07_77.jpg",
-
 ];
 
 module.exports =

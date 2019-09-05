@@ -2,6 +2,7 @@ import React from 'react';
 import style from './DashboardContent.module.scss';
 import connect from 'react-redux/es/connect/connect';
 import DashboardContestStatus from '../DashboardContestStatus/DashboardContestStatus';
+import DashboardContentContestBlock from './DashboardContentContestBlock';
 import DashboardContentBlock from './DashboardContentBlock/DashboardContentBlock';
 import DashboardContentHelpfulArticles from './DashboardContentHelpfullArticles/DashboardContentHelpfulArticles';
 import {Link} from "react-router-dom";
@@ -51,60 +52,20 @@ function dashboardContent(props) {
 
         <div className={style.dashboardContent}>
             <DashboardContestStatus/>
-            <DashboardContentBlock title={"Contests in Draft"}>
-                <div className={style.contestInDraft}>
-                    <div className={style.contestInDraftContainer}>
-                        <div className={style.contestInDraftContainerInside}>
-                            <div className={style.contestInDraftContainerColumn}>
-                                <div className={style.contestInDraftContainerRow}>
-                                    <div className={style.contestInDraftContainerRowInsideColumn}>
-                                        <div className={style.firstRow}>
-                                            <Link to=""> #474673 - Name for a Consulting Agency</Link>
-                                        </div>
-                                        <div className={style.secondRow}>
-                                            <Link to=""> Naming / Tagline</Link> (Saved 20 hours ago)
-                                        </div>
-                                    </div>
-                                    <div className={style.buttonPosition}>
-                                        <Link to="">
-                                            <div className={style.button}>
-                                                <i className="fas fa-pen-square"/> Continue Editing
-                                            </div>
-                                        </Link></div>
-                                </div>
-                                <div className={style.contestInDraftContainerRow}>
-                                    <div className={style.contestInDraftContainerRowInsideColumn}>
-                                        <div className={style.thirdRow}>
-                                            sadfry rtuj rt666asdasda
-                                        </div>
-                                        <div className={style.fourthRow}>
-                                            ..
-                                        </div>
-                                    </div>
-                                    <div>
-                                        {}
-                                    </div>
-                                </div>
-                                <div className={style.contestInDraftContainerRow}>
-                                    <div className={style.fifthRow}>
-                                        <div>
-                                            <i className="far fa-star"/>
-                                            <i className="far fa-star"/>
-                                            <i className="far fa-star"/>
-                                            <i className="far fa-star"/>
-                                            <i className="far fa-star"/>&nbsp;&nbsp; Kaminai   &nbsp;&nbsp;&nbsp; <i
-                                            className="far fa-gem"/> $0
-                                        </div>
-                                    </div>
-                                    <div className={style.sixthRow}>
-                                        <i className="fas fa-trash-alt"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </DashboardContentBlock>
+            {props.userContests.InDraft&& <DashboardContentBlock title={"Contests in Draft"}>
+                {
+                    props.userContests.InDraft.map((item,id)=>{
+                      return <DashboardContentContestBlock key={id} contest={item} nickName={(props.user)?props.user.displayName:null}/>
+                     })
+                }
+            </DashboardContentBlock>}
+            {props.userContests.InLaunch&& <DashboardContentBlock title={"Contests in Launch"}>
+                {
+                    props.userContests.InLaunch.map((item,id)=>{
+                        return <DashboardContentContestBlock key={id} contest={item} nickName={(props.user)?props.user.displayName:null}/>
+                    })
+                }
+            </DashboardContentBlock>}
 
 
             <DashboardContentBlock title={"Helpful Articles"}>
@@ -148,7 +109,8 @@ function dashboardContent(props) {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.userReducers.user
+        user: state.userReducers.user,
+        userContests:state.userContestsReducers,
     };
 };
 export default connect(mapStateToProps)(dashboardContent);

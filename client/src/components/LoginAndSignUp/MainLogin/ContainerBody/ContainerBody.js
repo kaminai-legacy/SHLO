@@ -36,7 +36,7 @@ function ContainerBody(props) {
                 password: values.password,
                 rememberMe: (!!values.rememberMe)
             };
-            props.userLogin(dataToSend);
+            props.userLogin({dataToSend:dataToSend,pageToRedirect:props.pageToRedirect});
         });
     };
     return (
@@ -54,6 +54,7 @@ const mapStateToProps = (state) => {
         state,
         fromStore: state.userReducers.data,
         error: state.userReducers.error,
+        pageToRedirect:state.siteNavigationReducers.pageToRedirect
     };
 };
 const mapDispatchToProps = (dispatch) => ({

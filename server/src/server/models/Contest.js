@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
           onDelete: 'CASCADE',
           references: {
               key: 'id',
-              model: 'Users',
+              model: 'User',
           },
       },
     titleOfContest: {
@@ -92,7 +92,8 @@ module.exports = (sequelize, DataTypes) => {
 
 
   Contest.associate = function (models) {
-    Contest.belongsTo(models.User, {foreignKey: 'userId',targetKey: 'id',})
+    Contest.belongsTo(models.User, {foreignKey: 'userId',targetKey: 'id',});
+    Contest.hasMany(models.Entry, { foreignKey: 'contestId', targetKey: 'id' });
   };
 
   return Contest;

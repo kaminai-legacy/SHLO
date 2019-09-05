@@ -43,11 +43,12 @@ export const contestProgressing = (stage,form) =>{
         form
     })};
 
-export const sendContest = (dataToSend) =>{
-    console.log(dataToSend,"dataToSend");
+export const sendContest = (dataToSend,id) =>{
+    console.log(dataToSend,id,"dataToSend,sendContest");
     return ({
         type: ACTION.SEND_CONTEST,
-        dataToSend
+        dataToSend,
+        id
     })};
 
 export const contestPayment = (dataToSend) =>{
@@ -80,6 +81,43 @@ export const checkEmail = (dataToSend) =>{
     console.log(dataToSend,"checkEmail");
     return ({
         type: ACTION.CHECK_USER_EMAIL,
+        dataToSend
+    })};
+export const sendApiFromEmail = (dataToSend) =>{
+    console.log(dataToSend,"sendApiFromEmail");
+    return ({
+        type: ACTION.MAIL_SERVICE,
+        dataToSend
+    })};
+export const createLinkForMail = (dataToSend) =>{
+    console.log(dataToSend,"CREATE_LINK_FOR_MAIL");
+    return ({
+        type: ACTION.CREATE_LINK_FOR_MAIL,
+        dataToSend
+    })};
+export const resetApiMsg = () =>{
+    return ({
+        type: ACTION.RESET_API_MSG,
+    })};
+export const setModalState = (data) =>{
+    return ({
+        type: ACTION.MODAL_STATE,
+        data
+    })};
+export const setSiteNavigation = (data) =>{
+    return ({
+        type: ACTION.SITE_NAVIGATION,
+        data
+    })};
+export const changeUserPassword = (dataToSend) =>{
+    return ({
+        type: ACTION.CHANGE_USER_PASSWORD,
+        dataToSend
+    })};
+export const getUserContests = (dataToSend) =>{
+    console.log(dataToSend,"getUserContests");
+    return ({
+        type: ACTION.GET_USER_CONTESTS,
         dataToSend
     })};
 

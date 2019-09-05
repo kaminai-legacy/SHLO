@@ -9,7 +9,7 @@ import connect from 'react-redux/es/connect/connect';
 function ContestCategories(props) {
     return (
         <div className={style.contestCategories}>
-            {console.log(props.state.contestReducers.selectedContestTypes)}
+           {/*console.log(props.state.contestReducers.selectedContestTypes)*/}
             <div className={style.contestCategoriesHeading}>
                 <Title title={"Our Most Popular Categories"}
                        text={"Pick from our most popular categories, launch a contest and begin receiving submissions right away"}

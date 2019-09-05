@@ -43,7 +43,7 @@ function Banner(props) {
                 <div className={style.flexList}>
                     <div className={style.item}>
                         <div className={style.itemIntermediateLayer}>
-                            <Link to="/contest_creating/" >
+                            <Link to="/contest_creating_choose_type/" >
                                 <div className={style.startContestButton} onClick={onClickedStartContest}>
                                     START A CONTEST
                                 </div>

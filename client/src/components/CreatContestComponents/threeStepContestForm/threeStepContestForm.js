@@ -1,17 +1,68 @@
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 import FromContent from '../../../constants/ContestsFormContet';
 import FormPage from './formPage';
+import FormGetEmail from '../../ModalForm/formGetEmail';
 import CreditCard from './CreditCard/CreditCard';
 import 'react-toastify/dist/ReactToastify.css';
 import {SubmissionError} from "redux-form";
 import Pages from '../../../constants/ContestsFormContet';
-import {contestProgressing, selectedContestType,sendContest} from "../../../actions/actionCreator";
+import {contestProgressing, selectedContestType,sendContest,createOrUpdateTempContest,sendCard,checkEmail} from "../../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
-import {startValueContestProgressing} from "../../../constants/consts";
+import history from '../../../boot/browserHistory';
+import Modal from 'react-modal';
+import style from "./threeStepContestForm.module.scss";
+import {Redirect} from 'react-router';
+import {toast} from "react-toastify";
 const  _ = require('lodash');
+const customStyles = {
+    content : {
+        zIndex:20,
+    }
+};
 
+const notify = (msg) => {
+    const props = {
+        position: toast.POSITION.BOTTOM_LEFT,
+        autoClose: 6000,
+    };
+    if (msg==="Successful"){
+        return toast.success(msg,props)}
+else{
+        return toast.error(msg,props)}
+};
+
+
+Modal.setAppElement('#root');
 function contestForm(props) {
     const [form, setForm] = useState({contestTypes:props.types[0],id:0});
+    const [viewModalDialog, setViewModalDialog] = useState(false);
+    const user = props.user;
+    const submit = (values) => {
+        console.log("CARD SEND",values);
+        const errors = {};
+        console.log("CARD SEND",values.number.length,values.expiry);
+        if (!values.number){errors.number="Required"}else
+        if (values.number.length<19){errors.number="Нou didn't enter all numbers"}
+        if (!values.expiry){errors.expiry="Required"}else
+        if (values.expiry.length<5){errors.expiry="Нou didn't enter all numbers"}
+        if (!values.cvc){errors.cvc="Required"}else
+        if (values.cvc.length<3){errors.cvc="Нou didn't enter all numbers"}
+
+        if(_.isEmpty(errors)){
+            console.log("Let in empty errors");
+            let sum=0;
+            const contestsId=[];
+            for (let key in props.tempContests){
+               if( props.tempContests.hasOwnProperty(key)){
+                   sum+=props.tempContests[key].price;
+                   contestsId.push(props.tempContests[key].id);
+               }
+            }
+            console.log("CARD SEND VALUES ",{...values,amountPayable:sum,ids:contestsId});
+            props.sendCard({...values,amountPayable:sum,ids:contestsId});
+        }
+        return errors
+    };
     const funcSubmit = (pageForm) =>{return (values) => {
         const errors = {};//FIRST_PAGE
         if (values['uploadFile']||(!_.isEmpty(values['uploadFile']))){
@@ -38,12 +89,12 @@ function contestForm(props) {
         if(_.isEmpty(errors)){
             window.scrollTo(0, 0);
             if (props.types.length-1>form.id){
-                props.sendContest({...values,typeOfContest:pageForm});
+                props.sendContest({...values,typeOfContest:pageForm},props.user.id);
                 console.log(3+form.id,props.types[3+form.id]);
                 props.contestProgressing(3+form.id,props.types[form.id+1]);
                     return setForm({contestTypes:props.types[form.id+1],id:form.id+1});
             }else{
-                props.sendContest({...values,typeOfContest:pageForm});
+                props.sendContest({...values,typeOfContest:pageForm},props.user.id);
                 console.log("на submit",{...values,typeOfContest:pageForm});
                 console.log(3+form.id,props.types[3+form.id]);
                 props.contestProgressing(3+form.id,null);
@@ -59,42 +110,71 @@ function contestForm(props) {
                         initialValues={props.state.contestReducers.tempContests[props.state.contestReducers.currentContestForm]}
                         form={formName}
                              previousPage={(values) => {
+                                 window.scrollTo(0, 0);
                                  console.log(values);
                                  if (form.id===0){
+                                     history.goBack();
                                      props.selectedContestType([]);
                                      console.log(1,null);
                                      props.contestProgressing(1,null);
                                  }else{
                                      console.log(form.id);
                                      console.log(form.id+1,props.types[form.id-1]);
+                                     if (values) {
+                                         props.createOrUpdateTempContest(values)
+                                     }
                                      props.contestProgressing(form.id+1,props.types[form.id-1]);
                                      return setForm({contestTypes:props.types[form.id-1],id:form.id-1});
                                  }
                              }}
                                  textSubmit={(props.types.length-1===form.id)?"Submit":"Next"}
         />};
-
+  //  const notif = (props.creditCardReducers.resultTransaction)?()=>notify(props.creditCardReducers.resultTransaction):()=><></>
+    //notify(props.creditCardReducers.resultTransaction)   {(props.creditCardReducers.resultTransaction)?()=>console.log(props.creditCardReducers.resultTransaction):()=><></>}
     return (
      <div >
+         {(props.creditCardReducers.resultTransaction)&& notify(props.creditCardReducers.resultTransaction)}
+         {(props.creditCardReducers.resultTransaction==="Successful")&& <Redirect to="/"/>}
+         {console.log(props.creditCardReducers)}
+         <Modal
+             isOpen={!user}
+             onAfterOpen={()=>{}}
+             onRequestClose={()=>{}}
+             style={customStyles}
+            // contentLabel="Example Modal"
+             className={style.modal}
+             overlayClassName={style.modalOverlay}
+         >
+<FormGetEmail title={'Let\'s Get Started'} longTitle={null}
+              preInput={'First, tell us your email address so we can automatically save your contest brief. This way you can get back to it at any time.'}
+              button={'Continue Your Brief'} createAction={props.checkEmail}/>
+
+         </Modal>
+         {/*<input type="button" value="Continue Your Brief" className="btn btn-default" onClick="registerUser(this)">*/}
+         <div onClick={()=>history.goBack()}>5555555555</div>
          {form.contestTypes === 'LOGO' &&  renderForm(FromContent.LOGO,'LOGO')}
          {form.contestTypes === 'NAME' && renderForm(FromContent.NAME,'NAME')}
          {form.contestTypes === 'TAGLINE_OR_SLOGAN' && renderForm(FromContent.TAGLINE_OR_SLOGAN,'TAGLINE_OR_SLOGAN')}
-         {(form.contestTypes === 'CHECKOUT') && <CreditCard/>}
+         {(form.contestTypes === 'CHECKOUT') && <CreditCard submit={submit}/>}
      </div>
-
-
     );
 }
 const mapStateToProps = (state) => {
     return {
         state,
-        types:state.contestReducers.selectedContestTypes
+        types:state.contestReducers.selectedContestTypes,
+        user: state.userReducers.user,
+        tempContests:state.contestReducers.tempContests,
+        creditCardReducers:state.creditCardReducers
     };
 };
 const mapDispatchToProps = (dispatch) => ({
     selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
     contestProgressing: (value,value2) => dispatch(contestProgressing(value,value2)),
-    sendContest: (value) => dispatch(sendContest(value)),
+    sendContest: (value,value2) => dispatch(sendContest(value,value2)),
+    createOrUpdateTempContest: (value) => dispatch(createOrUpdateTempContest(value)),
+    sendCard: (value) => dispatch(sendCard(value)),
+    checkEmail: (values) => dispatch(checkEmail(values)),
 
 });
 export default connect(mapStateToProps, mapDispatchToProps)(contestForm);

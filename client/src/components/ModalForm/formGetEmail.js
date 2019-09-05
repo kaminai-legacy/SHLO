@@ -1,13 +1,10 @@
 import React from 'react';
 import {Field, reduxForm, formValueSelector, getFormValues, SubmissionError,} from 'redux-form';
 import 'react-widgets/dist/css/react-widgets.css';
-import style from "./threeStepContestForm.module.scss";
-import connect from "react-redux/es/connect/connect";
-import {checkEmail} from "../../../actions/actionCreator";
+import style from "../CreatContestComponents/threeStepContestForm/threeStepContestForm.module.scss";
 const promises = () => new Promise(resolve => resolve());
 const yup = require('yup');
-const schema = require('../../../models/userSchema');
-
+const schema = require('../../models/userSchema');
 const renderField = ({input, placeholder, label, type, meta, meta: {touched, error, active}}) => {
     return <div >
             <input  className={style.inputEmail}{...input} placeholder={placeholder} type={type}/>
@@ -15,12 +12,10 @@ const renderField = ({input, placeholder, label, type, meta, meta: {touched, err
     </div>
 };
 
-
-
 let formGetEmail = props => {
-    const {handleSubmit,previousPage,textSubmit,formContent,formValues} = props;
+    const {handleSubmit,previousPage,textSubmit,formContent,formValues,pristine,submitting} = props;
+    const submit = (values) => {
 
-  /*  const submit = (values) => {
         return promises().then(async () => {
             let resEmail;
             try {
@@ -34,18 +29,21 @@ let formGetEmail = props => {
                 });
             }
             console.log("ALL props", values);
-            props.checkEmail(values);
+            props.createAction({...values,title:props.title,longTitle:props.longTitle});
+            // props.checkEmail(values);
         });
-    };*/
-
+    };
     return (
-        <form onSubmit={handleSubmit(props.onSubmit)} className={style.formGetEmail}>
-            <div className={style.title}>Let's Get Started</div>
-            <div className={style.preInput}>First, tell us your email address so we can automatically save your contest brief. This way you can get back to it at any time.</div>
+        <form onSubmit={handleSubmit(submit)} className={style.formGetEmail}>
+            <div className={style.title}>{props.title}</div>
+            <div className={style.preInput}>{props.preInput}</div>
            <Field name={'email'} type={'email'} component={renderField}/>
-            <button  type="submit" className={style.button} >
-               Continue Your Brief
+            <button  type="submit" className={style.button}>
+                {props.button}
             </button>
+            {props['buttonToBack'] && <button  onClick={()=>props.back()} className={style.button} >
+                {props.buttonToBack}
+            </button>}
         </form>
     );
 };
@@ -60,16 +58,4 @@ formGetEmail = reduxForm({
 
  // <-- same as form name
 
-const mapStateToProps = (state) => {
-    //const selector = formValueSelector(state.contestReducers.currentContestForm);
-//console.log(state,state.contestReducers.currentContestForm);
-    //const typeOfIndustry = selector(state, 'typeOfIndustry');
-    return {
-        state,
-       // typeOfIndustry
-    };
-};
-const mapDispatchToProps = (dispatch) => ({
-    checkEmail: (values) => dispatch(checkEmail(values)),
-});
-export default connect(mapStateToProps,mapDispatchToProps)(formGetEmail);
+ export default formGetEmail;

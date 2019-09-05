@@ -1,8 +1,16 @@
-import React from 'react';
+import React,{useState} from 'react';
 import style from './Form.module.scss';
 import {Field, reduxForm} from 'redux-form';
+import {checkEmail, createLinkForMail, sendApiFromEmail,setModalState} from '../../../../../actions/actionCreator';
 import connect from 'react-redux/es/connect/connect';
-
+import Modal from 'react-modal';
+import FormGetEmail from "../../../../ModalForm/formGetEmail";
+import {toast} from "react-toastify";
+const customStyles = {
+    content : {
+        zIndex:20,
+    }
+};
 const renderField = ({
                          input,
                          label,
@@ -17,14 +25,15 @@ const renderField = ({
         </div>
     </div>
 };
-
+Modal.setAppElement('#root');
 function Form(props) {
+    const [viewModal, setViewModal] = useState(false);
     const {handleSubmit, submitting} = props;
     const baned = props.state.userReducers.banned ? 'block' : 'none';
     const login = props.state.userReducers.loginFailed ? 'block' : 'none';
     return (
-
-        <form onSubmit={handleSubmit(props.submit)}>
+<> <form onSubmit={handleSubmit(props.onSubmit)}>
+    {console.log(props.modal.confirmEmail)}
             <div className={style.loginFailed} style={{display: login}}>Invalid Email or Password</div>
             <div className={style.loginFailed} style={{display: baned}}>You are banned</div>
             <div className={style.Row}>
@@ -52,7 +61,7 @@ function Form(props) {
                <span><label>Remember&nbsp;</label></span><span><label>me</label></span>
              </div>
            </span>
-                <span className={style.ForgotPassword}>
+                <span className={style.ForgotPassword} onClick={()=>props.setModalState({confirmEmail:true})}>
              Forgot Password
            </span>
             </div>
@@ -76,6 +85,19 @@ function Form(props) {
                 </button>
             </div>
         </form>
+        <Modal
+    isOpen={props.modal.confirmEmail}
+    onAfterOpen={()=>{}}
+    onRequestClose={()=>{}}
+    style={customStyles}
+    className={style.modal}
+    overlayClassName={style.modalOverlay}
+        >
+        <FormGetEmail createAction={props.checkEmail} title={'Reset the password'}
+                      longTitle={'Click on the link to reset the password'}
+    preInput={'Please write your mail that you indicated during registration.'}
+    button={'Send email to reset'} buttonToBack={'Back'} back={()=>props.setModalState({confirmEmail:false})}/>
+</Modal></>
     );
 }
 
@@ -89,9 +111,15 @@ const mapStateToProps = (state) => {
     return {
         state,
         fromStore: state.userReducers.data,
+        sss:state.mailServiceReducers,
+        modal:state.modalReducers
     };
 };
+const mapDispatchToProps = (dispatch) => ({
+    setModalState: (value) => dispatch(setModalState(value)),
+    checkEmail: (values) => dispatch(checkEmail(values)),
+});
 
+export default connect(mapStateToProps,mapDispatchToProps)(Form);
 
-export default connect(mapStateToProps)(Form);
-
+//props.createLinkForMail({longTitle:{},title:{},email:props.fromStore})

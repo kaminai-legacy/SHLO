@@ -6,12 +6,14 @@ const RIGHTS_OF_USERS = require('../utils/Permisions');
 
 const router = express.Router();
 const userController = require('../controlls/userController');
+const mailServiceController = require('../controlls/mailServiceController');
 const contestController = require('../controlls/contestController');
 const verifyRefreshToken = require('../middleWare/verifyRefreshToken');
 const verifyAccessToken = require('../middleWare/verifyAccessToken');
 const refreshTokenFindAndCount = require('../middleWare/refreshTokenFindAndCount');
 const verifyUser = require('../middleWare/verifyUser');
 const checkCountRefreshToken = require('../middleWare/checkCountRefreshToken');
+const checkCardExists = require('../middleWare/checkCardExistsAndBalance');
 const role = require('../middleWare/checkPermissions');
 
 var storage = multer.diskStorage({
@@ -31,10 +33,20 @@ router.get('/user', verifyAccessToken.check, userController.getUser);
 router.get('/getAllUsers',verifyAccessToken.check, userController.getAllUsers);
 router.post('/refresh', verifyRefreshToken.check,refreshTokenFindAndCount.check, userController.refreshUser);
 router.post('/login', verifyUser.verify, checkCountRefreshToken.check, userController.loginUser);
-router.post('/contest', upload.any(),contestController.createContest);
+router.post('/contest/:id', upload.any(),contestController.createContest);
+router.put('/contest/:id', upload.any(),contestController.updateContest);
+router.put('/changePassword', userController.changeUserPassword);
+router.post('/contestPayment',checkCardExists.check,contestController.payment);
 router.post('/banStatusUpdate/:id',verifyAccessToken.check, userController.updateUserBanStatus);
 router.delete('/logout', userController.logout);
-
+router.post('/userEmail', userController.hasEmail);
+router.post('/createLinkApi', mailServiceController.createLink);
+router.get('/service/:api', mailServiceController.receiveApi);
+router.get('/getUserContests/:id', contestController.receiveContests);
+// router.get('/test', (req, res, next) => {
+//     const result = role.verifyPermissions({ownerId:4},CONTESTS,CHANGE,{role:ROLE_BUYER,id:5});
+//     res.send(result);
+// });
 router.get('/test', (req, res, next) => {
     const result = role.verifyPermissions({ownerId:4},CONTESTS,CHANGE,{role:ROLE_BUYER,id:5});
     res.send(result);

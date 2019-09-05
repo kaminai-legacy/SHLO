@@ -1,9 +1,11 @@
 const SECRETS_ACCESS = 'secretForAccess';
 const SECRETS_REFRESH = 'secretForRefresh';
+const SECRETS_MAIL = 'secretForMail';
 const LIVE_TIME_ACCESS =  '15s';
 const LIVE_TIME_REFRESH ='15d';
+const LIVE_TIME_MAIL ='1d';
 const ALGORITHM = 'HS256';
-const OTHER_FIELDS=['id','password','createdAt','updatedAt','isBaned'];
+const OTHER_FIELDS=['password','createdAt','updatedAt','isBaned'];
 const ROLE_BUYER="BUYER";
 const ROLE_CREATIVE="CREATIVE";
 const ROLE_ADMIN="ADMIN";
@@ -20,6 +22,8 @@ module.exports = {
   SECRETS_REFRESH,
   LIVE_TIME_ACCESS,
   LIVE_TIME_REFRESH,
+  LIVE_TIME_MAIL,
+  SECRETS_MAIL,
   ALGORITHM,
   OTHER_FIELDS,
   ROLE_BUYER,
