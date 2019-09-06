@@ -226,6 +226,9 @@ const TAGLINE_OR_SLOGAN={
     required:['titleOfContest','typeOfIndustry','inputNameOfTheirVenture','whatVentureDoes',"targetCustomers","preferenceForTagline"]
 };
 
+const ARRAY_OF_OPTIONS={'preferenceForTagline':PREFERENCE_FOR_TAGLINE_OPTIONS,'typeOfIndustry':TYPE_OF_INDUSTRY_OPTIONS,'preferenceForName':PREFERENCE_FOR_NAME_OPTIONS,
+   'typeOfName':TYPE_OF_NAME_OPTIONS,'visualBrandStyle':VISUAL_BRAND_STYLE_OPTIONS};
+
 module.exports =
     {
         LOGO,
@@ -236,6 +239,7 @@ module.exports =
         PREFERENCE_FOR_NAME_OPTIONS,
         PREFERENCE_FOR_TAGLINE_OPTIONS,
         TYPE_OF_NAME_OPTIONS,
+        ARRAY_OF_OPTIONS
     };
 
 

@@ -1,4 +1,29 @@
 import ACTION from './actiontsTypes';
+const {
+    ARRAY_OF_OPTIONS,
+}=require('../constants/ContestsFormContet');
+
+
+export const createOrUpdateTempContest = (dataToSend) =>{
+    ///  console.log(dataToSend,"реквизиты");
+/* TODO
+    for(let key in dataToSend){
+        if(dataToSend.hasOwnProperty(key)){
+            for(let props in ARRAY_OF_OPTIONS){
+                if(ARRAY_OF_OPTIONS.hasOwnProperty(props)){
+                    if(props===key){
+
+                    }
+                }
+            }
+
+        }
+    }
+*/
+    return ({
+        type: ACTION.TEMP_CONTEST,
+        data:dataToSend
+    })};
 
 export const userLogin = (dataToSend) => ({
     type: ACTION.USER_LOGIN,
@@ -65,12 +90,6 @@ export const contestPayment = (dataToSend) =>{
         data
     })};*/
 
-export const createOrUpdateTempContest = (dataToSend) =>{
-  ///  console.log(dataToSend,"реквизиты");
-    return ({
-        type: ACTION.TEMP_CONTEST,
-        data:dataToSend
-    })};
 export const sendCard = (dataToSend) =>{
       console.log(dataToSend,"реквизиты");
        return ({
