@@ -38,6 +38,13 @@ export default function (state = initialState, action) {
                 },
             };
         }
+        case ACTION.RESET_TEMP_CONTEST: {
+            console.log('RESET_TEMP_CONTEST');
+            return {
+                ...state,
+                tempContests:{},
+            };
+        }
         default: {
             return state;
         }

@@ -23,6 +23,13 @@ export default function (state = initialState, action) {
                 resultTransaction:action.data
             };
         }
+        case ACTION.RESET_CARD_RESULT: {
+            console.log(action.data);
+            return {
+                ...state,
+                resultTransaction:null
+            };
+        }
         default: {
             return state;
         }

@@ -13,9 +13,11 @@ export function* logoutSaga() {
         yield logout(data);
         sessionStorage.clear();
         localStorage.clear();
+        history.push('/');
         const userToRead = null;
         yield put({type: ACTION.DASHBOARD_CHANGED});
         yield put({type: ACTION.USER_LOGOUT, userToRead});
+        yield put({type: ACTION.CHANGE_APP_STATE,data:{'userContests': true}})
     } catch (e) {
     }
 }

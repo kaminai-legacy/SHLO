@@ -6,16 +6,18 @@ import {getAllUsers} from '../../actions/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 import {Redirect} from 'react-router';
 import 'react-toastify/dist/ReactToastify.css';
+import {TOKENS_KEY} from "../../constants/consts";
 
 class AdminP extends Component {
     componentWillMount() {
-        this.props.getAllUsers();
+        if ((localStorage.getItem(TOKENS_KEY) || sessionStorage.getItem(TOKENS_KEY))) {
+            this.props.getAllUsers();
+        }
     }
-
     render() {
         console.log(this.props.users);
         if (!this.props.isFetching){
-            if (this.props.user === null || (this.props.user.role === "USER")) {
+            if (this.props.user === null || (this.props.user.role !== "ADMIN")) {
             return <Redirect to="/notFound"/>
         }}
         return (
@@ -38,7 +40,9 @@ const mapStateToProps = (state) => {
         isFetching: state.userReducers.isFetching,
     };
 };
+
 const mapDispatchToProps = (dispatch) => ({
     getAllUsers: () => dispatch(getAllUsers())
 });
+
 export default connect(mapStateToProps, mapDispatchToProps)(AdminP);

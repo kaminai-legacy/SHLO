@@ -18,8 +18,8 @@ function statusBlock(props) {
                         {props.text}
                     </div>
                     <div className={style.statusBlockLink}>
-                        <Link to={props.link} className={style.anchorPhone}>{props.linkText}</Link>
-
+                        <Link to={props.link} className={style.anchorPhone} onClick={()=>console.log(props.click())}>{props.linkText}</Link>
+TODO
                     </div>
                 </div>
             </div>

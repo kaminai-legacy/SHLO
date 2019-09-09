@@ -6,7 +6,7 @@ const initialState = {
     numberInDraft:0,
     InLaunch:null,
     InDraft:null,
-
+    latestContestInDraft:null,
 };
 
 export default function (state = initialState, action) {
@@ -20,7 +20,7 @@ export default function (state = initialState, action) {
                 numberInLaunch:action.numberInLaunch,
                 InLaunch:action.InLaunch,
                 InDraft:action.InDraft,
-
+                latestContestInDraft:action.latestContest
             };
         }
         default: {

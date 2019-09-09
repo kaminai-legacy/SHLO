@@ -6,29 +6,19 @@ import CreditCard from './CreditCard/CreditCard';
 import 'react-toastify/dist/ReactToastify.css';
 import {SubmissionError} from "redux-form";
 import Pages from '../../../constants/ContestsFormContet';
-import {contestProgressing, selectedContestType,sendContest,createOrUpdateTempContest,sendCard,checkEmail} from "../../../actions/actionCreator";
+import {contestProgressing, selectedContestType,sendContest,createOrUpdateTempContest,sendCard,checkEmail,resetCardResult} from "../../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
 import history from '../../../boot/browserHistory';
 import Modal from 'react-modal';
 import style from "./threeStepContestForm.module.scss";
 import {Redirect} from 'react-router';
 import {toast} from "react-toastify";
+import {LOADING_ITEMS} from "../../../constants/consts";
 const  _ = require('lodash');
 const customStyles = {
     content : {
         zIndex:20,
     }
-};
-
-const notify = (msg) => {
-    const props = {
-        position: toast.POSITION.BOTTOM_LEFT,
-        autoClose: 6000,
-    };
-    if (msg==="Successful"){
-        return toast.success(msg,props)}
-else{
-        return toast.error(msg,props)}
 };
 
 
@@ -47,7 +37,6 @@ function contestForm(props) {
         if (values.expiry.length<5){errors.expiry="Нou didn't enter all numbers"}
         if (!values.cvc){errors.cvc="Required"}else
         if (values.cvc.length<3){errors.cvc="Нou didn't enter all numbers"}
-
         if(_.isEmpty(errors)){
             console.log("Let in empty errors");
             let sum=0;
@@ -89,12 +78,18 @@ function contestForm(props) {
         if(_.isEmpty(errors)){
             window.scrollTo(0, 0);
             if (props.types.length-1>form.id){
+
+                console.log("not last",{...values,typeOfContest:pageForm});
+
                 props.sendContest({...values,typeOfContest:pageForm},props.user.id);
                 console.log(3+form.id,props.types[3+form.id]);
                 props.contestProgressing(3+form.id,props.types[form.id+1]);
                     return setForm({contestTypes:props.types[form.id+1],id:form.id+1});
             }else{
                 props.sendContest({...values,typeOfContest:pageForm},props.user.id);
+
+                console.log("last",{...values,typeOfContest:pageForm});
+
                 console.log("на submit",{...values,typeOfContest:pageForm});
                 console.log(3+form.id,props.types[3+form.id]);
                 props.contestProgressing(3+form.id,null);
@@ -104,7 +99,6 @@ function contestForm(props) {
        { throw new SubmissionError({...errors
         });}
     };};
-
     const renderForm=(currentFormPage, formName)=>{
         return<FormPage formContent={currentFormPage} formName={formName} onSubmit={funcSubmit(formName)}
                         initialValues={props.state.contestReducers.tempContests[props.state.contestReducers.currentContestForm]}
@@ -131,11 +125,29 @@ function contestForm(props) {
         />};
   //  const notif = (props.creditCardReducers.resultTransaction)?()=>notify(props.creditCardReducers.resultTransaction):()=><></>
     //notify(props.creditCardReducers.resultTransaction)   {(props.creditCardReducers.resultTransaction)?()=>console.log(props.creditCardReducers.resultTransaction):()=><></>}
+    const resetStatus=()=>props.resetCardResult(null);
+    const notify = (msg) => {
+//console.log(props);
+        const props = {
+            position: toast.POSITION.BOTTOM_LEFT,
+            autoClose: 6000,
+        };
+        resetStatus();
+        if (msg==="Successful"){
+            return toast.success(msg,props)}
+        else{
+            return toast.error(msg,props)}
+    };
+
+    useEffect(() => {
+        (props.creditCardReducers.resultTransaction)&& notify(props.creditCardReducers.resultTransaction)
+    });
+
     return (
      <div >
-         {(props.creditCardReducers.resultTransaction)&& notify(props.creditCardReducers.resultTransaction)}
+         {}
          {(props.creditCardReducers.resultTransaction==="Successful")&& <Redirect to="/"/>}
-         {console.log(props.creditCardReducers)}
+         {/*{console.log(props.creditCardReducers)}*/}
          <Modal
              isOpen={!user}
              onAfterOpen={()=>{}}
@@ -151,7 +163,7 @@ function contestForm(props) {
 
          </Modal>
          {/*<input type="button" value="Continue Your Brief" className="btn btn-default" onClick="registerUser(this)">*/}
-         <div onClick={()=>history.goBack()}>5555555555</div>
+         {/*<div onClick={()=>history.goBack()}>5555555555</div>*/}
          {form.contestTypes === 'LOGO' &&  renderForm(FromContent.LOGO,'LOGO')}
          {form.contestTypes === 'NAME' && renderForm(FromContent.NAME,'NAME')}
          {form.contestTypes === 'TAGLINE_OR_SLOGAN' && renderForm(FromContent.TAGLINE_OR_SLOGAN,'TAGLINE_OR_SLOGAN')}
@@ -175,6 +187,6 @@ const mapDispatchToProps = (dispatch) => ({
     createOrUpdateTempContest: (value) => dispatch(createOrUpdateTempContest(value)),
     sendCard: (value) => dispatch(sendCard(value)),
     checkEmail: (values) => dispatch(checkEmail(values)),
-
+    resetCardResult:(val) => dispatch(resetCardResult(val)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(contestForm);

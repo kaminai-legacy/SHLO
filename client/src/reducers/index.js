@@ -8,6 +8,8 @@ import mailServiceReducers from './mailServiceReducers';
 import modalReducers from './modalReducers';
 import siteNavigationReducers from './siteNavigationReducers';
 import userContestsReducers from './userContestsReducers';
+import AppReducers from './AppReducers';
+
 
 
 //import manageElementsReducers from './manageElementsReducers';
@@ -21,6 +23,7 @@ const appReducer = combineReducers({
     modalReducers,
     siteNavigationReducers,
     userContestsReducers,
+    AppReducers,
    // manageElementsReducers,
     form: formReducer,
 });

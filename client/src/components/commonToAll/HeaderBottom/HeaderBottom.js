@@ -72,7 +72,7 @@ function HeaderBottom(props) {
                              borderTop={barMenuView ? " 1px solid black" : "none"}
     />;
     return (
-        <div className={style.flax}>
+        <div className={style.flex}>
             <div className={style.mainHeaderBottom}
                  style={{borderBottom: (dashboardView || barMenuView) ? "none" : " 1px solid #ccc"}}>
                 <div className={style.mainHeaderBottomContainer}>

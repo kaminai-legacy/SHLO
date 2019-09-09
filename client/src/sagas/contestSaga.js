@@ -1,6 +1,6 @@
 import {put, call} from 'redux-saga/effects';
 import ACTION from '../actions/actiontsTypes';
-import {createContest,sendContestPayment,updateContest,getUserContests} from '../api/rest/restContoller';
+import {createContest,deleteContest,updateContest,getUserContests} from '../api/rest/restContoller';
 import pagesContent from '../constants/ContestsFormContet';
 const  _ = require('lodash');
 function getClass(obj) {
@@ -66,17 +66,18 @@ export function* sendContest({dataToSend,id}) {
             })
         }
         console.log("на UPDATE без файлами ",FinalDataToSend);
-        const {data} = yield updateContest(FinalDataToSend);
+        const {data} = yield updateContest(FinalDataToSend,id);
         console.log(data,"updateContest");
         const newProps=_.pick(data.contest,['paid','id','price','media']);
         yield put({type: ACTION.TEMP_CONTEST, data: {...dataToSend,...newProps}});
+        yield put({type: ACTION.CHANGE_APP_STATE,data:{'userContests': true}})
     }else{
         console.log("на CREATE");
         let FinalDataToSend = preparingDataToSend(dataToSend);
         const {data} = yield createContest(FinalDataToSend,id);
         const newProps=_.pick(data.contest,['paid','id','price','media']);
         yield put({type: ACTION.TEMP_CONTEST, data: {...dataToSend,...newProps}});
-
+        yield put({type: ACTION.CHANGE_APP_STATE,data:{'userContests': true}})
     }
 
 
@@ -92,28 +93,35 @@ export function* sendContest({dataToSend,id}) {
 export function* receiveUserContests({dataToSend}) {
    // console.log(dataToSend);
     const {data} = yield getUserContests(dataToSend);
-    console.log(data);
-    let numberInDraft=0,numberInLaunch=0,InDraft=[],InLaunch=[];
+  //  console.log(data);
+    let numberInDraft=0,numberInLaunch=0,InDraft=[],InLaunch=[],latestNotPaymentContest='0',latestContest=0;
     data.map((item) => {
-        console.log(item,item['paid']);
+    //    console.log(item,item['paid']);
         if (item['paid']) {
             numberInLaunch++;
             InLaunch.push(item);
         } else {
+            if(item['updatedAt']>latestNotPaymentContest){
+                latestNotPaymentContest=item['updatedAt'];
+                latestContest=item
+            }
             numberInDraft++;
             InDraft.push(item);
-        }  console.log(item,numberInLaunch,numberInDraft)
+        }  //console.log(item,numberInLaunch,numberInDraft)
     });
-    yield put({type: ACTION.SET_USER_CONTESTS, data,numberInLaunch:numberInLaunch,numberInDraft:numberInDraft,InLaunch:InLaunch,InDraft:InDraft});
+    yield put({type: ACTION.SET_USER_CONTESTS, data,numberInLaunch:numberInLaunch,numberInDraft:numberInDraft,InLaunch:InLaunch,InDraft:InDraft,latestContest:latestContest});
 }
 
-
-
-export function* signUpSaga({dataToSend}) {
-    try {
-
-    } catch (e) {
-
+export function* deleteUserContest({dataToSend}) {
+    console.log(dataToSend);
+    const {idContest,idUser}=dataToSend;
+    console.log(idContest,idUser)
+    const {data} = yield deleteContest(idContest,idUser);
+    if(data){
+        yield put({type: ACTION.CHANGE_APP_STATE,data:{'userContests': true}})
     }
+      // console.log(data);
 }
 
+
+//

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import style from './CreateContest.module.scss';
 import Header from '../../components/commonToAll/Header/Header';
 import HeaderBottom from '../../components/commonToAll/HeaderBottom/HeaderBottom';
@@ -8,7 +8,8 @@ import PackagesAndOther from '../../components/CreatContestComponents/PackagesAn
 import Form from '../../components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
 import connect from "react-redux/es/connect/connect";
 import { startValueContestProgressing} from "../../constants/consts";
-import {contestProgressing, logout, selectedContestType} from "../../actions/actionCreator";
+import {contestProgressing, resetTempContests, selectedContestType} from "../../actions/actionCreator";
+const _=require("lodash");
 
 //const STAGE = 1;
 
@@ -16,10 +17,17 @@ function CreateContest(props) {
     if(props.stage!==1){
         props.contestProgressing(startValueContestProgressing,null);
         props.selectedContestType([]);
+
+
+
     }
+    useEffect(() => {
+        if(!_.isEmpty(props.tempContests)){
+        props.resetTempContests();}
+    });
     return (
         <div className={style.body}>
-
+            {console.log(props.tempContests)}
             <Header />
             <HeaderBottom/>
             <HeaderCreateContest/>
@@ -33,11 +41,14 @@ const mapStateToProps = (state) => {
         state,
         stage:state.contestReducers.contestStage,
         selectedContestTypes:state.contestReducers.selectedContestTypes,
+        tempContests:state.contestReducers.tempContests,
     };
 };
 const mapDispatchToProps = (dispatch) => ({
     selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
     contestProgressing: (firstValue,secondValue) => dispatch(contestProgressing(firstValue,secondValue)),
+    resetTempContests: () => dispatch(resetTempContests()),
+
 });
 export default connect(mapStateToProps,mapDispatchToProps)(CreateContest);
 //export default CreateContest;

@@ -35,7 +35,7 @@ try{
 };
 
 const deleteOldFiles=async(pathsForFiles)=>{
-    console.log('deleteOldFiles  pathsForFiles', pathsForFiles,typeof pathsForFiles);
+  //  console.log('deleteOldFiles  pathsForFiles', pathsForFiles,typeof pathsForFiles);
     const path = __dirname+'/../ContestUpload/'+'1567171192041_Screenshot_20190802_172055.png';
     try{
         pathsForFiles.forEach(function(item){
@@ -70,6 +70,9 @@ module.exports.updateContest = async (req, res, next) => {
     const files=req.files;
     const payload = req.body;
     const id = req.params.id;
+
+
+
     try {
         const savedFiles=await pathsToFiles(files);
         const media = await JSON.parse(payload['media']);
@@ -80,13 +83,14 @@ module.exports.updateContest = async (req, res, next) => {
             contest: updatedContest.dataValues
         });
     } catch (e) {
+        console.log(e);
         next(e);
     }
 };
 module.exports.payment = async (req, res, next) => {
     const payload = req.body;
     let result;
-    console.log("SEND CREDIT CARD ******************************************",payload);
+   // console.log("SEND CREDIT CARD ******************************************",payload);
     try {
         const updatedUserBalance = await BankAccount.update(
             {balance:sequelize.literal('balance  - '+payload.amountPayable)},
@@ -113,17 +117,40 @@ module.exports.payment = async (req, res, next) => {
 };
 
 module.exports.receiveContests = async (req, res, next) => {
-    console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
+  //  console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
     const id = req.params.id;
     try {
        const result = await Contest.findAll({ where: {userId: id}});
-        console.log(result,"result result result result result result result result result result")
+        //console.log(result,"result result result result result result result result result result")
        res.send(result)
     } catch (e) {
-        console.log(e)
+        console.log(e);
         next(e);
     }
 };
+
+
+module.exports.deleteContest = async (req, res, next) => {
+    //  console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
+    const id = req.params.id;
+    const userId= req.body.userId;
+    try {
+        const result = await Contest.find({ where: {id: id}});
+        if (result){
+            const smt = await Contest.destroy({returning: true,
+                where: {id: id}
+            });
+            //console.log(smt);
+            if(smt===1){res.send(result)}
+        }
+        //console.log(result,"result result result result result result result result result result")
+        //res.send(result)
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
+};
+
 
 
 //9494 9494 9494 9494

@@ -2,33 +2,49 @@ import ACTION from './actiontsTypes';
 const {
     ARRAY_OF_OPTIONS,
 }=require('../constants/ContestsFormContet');
-
+const _ = require("lodash");
 
 export const createOrUpdateTempContest = (dataToSend) =>{
+    const cloneData = _.cloneDeep(dataToSend);
+    console.log("\n",dataToSend,"\n");
     ///  console.log(dataToSend,"реквизиты");
-/* TODO
-    for(let key in dataToSend){
-        if(dataToSend.hasOwnProperty(key)){
+// TODO
+    for(let key in cloneData){
+        if(cloneData.hasOwnProperty(key)){
             for(let props in ARRAY_OF_OPTIONS){
                 if(ARRAY_OF_OPTIONS.hasOwnProperty(props)){
                     if(props===key){
-
+let newFiled;
+if(_.isArray(cloneData[key])){
+    newFiled=cloneData[key].map((item)=>{
+        return {label:item,value:item}
+    })
+}else{
+    newFiled={label:cloneData[key],value:cloneData[key]}
+}
+                        cloneData[key]=newFiled
                     }
                 }
             }
-
         }
     }
-*/
+
+    console.log("\n",cloneData,"\n");
+
     return ({
         type: ACTION.TEMP_CONTEST,
-        data:dataToSend
+        data:cloneData
     })};
+
+export const resetTempContests = () => ({
+    type: ACTION.RESET_TEMP_CONTEST,
+});
 
 export const userLogin = (dataToSend) => ({
     type: ACTION.USER_LOGIN,
     dataToSend,
 });
+
 
 export const userSignUp = (dataToSend) => ({
     type: ACTION.USER_SIGN_UP,
@@ -139,5 +155,29 @@ export const getUserContests = (dataToSend) =>{
         type: ACTION.GET_USER_CONTESTS,
         dataToSend
     })};
+export const resetCardResult = (data) =>{
+    console.log("resetCardResult",null);
+    return ({
+        type: ACTION.RESET_CARD_RESULT,
+    })};
+export const changeAppStatus = (data) =>{
+    console.log("resetCardResult",data);
+    return ({
+        type: ACTION.CHANGE_APP_STATE,
+        data
+    })};
+export const noUser = () =>{
+    return ({
+        type: ACTION.NO_USER,
+    })};
+export const deleteContest = (idContest,idUser) =>{
+    return ({
+        type: ACTION.DELETE_CONTEST,
+        dataToSend:{
+            'idContest':idContest,
+            'idUser':idUser
+        }
+    })};
+
 
 //export const loadInitialValue = data => ({ type: ACTION.LOAD_INITIAL_VALUES, data });

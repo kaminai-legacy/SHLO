@@ -1,52 +1,103 @@
+// const TYPE_OF_INDUSTRY_OPTIONS = [
+//     { value: "accounting", label: "Accounting" },
+//     { value: 'A&G-bikeRentals', label: 'Activity & Games - Bike Rentals' },
+//     { value: 'A&G-boating ', label: 'Activity & Games - Boating' },
+//     { value: 'A&G-dancing&A ', label: 'Activity & Games - Dancing & Aerobics' },
+//     { value: 'A&G-gun&R ', label: 'Activity & Games - Gun & Rifle Ranges' },
+//     { value: 'A&G-gymnastics ', label: 'Activity & Games - Gymnastics' },
+//     { value: 'A&G-horseRacing ', label: 'Activity & Games - Horse Racing' },
+//     { value: 'A&G-horsebackRiding ', label: 'Activity & Games - Horseback Riding' },
+//     { value: 'A&G-lakes ', label: 'Activity & Games - Lakes' },
+//     { value: 'A&G-other ', label: 'Activity & Games - Other' },
+// ];
+//
+// const VISUAL_BRAND_STYLE_OPTIONS=
+// [
+//     { value: 'techy', label: 'Techy' },
+//     { value: 'fun', label: 'Fun' },
+//     { value: 'fancy', label: 'Fancy' },
+//     { value: 'minimal', label: 'Minimal' },
+//     { value: 'brickMortar', label: 'Brick & Mortar' },
+//     { value: 'photoBased', label: 'Photo-based' },
+// ];
+//
+// const PREFERENCE_FOR_NAME_OPTIONS=
+//     [
+//         { value: 'techy', label: 'Techy' },
+//         { value: 'fun', label: 'Fun' },
+//         { value: 'fancy', label: 'Fancy' },
+//         { value: 'minimal', label: 'Minimal' },
+//         { value: 'brickMortar', label: 'Brick & Mortar' },
+//         { value: 'photoBased', label: 'Photo-based' },
+//     ];
+//
+// const PREFERENCE_FOR_TAGLINE_OPTIONS=
+//     [
+//         { value: 'classic', label: 'Classic' },
+//         { value: 'fun', label: 'Fun' },
+//         { value: 'powerful', label: 'Powerful' },
+//         { value: 'descriptive', label: 'Descriptive' },
+//         { value: 'modern', label: 'Modern' },
+//         { value: 'any', label: 'Any' },
+//     ];
+//
+// const TYPE_OF_NAME_OPTIONS=
+//     [
+//         { value: "company", label: "Company" },
+//         { value: 'product', label: 'Product' },
+//         { value: 'project', label: 'Project' },
+//     ];
+
 const TYPE_OF_INDUSTRY_OPTIONS = [
-    { value: "accounting", label: "Accounting" },
-    { value: 'A&G-bikeRentals', label: 'Activity & Games - Bike Rentals' },
-    { value: 'A&G-boating ', label: 'Activity & Games - Boating' },
-    { value: 'A&G-dancing&A ', label: 'Activity & Games - Dancing & Aerobics' },
-    { value: 'A&G-gun&R ', label: 'Activity & Games - Gun & Rifle Ranges' },
-    { value: 'A&G-gymnastics ', label: 'Activity & Games - Gymnastics' },
-    { value: 'A&G-horseRacing ', label: 'Activity & Games - Horse Racing' },
-    { value: 'A&G-horsebackRiding ', label: 'Activity & Games - Horseback Riding' },
-    { value: 'A&G-lakes ', label: 'Activity & Games - Lakes' },
-    { value: 'A&G-other ', label: 'Activity & Games - Other' },
+    { value: "Accounting", label: "Accounting" },
+    { value: 'Activity & Games - Bike Rentals', label: 'Activity & Games - Bike Rentals' },
+    { value: 'Activity & Games - Boating', label: 'Activity & Games - Boating' },
+    { value: 'Activity & Games - Dancing & Aerobics', label: 'Activity & Games - Dancing & Aerobics' },
+    { value: 'Activity & Games - Gun & Rifle Ranges ', label: 'Activity & Games - Gun & Rifle Ranges' },
+    { value: 'Activity & Games - Gymnastics', label: 'Activity & Games - Gymnastics' },
+    { value: 'Activity & Games - Horse Racing', label: 'Activity & Games - Horse Racing' },
+    { value: 'Activity & Games - Horseback Riding', label: 'Activity & Games - Horseback Riding' },
+    { value: 'Activity & Games - Lakes', label: 'Activity & Games - Lakes' },
+    { value: 'Activity & Games - Other', label: 'Activity & Games - Other' },
 ];
 
 const VISUAL_BRAND_STYLE_OPTIONS=
-[
-    { value: 'techy', label: 'Techy' },
-    { value: 'fun', label: 'Fun' },
-    { value: 'fancy', label: 'Fancy' },
-    { value: 'minimal', label: 'Minimal' },
-    { value: 'brickMortar', label: 'Brick & Mortar' },
-    { value: 'photoBased', label: 'Photo-based' },
-];
+    [
+        { value: 'Techy', label: 'Techy' },
+        { value: 'Fun', label: 'Fun' },
+        { value: 'Fancy', label: 'Fancy' },
+        { value: 'Minimal', label: 'Minimal' },
+        { value: 'Brick & Mortar', label: 'Brick & Mortar' },
+        { value: 'Photo-based', label: 'Photo-based' },
+    ];
 
 const PREFERENCE_FOR_NAME_OPTIONS=
     [
-        { value: 'techy', label: 'Techy' },
-        { value: 'fun', label: 'Fun' },
-        { value: 'fancy', label: 'Fancy' },
-        { value: 'minimal', label: 'Minimal' },
-        { value: 'brickMortar', label: 'Brick & Mortar' },
-        { value: 'photoBased', label: 'Photo-based' },
+        { value: 'Techy', label: 'Techy' },
+        { value: 'Fun', label: 'Fun' },
+        { value: 'Fancy', label: 'Fancy' },
+        { value: 'Minimal', label: 'Minimal' },
+        { value: 'Brick & Mortar', label: 'Brick & Mortar' },
+        { value: 'Photo-based', label: 'Photo-based' },
     ];
 
 const PREFERENCE_FOR_TAGLINE_OPTIONS=
     [
-        { value: 'classic', label: 'Classic' },
-        { value: 'fun', label: 'Fun' },
-        { value: 'powerful', label: 'Powerful' },
-        { value: 'descriptive', label: 'Descriptive' },
-        { value: 'modern', label: 'Modern' },
-        { value: 'any', label: 'Any' },
+        { value: 'Classic', label: 'Classic' },
+        { value: 'Fun', label: 'Fun' },
+        { value: 'Powerful', label: 'Powerful' },
+        { value: 'Descriptive', label: 'Descriptive' },
+        { value: 'Modern', label: 'Modern' },
+        { value: 'Any', label: 'Any' },
     ];
 
 const TYPE_OF_NAME_OPTIONS=
     [
-        { value: "company", label: "Company" },
-        { value: 'product', label: 'Product' },
-        { value: 'project', label: 'Project' },
+        { value: "Company", label: "Company" },
+        { value: 'Product', label: 'Product' },
+        { value: 'Project', label: 'Project' },
     ];
+
 
 const LOGO={
     fields:[

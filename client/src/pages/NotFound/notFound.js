@@ -8,7 +8,7 @@ import history from "../../boot/browserHistory";
 function notFound() {
     return (
         <div className={style.body}>
-            <Redirect to="/notFound"/>
+            {/*<Redirect to="/notFound"/>*/}
             <div className={style.notFound}/>
             <div>
                 <Link className={style.mainAnchor} to="/">

@@ -15,6 +15,7 @@ export function* sendApiToServer({dataToSend}) {
 
             const TOKENS_JSON = JSON.stringify(data.otherData.tokenPair);
             sessionStorage.setItem(TOKENS_KEY, TOKENS_JSON);
+            yield put({type: ACTION.CHANGE_APP_STATE,data:{'user': true}})
         }
             if(data.otherData.hasOwnProperty('resetPassword')){
                 yield put({type: ACTION.MODAL_STATE, data:{resetPassword:true}});

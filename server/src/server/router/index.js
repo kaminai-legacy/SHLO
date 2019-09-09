@@ -35,6 +35,7 @@ router.post('/refresh', verifyRefreshToken.check,refreshTokenFindAndCount.check,
 router.post('/login', verifyUser.verify, checkCountRefreshToken.check, userController.loginUser);
 router.post('/contest/:id', upload.any(),contestController.createContest);
 router.put('/contest/:id', upload.any(),contestController.updateContest);
+router.delete('/contest/:id', contestController.deleteContest);
 router.put('/changePassword', userController.changeUserPassword);
 router.post('/contestPayment',checkCardExists.check,contestController.payment);
 router.post('/banStatusUpdate/:id',verifyAccessToken.check, userController.updateUserBanStatus);

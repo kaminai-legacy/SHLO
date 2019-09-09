@@ -5,7 +5,7 @@ import {isLoginSaga} from './isLoginSaga';
 import {getAllUsersSaga} from './getAllUsersSaga';
 import {changeBanStatusSaga} from './changeBanStatusSaga';
 import {logoutSaga} from './logoutSaga';
-import {sendContest,receiveUserContests} from './contestSaga';
+import {sendContest,receiveUserContests,deleteUserContest} from './contestSaga';
 import {sendApiToServer} from './mailServicesSaga';
 import {sendRequisites} from './creditCardSaga';
 
@@ -22,6 +22,7 @@ function* rootSaga() {
     yield takeLatest(ACTION.MAIL_SERVICE, sendApiToServer);
     yield takeLatest(ACTION.CHANGE_USER_PASSWORD, changeUserPassword);
     yield takeLatest(ACTION.GET_USER_CONTESTS, receiveUserContests);
+    yield takeLatest(ACTION.DELETE_CONTEST, deleteUserContest);
     //yield takeLatest(ACTION.CREATE_LINK_FOR_MAIL, createLink);
 }
 //createLink

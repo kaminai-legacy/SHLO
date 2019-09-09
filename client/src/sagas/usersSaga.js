@@ -52,7 +52,6 @@ export function* signUpSaga({dataToSend}) {
             title:"Confirm email",
             email:USER.email,
             longTitle:"To confirm mail, follow the link"
-
         };
         const dataCreateApiLink = yield createApiLink(dataToSendOnApi);
         console.log(dataCreateApiLink);

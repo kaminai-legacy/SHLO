@@ -13,7 +13,9 @@ export function* sendRequisites({data}) {
             console.log("SUCCESS");
             yield put({type: ACTION.SEND_CARD_REQUISITES_RESULT, data:result.data.status});
             yield put({type: ACTION.SELECTED_CONTEST_TYPE, contestTypes:[]});
-            yield put({type: ACTION.CONTEST_PROGRESSING,stage:1,form:null})
+            yield put({type: ACTION.CONTEST_PROGRESSING,stage:1,form:null});
+            yield put({type: ACTION.CHANGE_APP_STATE,data:{needUpdate: true}})
+
         }
         else {
             console.log("ERROR");
