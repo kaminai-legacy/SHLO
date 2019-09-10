@@ -4,6 +4,7 @@ import DashboardContestStatus from '../../components/Dashboard/DashboardContestS
 import DashboardContent from '../../components/Dashboard/DashboardContent/DashboardContent';
 import style from './Dashboard.module.scss';
 import Header from "../../components/commonToAll/Header/Header";
+import Footer from '../../components/commonToAll/Footer/footer';
 import HeaderBottom from "../../components/commonToAll/HeaderBottom/HeaderBottom";
 import {changeAppStatus, changeUserPassword, resetApiMsg, userIsLogin} from "../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
@@ -22,6 +23,7 @@ function dashboard(props) {
             <HeaderBottom/>
             <Banner/>
             <DashboardContent/>
+            <Footer/>
             {/* <DashboardContestStatus/>*/}
         </div>);
 }

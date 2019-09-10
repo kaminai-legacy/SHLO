@@ -1,7 +1,7 @@
 import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
-   contests:null,
+    contests:null,
     numberInLaunch:0,
     numberInDraft:0,
     InLaunch:null,

@@ -23,6 +23,8 @@ function* rootSaga() {
     yield takeLatest(ACTION.CHANGE_USER_PASSWORD, changeUserPassword);
     yield takeLatest(ACTION.GET_USER_CONTESTS, receiveUserContests);
     yield takeLatest(ACTION.DELETE_CONTEST, deleteUserContest);
+    //yield takeLatest(ACTION.CHANGE_FILTER_TAGS, deleteUserContest);
+
     //yield takeLatest(ACTION.CREATE_LINK_FOR_MAIL, createLink);
 }
 //createLink

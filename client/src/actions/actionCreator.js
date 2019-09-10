@@ -179,5 +179,10 @@ export const deleteContest = (idContest,idUser) =>{
         }
     })};
 
+export const changeFilterTags = (dataToSend)=>{
+    return ({
+        type: ACTION.CHANGE_FILTER_TAGS,
+        dataToSend
+    })};
 
 //export const loadInitialValue = data => ({ type: ACTION.LOAD_INITIAL_VALUES, data });

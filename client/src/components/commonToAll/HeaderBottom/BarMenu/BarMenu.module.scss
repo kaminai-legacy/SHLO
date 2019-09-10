@@ -23,7 +23,8 @@
   position: absolute;
   overflow: scroll;
   transition: max-height 0.2s ease-out;
-  min-width: 100vw;
+  width: calc(100vw - (100vw - 100%));
+  box-sizing: border-box;
 }
 
 .barMenuSubList {

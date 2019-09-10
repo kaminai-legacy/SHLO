@@ -28,11 +28,9 @@ function dashboardContestStatus(props) {
     });
     return (
         <div className={style.displayBlockRow}>
-            {console.log(props.userContests.latestContestInDraft)}
             <StatusBlock imgColor={"#16a085"} imgIcon={<i className="fas fa-pen-square"/>} count={props.userContests.numberInDraft}
                          text={"Contests in Draft"} linkText={"Continue Editing"} link={"/contest_creating/"}
-                         click={(props.userContests.latestContestInDraft)?()=>{props.selectedContestType([props.userContests.latestContestInDraft.typeOfContest]);props.contestProgressing(2,props.userContests.latestContestInDraft);
-                             props.createOrUpdateTempContest(props.userContests.latestContestInDraft)}:()=>{}}/>
+                         click={true} userContest={(props.userContests.latestContestInDraft)?props.userContests:null}/>
             <StatusBlock imgColor={"#8e44ad"} imgIcon={<i className="far fa-lightbulb"/>} count={props.userContests.numberInLaunch}
                          text={"Launched Contests"} linkText={"Launch Contest"} link={"/contest_creating_choose_type"}/>
         </div>);
@@ -51,7 +49,7 @@ const mapStateToProps = (state) => {
         user:state.userReducers.user,
         userContests:state.userContestsReducers,
         app: state.AppReducers,
-    };
+    }
 };
 const mapDispatchToProps = (dispatch) => ({
     getUserContests:(data) => dispatch(getUserContests(data)),

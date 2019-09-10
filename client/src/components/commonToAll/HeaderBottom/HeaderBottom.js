@@ -54,7 +54,7 @@ function HeaderBottom(props) {
             <li>Admin panel</li>
         </Link> : <></>;
     const LIST = <div className={style.dashboard} style={{
-        maxHeight: dashboardView ? "50vh" : "0", borderTop: dashboardView ? " 1px solid #cacaca" : "none",
+        maxHeight: dashboardView ? "50vh" : "0",
         borderBottom: ((barMenuView && dashboardView) || (dashboardView === false && barMenuView === false)) ? "none" : " 1px solid #ccc"
     }}>
         <ul className={style.dashboardList}>
@@ -74,7 +74,7 @@ function HeaderBottom(props) {
     return (
         <div className={style.flex}>
             <div className={style.mainHeaderBottom}
-                 style={{borderBottom: (dashboardView || barMenuView) ? "none" : " 1px solid #ccc"}}>
+                 style={{borderBottom: ((!dashboardView && !barMenuView)||(dashboardView || barMenuView)) ? "none" : " 1px solid #ccc"}}>
                 <div className={style.mainHeaderBottomContainer}>
                     <div className={style.mainHeaderBottomRow}>
                         <div className={style.mainHeaderBottomLogo}>

@@ -49,8 +49,8 @@ function BottomHeaderList(props) {
                             style={{cursor: (ListElement[key].list) ? "pointer" : "normal"}}
                             key={LIST_NAME}>
                 <ul className={style.barMenuSubList}>
-                    <div onClick={() => onClickedBarMenu(LIST_NAME)}><Link to={LIST_LINK}>{LIST_NAME}</Link>
-                        {(ListElement[key].list) ? <span> <i className="fa fa-angle-down"/></span> : <></>}
+                    <div><Link to={LIST_LINK}>{LIST_NAME}</Link>
+                        {(ListElement[key].list) ? <span onClick={() => onClickedBarMenu(LIST_NAME)}> <i className={(viewStatus[LIST_NAME])?"fa fa-angle-down  fa-flip-vertical":"fa fa-angle-down"}/></span> : <></>}
                     </div>
                     {(viewStatus[LIST_NAME]) && <div className={style.SubBlock}>{LIST}</div>}
                 </ul>

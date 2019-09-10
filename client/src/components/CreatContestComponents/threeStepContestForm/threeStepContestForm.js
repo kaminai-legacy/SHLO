@@ -100,6 +100,7 @@ function contestForm(props) {
         });}
     };};
     const renderForm=(currentFormPage, formName)=>{
+        console.log(props.state.contestReducers.tempContests,[props.state.contestReducers.currentContestForm]);
         return<FormPage formContent={currentFormPage} formName={formName} onSubmit={funcSubmit(formName)}
                         initialValues={props.state.contestReducers.tempContests[props.state.contestReducers.currentContestForm]}
                         form={formName}
@@ -147,7 +148,7 @@ function contestForm(props) {
      <div >
          {}
          {(props.creditCardReducers.resultTransaction==="Successful")&& <Redirect to="/"/>}
-         {/*{console.log(props.creditCardReducers)}*/}
+         {console.log(props.tempContests)}
          <Modal
              isOpen={!user}
              onAfterOpen={()=>{}}

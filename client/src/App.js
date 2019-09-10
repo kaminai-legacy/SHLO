@@ -6,6 +6,7 @@ import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 import AdminPanel from './pages/AdminPanel/Adminpanel';
 import Dashboard from './pages/Dashboard/Dashboard';
+import ActiveContests from './pages/ActiveContests/ActiveContests';
 import {Route , Switch , Router} from "react-router-dom";
 import history from './boot/browserHistory';
 import CheckUser from './components/HOC/checkUser';
@@ -34,6 +35,7 @@ function App (){
             <Route path="/contest_creating/" exact component={(...props)=>{return <CreateContest local={props.location}/>} }/>
             <Route path="/contest_creating_choose_type/" exact component={CreateContestChooseType} />
             <Route path="/dashboard/" exact component={Dashboard} />
+            <Route path="/active_contests/" component={ActiveContests} />
             <Route path="/service/:api" exact component={(...props)=>{
                 return<MailService params={props[0].match.params['api']}/>
             }

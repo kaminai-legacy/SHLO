@@ -54,7 +54,7 @@ const CONTESTS = [
     },
     {
         text: "Active Contests",
-        link: "/Fashion&Clothing"
+        link: "/active_contests"
     },
     {
         text: "Winners",

@@ -3,6 +3,7 @@ import style from './CreateContest.module.scss';
 import Header from '../../components/commonToAll/Header/Header';
 import HeaderBottom from '../../components/commonToAll/HeaderBottom/HeaderBottom';
 import HeaderCreateContest from '../../components/CreatContestComponents/Header/Header';
+import Footer from '../../components/commonToAll/Footer/footer';
 import ContestCategories from '../../components/CreatContestComponents/contestCategories/contestCategories';
 import PackagesAndOther from '../../components/CreatContestComponents/PackagesAndOther/PackagesAndOther';
 import Form from '../../components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
@@ -43,6 +44,7 @@ function CreateContest(props) {
             <HeaderBottom/>
             <HeaderCreateContest/>
             <Form local={props.local}/>
+            <Footer/>
         </div>
     );
 }

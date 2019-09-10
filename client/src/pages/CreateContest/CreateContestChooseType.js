@@ -1,6 +1,7 @@
 import React,{useEffect} from 'react';
 import style from './CreateContest.module.scss';
 import Header from '../../components/commonToAll/Header/Header';
+import Footer from '../../components/commonToAll/Footer/footer';
 import HeaderBottom from '../../components/commonToAll/HeaderBottom/HeaderBottom';
 import HeaderCreateContest from '../../components/CreatContestComponents/Header/Header';
 import ContestCategories from '../../components/CreatContestComponents/contestCategories/contestCategories';
@@ -33,6 +34,7 @@ function CreateContest(props) {
             <HeaderCreateContest/>
             <ContestCategories/>
             <PackagesAndOther/>
+            <Footer/>
         </div>
     );
 }
