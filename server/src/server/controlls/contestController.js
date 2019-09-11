@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const  _ = require('lodash');
 const fs = require('fs');
-const { Contest,BankAccount } = require('../models/index');
+const { Contest,BankAccount,Entry } = require('../models/index');
 const  uniqid = require('uniqid');
 const sequelize = require('sequelize');
 
@@ -129,6 +129,99 @@ module.exports.receiveContests = async (req, res, next) => {
     }
 };
 
+module.exports.receiveFilterContests = async (req, res, next) => {
+    //  console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
+
+    const params = req.query;
+
+    console.log('req.query req.query req.query req.query req.query req.query ',req.query);
+
+    const findParams= {};
+   /* for(let key in params){
+        if(params.hasOwnProperty(key)){
+            switch (key) {
+                case 'id':
+                    findParams['id']=params['id'];
+                case 'Industries':if(params['Industries']!=='All_Industries'){findParams['typeOfIndustry']=[params['Industries'].replace(/and/g,'&').replace(/_/g,' ')];} continue;
+                case 'Categories':if(params['Categories']!=='All_Categories'){findParams['typeOfContest']=[params['Categories'].replace(/and/g,'&').replace(/_/g,' ')];} continue;
+                case 'Active': if(params['Active']==="true"){if(params['Closed']==="true"){delete findParams['hasWinner']}else{findParams['hasWinner']=false}} continue;
+                case 'Closed': if(params['Closed']==="true"){if(params['Active']==="true"){delete findParams['hasWinner']}else{findParams['hasWinner']=true}}
+            }
+        }
+    }*/
+    try {
+        console.log("findParams",findParams);
+        if(_.isEmpty(findParams)){
+            const result = await Contest.findAll();
+            const cloneResult=_.cloneDeep(result);
+            const dataToReceive = cloneResult.map((item)=>{
+                return item['dataValues'];
+            });
+            console.log("result1",dataToReceive);
+            res.send({contests:dataToReceive})
+        }else{
+
+            // User.findAll({
+            //     attributes: ['User.*', 'Post.*', [sequelize.fn('COUNT', 'Post.id'), 'PostCount']],
+            //     include: [Post]
+            // }
+            const {query} =req;
+            const contestFilter = _.pick(query, ['typeOfName', 'targetCu'])
+
+            const result = await Contest.findAll({
+                //ttributes:[Entry.sequelize.fn('COUNT', Entry.sequelize.col('Entry.contestId'))],
+
+                attributes: {include:['"Contest".*',[sequelize.fn('count', sequelize.col('Entries.contestId')), 'counter']]},
+                include: [{ attributes: [], model: Entry }],
+                exclude:[],
+
+                //attributes: ["Challenge.*", [models.sequelize.fn('COUNT', models.sequelize.col('Ideas.idea_id')), 'IdeaCount']],
+                // include: [{
+                //     model: Entry,
+                //     as: 'Entries',
+                // }],
+               // include: [{model: Entry}],
+                where: findParams,
+                group: ['Contest.id']
+            });
+
+            // const result = await Contest.findAll({
+            //     attributes: ['Contest.*', 'Entry.*', [sequelize.fn('COUNT', 'Entry.contestId'), 'Entries']],
+            //     include: [Entry],
+            //     where: findParams,
+            // });
+            const cloneResult=_.cloneDeep(result);
+
+           /* const dataToReceive = await cloneResult.map(async(item)=>{
+                try{ const contest=item['dataValues'];
+                const entry = await Entry.count({
+                    where: {contestId: contest['id']}
+                });
+                console.log("entryentryentryentryentryentryentryentryentryentry",entry)
+                    contest['entries']= entry;
+                    console.log("contestcontestcontestcontestcontestcontestcontestcontest",contest);
+                    return contest;
+                }
+                   catch (e) {
+                    console.log(e)
+                }
+
+            });*/
+            console.log("result2",cloneResult[0]['dataValues']);
+            res.send({contests:cloneResult})
+        }
+
+
+
+
+
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
+};
+
+
 
 module.exports.deleteContest = async (req, res, next) => {
     //  console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
@@ -155,4 +248,126 @@ module.exports.deleteContest = async (req, res, next) => {
 
 //9494 9494 9494 9494
 
+// include: [{model: models.Vendor, as: 'vendor'}],
+
 //sequelize.literal('balance + '+payload.amountPayable)
+
+
+/*
+        if(_.isEmpty(findParams)){
+        const result = await Contest.findAll()}
+else{
+                const result = await Contest.findAll({ where: findParams});
+            }
+        res.send({contests:result})
+
+            const cloneResult=_.cloneDeep(result);
+            const dataToReceive = cloneResult.map((item)=>{
+                return item['dataValues'];
+            });
+            console.log("result1",dataToReceive);
+            res.send({contests:dataToReceive})
+        }else{
+
+            const cloneResult=_.cloneDeep(result);
+            const dataToReceive = await cloneResult.map(async(item)=>{
+                try{ const contest=item['dataValues'];
+                    contest['entries']=await Entry.count({
+                        where: {contestId: contest['id']}
+                    });
+                    console.log("contestcontestcontestcontestcontestcontestcontestcontest",contest);
+                    return contest;
+                }
+                catch (e) {
+                    console.log(e)
+                }
+
+            });
+            console.log("result2",dataToReceive);
+            res.send({contests:dataToReceive})
+        }
+*/
+
+
+
+
+
+
+
+
+////    work
+
+
+// const result = await Contest.findAll({
+//     //ttributes:[Entry.sequelize.fn('COUNT', Entry.sequelize.col('Entry.contestId'))],
+//
+//     attributes: [,[sequelize.fn('count', sequelize.col('Entries.contestId')), 'Counter']],
+//     include: [{ attributes: [], model: Entry }],
+//
+//     //attributes: ["Challenge.*", [models.sequelize.fn('COUNT', models.sequelize.col('Ideas.idea_id')), 'IdeaCount']],
+//     // include: [{
+//     //     model: Entry,
+//     //     as: 'Entries',
+//     // }],
+//     // include: [{model: Entry}],
+//     where: findParams,
+//     group: ['Contest.id']
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+    try {
+        console.log("findParams",findParams);
+        if(_.isEmpty(findParams)){
+            const result = await Contest.findAll();
+            const cloneResult=_.cloneDeep(result);
+            const dataToReceive = cloneResult.map((item)=>{
+                return item['dataValues'];
+            });
+            console.log("result1",dataToReceive);
+            res.send({contests:dataToReceive})
+        }else{
+            const result = await Contest.findAll({
+                where: findParams,
+                include: {
+                    model: Entry
+                    sequelize.fn('COUNT'){}
+                }
+            });
+            const cloneResult=_.cloneDeep(result);
+            const dataToReceive = await cloneResult.map(async(item)=>{
+                try{ const contest=item['dataValues'];
+                const entry = await Entry.count({
+                    where: {contestId: contest['id']}
+                });
+                console.log("entryentryentryentryentryentryentryentryentryentry",entry)
+                    contest['entries']= entry;
+                    console.log("contestcontestcontestcontestcontestcontestcontestcontest",contest);
+                    return contest;
+                }
+                   catch (e) {
+                    console.log(e)
+                }
+
+            });
+            console.log("result2",dataToReceive);
+            res.send({contests:dataToReceive})
+        }
+
+
+
+
+
+
+ */

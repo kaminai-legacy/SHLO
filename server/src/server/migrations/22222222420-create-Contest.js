@@ -90,6 +90,16 @@ module.exports = {
             allowNull: false,
             defaultValue:false,
         },
+        hasWinner: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false,
+            defaultValue:false,
+        },
+        winner: {
+            type: Sequelize.INTEGER,
+            allowNull: true,
+            defaultValue:null,
+        },
         createdAt: {
             allowNull: false,
             type: Sequelize.DATE,

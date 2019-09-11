@@ -8,6 +8,7 @@ import {logoutSaga} from './logoutSaga';
 import {sendContest,receiveUserContests,deleteUserContest} from './contestSaga';
 import {sendApiToServer} from './mailServicesSaga';
 import {sendRequisites} from './creditCardSaga';
+import {changeFilterTags,getStarterContests} from './ActiveContestFilterSaga';
 
 function* rootSaga() {
     yield takeLatest(ACTION.GET_ALL_USERS, getAllUsersSaga);
@@ -23,7 +24,8 @@ function* rootSaga() {
     yield takeLatest(ACTION.CHANGE_USER_PASSWORD, changeUserPassword);
     yield takeLatest(ACTION.GET_USER_CONTESTS, receiveUserContests);
     yield takeLatest(ACTION.DELETE_CONTEST, deleteUserContest);
-    //yield takeLatest(ACTION.CHANGE_FILTER_TAGS, deleteUserContest);
+    yield takeLatest(ACTION.CHANGE_CONTEST_FILTER, changeFilterTags);
+    yield takeLatest(ACTION.GET_CONTESTS_BY_STARTER_FILTER,getStarterContests);
 
     //yield takeLatest(ACTION.CREATE_LINK_FOR_MAIL, createLink);
 }

@@ -9,6 +9,7 @@ import modalReducers from './modalReducers';
 import siteNavigationReducers from './siteNavigationReducers';
 import userContestsReducers from './userContestsReducers';
 import AppReducers from './AppReducers';
+import ActiveContestFilterReducer from './ActiveContestFilterReducer';
 
 
 
@@ -24,6 +25,7 @@ const appReducer = combineReducers({
     siteNavigationReducers,
     userContestsReducers,
     AppReducers,
+    ActiveContestFilterReducer,
    // manageElementsReducers,
     form: formReducer,
 });

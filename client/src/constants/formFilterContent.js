@@ -1,15 +1,8 @@
-const TYPE_OF_INDUSTRY_OPTIONS = [
+import {TYPE_OF_INDUSTRY_OPTIONS} from './ContestsFormContet';
+
+const TYPE_OF_INDUSTRY_OPTIONS_FOR_FILTER = [
 	{ value: "All Industries", label: "All Industries" },
-	{ value: "Accounting", label: "Accounting" },
-	{ value: 'Activity & Games - Bike Rentals', label: 'Activity & Games - Bike Rentals' },
-	{ value: 'Activity & Games - Boating', label: 'Activity & Games - Boating' },
-	{ value: 'Activity & Games - Dancing & Aerobics', label: 'Activity & Games - Dancing & Aerobics' },
-	{ value: 'Activity & Games - Gun & Rifle Ranges ', label: 'Activity & Games - Gun & Rifle Ranges' },
-	{ value: 'Activity & Games - Gymnastics', label: 'Activity & Games - Gymnastics' },
-	{ value: 'Activity & Games - Horse Racing', label: 'Activity & Games - Horse Racing' },
-	{ value: 'Activity & Games - Horseback Riding', label: 'Activity & Games - Horseback Riding' },
-	{ value: 'Activity & Games - Lakes', label: 'Activity & Games - Lakes' },
-	{ value: 'Activity & Games - Other', label: 'Activity & Games - Other' },
+	 ...TYPE_OF_INDUSTRY_OPTIONS,
 ];
 
 const TYPE_OF_CATEGORY_OPTIONS = [
@@ -28,23 +21,23 @@ const FILTERS=[
 			{
 				title:"By Contest Id",
 				type:"text",
-				name:"contestId",
+				name:"id",
 				component:"renderField",
 			},
 
 			{
 				type:"text",
-				name:"typeOfIndustry",
+				name:"Industries",
 				component:"renderFieldSelect",
-				defaultValue: { value: "All Industries", label: "All Industries" },
+				defaultValue: { value: "All", label: "All Industries" },
 				isMulti:false,
-				options:TYPE_OF_INDUSTRY_OPTIONS
+				options:TYPE_OF_INDUSTRY_OPTIONS_FOR_FILTER
 			},
 			{
 				type:"text",
-				name:"typeOfCategory",
+				name:"Categories",
 				component:"renderFieldSelect",
-				defaultValue: { value: "All Categories", label: "All Categories" },
+				defaultValue: { value: "All", label: "All Categories" },
 				isMulti:false,
 				options:TYPE_OF_CATEGORY_OPTIONS
 			},
@@ -57,25 +50,21 @@ const FILTERS=[
 
 			{
 				type:"checkbox",
-				name:"contestIsActive",
+				name:"Active",
 				component:"renderFieldCheckbox",
-				placeholder:"e.g. Need a name for Social Networking website",
 				label:"Active"
 			},
 
 			{
 				type:"checkbox",
-				name:"contestIsClosed",
+				name:"Closed",
 				component:"renderFieldCheckbox",
-				placeholder:"All Industries",
 				label:"Closed",
-				isMulti:false,
-				options:TYPE_OF_INDUSTRY_OPTIONS
 			},
 		]
 	},
 ];
 
-module.exports={
+export default {
 	FILTERS
 };

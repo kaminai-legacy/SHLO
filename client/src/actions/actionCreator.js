@@ -180,9 +180,16 @@ export const deleteContest = (idContest,idUser) =>{
     })};
 
 export const changeFilterTags = (dataToSend)=>{
+    console.log("changeFilterTags",dataToSend);
     return ({
-        type: ACTION.CHANGE_FILTER_TAGS,
+        type: ACTION.CHANGE_CONTEST_FILTER,
         dataToSend
+    })};
+
+export const getContestByFilter = ()=>{
+    console.log("changeFilterTags",);
+    return ({
+        type: ACTION.GET_CONTESTS_BY_STARTER_FILTER
     })};
 
 //export const loadInitialValue = data => ({ type: ACTION.LOAD_INITIAL_VALUES, data });

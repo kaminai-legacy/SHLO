@@ -88,6 +88,16 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
           defaultValue:false,
       },
+    hasWinner: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue:false,
+    },
+    winner: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue:null,
+    },
   });
 
 

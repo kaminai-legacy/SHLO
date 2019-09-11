@@ -1,9 +1,15 @@
 import React from 'react';
 import connect from 'react-redux/es/connect/connect';
+import {
+    selectedContestType,
+} from "../../actions/actionCreator";
 
 function dashboardBanner(props) {
-    console.log(props)
-    return null
+    console.log("hihih");
+    return (
+        <div>
+
+        </div>);
 }
 
 const mapStateToProps = (state) => {
@@ -11,4 +17,9 @@ const mapStateToProps = (state) => {
         user: state.userReducers.user
     };
 };
-export default connect(mapStateToProps)(dashboardBanner);
+
+const mapDispatchToProps = (dispatch) => ({
+    selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(dashboardBanner);
