@@ -60,7 +60,7 @@ let resultFilterContests = props => {
                                         </div>
                                     </div>
                                     <div className={style.entries}>
-                                        <div><i className="fas fa-users"/> {contest.entries}</div>
+                                        <div><i className="fas fa-users"/> {contest['numberOfEntries']}</div>
                                         <span>Entries</span>
                                     </div>
                                 </div>

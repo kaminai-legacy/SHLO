@@ -39,7 +39,8 @@ export function* changeFilterTags({dataToSend}) {
 export function* getStarterContests() {
     try {
         const {data} = yield contestFilter({});
-        yield put({type: ACTION.SET_FILTERED_CONTEST, contests: data['contests']});
+        console.log("resonpse",data)
+        yield put({type: ACTION.SET_FILTERED_CONTEST, contests: data});
         //console.log(data);
     } catch (e) {
         console.log(e)

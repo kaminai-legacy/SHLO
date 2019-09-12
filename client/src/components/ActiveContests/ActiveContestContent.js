@@ -5,6 +5,7 @@ import Content from '../../constants/formFilterContent';
 import ResultFilterContests from './ResultFilterContests';
 import {changeFilterTags} from "../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
+import prepareData from "./asyncValidate";
 //import Filter from "./asyncValidate";
 const _=require('lodash');
 const promises = () => new Promise(resolve => resolve());
@@ -24,6 +25,8 @@ function ActiveContestContent(props) {
                 // console.log(valuesClone,formValues);
 if(!_.isEqual(formValues, valuesClone)){
     setFormValues(valuesClone);
+    const data =prepareData(valuesClone);
+    console.log(data);
     props.changeFilterTags(valuesClone);
 }
             } catch (e) {

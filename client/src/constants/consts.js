@@ -1,5 +1,6 @@
 const USER_KEY = "USER";
 const TOKENS_KEY = "TOKENS";
+const FILTER_TAGS = {originalName:['typeOfIndustry','typeOfContest'],label:['Industries','Categories']};
 const LOADING_ITEMS = ["a Company", "a Brand", "a Website", "a Service", "a Book", "a Business", "an App", "a Product", "a Startup"];
 const TEXT_PROGRESSING={START:"Select Contest Type",NAME:"About Your Business",LOGO:"Naming Preferences",TAGLINE_OR_SLOGAN:"Naming Preferences", CHECKOUT:"LAST STEP"};
 const CONTEST_HEADER={START:{label:'START A CONTEST',text:"Launching a contest on Squadhelp is very simple. Select the type of contest you would like to launch from the list below.Provide a detailed " +

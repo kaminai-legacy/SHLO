@@ -14,6 +14,7 @@ const refreshTokenFindAndCount = require('../middleWare/refreshTokenFindAndCount
 const verifyUser = require('../middleWare/verifyUser');
 const checkCountRefreshToken = require('../middleWare/checkCountRefreshToken');
 const checkCardExists = require('../middleWare/checkCardExistsAndBalance');
+const preparingDataForFilter = require('../middleWare/preparingDataForFilter');
 const role = require('../middleWare/checkPermissions');
 
 var storage = multer.diskStorage({
@@ -44,7 +45,7 @@ router.post('/userEmail', userController.hasEmail);
 router.post('/createLinkApi', mailServiceController.createLink);
 router.get('/service/:api', mailServiceController.receiveApi);
 router.get('/getUserContests/:id', contestController.receiveContests);
-router.get('/contestFilter', contestController.receiveFilterContests);
+router.get('/contestFilter',preparingDataForFilter.prepare, contestController.receiveFilterContests);
 // router.get('/test', (req, res, next) => {
 //     const result = role.verifyPermissions({ownerId:4},CONTESTS,CHANGE,{role:ROLE_BUYER,id:5});
 //     res.send(result);

@@ -1,63 +1,65 @@
 const bcrypt = require('bcrypt');
-const  _ = require('lodash');
+const _ = require('lodash');
 const fs = require('fs');
-const { Contest,BankAccount,Entry } = require('../models/index');
-const  uniqid = require('uniqid');
+const {Contest, BankAccount, Entry} = require('../models/index');
+const uniqid = require('uniqid');
 const sequelize = require('sequelize');
 
 
-const pathsToFiles=async(files)=>{
-    try{const pathsForFiles=[];
-    files.map(async(file)=>{
-        const path = __dirname+'/../ContestUpload/'+uniqid()+'_'+file.originalname;
-        pathsForFiles.push(path);
-        await fs.writeFile(path, file.buffer,(e)=>{});
-    });
-    return pathsForFiles;}
-    catch (e) {
-    }
-};
-
-const preparingData=async(payload,pathsForFiles,id)=>{
-try{
-    const data ={userId:id};
-    const props = await Object.keys(payload);
-    for(let key in payload){
-        if(props.includes(key)){
-            data[key]=await JSON.parse(payload[key])
-        }
-    }
-    data['media']=pathsForFiles;
-    return data;}
-    catch (e) {
-    }
-
-};
-
-const deleteOldFiles=async(pathsForFiles)=>{
-  //  console.log('deleteOldFiles  pathsForFiles', pathsForFiles,typeof pathsForFiles);
-    const path = __dirname+'/../ContestUpload/'+'1567171192041_Screenshot_20190802_172055.png';
-    try{
-        pathsForFiles.forEach(function(item){
-                   fs.unlink(item,(e)=>{});
+const pathsToFiles = async (files) => {
+    try {
+        const pathsForFiles = [];
+        files.map(async (file) => {
+            const path = __dirname + '/../ContestUpload/' + uniqid() + '_' + file.originalname;
+            pathsForFiles.push(path);
+            await fs.writeFile(path, file.buffer, (e) => {
+            });
         });
-      }
-    catch (e) {
-        console.log(e,"ERROR WITH DELETE ERROR WITH DELETE ERROR WITH DELETE ERROR WITH DELETE");
+        return pathsForFiles;
+    } catch (e) {
+    }
+};
+
+const preparingData = async (payload, pathsForFiles, id) => {
+    try {
+        const data = {userId: id};
+        const props = await Object.keys(payload);
+        for (let key in payload) {
+            if (props.includes(key)) {
+                data[key] = await JSON.parse(payload[key])
+            }
+        }
+        data['media'] = pathsForFiles;
+        return data;
+    } catch (e) {
+    }
+
+};
+
+const deleteOldFiles = async (pathsForFiles) => {
+    //  console.log('deleteOldFiles  pathsForFiles', pathsForFiles,typeof pathsForFiles);
+    const path = __dirname + '/../ContestUpload/' + '1567171192041_Screenshot_20190802_172055.png';
+    try {
+        pathsForFiles.forEach(function (item) {
+            fs.unlink(item, (e) => {
+            });
+        });
+    } catch (e) {
+        console.log(e, "ERROR WITH DELETE ERROR WITH DELETE ERROR WITH DELETE ERROR WITH DELETE");
     }
 };
 
 module.exports.createContest = async (req, res, next) => {
-    const files=req.files;
+    const files = req.files;
     const payload = req.body;
     const id = req.params.id;
-    const {fileNames}=_.pick(payload,'fileNames');
+    const {fileNames} = _.pick(payload, 'fileNames');
     try {
-        const savedFiles=await pathsToFiles(files);
-        const data = await preparingData(payload,savedFiles,id);
+        const savedFiles = await pathsToFiles(files);
+        const data = await preparingData(payload, savedFiles, id);
         const createdContest = await Contest.create(data);
         res.send({
-            contest:createdContest.dataValues
+            contest: createdContest.dataValues
         });
     } catch (e) {
         console.log('createContest error');
@@ -67,18 +69,17 @@ module.exports.createContest = async (req, res, next) => {
 };
 
 module.exports.updateContest = async (req, res, next) => {
-    const files=req.files;
+    const files = req.files;
     const payload = req.body;
     const id = req.params.id;
 
 
-
     try {
-        const savedFiles=await pathsToFiles(files);
+        const savedFiles = await pathsToFiles(files);
         const media = await JSON.parse(payload['media']);
         await deleteOldFiles(media);
-        const data =await preparingData(payload,savedFiles,id);
-        const [,[updatedContest]] = await Contest.update(data, {returning: true,where: {id:data.id}});
+        const data = await preparingData(payload, savedFiles, id);
+        const [, [updatedContest]] = await Contest.update(data, {returning: true, where: {id: data.id}});
         res.send({
             contest: updatedContest.dataValues
         });
@@ -90,26 +91,26 @@ module.exports.updateContest = async (req, res, next) => {
 module.exports.payment = async (req, res, next) => {
     const payload = req.body;
     let result;
-   // console.log("SEND CREDIT CARD ******************************************",payload);
+    // console.log("SEND CREDIT CARD ******************************************",payload);
     try {
         const updatedUserBalance = await BankAccount.update(
-            {balance:sequelize.literal('balance  - '+payload.amountPayable)},
-            {returning: true,where: {number:payload.number}}
+            {balance: sequelize.literal('balance  - ' + payload.amountPayable)},
+            {returning: true, where: {number: payload.number}}
         );
         const updatedSiteBalance = await BankAccount.update(
-            {balance:sequelize.literal('balance  + '+payload.amountPayable)},
-            {returning: true,where: {number:'7777 7777 7777 7777'}}
+            {balance: sequelize.literal('balance  + ' + payload.amountPayable)},
+            {returning: true, where: {number: '7777 7777 7777 7777'}}
         );
-        if(updatedUserBalance && updatedSiteBalance){
+        if (updatedUserBalance && updatedSiteBalance) {
             await Contest.update(
-                {paid:true},
-                {returning: true,where: {id:payload.ids}}
+                {paid: true},
+                {returning: true, where: {id: payload.ids}}
             );
-        }else{
-            next({ status: 400, message: 'Transaction failed'});
+        } else {
+            next({status: 400, message: 'Transaction failed'});
         }
         res.send({
-            status:"Successful"
+            status: "Successful"
         });
     } catch (e) {
         next(e);
@@ -117,12 +118,12 @@ module.exports.payment = async (req, res, next) => {
 };
 
 module.exports.receiveContests = async (req, res, next) => {
-  //  console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
+    //  console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
     const id = req.params.id;
     try {
-       const result = await Contest.findAll({ where: {userId: id}});
+        const result = await Contest.findAll({where: {userId: id}});
         //console.log(result,"result result result result result result result result result result")
-       res.send(result)
+        res.send(result)
     } catch (e) {
         console.log(e);
         next(e);
@@ -130,91 +131,23 @@ module.exports.receiveContests = async (req, res, next) => {
 };
 
 module.exports.receiveFilterContests = async (req, res, next) => {
-    //  console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
-
-    const params = req.query;
-
-    console.log('req.query req.query req.query req.query req.query req.query ',req.query);
-
-    const findParams= {};
-   /* for(let key in params){
-        if(params.hasOwnProperty(key)){
-            switch (key) {
-                case 'id':
-                    findParams['id']=params['id'];
-                case 'Industries':if(params['Industries']!=='All_Industries'){findParams['typeOfIndustry']=[params['Industries'].replace(/and/g,'&').replace(/_/g,' ')];} continue;
-                case 'Categories':if(params['Categories']!=='All_Categories'){findParams['typeOfContest']=[params['Categories'].replace(/and/g,'&').replace(/_/g,' ')];} continue;
-                case 'Active': if(params['Active']==="true"){if(params['Closed']==="true"){delete findParams['hasWinner']}else{findParams['hasWinner']=false}} continue;
-                case 'Closed': if(params['Closed']==="true"){if(params['Active']==="true"){delete findParams['hasWinner']}else{findParams['hasWinner']=true}}
-            }
-        }
-    }*/
     try {
-        console.log("findParams",findParams);
-        if(_.isEmpty(findParams)){
-            const result = await Contest.findAll();
-            const cloneResult=_.cloneDeep(result);
-            const dataToReceive = cloneResult.map((item)=>{
-                return item['dataValues'];
-            });
-            console.log("result1",dataToReceive);
-            res.send({contests:dataToReceive})
-        }else{
-
-            // User.findAll({
-            //     attributes: ['User.*', 'Post.*', [sequelize.fn('COUNT', 'Post.id'), 'PostCount']],
-            //     include: [Post]
-            // }
-            const {query} =req;
-            const contestFilter = _.pick(query, ['typeOfName', 'targetCu'])
-
-            const result = await Contest.findAll({
-                //ttributes:[Entry.sequelize.fn('COUNT', Entry.sequelize.col('Entry.contestId'))],
-
-                attributes: {include:['"Contest".*',[sequelize.fn('count', sequelize.col('Entries.contestId')), 'counter']]},
-                include: [{ attributes: [], model: Entry }],
-                exclude:[],
-
-                //attributes: ["Challenge.*", [models.sequelize.fn('COUNT', models.sequelize.col('Ideas.idea_id')), 'IdeaCount']],
-                // include: [{
-                //     model: Entry,
-                //     as: 'Entries',
-                // }],
-               // include: [{model: Entry}],
-                where: findParams,
-                group: ['Contest.id']
-            });
-
-            // const result = await Contest.findAll({
-            //     attributes: ['Contest.*', 'Entry.*', [sequelize.fn('COUNT', 'Entry.contestId'), 'Entries']],
-            //     include: [Entry],
-            //     where: findParams,
-            // });
-            const cloneResult=_.cloneDeep(result);
-
-           /* const dataToReceive = await cloneResult.map(async(item)=>{
-                try{ const contest=item['dataValues'];
-                const entry = await Entry.count({
-                    where: {contestId: contest['id']}
-                });
-                console.log("entryentryentryentryentryentryentryentryentryentry",entry)
-                    contest['entries']= entry;
-                    console.log("contestcontestcontestcontestcontestcontestcontestcontest",contest);
-                    return contest;
+        const {contestFilter} = req;
+        const contests = await Contest.findAll({
+            attributes: {include: ['"Contest".*', [sequelize.fn('count', sequelize.col('Entries.contestId')), 'numberOfEntries']]},
+            include: [
+                {
+                    model: Entry,
+                    attributes: [],
                 }
-                   catch (e) {
-                    console.log(e)
-                }
-
-            });*/
-            console.log("result2",cloneResult[0]['dataValues']);
-            res.send({contests:cloneResult})
+            ],
+            where: contestFilter,
+            group: ['Contest.id']
+        });
+        if(contests){
+            res.send(contests)
         }
-
-
-
-
-
+        return next({status: 404, message: "not found"})
     } catch (e) {
         console.log(e);
         next(e);
@@ -222,19 +155,21 @@ module.exports.receiveFilterContests = async (req, res, next) => {
 };
 
 
-
 module.exports.deleteContest = async (req, res, next) => {
     //  console.log(req.params.email,"req.params.emailreq.params.emailreq.params.emailreq.params.email")
     const id = req.params.id;
-    const userId= req.body.userId;
+    const userId = req.body.userId;
     try {
-        const result = await Contest.find({ where: {id: id}});
-        if (result){
-            const smt = await Contest.destroy({returning: true,
+        const result = await Contest.find({where: {id: id}});
+        if (result) {
+            const smt = await Contest.destroy({
+                returning: true,
                 where: {id: id}
             });
             //console.log(smt);
-            if(smt===1){res.send(result)}
+            if (smt === 1) {
+                res.send(result)
+            }
         }
         //console.log(result,"result result result result result result result result result result")
         //res.send(result)
@@ -243,7 +178,6 @@ module.exports.deleteContest = async (req, res, next) => {
         next(e);
     }
 };
-
 
 
 //9494 9494 9494 9494
@@ -289,12 +223,6 @@ else{
 */
 
 
-
-
-
-
-
-
 ////    work
 
 
@@ -313,16 +241,6 @@ else{
 //     where: findParams,
 //     group: ['Contest.id']
 // });
-
-
-
-
-
-
-
-
-
-
 
 
 /*

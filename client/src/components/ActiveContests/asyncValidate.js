@@ -1,25 +1,23 @@
-import React from 'react';
-import connect from 'react-redux/es/connect/connect';
-import {
-    selectedContestType,
-} from "../../actions/actionCreator";
+const _ = require('lodash');
+const {FILTER_TAGS} = require('../../constants/consts');
 
-function dashboardBanner(props) {
-    console.log("hihih");
-    return (
-        <div>
+const prepareData = (data) => {
+    const dataToPrepare = _.cloneDeep(data);
+    if (!(dataToPrepare['Active'] === true && dataToPrepare['Closed'] === true)) {
 
-        </div>);
-}
+        if (dataToPrepare['Active'] === true) {
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.userReducers.user
-    };
+            dataToPrepare['hasWinner'] = dataToPrepare['Closed'] === true;
+
+        }
+    }
+    for (let key in dataToPrepare){
+        if(dataToPrepare.hasOwnProperty(key)){
+            if(FILTER_TAGS['label'].includes(key)){
+                dataToPrepare
+            }
+        }
+    }
+    return data
 };
-
-const mapDispatchToProps = (dispatch) => ({
-    selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
-});
-
-export default connect(mapStateToProps,mapDispatchToProps)(dashboardBanner);
+export default prepareData;
