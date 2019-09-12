@@ -1,16 +1,15 @@
 import React,{useState} from 'react';
 import style from './ActiveContestContent.module.scss';
-import FilerForm from "./FilterForm";
-import Content from '../../constants/formFilterContent';
-import ResultFilterContests from './ResultFilterContests';
-import {changeFilterTags} from "../../actions/actionCreator";
+import FilerForm from "./FilterForm/FilterForm";
+import Content from '../../../constants/formFilterContent';
+import ResultFilterContests from './ListOfReceivedContest/ResultFilterContests';
+import {changeFilterTags,sendFilterData} from "../../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
-import prepareData from "./asyncValidate";
-//import Filter from "./asyncValidate";
+import prepareData from "../dataPreparing";
 const _=require('lodash');
 const promises = () => new Promise(resolve => resolve());
 
-function ActiveContestContent(props) {
+const ActiveContestContent =(props)=> {
     const [formValues, setFormValues] = useState({});
     const reFilter = (values)=>{
         return promises().then(async () => {
@@ -25,9 +24,13 @@ function ActiveContestContent(props) {
                 // console.log(valuesClone,formValues);
 if(!_.isEqual(formValues, valuesClone)){
     setFormValues(valuesClone);
-    const data =prepareData(valuesClone);
-    console.log(data);
+
+
+    console.log(valuesClone);
     props.changeFilterTags(valuesClone);
+    const url = prepareData(valuesClone);
+    console.log(url);
+    props.sendFilterData(url);
 }
             } catch (e) {
                 console.log(e)
@@ -75,6 +78,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     changeFilterTags: (contestTypes) => dispatch(changeFilterTags(contestTypes)),
+    sendFilterData: (contestTypes) => dispatch(sendFilterData(contestTypes)),
+
 
 });
 

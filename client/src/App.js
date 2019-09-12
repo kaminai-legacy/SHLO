@@ -12,6 +12,7 @@ import history from './boot/browserHistory';
 import CheckUser from './components/HOC/checkUser';
 import {ToastContainer} from 'react-toastify';
 import NotFound from './pages/NotFound/notFound';
+import Contest from './pages/Contest/ContestPage';
 import MailService from './components/mailService/mailService';
 import  Form from './components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
 history.listen( _ => {
@@ -36,6 +37,9 @@ function App (){
             <Route path="/contest_creating_choose_type/" exact component={CreateContestChooseType} />
             <Route path="/dashboard/" exact component={Dashboard} />
             <Route path="/active_contests/" component={ActiveContests} />
+            <Route path="/contest/:id" exact component={(...props)=>{
+                       return<Contest id={props[0].match.params['id']}/>}
+                   }/>
             <Route path="/service/:api" exact component={(...props)=>{
                 return<MailService params={props[0].match.params['api']}/>
             }

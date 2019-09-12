@@ -40,7 +40,7 @@ class UserLoader extends Component {
 
 //createAction={this.props.checkEmail}
     render() {
-        console.log(this.props.mail);
+       // console.log(this.props.mail);
         //  const func=(this.props.mail.msg)?this.notify(this.props.mail.msg):{};
 
         return (

@@ -130,6 +130,30 @@ module.exports.receiveContests = async (req, res, next) => {
     }
 };
 
+module.exports.receiveContestById = async (req, res, next) => {
+    const {id} = req.params;
+    try {
+        const contest = await Contest.find({
+            attributes: {include: ['"Contest".*', [sequelize.fn('count', sequelize.col('Entries.contestId')), 'numberOfEntries']]},
+            include: [
+                {
+                    model: Entry,
+                    attributes: [],
+                }
+            ],
+            where: {id:id},
+            group: ['Contest.id'],
+        });
+        if(contest){
+            res.send(contest)
+        }
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }
+};
+
+
 module.exports.receiveFilterContests = async (req, res, next) => {
     try {
         const {contestFilter} = req;
@@ -142,12 +166,13 @@ module.exports.receiveFilterContests = async (req, res, next) => {
                 }
             ],
             where: contestFilter,
-            group: ['Contest.id']
+            group: ['Contest.id'],
+            order: [['updatedAt', 'ASC']]
         });
         if(contests){
             res.send(contests)
         }
-        return next({status: 404, message: "not found"})
+        //return next({status: 404, message: "not found"})
     } catch (e) {
         console.log(e);
         next(e);

@@ -10,6 +10,8 @@ import siteNavigationReducers from './siteNavigationReducers';
 import userContestsReducers from './userContestsReducers';
 import AppReducers from './AppReducers';
 import ActiveContestFilterReducer from './ActiveContestFilterReducer';
+import ContestReducer from './ContestReducer';
+
 
 
 
@@ -26,6 +28,7 @@ const appReducer = combineReducers({
     userContestsReducers,
     AppReducers,
     ActiveContestFilterReducer,
+    ContestReducer,
    // manageElementsReducers,
     form: formReducer,
 });

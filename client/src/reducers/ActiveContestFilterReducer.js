@@ -9,7 +9,8 @@ const initialState = {
         'Categories':"All Categories",
         'Industries':"All Industries",
     },
-    confirmedContests:[],
+    confirmedContests:null,
+    isFetching:false
 };
 
 export default function (state = initialState, action) {
@@ -27,7 +28,14 @@ export default function (state = initialState, action) {
             console.log(action.contests);
             return {
                 ...state,
-                confirmedContests:action.contests
+                confirmedContests:action.contests,
+                isFetching:false
+            };
+        }
+        case ACTION.FILTERED_CONTEST_REQUEST: {
+            return {
+                ...state,
+                isFetching:true
             };
         }
         default: {

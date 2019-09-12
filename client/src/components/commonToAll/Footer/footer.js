@@ -62,7 +62,7 @@ const  footer=() =>{
   const listOneToRender=listsToRenderFirstLine(listFirst);
   const listSecondToRender=listsToRenderSecondLine(listSecond);
   return (
-    <div>
+    <div className={style.mainFooter}>
        <div className={style.longFooter}>
        <div className={style.container}>
         <div className={`${style.firstList}`}>

@@ -60,7 +60,7 @@ ins {
   text-decoration: none;
 }
 #root{
-  max-width: calc(100vw - (100vw - 100%));
+
   margin: 0;
   min-height:100%;
 }

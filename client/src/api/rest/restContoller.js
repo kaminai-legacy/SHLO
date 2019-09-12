@@ -17,23 +17,7 @@ export const sendApi = (dataToSend) => axios.get(`${restURL}/service/${dataToSen
 export const createApiLink = (dataToSend) => axios.post(`${restURL}/createLinkApi/`,dataToSend);
 export const changePassword = (dataToSend) => axios.put(`${restURL}/changePassword/`,dataToSend);
 export const getUserContests = (dataToSend) => axios.get(`${restURL}/getUserContests/${dataToSend}`);
-export const contestFilter = (dataToSend) => {
-    let url=`${restURL}/contestFilter/?`;
-    for (let key in dataToSend){
-        if(dataToSend.hasOwnProperty(key)){
-            console.log(dataToSend[key]);
-            if(url===`${restURL}/contestFilter/?`){
-                url=`${url}${key}=${dataToSend[key]}`
-            }else{
-                url=`${url}&${key}=${dataToSend[key]}`
-            }
-        }}
-    //history.replace(`${history.location.pathname}?${url.split('?')[1]}`);
-    //console.log(url);
+export const contestFilter = ({url}) => {
+    history.replace(`${history.location.pathname}?${url.split('?')[1]}`);
     return axios.get(url);};
-//export const checkEmail = (dataToSend) =>console.log(dataToSend);
-
-//export const sendContestPayment = (dataToSend) => console.log(dataToSend);
-
-
-//replace
+export const getContestById = (id) => axios.get(`${restURL}/contest/${id}`);

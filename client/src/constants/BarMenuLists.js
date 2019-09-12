@@ -7,7 +7,7 @@ const PHONE_NUMBER = {
 
 const ACTIVE_CONTESTS = {
     name:"Active Contests",
-    link:"/",
+    link:"/active_contests",
     list:[
         {
             name:"All",

@@ -1,5 +1,5 @@
-let nodemailer = require('nodemailer');
-let transporter = nodemailer.createTransport({
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'squadhelpservice@gmail.com',

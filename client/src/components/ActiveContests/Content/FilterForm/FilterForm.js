@@ -3,7 +3,7 @@ import {Field, reduxForm, formValueSelector,getFormValues,} from 'redux-form';
 import 'react-widgets/dist/css/react-widgets.css';
 import style from './FilterForm.module.scss';
 import FormBlock from './FormBlock';
-import Content from '../../constants/formFilterContent';
+import Content from '../../../../constants/formFilterContent';
 import connect from "react-redux/es/connect/connect";
 
 const promises = () => new Promise(resolve => resolve());

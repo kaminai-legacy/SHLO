@@ -186,10 +186,22 @@ export const changeFilterTags = (dataToSend)=>{
         dataToSend
     })};
 
+export const sendFilterData = (dataToSend)=>{
+    console.log("sendFilterData",dataToSend);
+    return ({
+        type: ACTION.SEND_FILTER_DATA,
+        dataToSend
+    })};
+
 export const getContestByFilter = ()=>{
-    console.log("changeFilterTags",);
+    console.log("getContestByFilter",);
     return ({
         type: ACTION.GET_CONTESTS_BY_STARTER_FILTER
+    })};
+export const getContestById = (id)=>{
+    return ({
+        type: ACTION.CONTESTS_BY_ID_REQUEST,
+        id
     })};
 
 //export const loadInitialValue = data => ({ type: ACTION.LOAD_INITIAL_VALUES, data });

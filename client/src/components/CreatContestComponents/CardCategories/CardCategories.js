@@ -18,21 +18,18 @@ function CardCategories(props) {
 
 //onClick={()=>{props.click(props.contestType);props.alsoClick(props.currentStage,null);window.scrollTo(0, 0);}}
     return (
-        <Link to="/contest_creating/" >
-        <div className={style.contestButton} onClick={func}>
-            <div className={style.preCardCategories} >
 
-                <div className={style.cardCategories} style={{backgroundColor: props.styles}}>
+                <div className={style.preCardCategories} >
+                    <Link to="/contest_creating/" className={style.cardCategories} style={{backgroundColor: props.styles}} onClick={func}>
                     <div className={style.flexImg}>
                         {IMAGES}
                     </div>
                     <h5>{props.name}</h5>
                     <hr/>
                     <p>{props.text}</p>
+                    </Link>
                 </div>
-            </div>
-        </div>
-        </Link>
+
     );
 }
 /*

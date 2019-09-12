@@ -16,6 +16,9 @@
  align-items: $property3;
 }
 
+.mainFooter{
+  width: calc(100vw - (100vw - 100%));
+}
 
 .longFooter{
   box-sizing:border-box;

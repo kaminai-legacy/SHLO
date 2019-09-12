@@ -4,16 +4,22 @@ import style from './ActiveContests.module.scss';
 import Header from "../../components/commonToAll/Header/Header";
 import Footer from '../../components/commonToAll/Footer/footer';
 import HeaderBottom from "../../components/commonToAll/HeaderBottom/HeaderBottom";
-import ActiveContestContent from "../../components/ActiveContests/ActiveContestContent";
+import ActiveContestContent from "../../components/ActiveContests/Content/ActiveContestContent";
 import connect from "react-redux/es/connect/connect";
 import {getContestByFilter} from "../../actions/actionCreator";
+const _=require('lodash');
 
 function activeContests(props) {
     useEffect(()=>{
-        props.getContestByFilter();
+        console.log(props.filter)
+        if((props.filter.confirmedContests===null) && (props.filter.isFetching===false)){
+
+            console.log("STARTED VALUE   STARTED VALUE   STARTED VALUE   STARTED VALUE   STARTED VALUE   STARTED VALUE   ")
+
+            props.getContestByFilter();}
     });
     return (
-        <div className={style.mainDashboard}>
+        <div>
             <Header/>
             <HeaderBottom/>
             <ActiveContestContent/>
@@ -21,8 +27,7 @@ function activeContests(props) {
         </div>);
 }
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user,
-    isFetching: state.userReducers.isFetching,
+    filter: state.ActiveContestFilterReducer
 });
 
 const mapDispatchToProps = (dispatch) => ({

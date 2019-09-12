@@ -51,19 +51,29 @@
     }
 
     .flexTwoColumn{
-      @include flexContainer3(row,center,flex-start);
-
+      @include flexContainer3(column,center,flex-start);
+      @media (min-width: 992px){
+        @include flexContainer3(row,center,flex-start);
+      }
       .formFilter{
 
         box-sizing: border-box;
-        width:25%;
+        width:100%;
+        margin-bottom:20px;
+        @media (min-width: 992px){
+          width:25%;
+        }
         padding:0 15px;
     //    background: red;
       }
       .resultFilter{
         box-sizing: border-box;
-        width:75%;
+        width:100%;
+        @media (min-width: 992px){
+          width:75%;
+        }
         padding:0 15px;
+        margin-bottom:20px;
       }
 
     }

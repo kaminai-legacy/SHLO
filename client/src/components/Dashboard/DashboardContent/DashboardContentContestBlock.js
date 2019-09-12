@@ -3,21 +3,12 @@ import style from './DashboardContent.module.scss';
 import {Link} from "react-router-dom";
 import {contestProgressing, selectedContestType,createOrUpdateTempContest,deleteContest} from "../../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
-const moment = require('moment');
+import timeAgo from '../../../utils/timeAgo'
 const _ = require("lodash");
 
 function contestBlock(props) {
     const updatedAt=_.cloneDeep(props.contest.updatedAt);
-    const YYYY=parseInt(updatedAt.slice(0,4));
-    const MM=parseInt(updatedAt.slice(5,7))-1;
-    const DD=parseInt(updatedAt.slice(8,10));
-    const HH=parseInt(updatedAt.slice(11,13));
-    const mm=parseInt(updatedAt.slice(14,16));
-    const date = new Date(Date.now());
-    const userTimezoneOffset = date.getTimezoneOffset();
-    const DateNow=moment().set({'minute':userTimezoneOffset, 'second': 0, 'millisecond': 0});
-    const updateDate=moment().set({'year': YYYY, 'month': MM, 'date': DD,'hour': HH,'minute': mm, 'second': 0, 'millisecond': 0});
-    const duration = moment.duration(moment(updateDate).diff(moment(DateNow)));
+    const duration = timeAgo(updatedAt);
     return (<div className={style.contestInDraft}>
             <div className={style.contestInDraftContainer}>
                 <div className={style.contestInDraftContainerInside}>
