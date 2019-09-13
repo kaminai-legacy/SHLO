@@ -2,10 +2,32 @@ import React,{useState} from 'react';
 import style from './Contest.module.scss';
 import {NO_NEEDED_FIELDS} from '../../constants/consts';
 import connect from "react-redux/es/connect/connect";
-import timeAgo from '../../utils/timeAgo'
+import timeAgo from '../../utils/timeAgo';
+import FormForEntry from "./FormForEntry/FormForEntry";
+import check from '../../utils/checkFile(s)Size';
 const _= require('lodash');
 
+
 const contest =(props)=> {
+    const submit = (values) =>{
+
+        const errors={};
+        console.log("isEmpty",!_.isEmpty(values['logoEntry']),values['logoEntry']);
+
+        if(contest["typeOfContest"]==="LOGO"){if (_.isEmpty(values['logoEntry'])){
+            console.log("isEmpty");
+            errors['logoEntry']="required";
+        }else{
+            const resOfChecking = check(values['logoEntry'],50);
+            console.log("logoEntry");
+            if(resOfChecking){
+                errors['logoEntry']=resOfChecking;
+            }
+        }}
+        console.log(values,errors);
+    };
+    console.log(check);
+    const [entryView,setEntryView]=useState(false);
     const {contest}=props.contest;
     const fieldsToRender=[];
     let duration;
@@ -16,7 +38,7 @@ const contest =(props)=> {
         for (let key in fieldsToShow){
             if(fieldsToShow.hasOwnProperty(key)){
                 if(fieldsToShow[key]){
-                    fieldsToRender.push( <div className={style.field}>
+                    fieldsToRender.push( <div key={key} className={style.field}>
                         <div className={style.title}>
                             {key}
                         </div>
@@ -31,6 +53,12 @@ const contest =(props)=> {
 
     //const [formValues, setFormValues] = useState({});
     if(props.contest){console.log(props.contest,typeof props.contest)}
+    let button=null;
+    if(props.user){
+        if(props.user.role==="Creative"){
+            button="Start Entry";
+        }
+    }
     return (<>
        {(contest)? <div className={style.ContestMain}>
             <div className={style.banner}>
@@ -43,9 +71,17 @@ const contest =(props)=> {
             </div>
             <div className={style.brief}>
                 <div className={`${style.container} ${style.flexRowBrief}`}>
-                    <div className={`${style.container} ${style.info}`}>
+                    <div className={`${style.container} ${style.contestContain}`}>
+                        <div className={`${style.container} ${style.info}`}>
                         {fieldsToRender}
+                        {/*<div>{button}</div>*/}
                     </div>
+                    <div className={style.startEntryBlock}>
+                        <div className={style.startEntry} onClick={()=>setEntryView(true)}>{button}</div>
+                    </div>
+                        {entryView && <FormForEntry type={contest["typeOfContest"]} onSubmit={submit}/>}
+                    </div>
+
                     <div className={`${style.container} ${style.status}`} >
                         <div className={style.block} >
 
@@ -63,13 +99,15 @@ const contest =(props)=> {
                     </div>
                 </div>
             </div>
+
         </div>:null}</>
     );
 };
 
 const mapStateToProps = (state) => {
     return {
-        contest: state.ContestReducer
+        contest: state.ContestReducer,
+        user: state.userReducers.user
     };
 };
 

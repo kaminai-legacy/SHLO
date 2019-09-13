@@ -5,19 +5,45 @@ const {FILTER_TAGS} = require('../../constants/consts');
 
 const prepareData = (data) => {
     const dataToPrepare = _.cloneDeep(data);
-    if (!(dataToPrepare['Active'] === true && dataToPrepare['Closed'] === true)) {
+    console.log(data);
+    dataToPrepare['status']=[];
+    dataToPrepare['price']=[];
+    if (dataToPrepare['$33-$99'] === true) {
 
-        if (dataToPrepare['Active'] === true) {
+        dataToPrepare['price'].push('$33-$99');
 
-            dataToPrepare['hasWinner'] = false;
-
-        }
-        if (dataToPrepare['Closed'] === true) {
-
-            dataToPrepare['hasWinner'] = true;
-
-        }
     }
+    if (dataToPrepare['$100-$199'] === true) {
+
+        dataToPrepare['price'].push('$100-$199');
+
+    }
+    if (dataToPrepare['>$200'] === true) {
+
+        dataToPrepare['price'].push('>$200');
+
+    }
+
+    if (dataToPrepare['Active'] === true) {
+
+        dataToPrepare['status'].push('Active');
+
+    }
+    if (dataToPrepare['Closed'] === true) {
+
+        dataToPrepare['status'].push('Closed');
+
+    }
+    if (dataToPrepare['Pending'] === true) {
+
+        dataToPrepare['status'].push('Pending');
+
+    }
+
+    if(_.isEmpty( dataToPrepare['status'])){delete  dataToPrepare['status']}
+    if(_.isEmpty( dataToPrepare['price'])){delete  dataToPrepare['price']}
+
+    console.log(dataToPrepare);
     for (let key in dataToPrepare) {
         if (dataToPrepare.hasOwnProperty(key)) {
             if (FILTER_TAGS['label'].includes(key)) {
@@ -44,6 +70,7 @@ const prepareData = (data) => {
         }
     }
     const dataOnServer = _.cloneDeep(contestFilter);
+    console.log(contestFilter);
     for (let key in dataOnServer) {
         if (dataOnServer.hasOwnProperty(key)) {
 
@@ -54,7 +81,7 @@ const prepareData = (data) => {
             }
         }
     }
-
+    console.log(dataOnServer);
     if (dataOnServer['typeOfIndustry'] === "All_Industries") {
         delete dataOnServer['typeOfIndustry']
     }

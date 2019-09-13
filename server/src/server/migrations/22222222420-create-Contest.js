@@ -71,6 +71,27 @@ module.exports = {
             defaultValue:null,
         },
         preferenceForTagline: {
+/*
+
+    {
+          balance:150,
+          cvc:cvc,
+          number:number,
+          expiry:expiry,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+      }
+
+      {
+          balance:10000,
+          cvc:'777',
+          number:'7777 7777 7777 7777',
+          expiry:'77/77',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+      }
+
+ */
             type: Sequelize.ARRAY(Sequelize.TEXT),
             allowNull: true,
             defaultValue:null,
@@ -85,16 +106,23 @@ module.exports = {
             type: Sequelize.INTEGER,
             defaultValue:33,
         },
-        paid: {
-            type: Sequelize.BOOLEAN,
+        // paid: {
+        //     type: Sequelize.BOOLEAN,
+        //     allowNull: false,
+        //     defaultValue:false,
+        // },
+        // hasWinner: {
+        //     type: Sequelize.BOOLEAN,
+        //     allowNull: false,
+        //     defaultValue:false,
+        // },
+
+        status: {
+            type: Sequelize.STRING,
             allowNull: false,
-            defaultValue:false,
+            defaultValue:'Not Paid',
         },
-        hasWinner: {
-            type: Sequelize.BOOLEAN,
-            allowNull: false,
-            defaultValue:false,
-        },
+
         winner: {
             type: Sequelize.INTEGER,
             allowNull: true,

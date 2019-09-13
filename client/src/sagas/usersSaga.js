@@ -59,7 +59,7 @@ export function* signUpSaga({dataToSend}) {
         // history.push('/login');
         yield call(history.push(dataToSend['pageToRedirect']));
        // history.goBack();
-        // yield call(history.push('/'));
+        history.push('/');
     } catch (e) {
         yield put({type: ACTION.USER_ERROR, error: e});
     }

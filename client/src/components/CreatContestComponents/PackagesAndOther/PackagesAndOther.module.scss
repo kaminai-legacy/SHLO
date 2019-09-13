@@ -33,13 +33,15 @@
 }
 
 .flexCategoriesRow {
+  margin:0 auto ;
+  max-width: 1200px;
   @media (max-width: 768px) {
     max-width: 100%;
     display: inline-block;
     text-align: center;
     width: 100%;
     a{
-      display: inline-block;
+      //display: inline-block;
       //max-width: 25%;
       //@media (max-width: 768px) {
       //  max-width: 50%;

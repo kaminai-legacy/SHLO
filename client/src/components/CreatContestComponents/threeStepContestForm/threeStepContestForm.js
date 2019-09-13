@@ -15,6 +15,7 @@ import {Redirect} from 'react-router';
 import {toast} from "react-toastify";
 import {LOADING_ITEMS} from "../../../constants/consts";
 const  _ = require('lodash');
+const  check = require('../../../utils/checkFile(s)Size');
 const customStyles = {
     content : {
         zIndex:20,
@@ -32,11 +33,12 @@ function contestForm(props) {
         const errors = {};
         console.log("CARD SEND",values.number.length,values.expiry);
         if (!values.number){errors.number="Required"}else
-        if (values.number.length<19){errors.number="Нou didn't enter all numbers"}
+        if (values.number.length<16){errors.number="You didn't enter all numbers"}
         if (!values.expiry){errors.expiry="Required"}else
-        if (values.expiry.length<5){errors.expiry="Нou didn't enter all numbers"}
+        if (values.expiry.length<5){errors.expiry="You didn't enter all numbers"}
         if (!values.cvc){errors.cvc="Required"}else
-        if (values.cvc.length<3){errors.cvc="Нou didn't enter all numbers"}
+        if (values.cvc.length<3){errors.cvc="You didn't enter all numbers"}
+        console.log("errors",errors);
         if(_.isEmpty(errors)){
             console.log("Let in empty errors");
             let sum=0;
@@ -55,18 +57,9 @@ function contestForm(props) {
     const funcSubmit = (pageForm) =>{return (values) => {
         const errors = {};//FIRST_PAGE
         if (values['uploadFile']||(!_.isEmpty(values['uploadFile']))){
-            console.log('uploadFile',values);
-            const files=values['uploadFile'];
-            let size=0;
-            for(let key in files){
-                if(files.hasOwnProperty(key)){
-                    size+=files[key]["size"];
-                }
-            }
-            if ((size/1048576)>100){
-                console.log("too Big");
-                errors['uploadFile']='The current files size is more than 100mb, please use smaller files.';
-                console.log(errors);
+            const resOfChecking = check(values['uploadFile'],100);
+            if(resOfChecking){
+                errors['uploadFile']=resOfChecking;
             }
         }
         Pages[pageForm].required.map((key)=>{

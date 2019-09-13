@@ -61,6 +61,39 @@ const FILTERS=[
 				component:"renderFieldCheckbox",
 				label:"Closed",
 			},
+
+			{
+				type:"checkbox",
+				name:"Pending",
+				component:"renderFieldCheckbox",
+				label:"Pending",
+			},
+		]
+	},
+	{
+		title:'By Award Amount',
+		fields:[
+
+			{
+				type:"checkbox",
+				name:"$33-$99",
+				component:"renderFieldCheckbox",
+				label:"$33 - $99"
+			},
+
+			{
+				type:"checkbox",
+				name:"$100-$199",
+				component:"renderFieldCheckbox",
+				label:"$100 - $199",
+			},
+
+			{
+				type:"checkbox",
+				name:">$200",
+				component:"renderFieldCheckbox",
+				label:"> $200",
+			},
 		]
 	},
 ];

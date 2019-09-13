@@ -42,7 +42,7 @@ const customStyles = {
 
 
 const renderFieldSelect = ({input, placeholder, label, type, options, isMulti, defaultValue, meta: {touched, error, active}}) => {
-    const color = active ? "#28d2d0" : "#d0d0d0";
+    const color = active ? "#2f8dff" : "#d0d0d0";
     return <div className={style.renderField}>
         <label>{label}</label>
         <div>
@@ -76,7 +76,7 @@ const renderField = ({input, placeholder, label,title ,type, meta, meta: {touche
 
 const renderFieldCheckbox = ({input, placeholder, label, type, meta, meta: {touched, error, active}}) => {
 
-    const color = active ? "#28d2d0" : "#d0d0d0";
+    const color = active ? "#2f8dff" : "#d0d0d0";
     return <div className={style.renderField}>
 
         <div className={style.preForInputCheckBox} style={{borderColor: color}}>

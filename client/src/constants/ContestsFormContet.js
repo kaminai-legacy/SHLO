@@ -151,7 +151,8 @@ const LOGO={
             type:"file",
             name:"uploadFile",
             component:"renderFileInput",
-            label:"Do you have any documents that might be helpful (Optional)?"
+            label:"Do you have any documents that might be helpful (Optional)?",
+            multiple:true
         },
 
     ],
@@ -212,7 +213,8 @@ const NAME={
             type:"file",
             name:"uploadFile",
             component:"renderFileInput",
-            label:"Do you have any documents that might be helpful (Optional)?"
+            label:"Do you have any documents that might be helpful (Optional)?",
+            multiple:true
         },
     ],
     required:['titleOfContest','typeOfName','typeOfIndustry','whatVentureDoes',"targetCustomers"]
@@ -270,7 +272,8 @@ const TAGLINE_OR_SLOGAN={
             type:"file",
             name:"uploadFile",
             component:"renderFileInput",
-            label:"Do you have any documents that might be helpful (Optional)?"
+            label:"Do you have any documents that might be helpful (Optional)?",
+            multiple:true
         },
 
     ],

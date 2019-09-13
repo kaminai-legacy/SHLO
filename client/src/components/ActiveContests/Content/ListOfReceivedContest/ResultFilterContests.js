@@ -20,6 +20,12 @@ let resultFilterContests = props => {
 
                         {(props.filter.confirmedContests) && props.filter.confirmedContests.map((contest,id)=>{
                             const duration=timeAgo(contest.updatedAt);
+                            let color;
+                            switch (contest['status']){
+                                case "Active":{color='green'; break;}
+                                case "Closed":{color='red'; break;}
+                                case "Pending":{color='yellow'; break;}
+                            }
                             return  <div key={id} className={style.contest}>
                                 <div className={style.flexRow}>
                                     <div className={style.text}>
@@ -35,18 +41,20 @@ let resultFilterContests = props => {
                                             <div>preferences : {contest.visualBrandStyle || contest.preferenceForName || contest.preferenceForTagline}   </div>
                                                 <div> target customers : {contest.targetCustomers}   </div>
                                         </div>
-                                        <div className={style.raiting}>
+                                        <div className={style.rating}>
                                             <i className="far fa-star"/>
                                             <i className="far fa-star"/>
                                             <i className="far fa-star"/>
                                             <i className="far fa-star"/>
-                                            <i className="far fa-star"/>&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;
-                                            <i className="far fa-gem"/> {contest.price}
+                                            <i className="far fa-star"/>&nbsp;&nbsp;&nbsp;
+                                           Guaranteed prize &nbsp;&nbsp;
+                                            <i className={`fas fa-check-circle ${style.prize}`}/> &nbsp;&nbsp;${contest.price}
                                         </div>
                                     </div>
                                     <div className={style.entries}>
                                         <div><i className="fas fa-users"/> {contest['numberOfEntries']}</div>
                                         <span>Entries</span>
+                                        <span style={{color:color}}>{contest['status']}</span>
                                     </div>
                                 </div>
                             </div>

@@ -4,7 +4,7 @@ const fs = require('fs');
 const {Contest, BankAccount, Entry} = require('../models/index');
 const uniqid = require('uniqid');
 const sequelize = require('sequelize');
-
+const Op = sequelize.Op;
 
 const pathsToFiles = async (files) => {
     try {
@@ -91,7 +91,7 @@ module.exports.updateContest = async (req, res, next) => {
 module.exports.payment = async (req, res, next) => {
     const payload = req.body;
     let result;
-    // console.log("SEND CREDIT CARD ******************************************",payload);
+     console.log("SEND CREDIT CARD ******************************************",payload);
     try {
         const updatedUserBalance = await BankAccount.update(
             {balance: sequelize.literal('balance  - ' + payload.amountPayable)},
@@ -103,7 +103,7 @@ module.exports.payment = async (req, res, next) => {
         );
         if (updatedUserBalance && updatedSiteBalance) {
             await Contest.update(
-                {paid: true},
+                {status: 'Active'},
                 {returning: true, where: {id: payload.ids}}
             );
         } else {
@@ -157,6 +157,7 @@ module.exports.receiveContestById = async (req, res, next) => {
 module.exports.receiveFilterContests = async (req, res, next) => {
     try {
         const {contestFilter} = req;
+        console.log(contestFilter);
         const contests = await Contest.findAll({
             attributes: {include: ['"Contest".*', [sequelize.fn('count', sequelize.col('Entries.contestId')), 'numberOfEntries']]},
             include: [

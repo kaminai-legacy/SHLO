@@ -2,8 +2,8 @@ const USER_KEY = "USER";
 const TOKENS_KEY = "TOKENS";
 const FILTER_TAGS = {
     originalName: {Industries: 'typeOfIndustry', Categories: 'typeOfContest'},
-    label: ['Industries', 'Categories'],
-    toSend: ['typeOfIndustry', 'id', 'typeOfContest', 'hasWinner'],
+    label: ['Industries', 'Categories',],
+    toSend: ['typeOfIndustry', 'id', 'typeOfContest', 'status','price'],
         categoriesAssociation: {
         'Naming only': "NAME",
         'Logo only': "LOGO",
@@ -12,7 +12,7 @@ const FILTER_TAGS = {
 };
 
 
-const NO_NEEDED_FIELDS = ['createdAt','updatedAt','hasWinner','id','media','numberOfEntries','paid','price','userId','winner','titleOfContest'];
+const NO_NEEDED_FIELDS = ['createdAt','updatedAt','hasWinner','id','media','numberOfEntries','status','price','userId','winner','titleOfContest'];
 const LOADING_ITEMS = ["a Company", "a Brand", "a Website", "a Service", "a Book", "a Business", "an App", "a Product", "a Startup"];
 const TEXT_PROGRESSING = {
     START: "Select Contest Type",

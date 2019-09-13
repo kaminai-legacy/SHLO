@@ -79,9 +79,13 @@
             word-break: break-all;
           }
 
-          .raiting{
+          .rating{
             color: #465a89;
             font-size: 13px;
+
+            .prize{
+              color:green;
+            }
           }
 
 

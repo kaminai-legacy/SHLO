@@ -23,7 +23,7 @@ const customStyles = {
         ...base,
         minHeight: "40px",
         border: "2px solid #d0d0d0",
-        borderColor: state.isActive ? "#28d2d0" : "#d0d0d0",
+        borderColor: state.isActive ? "#2f8dff" : "#d0d0d0",
         boxShadow: "none",
         backgroundColor: "white",
     }),
@@ -70,7 +70,7 @@ const customStyles = {
                     onChange={adaptFileEventToValue(onChange)}
                     onBlur={adaptFileEventToValue(onBlur)}
                    type="file"
-                   multiple
+                   multiple={props.multiple}
                    value={inputProps.value}
                    {...props.input}
                    {...props}
@@ -82,7 +82,7 @@ const customStyles = {
 
 const renderFieldSelect = ({input, placeholder, label, type, options, isMulti, defaultValue, meta: {touched, error, active}}) => {
     //console.log(input);
-    const color = active ? "#28d2d0" : "#d0d0d0";
+    const color = active ? "#2f8dff" : "#d0d0d0";
     return <div className={style.renderFieldForSelect}>
         <label className={style.forLabel}>{label}</label>
         <div className={style.forSelect}>
@@ -105,7 +105,7 @@ const renderFieldSelect = ({input, placeholder, label, type, options, isMulti, d
 
 const renderField = ({input, placeholder, label, type, meta, meta: {touched, error, active}}) => {
 
-    const color = active ? "#28d2d0" : "#d0d0d0";
+    const color = active ? "#2f8dff" : "#d0d0d0";
     // console.log(color,error,meta);
     return <div className={style.renderField}>
         <label className={style.forLabel}>{label}</label>
@@ -129,7 +129,6 @@ const renderMultiselect = ({input, data, valueField, options, textField, label, 
         <label className={style.forLabel}>{label}</label>
         <Multiselect
             {...input}
-
             options={options}
             placeholder={placeholder}
             onBlur={() => input.onBlur()}

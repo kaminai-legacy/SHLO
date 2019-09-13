@@ -56,7 +56,7 @@ export function* sendContest({dataToSend,id}) {
 
     if(dataToSend.id) {
         console.log("на UPDATE");
-        const preDataToSend=_.omit(dataToSend,['paid','price','fileNames']);
+        const preDataToSend=_.omit(dataToSend,['status','price','fileNames']);
         let FinalDataToSend = preparingDataToSend(preDataToSend);
         console.log("на UPDATE с файлами ",FinalDataToSend);
         if(dataToSend['fileNames']){
@@ -68,14 +68,14 @@ export function* sendContest({dataToSend,id}) {
         console.log("на UPDATE без файлами ",FinalDataToSend);
         const {data} = yield updateContest(FinalDataToSend,id);
         console.log(data,"updateContest");
-        const newProps=_.pick(data.contest,['paid','id','price','media']);
+        const newProps=_.pick(data.contest,['status','id','price','media']);
         yield put({type: ACTION.TEMP_CONTEST, data: {...dataToSend,...newProps}});
         yield put({type: ACTION.CHANGE_APP_STATE,data:{'userContests': true}})
     }else{
         console.log("на CREATE");
         let FinalDataToSend = preparingDataToSend(dataToSend);
         const {data} = yield createContest(FinalDataToSend,id);
-        const newProps=_.pick(data.contest,['paid','id','price','media']);
+        const newProps=_.pick(data.contest,['status','id','price','media']);
         yield put({type: ACTION.TEMP_CONTEST, data: {...dataToSend,...newProps}});
         yield put({type: ACTION.CHANGE_APP_STATE,data:{'userContests': true}})
     }
@@ -96,11 +96,8 @@ export function* receiveUserContests({dataToSend}) {
   //  console.log(data);
     let numberInDraft=0,numberInLaunch=0,InDraft=[],InLaunch=[],latestNotPaymentContest='0',latestContest=0;
     data.map((item) => {
-    //    console.log(item,item['paid']);
-        if (item['paid']) {
-            numberInLaunch++;
-            InLaunch.push(item);
-        } else {
+        if (item['status']==='Not Paid')
+        {
             if(item['updatedAt']>latestNotPaymentContest){
                 latestNotPaymentContest=item['updatedAt'];
                 latestContest=item
@@ -108,6 +105,11 @@ export function* receiveUserContests({dataToSend}) {
             numberInDraft++;
             InDraft.push(item);
         }  //console.log(item,numberInLaunch,numberInDraft)
+
+        else {
+            numberInLaunch++;
+            InLaunch.push(item);
+        }
     });
     yield put({type: ACTION.SET_USER_CONTESTS, data,numberInLaunch:numberInLaunch,numberInDraft:numberInDraft,InLaunch:InLaunch,InDraft:InDraft,latestContest:latestContest});
 }

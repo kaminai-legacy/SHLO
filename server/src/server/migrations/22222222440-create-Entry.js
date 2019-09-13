@@ -22,12 +22,7 @@ module.exports = {
             allowNull: true,
             defaultValue:null,
         },
-        prospectiveName: {
-            type: Sequelize.STRING,
-            allowNull: true,
-            defaultValue:null,
-        },
-        prospectiveSlogan: {
+        prospectiveText: {
             type: Sequelize.STRING,
             allowNull: true,
             defaultValue:null,

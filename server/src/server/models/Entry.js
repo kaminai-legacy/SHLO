@@ -22,12 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       defaultValue:null,
     },
-    prospectiveName: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      defaultValue:null,
-    },
-    prospectiveSlogan: {
+    prospectiveText: {
       type: DataTypes.STRING,
       allowNull: true,
       defaultValue:null,

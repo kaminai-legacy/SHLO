@@ -16,7 +16,8 @@ function contestBlock(props) {
                         <div className={style.contestInDraftContainerRow}>
                             <div className={style.contestInDraftContainerRowInsideColumn}>
                                 <div className={style.firstRow}>
-                                    <Link to=""> #{props.contest.id} - {props.contest.titleOfContest}</Link>
+                                    {/*<Link to={`/contest/${contest.id}`}>{contest.titleOfContest}</Link>*/}
+                                    <Link to={`/contest/${props.contest.id}`}> #{props.contest.id} - {props.contest.titleOfContest}</Link>
                                 </div>
                                 <div className={style.secondRow}>
                                     <Link to=""> {(props.contest.typeOfContest==="TAGLINE_OR_SLOGAN")?"Branding & identity":"Naming"} / {props.contest.typeOfContest.replace(/_/g, ' ')}</Link>
@@ -24,7 +25,7 @@ function contestBlock(props) {
                                 </div>
                             </div>
                             <div className={style.buttonPosition}>
-                                {(!props.contest.paid)&&<Link to="/contest_creating/" onClick={()=>{props.selectedContestType([props.contest.typeOfContest]);props.contestProgressing(2,props.contest.typeOfContest);
+                                {(props.contest['status']==='Not Paid')&&<Link to="/contest_creating/" onClick={()=>{props.selectedContestType([props.contest.typeOfContest]);props.contestProgressing(2,props.contest.typeOfContest);
                                     props.createOrUpdateTempContest(props.contest)}}>
                                     <div className={style.button}>
                                         <i className="fas fa-pen-square"/> Continue Editing
@@ -52,11 +53,11 @@ function contestBlock(props) {
                                     <i className="far fa-star"/>
                                     <i className="far fa-star"/>
                                     <i className="far fa-star"/>&nbsp;&nbsp; {props.nickName}   &nbsp;&nbsp;&nbsp; <i
-                                    className="far fa-gem"/> ${(props.contest.paid)?props.contest.price:0}
+                                    className="far fa-gem"/> ${(props.contest['status']==='Not Paid')?0:props.contest.price}
                                 </div>
                             </div>
                             <div className={style.sixthRow}>
-                                {(!props.contest.paid)&& <i onClick={()=>props.deleteContest(props.contest.id,props.user.id)} className={"fas fa-trash-alt "+`${style.trash}`}/>}
+                                {(props.contest['status']==='Not Paid')&& <i onClick={()=>props.deleteContest(props.contest.id,props.user.id)} className={"fas fa-trash-alt "+`${style.trash}`}/>}
                             </div>
                         </div>
                     </div>

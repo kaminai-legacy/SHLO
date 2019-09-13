@@ -83,16 +83,23 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.INTEGER,
           defaultValue:33,
       },
-      paid: {
-          type: DataTypes.BOOLEAN,
-          allowNull: false,
-          defaultValue:false,
-      },
-    hasWinner: {
-      type: DataTypes.BOOLEAN,
+    //   paid: {
+    //       type: DataTypes.BOOLEAN,
+    //       allowNull: false,
+    //       defaultValue:false,
+    //   },
+    // hasWinner: {
+    //   type: DataTypes.BOOLEAN,
+    //   allowNull: false,
+    //   defaultValue:false,
+    // },
+
+    status: {
+      type: DataTypes.STRING,
       allowNull: false,
-      defaultValue:false,
+      defaultValue:'Not Paid',
     },
+
     winner: {
       type: DataTypes.INTEGER,
       allowNull: true,

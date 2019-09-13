@@ -74,13 +74,39 @@
         flex-direction: row;
       }
 
-      .info{
+
+      .contestContain{
         width:100%;
         margin-bottom:20px;
         @media (min-width: 992px){
           width:75%;
           margin:0 15px;
         }
+
+        .startEntryBlock{
+          display: flex;
+          justify-content: center;
+          .startEntry{
+            cursor: pointer;
+            margin:20px;
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+            min-width: 100px;
+            min-height: 50px;
+            display: inline-block;
+            border:2px solid gray;
+            border-radius: 50px;
+          }
+
+          .startEntry:hover{
+            border-color:#28d2d0;
+          }
+        }
+      }
+
+      .info{
+
         box-shadow: 0 5px 10px 3px rgba(0,0,0,0.1);
         padding:50px 40px;
         .field{

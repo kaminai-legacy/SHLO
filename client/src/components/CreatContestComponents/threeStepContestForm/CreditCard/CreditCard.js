@@ -1,9 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Card from 'react-credit-cards';
-
-import SupportedCards from './SupportedCards';
-
 import {
     formatCreditCardNumber,
     formatCVC,
@@ -14,6 +10,10 @@ import {
 import style from "../threeStepContestForm.module.scss";
 
 import 'react-credit-cards/es/styles-compiled.css';
+import SupportedCards from './SupportedCards';
+import Card from 'react-credit-cards';
+const _ =require("lodash");
+
 
 export default class CreditCard extends React.Component {
     state = {
@@ -61,8 +61,11 @@ export default class CreditCard extends React.Component {
                 acc[d.name] = d.value;
                 return acc;
             }, {});
-        console.log(formData);
-        this.props.submit(formData);
+
+        const cloneData=_.cloneDeep(formData);
+        cloneData['number']=cloneData['number'].replace(/ /g, '');
+        console.log(cloneData);
+        this.props.submit(cloneData);
        /// console.log(this.props.onSubmit,"this.props.onSubmit");
         this.setState({ formData });
         this.form.reset();
