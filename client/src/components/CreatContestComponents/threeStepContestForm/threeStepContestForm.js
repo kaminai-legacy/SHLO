@@ -14,8 +14,9 @@ import style from "./threeStepContestForm.module.scss";
 import {Redirect} from 'react-router';
 import {toast} from "react-toastify";
 import {LOADING_ITEMS} from "../../../constants/consts";
+import check from '../../../utils/checkFile(s)Size';
 const  _ = require('lodash');
-const  check = require('../../../utils/checkFile(s)Size');
+
 const customStyles = {
     content : {
         zIndex:20,

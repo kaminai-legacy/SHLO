@@ -11,8 +11,22 @@ const FILTER_TAGS = {
     }
 };
 
+const FIELDS_NAME_HUMANIZE = {
+    typeOfContest:"Type of Contest",
+    typeOfIndustry:"Type of Industry",
+    whatVentureDoes:"What is your Business/ Brand about?",
+    inputNameOfTheirVenture:"The name of Venture",
+    targetCustomers:"Target Customers",
+    typeOfName:"Preferred Type of Name",
+    visualBrandStyle:"Preferred for Visual Style",
+    preferenceForName:"Preferred Style of Name",
+    preferenceForTagline:"Preferred Style of Tagline",
+    winner:"The Winner",
+    media:"Added files",
+};
 
-const NO_NEEDED_FIELDS = ['createdAt','updatedAt','hasWinner','id','media','numberOfEntries','status','price','userId','winner','titleOfContest'];
+
+const NO_NEEDED_FIELDS = ['createdAt','updatedAt','hasWinner','id','numberOfEntries','status','price','userId','winner','titleOfContest'];
 const LOADING_ITEMS = ["a Company", "a Brand", "a Website", "a Service", "a Book", "a Business", "an App", "a Product", "a Startup"];
 const TEXT_PROGRESSING = {
     START: "Select Contest Type",
@@ -56,5 +70,6 @@ module.exports =
         startValueContestProgressing,
         CONTEST_HEADER,
         FILTER_TAGS,
-        NO_NEEDED_FIELDS
+        NO_NEEDED_FIELDS,
+        FIELDS_NAME_HUMANIZE
     };

@@ -22,6 +22,24 @@ module.exports = {
             allowNull: true,
             defaultValue:null,
         },
+        userId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            onDelete: 'CASCADE',
+            references: {
+                key: 'id',
+                model: 'Users',
+            },
+        },
+        nickName: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        status: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            defaultValue:"NEUTRAL",
+        },
         prospectiveText: {
             type: Sequelize.STRING,
             allowNull: true,

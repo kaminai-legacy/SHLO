@@ -67,8 +67,9 @@ export default class CreditCard extends React.Component {
         console.log(cloneData);
         this.props.submit(cloneData);
        /// console.log(this.props.onSubmit,"this.props.onSubmit");
-        this.setState({ formData });
         this.form.reset();
+        this.setState({ formData });
+       // this.form.reset();
     };
 
     render() {

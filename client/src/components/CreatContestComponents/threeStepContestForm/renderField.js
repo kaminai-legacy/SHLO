@@ -106,7 +106,7 @@ const renderFieldSelect = ({input, placeholder, label, type, options, isMulti, d
 const renderField = ({input, placeholder, label, type, meta, meta: {touched, error, active}}) => {
 
     const color = active ? "#2f8dff" : "#d0d0d0";
-    // console.log(color,error,meta);
+     console.log(color,error,meta);
     return <div className={style.renderField}>
         <label className={style.forLabel}>{label}</label>
         <div className={style.preForInputs} style={{borderColor: color}}>

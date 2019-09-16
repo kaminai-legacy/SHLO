@@ -21,3 +21,5 @@ export const contestFilter = ({url}) => {
     history.replace(`${history.location.pathname}?${url.split('?')[1]}`);
     return axios.get(url);};
 export const getContestById = (id) => axios.get(`${restURL}/contest/${id}`);
+export const createEntry = (data) => axios.post(`${restURL}/entry/`,data);
+export const changeEntryStatus = ({id,action}) => axios.put(`${restURL}/entry/${id}`,{action:action});

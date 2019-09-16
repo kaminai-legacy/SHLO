@@ -16,6 +16,7 @@ const checkCountRefreshToken = require('../middleWare/checkCountRefreshToken');
 const checkCardExists = require('../middleWare/checkCardExistsAndBalance');
 const preparingDataForFilter = require('../middleWare/preparingDataForFilter');
 const role = require('../middleWare/checkPermissions');
+const entriesController = require('../controlls/entriesController');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -27,8 +28,6 @@ var storage = multer.diskStorage({
 });
 
 const upload = multer(storage);
-
-
 router.post('/user', userController.createUser);
 router.get('/user', verifyAccessToken.check, userController.getUser);
 router.get('/getAllUsers',verifyAccessToken.check, userController.getAllUsers);
@@ -47,15 +46,12 @@ router.post('/createLinkApi', mailServiceController.createLink);
 router.get('/service/:api', mailServiceController.receiveApi);
 router.get('/getUserContests/:id', contestController.receiveContests);
 router.get('/contestFilter',preparingDataForFilter.prepare, contestController.receiveFilterContests);
-// router.get('/test', (req, res, next) => {
-//     const result = role.verifyPermissions({ownerId:4},CONTESTS,CHANGE,{role:ROLE_BUYER,id:5});
-//     res.send(result);
-// });
+router.post('/entry',verifyAccessToken.check, upload.any(),entriesController.createEntry);
+router.put('/entry/:id',verifyAccessToken.check,entriesController.changeStatus);
 router.get('/test', (req, res, next) => {
     const result = role.verifyPermissions({ownerId:4},CONTESTS,CHANGE,{role:ROLE_BUYER,id:5});
     res.send(result);
 });
-
 module.exports = router;
 
 //createContest

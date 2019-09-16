@@ -70,7 +70,7 @@ main().catch(console.error);20vitality12@gmail.com//'20vitality12@gmail.com','ke
 //const result =  sendEmail.send();
 //send.sendEmail('For confirmation of mail follow the link:','http://192.168.0.111:5000/','Confirm Email','squadhelpservice@gmail.com');//aleksosnova_3@mail.ru'
 const app = express();
-//app.use("/static", express.static(__dirname + "/server/ContestUpload/"));
+app.use("/static", express.static(__dirname + "/server/tmp/"));
 app.use(cors());
 app.use(express.json());
 

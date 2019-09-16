@@ -6,6 +6,7 @@ import {getAllUsersSaga} from './getAllUsersSaga';
 import {changeBanStatusSaga} from './changeBanStatusSaga';
 import {logoutSaga} from './logoutSaga';
 import {sendContest,receiveUserContests,deleteUserContest} from './contestSaga';
+import {sendEntry,managed} from './entrySaga';
 import {sendApiToServer} from './mailServicesSaga';
 import {sendRequisites} from './creditCardSaga';
 import {changeFilterTags,getStarterContests,sendFilterData,getById} from './ActiveContestFilterSaga';
@@ -28,6 +29,8 @@ function* rootSaga() {
     yield takeLatest(ACTION.GET_CONTESTS_BY_STARTER_FILTER,getStarterContests);
     yield takeLatest(ACTION.SEND_FILTER_DATA,sendFilterData);
     yield takeLatest(ACTION.CONTESTS_BY_ID_REQUEST,getById);
+    yield takeLatest(ACTION.SEND_ENTRY,sendEntry);
+    yield takeLatest(ACTION.ENTRY_MANAGED,managed);
 
     //yield takeLatest(ACTION.CREATE_LINK_FOR_MAIL, createLink);
 }

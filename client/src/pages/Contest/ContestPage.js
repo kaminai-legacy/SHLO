@@ -11,7 +11,9 @@ const _=require('lodash');
 
 function contest(props) {
     useEffect(()=>{
-        props.getContestById(props.id);
+        if(props.user){  props.getContestById(props.id);
+        }
+
     });
     return (
         <div >
@@ -22,6 +24,7 @@ function contest(props) {
         </div>);
 }
 const mapStateToProps = (state) => ({
+    user:state.userReducers.user,
     filter: state.ActiveContestFilterReducer
 });
 

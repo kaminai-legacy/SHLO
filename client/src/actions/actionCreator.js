@@ -134,6 +134,10 @@ export const resetApiMsg = () =>{
     return ({
         type: ACTION.RESET_API_MSG,
     })};
+export const resetAppMsg = () =>{
+    return ({
+        type: ACTION.RESET_APP_MSG,
+    })};
 export const setModalState = (data) =>{
     return ({
         type: ACTION.MODAL_STATE,
@@ -203,5 +207,14 @@ export const getContestById = (id)=>{
         type: ACTION.CONTESTS_BY_ID_REQUEST,
         id
     })};
-
+export const sendEntry = (dataToSend)=>{
+    return ({
+        type: ACTION.SEND_ENTRY,
+        dataToSend
+    })};
+export const entryManaged = (dataToSend)=>{
+    return ({
+        type: ACTION.ENTRY_MANAGED,
+        dataToSend
+    })};
 //export const loadInitialValue = data => ({ type: ACTION.LOAD_INITIAL_VALUES, data });

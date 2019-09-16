@@ -29,8 +29,10 @@ export function* sendFilterData({dataToSend}) {
 
 export function* getById({id}) {
     try {
+        console.log(id);
         const {data} = yield getContestById(id);
-        yield put({type: ACTION.CONTESTS_BY_ID_RESPONSE, contest: data});
+        console.log(data);
+        yield put({type: ACTION.CONTESTS_BY_ID_RESPONSE, contest: data.contest,entries:data.entries});
         // console.log(data);
     } catch (e) {
         console.log(e)

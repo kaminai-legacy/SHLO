@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 import {TOKENS_KEY} from '../../constants/consts';
-import {userIsLogin, resetApiMsg, changeUserPassword, changeAppStatus,noUser} from '../../actions/actionCreator';
+import {userIsLogin, resetApiMsg, changeUserPassword, changeAppStatus,noUser,resetAppMsg} from '../../actions/actionCreator';
 import {toast} from "react-toastify";
 import Modal from 'react-modal';
 import style from "../LoginAndSignUp/MainLogin/ContainerBody/Form/Form.module.scss";
@@ -17,16 +17,29 @@ Modal.setAppElement('#root');
 class UserLoader extends Component {
 
     notify = (msg) => {
-        this.props.resetApiMsg();
         const props = {
             position: toast.POSITION.BOTTOM_LEFT,
             autoClose: 6000,
         };
-        if (this.props.mail.err) {
-            return toast.error(msg, props)
-        } else {
-            return toast.success(msg, props)
+        if(this.props.app.msg){
+            this.props.resetAppMsg();
+            if(this.props.app.error){
+                return toast.error(msg, props)
+            }else{
+                return toast.success(msg, props)
+            }
+        }else if(this.props.mail.msg){
+            this.props.resetApiMsg();
+            if (this.props.mail.err) {
+                return toast.error(msg, props)
+            } else {
+                return toast.success(msg, props)
+            }
         }
+
+
+
+
     };
 
     componentWillMount() {
@@ -69,6 +82,9 @@ class UserLoader extends Component {
         if (this.props.mail.msg) {
             this.notify(this.props.mail.msg)
         }
+        if (this.props.app.msg) {
+            this.notify(this.props.app.msg)
+        }
         if (this.props.app.needUpdate['user']) {
             this.props.changeAppStatus({'user': false});
         }
@@ -78,6 +94,9 @@ class UserLoader extends Component {
     componentDidMount() {
         if (this.props.mail.msg) {
             this.notify(this.props.mail.msg)
+        }
+        if (this.props.app.msg) {
+            this.notify(this.props.app.msg)
         }
         if (this.props.app.needUpdate['user']) {
             this.props.changeAppStatus({'user': false});
@@ -96,6 +115,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     userIsLogin: () => dispatch(userIsLogin()),
     resetApiMsg: () => dispatch(resetApiMsg()),
+    resetAppMsg: () => dispatch(resetAppMsg()),
+
     changeUserPassword: (value) => dispatch(changeUserPassword(value)),
     changeAppStatus: (value) => dispatch(changeAppStatus(value)),
     noUser: () => dispatch(noUser()),

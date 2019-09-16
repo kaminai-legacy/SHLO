@@ -17,10 +17,28 @@ module.exports = (sequelize, DataTypes) => {
         model: 'Contest',
       },
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      onDelete: 'CASCADE',
+      references: {
+        key: 'id',
+        model: 'User',
+      },
+    },
     media: {
       type: DataTypes.TEXT,
       allowNull: true,
       defaultValue:null,
+    },
+    nickName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue:"NEUTRAL",
     },
     prospectiveText: {
       type: DataTypes.STRING,
@@ -30,6 +48,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   Entry.associate = function (models) {
     Entry.belongsTo(models.Contest, {foreignKey: 'contestId',targetKey: 'id',})
+    Entry.belongsTo(models.User, {foreignKey: 'contestId',targetKey: 'id',})
   };
   return Entry;
 };

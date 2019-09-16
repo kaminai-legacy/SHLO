@@ -10,7 +10,7 @@ const pathsToFiles = async (files) => {
     try {
         const pathsForFiles = [];
         files.map(async (file) => {
-            const path = __dirname + '/../ContestUpload/' + uniqid() + '_' + file.originalname;
+            const path = __dirname + '/../tmp/ContestUpload/' + uniqid() + '_' + file.originalname;
             pathsForFiles.push(path);
             await fs.writeFile(path, file.buffer, (e) => {
             });
@@ -90,22 +90,27 @@ module.exports.updateContest = async (req, res, next) => {
 };
 module.exports.payment = async (req, res, next) => {
     const payload = req.body;
-    let result;
-     console.log("SEND CREDIT CARD ******************************************",payload);
+    const [id]=payload.ids;
+
+     console.log("SEND CREDIT CARD ",id,"******************************************",payload);
     try {
+        console.log("CreATE");
         const updatedUserBalance = await BankAccount.update(
             {balance: sequelize.literal('balance  - ' + payload.amountPayable)},
             {returning: true, where: {number: payload.number}}
         );
+        console.log("CreATE      111");
         const updatedSiteBalance = await BankAccount.update(
             {balance: sequelize.literal('balance  + ' + payload.amountPayable)},
             {returning: true, where: {number: '7777 7777 7777 7777'}}
         );
+        console.log("CreATE      222");
         if (updatedUserBalance && updatedSiteBalance) {
             await Contest.update(
                 {status: 'Active'},
-                {returning: true, where: {id: payload.ids}}
+                {returning: true, where: {id: id}}
             );
+            console.log("CreATE      333");
         } else {
             next({status: 400, message: 'Transaction failed'});
         }
@@ -132,6 +137,7 @@ module.exports.receiveContests = async (req, res, next) => {
 
 module.exports.receiveContestById = async (req, res, next) => {
     const {id} = req.params;
+    console.log("req.paramsreq.paramsreq.paramsreq.params",req.params)
     try {
         const contest = await Contest.find({
             attributes: {include: ['"Contest".*', [sequelize.fn('count', sequelize.col('Entries.contestId')), 'numberOfEntries']]},
@@ -145,7 +151,16 @@ module.exports.receiveContestById = async (req, res, next) => {
             group: ['Contest.id'],
         });
         if(contest){
-            res.send(contest)
+            console.log("\n\n","OKey","\n\n");
+            const entries = await Entry.findAll({
+                where: {contestId:id},
+            });
+            if(entries){
+                console.log("\n\n","OKey     22222","\n\n");
+                 res.send({contest:contest,entries:entries})
+                //res.send(contest)
+            }
+
         }
     } catch (e) {
         console.log(e);

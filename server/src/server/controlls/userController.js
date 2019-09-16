@@ -51,7 +51,7 @@ module.exports.loginUser = async (req, res, next) => {
 };
 
 module.exports.getUser = async (req, res, next) => {
-  const id = req.id;
+  const id = req.idUser;
   try {
     const result = await User.findOne({ where: { id } });
     const user = result.dataValues;

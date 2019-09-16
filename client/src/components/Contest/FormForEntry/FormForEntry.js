@@ -18,12 +18,12 @@ let formForEntry = props => {
         case"TAGLINE_OR_SLOGAN":{break;}
     }
     return (
-        <form onSubmit={handleSubmit(props.onSubmit)}>
+        <form onSubmit={handleSubmit(props.onSubmit)} className={style.forForm}>
 
-                 {<Field  {...FIELDS[props.type]} component={renderField[FIELDS[props.type].component]}/>}
-            <button
+                 {<Field {...FIELDS[props.type]} component={renderField[FIELDS[props.type].component]}/>}
+            <div className={style.forSubmitContainer}><button className={style.forSubmit}
                     type="submit" disabled={submitting}>SUBMIT
-            </button>
+            </button></div>
         </form>
     );
 };

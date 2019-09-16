@@ -22,6 +22,8 @@
   .banner{
     background-color: #f9f9f9;
     .title{
+      padding-left:20px ;
+      box-sizing: border-box;
       margin:0 auto ;
       @media (min-width: 1200px){
         max-width: 1170px;

@@ -63,6 +63,22 @@
 
   .brief{
     margin: 15px 0;
+    .controller{
+      display: flex;
+      flex-direction: row;
+     // z-index: 0;
+    }
+    .pageController{
+      padding:10px 10px 0 10px;
+      box-sizing: border-box;
+      border-radius: 4px 4px 0 0;
+      border: 1px solid #ddd;
+      background:white;
+      box-shadow: rgba(0,0,0,0.1);
+      cursor: pointer;
+      margin-right: 10px;
+      border-bottom-color:white;
+    }
 
     .flexRowBrief{
       display: flex;
@@ -78,6 +94,10 @@
       .contestContain{
         width:100%;
         margin-bottom:20px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
         @media (min-width: 992px){
           width:75%;
           margin:0 15px;
@@ -106,9 +126,48 @@
       }
 
       .info{
-
+        overflow: hidden;
+        width: 100%;
         box-shadow: 0 5px 10px 3px rgba(0,0,0,0.1);
         padding:50px 40px;
+        //z-index: -1;
+
+        .entryContainer{
+          padding:15px;
+          box-sizing: border-box;
+          border: 1px solid #28d2d0;
+          margin-bottom: 10px;
+          display: flex;
+          flex-direction: column;
+
+          .nickName{
+            padding: 10px 0;
+          }
+
+          .buttonContainer{
+            padding: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+            .Accept{
+              color:green;
+              border: 2px solid green;
+              padding: 5px;
+              cursor: pointer;
+              border-radius: 50%;
+            }
+
+            .Reject{
+              color:red;
+              border: 2px solid red;
+              padding: 5px;
+              cursor: pointer;
+              border-radius: 50%;
+            }
+          }
+        }
+
         .field{
           display: flex;
           flex-direction: column;

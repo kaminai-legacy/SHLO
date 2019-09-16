@@ -3,15 +3,15 @@ const FIELDS= {
         type: "text",
         name: "nameEntry",
         component: "renderField",
-        placeholder: "e.g. Need a name for Social Networking website",
-        label: "Title of your contest"
+        placeholder: "e.g. LionFord",
+        label: "Enter the Name"
     },
     TAGLINE_OR_SLOGAN: {
         type: "text",
         name: "taglineOrSloganEntry",
         component: "renderField",
-        placeholder: "e.g. Need a name for Social Networking website",
-        label: "Title of your contest"
+        placeholder: "e.g. \"Better late than never!\"",
+        label: "Enter the Slogan"
     },
     LOGO: {
         type: "file",

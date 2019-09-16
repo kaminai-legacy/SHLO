@@ -12,3 +12,40 @@
 .allFormBlocks{
   box-shadow: 0 5px 10px 3px rgba(0,0,0,0.1);
 }
+
+.forForm{
+  box-shadow: 0 5px 10px 3px rgba(0,0,0,0.1);
+  padding:10px;
+  box-sizing: border-box;
+  .forSubmitContainer{
+    margin-top: 15px;
+    text-align: center;
+    .forSubmit{
+      min-width:40px;
+      max-width: 100px;
+      text-align: center;
+    }
+  }
+
+  span{
+    padding:10px;
+    margin: 0 auto;
+  }
+
+  label{
+    margin-bottom: 15px;
+  }
+
+  input{
+  padding: 0 4px;
+    box-sizing: border-box;
+
+}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+}
+
+

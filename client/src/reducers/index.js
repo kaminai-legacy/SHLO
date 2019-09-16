@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import userReducers from './userReducers';
 import getAllUsersReducer from './getAllUsersReducer';
-import contestReducers from './contestReducers';
+import contestReducers from './createContestReducers';
 import creditCardReducers from './creditCardReducers';
 import mailServiceReducers from './mailServiceReducers';
 import modalReducers from './modalReducers';

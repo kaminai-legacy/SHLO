@@ -6,6 +6,8 @@ module.exports = {
               prospectiveText:"axaxaxaxaxa",
               createdAt: new Date(),
               updatedAt: new Date(),
+              userId:2,
+              nickName:"UserSignUp"
           }
       ], {});
   },
