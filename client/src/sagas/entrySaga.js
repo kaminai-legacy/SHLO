@@ -22,7 +22,6 @@ export function* sendEntry({dataToSend}) {
     }
 
 
-
     const {data} = yield createEntry(FinalDataToSend);
 
     if (data === "OK") {
@@ -50,8 +49,6 @@ export function* managed({dataToSend}) {
             yield put({type: ACTION.ENTRY_UPDATE, entry: data.entry});
         }
     }
-
-
 
 
 }

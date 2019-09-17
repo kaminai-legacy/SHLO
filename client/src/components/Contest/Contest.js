@@ -11,7 +11,6 @@ import {fileURL} from '../../api/baseURL';
 
 const _ = require('lodash');
 
-
 const contest = (props) => {
     const submit = (values) => {
 
@@ -141,8 +140,6 @@ const contest = (props) => {
         }
 
     }
-
-    //const [formValues, setFormValues] = useState({});
     if (props.contest) {
 
     }
@@ -176,7 +173,7 @@ const contest = (props) => {
                             </div>
                             <div className={`${style.container} ${style.info}`}>
                                 {(page === 1) && fieldsToRender}
-
+                                {(page === 2) && entriesToRender}
                             </div>
                             {button && contest.status === "Active" && !contest.winner &&
                             <div className={style.startEntryBlock}>

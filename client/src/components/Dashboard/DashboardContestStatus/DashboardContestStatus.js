@@ -39,7 +39,6 @@ function dashboardContestStatus(props) {
 }
 
 
-
 const mapStateToProps = (state) => {
     return {
         state,

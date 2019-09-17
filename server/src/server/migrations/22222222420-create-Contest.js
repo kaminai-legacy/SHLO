@@ -71,27 +71,6 @@ module.exports = {
                 defaultValue: null,
             },
             preferenceForTagline: {
-                /*
-
-                    {
-                          balance:150,
-                          cvc:cvc,
-                          number:number,
-                          expiry:expiry,
-                          createdAt: new Date(),
-                          updatedAt: new Date(),
-                      }
-
-                      {
-                          balance:10000,
-                          cvc:'777',
-                          number:'7777 7777 7777 7777',
-                          expiry:'77/77',
-                          createdAt: new Date(),
-                          updatedAt: new Date(),
-                      }
-
-                 */
                 type: Sequelize.ARRAY(Sequelize.TEXT),
                 allowNull: true,
                 defaultValue: null,

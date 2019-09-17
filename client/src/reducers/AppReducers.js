@@ -1,7 +1,5 @@
 import ACTION from '../actions/actiontsTypes';
 
-const _ = require("lodash");
-
 const initialState = {
     needUpdate: {
         'userContests': false,

@@ -61,7 +61,7 @@ export default class CreditCard extends React.Component {
     };
 
     render() {
-        const { number, expiry, cvc, focused,} = this.state;
+        const {number, expiry, cvc, focused,} = this.state;
 
         return (
             <div key="Payment">

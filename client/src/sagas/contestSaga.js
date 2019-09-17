@@ -85,9 +85,7 @@ export function* receiveUserContests({dataToSend}) {
             }
             numberInDraft++;
             InDraft.push(item);
-        }
-
-        else {
+        } else {
             numberInLaunch++;
             InLaunch.push(item);
         }

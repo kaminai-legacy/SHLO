@@ -31,4 +31,5 @@ function CardCategories(props) {
 
     );
 }
+
 export default CardCategories;

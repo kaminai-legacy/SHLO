@@ -46,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: null,
         },
     });
+
     Entry.associate = function (models) {
         Entry.belongsTo(models.Contest, {foreignKey: 'contestId', targetKey: 'id',})
         Entry.belongsTo(models.User, {foreignKey: 'contestId', targetKey: 'id',})

@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -17,17 +18,23 @@ const createHtml = (href, title) => {
         '</table>'
 };
 
-module.exports.sendEmail = (htmlTitle, confirmApi, subject, to) => {
+module.exports.sendEmail =async (htmlTitle, confirmApi, subject, to) => {
+
+try{
+
     const mailOptions = {
         from: 'squadhelpservice@gmail.com',
         to: 'squadhelpservice@gmail.com',
         subject,
         html: createHtml(confirmApi, htmlTitle),
     };
-    transporter.sendMail(mailOptions, function (err, info) {
+    await transporter.sendMail(mailOptions, function (err, info) {
         if (err)
             console.log(err);
         else
             console.log(info);
-    });
+    });}catch (e){
+
+}
+
 };
