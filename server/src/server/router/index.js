@@ -1,10 +1,8 @@
 import 'babel-polyfill';
 import express from 'express';
 import multer from 'multer';
-
 const {ROLE_BUYER, ROLE_CREATIVE, CREATE, CHANGE, WATCH, CONTESTS} = require('../utils/Consts');
 const RIGHTS_OF_USERS = require('../utils/Permisions');
-
 const router = express.Router();
 const userController = require('../controlls/userController');
 const mailServiceController = require('../controlls/mailServiceController');
@@ -19,7 +17,7 @@ const preparingDataForFilter = require('../middleWare/preparingDataForFilter');
 const role = require('../middleWare/checkPermissions');
 const entriesController = require('../controlls/entriesController');
 
-var storage = multer.diskStorage({
+let storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, '/tmp/my-uploads')
     },
@@ -49,8 +47,5 @@ router.get('/getUserContests/:id', contestController.receiveContests);
 router.get('/contestFilter', preparingDataForFilter.prepare, contestController.receiveFilterContests);
 router.post('/entry', verifyAccessToken.check, upload.any(), entriesController.createEntry);
 router.put('/entry/:id', verifyAccessToken.check, entriesController.changeStatus);
-router.get('/test', (req, res, next) => {
-    const result = role.verifyPermissions({ownerId: 4}, CONTESTS, CHANGE, {role: ROLE_BUYER, id: 5});
-    res.send(result);
-});
+
 module.exports = router;

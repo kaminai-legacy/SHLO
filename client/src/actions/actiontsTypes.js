@@ -1,3 +1,5 @@
+import {put} from "@redux-saga/core/effects";
+
 export default {
     USER_LOGIN: 'USER_LOGIN',
     USER_SIGN_UP: 'USER_SIGN_UP',
@@ -68,5 +70,6 @@ export default {
     ENTRY_MANAGED: "ENTRY_MANAGED",
     ENTRY_UPDATE: "ENTRY_UPDATE",
     CONTEST_UPDATE: "CONTEST_UPDATE",
-    CHOOSE_WINNER: "CHOOSE_WINNER"
+    CHOOSE_WINNER: "CHOOSE_WINNER",
+
 };

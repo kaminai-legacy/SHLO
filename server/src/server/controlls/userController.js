@@ -63,14 +63,14 @@ module.exports.getUser = async (req, res, next) => {
 module.exports.hasEmail = async (req, res, next) => {
     const payload = req.body;
     try {
-        const result = await User.findOne({where: payload});
+        const result = await User.find({where: payload});
         if (result) {
             res.send({result: 'has Email'});
         } else {
             res.send({result: 'hasn\'t Email'});
         }
     } catch (e) {
-
+console.log(e)
     }
 };
 

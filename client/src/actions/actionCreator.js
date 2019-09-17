@@ -223,3 +223,10 @@ export const entryManaged = (dataToSend) => {
         dataToSend
     })
 };
+export const newMessageToUser = ({msg,error}) => {
+    return ({
+        type: ACTION.NEW_MESSAGE,
+        msg:msg,
+        error:error
+    })
+};
