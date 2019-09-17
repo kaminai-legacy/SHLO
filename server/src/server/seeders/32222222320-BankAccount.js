@@ -10,7 +10,7 @@ module.exports = {
           {
               balance:10000,
               cvc:'777',
-              number:'7777 7777 7777 7777',
+              number:'7777777777777777',
               expiry:'77/77',
               createdAt: new Date(),
               updatedAt: new Date(),
@@ -36,7 +36,7 @@ module.exports = {
       {
           balance:10000,
           cvc:'777',
-          number:'7777 7777 7777 7777',
+          number:'7777777777777777',
           expiry:'77/77',
           createdAt: new Date(),
           updatedAt: new Date(),

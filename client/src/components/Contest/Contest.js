@@ -41,7 +41,7 @@ const contest =(props)=> {
             throw new SubmissionError({...errors})
         }else{
             if(contest["typeOfContest"]==="LOGO"){
-                props.sendEntry({id:contest.id,type:contest["typeOfContest"],file:_.values(values)});
+                props.sendEntry({id:contest.id,type:contest["typeOfContest"],file:_.values(values),nickName:props.user.displayName});
             }else{
                 props.sendEntry({id:contest.id,type:contest["typeOfContest"],values:_.values(values),nickName:props.user.displayName});
             }
@@ -56,11 +56,12 @@ const contest =(props)=> {
     const [entryView,setEntryView]=useState(false);
     const [page,setPage]=useState(1);
     const {contest,entries}=props.contest;
+   // console.log(contest,"contest contest contest");
     const fieldsToRender=[];
     const entriesToRender=[];
     let duration;
     if(contest){
-        duration=timeAgo(contest.updatedAt);
+        duration=timeAgo(contest.createdAt);
         const fieldsToShow=_.omit(contest,NO_NEEDED_FIELDS);
 
         for (let key in fieldsToShow){
@@ -155,13 +156,14 @@ const contest =(props)=> {
                     <div className={`${style.container} ${style.contestContain}`}>
                         <div className={style.controller}><div className={style.pageController} onClick={()=>setPage(1)}
                         style={{background:(page===1)?"#337ab7":"white"}}>Brief</div>
-                        <div className={style.pageController} onClick={()=>setPage(2)}
-                             style={{background:(page===2)?"#337ab7":"white"}}>Entries</div></div>
+                        {(props.user.id===contest.userId)&&<div className={style.pageController} onClick={()=>setPage(2)}
+                             style={{background:(page===2)?"#337ab7":"white"}}>Entries</div>}
+                        </div>
                         <div className={`${style.container} ${style.info}`}>
                         {(page===1) && fieldsToRender}
                         {/*<div>{button}</div>*/(page===2) && entriesToRender}
                     </div>
-                        {button && contest.status==="Active" &&<div className={style.startEntryBlock}>
+                        {button && contest.status==="Active" && !contest.winner &&<div className={style.startEntryBlock}>
                         <div className={style.startEntry} onClick={()=>setEntryView(!entryView)}>{button}</div>
                     </div>}
                         {entryView && <FormForEntry type={contest["typeOfContest"]} onSubmit={submit}/>}

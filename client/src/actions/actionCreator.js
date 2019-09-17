@@ -6,8 +6,7 @@ const _ = require("lodash");
 
 export const createOrUpdateTempContest = (dataToSend) =>{
     const cloneData = _.cloneDeep(dataToSend);
-    console.log("\n",dataToSend,"\n");
-    ///  console.log(dataToSend,"реквизиты");
+
 // TODO
     for(let key in cloneData){
         if(cloneData.hasOwnProperty(key)){
@@ -28,8 +27,6 @@ if(_.isArray(cloneData[key])){
             }
         }
     }
-
-    console.log("\n",cloneData,"\n");
 
     return ({
         type: ACTION.TEMP_CONTEST,
@@ -70,14 +67,13 @@ export const logout = () => ({
 });
 
 export const selectedContestType = (contestTypes) =>{
-   // console.log("catch");
     return ({
     type: ACTION.SELECTED_CONTEST_TYPE,
    contestTypes
 })};
 
 export const contestProgressing = (stage,form) =>{
-    console.log("catch",stage,form,"empty");
+
     return ({
         type: ACTION.CONTEST_PROGRESSING,
         stage,
@@ -85,47 +81,33 @@ export const contestProgressing = (stage,form) =>{
     })};
 
 export const sendContest = (dataToSend,id) =>{
-    console.log(dataToSend,id,"dataToSend,sendContest");
+
     return ({
         type: ACTION.SEND_CONTEST,
         dataToSend,
         id
     })};
 
-export const contestPayment = (dataToSend) =>{
-  //  console.log(dataToSend,"реквизиты");
-    return ({
-        type: ACTION.CONTEST_PAYMENT,
-        dataToSend
-    })};
-
-/*export const loadInitialValue = (data) =>{
-    console.log(data,"init");
-    return ({
-        type: ACTION.LOAD_INITIAL_VALUES,
-        data
-    })};*/
-
 export const sendCard = (dataToSend) =>{
-      console.log(dataToSend,"реквизиты");
+
        return ({
         type: ACTION.SEND_CARD_REQUISITES,
         data:dataToSend
     })};
 export const checkEmail = (dataToSend) =>{
-    console.log(dataToSend,"checkEmail");
+
     return ({
         type: ACTION.CHECK_USER_EMAIL,
         dataToSend
     })};
 export const sendApiFromEmail = (dataToSend) =>{
-    console.log(dataToSend,"sendApiFromEmail");
+
     return ({
         type: ACTION.MAIL_SERVICE,
         dataToSend
     })};
 export const createLinkForMail = (dataToSend) =>{
-    console.log(dataToSend,"CREATE_LINK_FOR_MAIL");
+
     return ({
         type: ACTION.CREATE_LINK_FOR_MAIL,
         dataToSend
@@ -154,18 +136,18 @@ export const changeUserPassword = (dataToSend) =>{
         dataToSend
     })};
 export const getUserContests = (dataToSend) =>{
-    console.log(dataToSend,"getUserContests");
+
     return ({
         type: ACTION.GET_USER_CONTESTS,
         dataToSend
     })};
 export const resetCardResult = (data) =>{
-    console.log("resetCardResult",null);
+
     return ({
         type: ACTION.RESET_CARD_RESULT,
     })};
 export const changeAppStatus = (data) =>{
-    console.log("resetCardResult",data);
+
     return ({
         type: ACTION.CHANGE_APP_STATE,
         data
@@ -184,21 +166,21 @@ export const deleteContest = (idContest,idUser) =>{
     })};
 
 export const changeFilterTags = (dataToSend)=>{
-    console.log("changeFilterTags",dataToSend);
+
     return ({
         type: ACTION.CHANGE_CONTEST_FILTER,
         dataToSend
     })};
 
 export const sendFilterData = (dataToSend)=>{
-    console.log("sendFilterData",dataToSend);
+
     return ({
         type: ACTION.SEND_FILTER_DATA,
         dataToSend
     })};
 
 export const getContestByFilter = ()=>{
-    console.log("getContestByFilter",);
+
     return ({
         type: ACTION.GET_CONTESTS_BY_STARTER_FILTER
     })};
@@ -217,4 +199,3 @@ export const entryManaged = (dataToSend)=>{
         type: ACTION.ENTRY_MANAGED,
         dataToSend
     })};
-//export const loadInitialValue = data => ({ type: ACTION.LOAD_INITIAL_VALUES, data });

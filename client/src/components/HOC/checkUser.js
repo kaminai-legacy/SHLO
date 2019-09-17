@@ -49,6 +49,11 @@ class UserLoader extends Component {
         }else{
             this.props.noUser();
         }
+        // if (this.props.app.needUpdate['user']){
+        //     console.log("HEHEHEHEHEHEHEHEH")
+        //     this.props.userIsLogin();
+        //     this.props.changeAppStatus({'user': false});
+        // }
     }
 
 //createAction={this.props.checkEmail}
@@ -68,6 +73,7 @@ class UserLoader extends Component {
                     className={style.modal}
                     overlayClassName={style.modalOverlay}
                 >
+                    {console.log(this.props.app)}
                     <ReserPassword createAction={this.props.changeUserPassword} title={'Change Password'}
                                    preInput={'Enter and retype the new password'}
                                    button={'Click to change'} email={this.props.mail['email']}/>
@@ -86,6 +92,7 @@ class UserLoader extends Component {
             this.notify(this.props.app.msg)
         }
         if (this.props.app.needUpdate['user']) {
+            this.props.userIsLogin();
             this.props.changeAppStatus({'user': false});
         }
 
@@ -99,6 +106,7 @@ class UserLoader extends Component {
             this.notify(this.props.app.msg)
         }
         if (this.props.app.needUpdate['user']) {
+            this.props.userIsLogin();
             this.props.changeAppStatus({'user': false});
         }
 

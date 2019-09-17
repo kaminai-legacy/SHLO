@@ -83,11 +83,11 @@ function Form(props) {
             firstName: values.firstName,
             lastName: values.lastName,
             displayName: values.displayName,
-            role: values.role,
+            role: (values.role)?values.role:"Buyer",
             email: values.email,
             password: values.password,
         };
-
+console.log(dataToSend,values);
         props.userSignUp({dataToSend:dataToSend,pageToRedirect:props.pageToRedirect});
     };
     const {handleSubmit, submitting} = props;
@@ -101,7 +101,7 @@ function Form(props) {
                 <div className={style.preInsideRow}>
                     <div className={style.insideRow}>
                     <span className={style.miniElem}><Field name="role" component="input" type="radio"
-                                                            id={'check1'} value={"Buyer"}/> </span>
+                                                            id={'check1'} checked value={"Buyer"}/> </span>
                         <span>
            <div className={style.textBefore}>
              Join As a Buyer

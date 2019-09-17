@@ -19,18 +19,18 @@ let resultFilterContests = props => {
                     <div className={style.content}>
 
                         {(props.filter.confirmedContests) && props.filter.confirmedContests.map((contest,id)=>{
-                            const duration=timeAgo(contest.updatedAt);
-                            let color;
-                            switch (contest['status']){
-                                case "Active":{color='green'; break;}
-                                case "Closed":{color='red'; break;}
-                                case "Pending":{color='yellow'; break;}
-                            }
+                            const duration=timeAgo(contest.createdAt);
+                            // let color;
+                            // switch (contest['status']){
+                            //     case "Active":{color='green'; break;}
+                            //     case "Closed":{color='red'; break;}
+                            //     case "Pending":{color='yellow'; break;}
+                            // }
                             return  <div key={id} className={style.contest}>
                                 <div className={style.flexRow}>
                                     <div className={style.text}>
                                         <div className={style.contestTitle}>
-                                            <Link to={`/contest/${contest.id}`}>{contest.titleOfContest}</Link>
+                                            <Link to={`/contest/${contest.id}`}>{contest.titleOfContest} #{contest.id}</Link>
                                         </div>
                                         <div className={style.typeAndTime}>
                                             <Link to=""> <span className={style.contestType}>{(contest.typeOfContest==="TAGLINE_OR_SLOGAN")?"Branding & identity":"Naming"} / {contest.typeOfContest.replace(/_/g, ' ')}</span></Link>
@@ -54,7 +54,7 @@ let resultFilterContests = props => {
                                     <div className={style.entries}>
                                         <div><i className="fas fa-users"/> {contest['numberOfEntries']}</div>
                                         <span>Entries</span>
-                                        <span style={{color:color}}>{contest['status']}</span>
+                                        {/*<span style={{color:color}}>{contest['status']}</span>*/}
                                     </div>
                                 </div>
                             </div>

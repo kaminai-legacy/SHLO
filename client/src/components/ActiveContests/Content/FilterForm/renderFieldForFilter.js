@@ -26,7 +26,7 @@ const customStyles = {
     }),
     valueContainer: (base, state) => ({
         ...base,
-         minHeight: "50px",
+         minHeight: "32px",
     }),
     singleValue: (base, state) => ({
         ...base,

@@ -51,9 +51,19 @@ export function* managed({dataToSend}) {
         if(data.contest){
             yield put({type: ACTION.CONTEST_UPDATE,contest:data.contest});
         }
-        if(data.entry){
+    console.log("RECEIVE");
+if(dataToSend.action==="REJECT"){
+    if(data.entry){
+        console.log("REJECT");
+        yield put({type: ACTION.CHOOSE_WINNER,entry:data.entry});
+    }
+}else{
+    if(data.entry){
         yield put({type: ACTION.ENTRY_UPDATE,entry:data.entry});
-        }
+    }
+}
+
+
 console.log(data);
 
 }

@@ -26,7 +26,7 @@ const FIELDS_NAME_HUMANIZE = {
 };
 
 
-const NO_NEEDED_FIELDS = ['createdAt','updatedAt','hasWinner','id','numberOfEntries','status','price','userId','winner','titleOfContest'];
+const NO_NEEDED_FIELDS = ['createdAt','updatedAt','id','numberOfEntries','status','price','userId','titleOfContest'];
 const LOADING_ITEMS = ["a Company", "a Brand", "a Website", "a Service", "a Book", "a Business", "an App", "a Product", "a Startup"];
 const TEXT_PROGRESSING = {
     START: "Select Contest Type",

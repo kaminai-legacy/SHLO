@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const fs = require('fs');
-const {Contest, BankAccount, Entry} = require('../models/index');
+const {Contest, BankAccount, Entry, User} = require('../models/index');
 const uniqid = require('uniqid');
-const sequelize = require('sequelize');
+const {sequelize} = require('../models');
 const Op = sequelize.Op;
 
 const pathsToFiles = async (files) => {
@@ -91,33 +91,37 @@ module.exports.updateContest = async (req, res, next) => {
 module.exports.payment = async (req, res, next) => {
     const payload = req.body;
     const [id]=payload.ids;
+    let transaction;
 
-     console.log("SEND CREDIT CARD ",id,"******************************************",payload);
+     console.log("SEND CREDIT CARD ",transaction,"******************************************",payload);
     try {
+       transaction=await sequelize.transaction();
         console.log("CreATE");
         const updatedUserBalance = await BankAccount.update(
             {balance: sequelize.literal('balance  - ' + payload.amountPayable)},
-            {returning: true, where: {number: payload.number}}
+            {returning: true, where: {number: payload.number},transaction}
         );
         console.log("CreATE      111");
         const updatedSiteBalance = await BankAccount.update(
             {balance: sequelize.literal('balance  + ' + payload.amountPayable)},
-            {returning: true, where: {number: '7777 7777 7777 7777'}}
+            {returning: true, where: {number: '7777777777777777'},transaction}
         );
         console.log("CreATE      222");
         if (updatedUserBalance && updatedSiteBalance) {
             await Contest.update(
                 {status: 'Active'},
-                {returning: true, where: {id: id}}
+                {returning: true, where: {id: id},transaction}
             );
             console.log("CreATE      333");
         } else {
             next({status: 400, message: 'Transaction failed'});
         }
+        transaction.commit();
         res.send({
             status: "Successful"
         });
     } catch (e) {
+        transaction.rollback();
         next(e);
     }
 };
@@ -137,20 +141,29 @@ module.exports.receiveContests = async (req, res, next) => {
 
 module.exports.receiveContestById = async (req, res, next) => {
     const {id} = req.params;
-    console.log("req.paramsreq.paramsreq.paramsreq.params",req.params)
+    console.log("req.paramsreq.paramsreq.paramsreq.params",req.params);
     try {
         const contest = await Contest.find({
-            attributes: {include: ['"Contest".*', [sequelize.fn('count', sequelize.col('Entries.contestId')), 'numberOfEntries']]},
+            attributes:{include: ['"Contest".*', [sequelize.fn('count', sequelize.col('Entries.contestId')), 'numberOfEntries']]},
             include: [
                 {
                     model: Entry,
                     attributes: [],
-                }
+                },
             ],
             where: {id:id},
             group: ['Contest.id'],
         });
         if(contest){
+            if(contest.winner){
+                console.log("\n\n","contest.winner",contest.winner,"\n\n")
+               const {dataValues} = await User.find({
+                    where:{
+                    id:contest.winner
+                    }
+                });
+                contest.winner=dataValues.displayName;
+            }
             console.log("\n\n","OKey","\n\n");
             const entries = await Entry.findAll({
                 where: {contestId:id},

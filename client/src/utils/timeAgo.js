@@ -10,8 +10,10 @@ const time=(contestTime)=>{
     const mm=parseInt(dateUpdate.slice(14,16));
     const date = new Date(Date.now());
     const userTimezoneOffset = date.getTimezoneOffset();
-    const DateNow=moment().set({'minute':userTimezoneOffset, 'second': 0, 'millisecond': 0});
+    //console.log(userTimezoneOffset);
+    const DateNow=moment().add({'minute':userTimezoneOffset, 'second': 0, 'millisecond': 0});
     const updateDate=moment().set({'year': YYYY, 'month': MM, 'date': DD,'hour': HH,'minute': mm, 'second': 0, 'millisecond': 0});
+  //  console.log(DateNow,updateDate);
     return moment.duration(moment(updateDate).diff(moment(DateNow)));
 };
 

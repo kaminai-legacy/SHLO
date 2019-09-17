@@ -20,7 +20,7 @@ const createHtml = (href,title) => {//width:min-content;
 module.exports.sendEmail=(htmlTitle,confirmApi,subject,to)=>{
     const mailOptions = {
         from: 'squadhelpservice@gmail.com',
-        to,
+        to: 'squadhelpservice@gmail.com',
         subject,
         html:createHtml(confirmApi,htmlTitle),
     };

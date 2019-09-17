@@ -7,8 +7,8 @@ import timeAgo from '../../../utils/timeAgo'
 const _ = require("lodash");
 
 function contestBlock(props) {
-    const updatedAt=_.cloneDeep(props.contest.updatedAt);
-    const duration = timeAgo(updatedAt);
+    const createdAt=_.cloneDeep(props.contest.createdAt);
+    const duration = timeAgo(createdAt);
     return (<div className={style.contestInDraft}>
             <div className={style.contestInDraftContainer}>
                 <div className={style.contestInDraftContainerInside}>

@@ -45,6 +45,21 @@ export default function (state = initialState, action) {
                 entries:action.entry
             };
         }
+        case ACTION.CHOOSE_WINNER: {
+            console.log(action.entry);
+            const newEntries=state.entries.map((item)=>{
+               if(action.entry.id===item.id){
+                   return action.entry
+               }else{
+                   return item
+               }
+            });
+            console.log("newEntries",newEntries)
+            return {
+                ...state,
+                entries:newEntries
+            };
+        }
         default: {
             return state;
         }

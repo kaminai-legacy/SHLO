@@ -9,6 +9,8 @@ export function* getLoginSaga({dataToSend}) {
     try {
 
         const userData=dataToSend['dataToSend'];
+        console.log(history);
+       // history.goBack();
         console.log(userData,dataToSend['pageToRedirect']) ;
         const rememberMeStatus=_.pick(userData,["rememberMe"]);
         const RES = yield getUserLogin(_.omit(userData,["rememberMe"]));
@@ -26,7 +28,9 @@ export function* getLoginSaga({dataToSend}) {
               }
            // console.log(history);
             //history.goBack();
-            yield call(history.push(dataToSend['pageToRedirect']));
+          //  console.log("on redirect")
+            if(dataToSend['pageToRedirect']){ history.push(dataToSend['pageToRedirect']);}else
+           {history.push('/');}
         } else if (RES.response.data === "User is baned") {
             yield put({type: ACTION.LOGIN_BANNED});
         } else if (RES.response.data === "User not founds") {
@@ -57,7 +61,8 @@ export function* signUpSaga({dataToSend}) {
         console.log(dataCreateApiLink);
             yield put({type: ACTION.GET_MAIL_SERVICE_RESULT,result:`For email address confirmation ${dataCreateApiLink.data}`,err:false});
         // history.push('/login');
-        yield call(history.push(dataToSend['pageToRedirect']));
+        if(dataToSend['pageToRedirect']){ history.push(dataToSend['pageToRedirect']);}else
+        {history.push('/');}
        // history.goBack();
         history.push('/');
     } catch (e) {
