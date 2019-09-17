@@ -10,9 +10,7 @@ const asyncValidate = (values /*, dispatch */) => {
             const resFirstName = await yup.reach(schema, 'firstName').isValid(values.firstName);
             const resLastName = await yup.reach(schema, 'lastName').isValid(values.lastName);
             const resDisplayName = await yup.reach(schema, 'displayName').isValid(values.displayName);
-            const resPasswordConfirmation = await yup.reach(schema, 'password').isValid(values.passwordConfirmation);
             const resPassword = await yup.reach(schema, 'password').isValid(values.password);
-            // console.log('Check',resEmail,resFirstName,resLastName,resDisplayName,resPassword,resPasswordConfirmation);
 
             if (!values.firstName) {
                 errors.firstName = 'Field cannot be empty';

@@ -16,7 +16,6 @@ function StartPage() {
             <Header/>
             <HeaderBottom/>
             <Banner/>
-            {/*<Carousel/>*/}
             <WhySquadhelp/>
             <GrowBusiness/>
             <HowItWorksHome/>

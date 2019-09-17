@@ -7,7 +7,6 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case ACTION.SITE_NAVIGATION: {
-            console.log(action);
             return {
                 ...state,
                 ...action.data

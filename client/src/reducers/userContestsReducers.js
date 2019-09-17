@@ -12,7 +12,6 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case ACTION.SET_USER_CONTESTS: {
-            console.log(action);
             return {
                 ...state,
                 contests: action.data,

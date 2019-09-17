@@ -36,7 +36,6 @@ Modal.setAppElement('#root');
 
 function contestForm(props) {
     const [form, setForm] = useState({contestTypes: props.types[0], id: 0});
-    const [viewModalDialog, setViewModalDialog] = useState(false);
     const user = props.user;
     const submit = (values) => {
         const errors = {};
@@ -163,8 +162,6 @@ function contestForm(props) {
                               button={'Continue Your Brief'} createAction={props.checkEmail}/>
 
             </Modal>
-            {/*<input type="button" value="Continue Your Brief" className="btn btn-default" onClick="registerUser(this)">*/}
-            {/*<div onClick={()=>history.goBack()}>5555555555</div>*/}
             {form.contestTypes === 'LOGO' && renderForm(FromContent.LOGO, 'LOGO')}
             {form.contestTypes === 'NAME' && renderForm(FromContent.NAME, 'NAME')}
             {form.contestTypes === 'TAGLINE_OR_SLOGAN' && renderForm(FromContent.TAGLINE_OR_SLOGAN, 'TAGLINE_OR_SLOGAN')}

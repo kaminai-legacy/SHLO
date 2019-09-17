@@ -10,7 +10,6 @@ const _ = require('lodash');
 
 function activeContests(props) {
     useEffect(() => {
-        console.log(props.filter);
         if ((props.filter.confirmedContests === null) && (props.filter.isFetching === false)) {
             props.getContestByFilter();
         }

@@ -4,7 +4,6 @@ import ListElement from '../../../../constants/BarMenuLists';
 import {Link} from 'react-router-dom';
 
 function BottomHeaderList(props) {
-    let number = 0;
     const [viewStatus, setViewStatus] = useState({
         "Active Contests": false,
         "Marketplace": false,

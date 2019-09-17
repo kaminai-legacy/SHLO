@@ -16,11 +16,9 @@ export default function (state = initialState, action) {
         case ACTION.CHANGE_APP_STATE: {
 
             const newState = action.data;
-            console.log(action, _.isEmpty(newState["needUpdate"]));
             return {
                 ...state,
                 needUpdate: {...state.needUpdate, ...newState}
-                // needUpdate:(_.isEmpty(newState["needUpdate"]))?state.needUpdate:newState["needUpdate"],
             };
         }
         case ACTION.NEW_MESSAGE: {

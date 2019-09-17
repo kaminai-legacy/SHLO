@@ -58,7 +58,7 @@
   position: relative;
   flex: 1 0 auto;
 
-  //min-width: 297px;
+
   box-sizing: border-box;
   padding: 0 14px 1.15rem;
 }
@@ -97,7 +97,7 @@
 
 
 .RememberMe {
-  // margin: 0 33px;
+
   @media (max-width: 600px) {
     max-width: 595px;
     margin: 0 20px;
@@ -127,8 +127,7 @@
 }
 
 .errorContainer {
-  //width: 566px;
-  // margin-top: 15px;
+
   border: 1px solid #b72522;
   font-size: 14px;
   color: #fff;
@@ -136,7 +135,6 @@
   text-align: center;
   display: block;
   box-sizing: border-box;
-  //margin-bottom: 14px
   margin: 0 33px 14px 33px;
   @media (max-width: 600px) {
     margin: 0 14px 14px 14px;
@@ -185,7 +183,6 @@
   justify-content: flex-start;
   align-items: center;
   padding: 15px;
-  //margin:0 15px;
 
 }
 

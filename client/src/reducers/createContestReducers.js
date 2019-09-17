@@ -11,7 +11,7 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case ACTION.SELECTED_CONTEST_TYPE: {
-            console.log(action);
+
             return {
                 ...state,
                 selectedContestTypes: action.contestTypes,
@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
             };
         }
         case ACTION.CONTEST_PROGRESSING: {
-            console.log(action);
+
             return {
                 ...state,
                 contestStage: action.stage,
@@ -27,7 +27,7 @@ export default function (state = initialState, action) {
             };
         }
         case ACTION.TEMP_CONTEST: {
-            console.log(action);
+
             const field = action['data']['typeOfContest'];
             const oldTempContests = state.tempContests;
             return {
@@ -39,7 +39,7 @@ export default function (state = initialState, action) {
             };
         }
         case ACTION.RESET_TEMP_CONTEST: {
-            console.log('RESET_TEMP_CONTEST');
+
             return {
                 ...state,
                 tempContests: {},

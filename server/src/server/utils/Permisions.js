@@ -6,7 +6,7 @@ const RIGHTS_OF_USERS = {
             owner: null,
             other: [ROLE_BUYER],
         },
-        change:{
+        change: {
             owner: true,
             other: [],
         },

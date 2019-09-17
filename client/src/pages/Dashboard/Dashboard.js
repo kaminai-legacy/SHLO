@@ -9,7 +9,6 @@ import connect from "react-redux/es/connect/connect";
 import {Redirect} from 'react-router';
 
 function dashboard(props) {
-    console.log(props.user, props.isFetching);
     if (!props.isFetching) {
         if (props.user === null) {
             return <Redirect to="/notFound"/>
@@ -17,13 +16,11 @@ function dashboard(props) {
     }
     return (
         <div className={style.mainDashboard}>
-            {/*{(!props.user)?<Redirect to="/notFound"/>:<></>}*/}
             <Header/>
             <HeaderBottom/>
             <Banner/>
             <DashboardContent/>
             <Footer/>
-            {/* <DashboardContestStatus/>*/}
         </div>);
 }
 

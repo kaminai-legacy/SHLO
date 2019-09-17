@@ -38,12 +38,7 @@ function dashboardContestStatus(props) {
         </div>);
 }
 
-/*
 
-{props.selectedContestType([props.userContests.latestContestInDraft.typeOfContest]);props.contestProgressing(2,props.userContests.latestContestInDraft);
-                             props.createOrUpdateTempContest(props.userContests.latestContestInDraft)}
-
- */
 
 const mapStateToProps = (state) => {
     return {

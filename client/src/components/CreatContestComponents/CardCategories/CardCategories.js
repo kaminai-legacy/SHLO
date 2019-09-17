@@ -2,8 +2,6 @@ import React from 'react';
 import style from './CardCategories.module.scss';
 import {Link} from 'react-router-dom';
 
-const _ = require('lodash');
-
 function CardCategories(props) {
     const {contestType} = props;
     const func = (props.click || props.alsoClick) ? () => {
@@ -33,10 +31,4 @@ function CardCategories(props) {
 
     );
 }
-
-/*
-
-  <Link to={props.link} key={props.name}>
-   </Link>
- */
 export default CardCategories;

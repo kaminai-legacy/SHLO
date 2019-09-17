@@ -6,7 +6,7 @@ import style from "../CreatContestComponents/threeStepContestForm/threeStepConte
 const promises = () => new Promise(resolve => resolve());
 const yup = require('yup');
 const schema = require('../../models/userSchema');
-const renderField = ({input, placeholder, label, type, meta, meta: {touched, error, active}}) => {
+const renderField = ({input, placeholder, type, meta: {touched, error}}) => {
     return <>
         <div>
             <input className={style.inputEmail}{...input} placeholder={placeholder} type={type}/>
@@ -15,7 +15,7 @@ const renderField = ({input, placeholder, label, type, meta, meta: {touched, err
 };
 
 let formResetPassword = props => {
-    const {handleSubmit, previousPage, textSubmit, formContent, formValues, pristine, submitting} = props;
+    const {handleSubmit} = props;
     const submit = (values) => {
 
         return promises().then(async () => {
@@ -63,12 +63,9 @@ let formResetPassword = props => {
 
 formResetPassword = reduxForm({
     form: 'formResetPassword',
-    //                 <------ same form name
-    destroyOnUnmount: true, //        <------ preserve form data
+    destroyOnUnmount: true,
     forceUnregisterOnUnmount: false,
-    enableReinitialize: true,// <------ unregister fields on unmount
+    enableReinitialize: true,
 })(formResetPassword);
-
-// <-- same as form name
 
 export default formResetPassword;

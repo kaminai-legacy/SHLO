@@ -12,8 +12,6 @@ import {contestProgressing, resetTempContests, selectedContestType} from "../../
 
 const _ = require("lodash");
 
-//const STAGE = 1;
-
 function CreateContest(props) {
     if (props.stage !== 1) {
         props.contestProgressing(startValueContestProgressing, null);
@@ -28,7 +26,6 @@ function CreateContest(props) {
     });
     return (
         <div className={style.body}>
-            {console.log(props.tempContests)}
             <Header/>
             <HeaderBottom/>
             <HeaderCreateContest/>
@@ -54,10 +51,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContest);
-//export default CreateContest;
-
-/*
-*
-
-*
-* */

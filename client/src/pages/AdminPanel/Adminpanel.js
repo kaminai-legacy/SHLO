@@ -16,7 +16,6 @@ class AdminP extends Component {
     }
 
     render() {
-        console.log(this.props.users);
         if (!this.props.isFetching) {
             if (this.props.user === null || (this.props.user.role !== "ADMIN")) {
                 return <Redirect to="/notFound"/>

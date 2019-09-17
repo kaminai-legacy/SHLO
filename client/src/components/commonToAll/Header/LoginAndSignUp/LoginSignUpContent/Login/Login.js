@@ -31,7 +31,6 @@ function Login(props) {
             <li>My account</li>
             <li>Messages</li>
             {AdminP}
-            {/*} <Link to="/admin_panel/"><li>Admin panel</li></Link>*/}
             <li>Affiliate Dashboard</li>
             <li onClick={onClicked}>Logout</li>
         </ul>

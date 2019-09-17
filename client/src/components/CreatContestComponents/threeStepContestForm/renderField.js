@@ -159,12 +159,4 @@ export default {
     renderFileInput
 }
 
-/*module.exports =
-    {
-        renderField,
-        renderDropdownList,
-        renderMultiselect,
-        renderSelectList,
-        renderColorSelector
-    };*/
 

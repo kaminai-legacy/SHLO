@@ -61,7 +61,7 @@ export default class CreditCard extends React.Component {
     };
 
     render() {
-        const {name, number, expiry, cvc, focused, issuer, formData} = this.state;
+        const { number, expiry, cvc, focused,} = this.state;
 
         return (
             <div key="Payment">
@@ -78,7 +78,6 @@ export default class CreditCard extends React.Component {
                     </div>
                     <div className={style.preBusinessStepForm}>
                         <div className={style.businessStepForm}>
-                            {/*<form ref={c => (this.form = c)} onSubmit={this.handleSubmit(this.props.onSubmit)}*/}
                             <form ref={c => (this.form = c)} onSubmit={this.handleSubmit}
                                   className={style.displayForForm}>
                                 <div className={`${style.preForInputs} ${style.forCardField}`}>
@@ -91,7 +90,6 @@ export default class CreditCard extends React.Component {
                                            onChange={this.handleInputChange}
                                            onFocus={this.handleInputFocus}
                                     />
-                                    {/*}  <small>E.g.: 49..., 51..., 36..., 37...</small>*/}
                                 </div>
                                 <div className={`${style.preForInputs} ${style.forCardField}`}>
                                     <input className={`${style.forInputs} ${style.forCardField}`}
@@ -115,7 +113,6 @@ export default class CreditCard extends React.Component {
                                            onFocus={this.handleInputFocus}
                                     />
                                 </div>
-                                {/*} <input type="hidden" name="issuer" value={issuer} />*/}
                                 <div className="form-actions">
                                     <button className="btn btn-primary btn-block">PAY</button>
                                 </div>
@@ -123,13 +120,6 @@ export default class CreditCard extends React.Component {
 
                         </div>
                     </div>
-                    {/*formData && (
-                        <div className="App-highlight">
-                            {formatFormData(formData).map((d, i) => <div key={i}>{d}</div>)}
-                        </div>
-                    )*/}
-
-
                 </div>
 
             </div>

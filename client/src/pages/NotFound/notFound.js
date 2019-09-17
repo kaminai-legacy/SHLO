@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom';
 function notFound() {
     return (
         <div className={style.body}>
-            {/*<Redirect to="/notFound"/>*/}
             <div className={style.notFound}/>
             <div>
                 <Link className={style.mainAnchor} to="/">

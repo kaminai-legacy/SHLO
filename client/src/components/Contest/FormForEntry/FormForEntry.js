@@ -9,8 +9,7 @@ const {FIELDS} = require('../../../constants/FieldsForEntry');
 
 
 let formForEntry = props => {
-    const {previousPage, textSubmit, submitting, handleSubmit} = props;
-    let field;
+    const {submitting, handleSubmit} = props;
     switch (props.type) {
         case"NAME": {
             break;
@@ -21,6 +20,7 @@ let formForEntry = props => {
         case"TAGLINE_OR_SLOGAN": {
             break;
         }
+        default:{break;}
     }
     return (
         <form onSubmit={handleSubmit(props.onSubmit)} className={style.forForm}>

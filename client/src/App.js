@@ -37,7 +37,7 @@ function App() {
                     <Route path="/login/" exact component={Login}/>
                     <Route path="/signup/" exact component={SignUp}/>
                     <Route path="/admin_panel/" exact component={AdminPanel}/>
-                    //<Route path="/contest_creating_step1/" exact component={Form}/>
+                    <Route path="/contest_creating_step1/" exact component={Form}/>
                     <Route path="/contest_creating/" exact component={(...props) => {
                         return <CreateContest local={props.location}/>
                     }}/>

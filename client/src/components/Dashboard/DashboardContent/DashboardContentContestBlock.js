@@ -30,7 +30,6 @@ function contestBlock(props) {
                         <div className={style.contestInDraftContainerRow}>
                             <div className={style.contestInDraftContainerRowInsideColumn}>
                                 <div className={style.firstRow}>
-                                    {/*<Link to={`/contest/${contest.id}`}>{contest.titleOfContest}</Link>*/}
                                     <Link
                                         to={`/contest/${cloneContest.id}`}> #{cloneContest.id} - {cloneContest.titleOfContest}</Link>
                                 </div>

@@ -61,13 +61,6 @@ const FILTERS = [
                 component: "renderFieldCheckbox",
                 label: "Closed",
             },
-
-            // {
-            // 	type:"checkbox",
-            // 	name:"Pending",
-            // 	component:"renderFieldCheckbox",
-            // 	label:"Pending",
-            // },
         ]
     },
     {

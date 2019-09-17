@@ -8,7 +8,7 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case ACTION.SEND_CARD_REQUISITES_REQUEST: {
-            // console.log(action);
+
             return {
                 ...state,
                 isFetching: true,
@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
             };
         }
         case ACTION.SEND_CARD_REQUISITES_RESULT: {
-            console.log(action.data);
+
             return {
                 ...state,
                 isFetching: false,
@@ -24,7 +24,7 @@ export default function (state = initialState, action) {
             };
         }
         case ACTION.RESET_CARD_RESULT: {
-            console.log(action.data);
+
             return {
                 ...state,
                 resultTransaction: null

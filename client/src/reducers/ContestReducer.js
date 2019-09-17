@@ -1,7 +1,5 @@
 import ACTION from '../actions/actiontsTypes';
 
-const _ = require("lodash");
-
 const initialState = {
     contest: null,
     entries: null,
@@ -12,7 +10,6 @@ export default function (state = initialState, action) {
 
     switch (action.type) {
         case ACTION.CONTESTS_BY_ID_RESPONSE: {
-            console.log(action, action.contest);
             return {
                 ...state,
                 isFetching: false,
@@ -33,21 +30,12 @@ export default function (state = initialState, action) {
             };
         }
         case ACTION.ENTRY_UPDATE: {
-            console.log(action.entry);
-            // const newEntries=state.entries.map((item)=>{
-            //    if(action.data.id===item.id){
-            //        return action.data
-            //    }else{
-            //        return item
-            //    }
-            // });
             return {
                 ...state,
                 entries: action.entry
             };
         }
         case ACTION.CHOOSE_WINNER: {
-            console.log(action.entry);
             const newEntries = state.entries.map((item) => {
                 if (action.entry.id === item.id) {
                     return action.entry
@@ -55,7 +43,6 @@ export default function (state = initialState, action) {
                     return item
                 }
             });
-            console.log("newEntries", newEntries);
             return {
                 ...state,
                 entries: newEntries

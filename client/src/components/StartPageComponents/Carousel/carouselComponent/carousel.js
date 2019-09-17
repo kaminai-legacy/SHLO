@@ -29,7 +29,7 @@ function carouselElement() {
         functionInterval();
         return () => clearInterval(timeout);
     });
-    //useEffect(()=>{maxLeft=document.getElementById("Slider").offsetWidth});
+
 
     const nextSlide = () => {
         setCountPictureForSlide((window.innerWidth / 378 > 3) ? 3 : Math.floor(window.innerWidth / 378));

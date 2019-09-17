@@ -14,7 +14,7 @@ const renderField = ({input, placeholder, label, type, meta, meta: {touched, err
 };
 
 let formGetEmail = props => {
-    const {handleSubmit, previousPage, textSubmit, formContent, formValues, pristine, submitting} = props;
+    const {handleSubmit} = props;
     const submit = (values) => {
 
         return promises().then(async () => {
@@ -30,7 +30,6 @@ let formGetEmail = props => {
                 });
             }
             props.createAction({...values, title: props.title, longTitle: props.longTitle});
-            // props.checkEmail(values);
         });
     };
     return (
@@ -50,12 +49,9 @@ let formGetEmail = props => {
 
 formGetEmail = reduxForm({
     form: 'formGetEmail',
-    //                 <------ same form name
-    destroyOnUnmount: true, //        <------ preserve form data
+    destroyOnUnmount: true,
     forceUnregisterOnUnmount: false,
-    enableReinitialize: true,// <------ unregister fields on unmount
+    enableReinitialize: true,
 })(formGetEmail);
-
-// <-- same as form name
 
 export default formGetEmail;

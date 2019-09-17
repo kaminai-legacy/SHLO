@@ -7,7 +7,7 @@ let resEmail;
 
 function submit(values) {
     return sleep(200).then(async () => {
-        // simulate server latency
+
         try {
             resEmail = await yup.reach(schema, 'email').isValid(values.email);
         } catch (e) {
@@ -22,20 +22,7 @@ function submit(values) {
             email: values.email,
             password: values.password
         };
-//this.props.userLogin(data);
+
     })
 }
-
-/*const mapStateToProps = (state) => {
-  return{
-    state,
-    fromStore:state.userReducers.isFetching
-  }
-};
-
-const mapDispatchToProps = (dispatch) =>  ({
-  userLogin : (data)=> dispatch(userLogin(data))
-});
-export default connect(mapStateToProps,mapDispatchToProps)(submit);
-*/
 export default submit

@@ -1,17 +1,17 @@
-const { RefreshToken } = require('../models/index');
+const {RefreshToken} = require('../models/index');
 
 module.exports.check = async (req, res, next) => {
-  try {
-    const id = req.user.id;
-    console.log(req.user,"step2");
-    const numberOfRefreshToken = await RefreshToken.count({ where: { userId: id } });
-    if (numberOfRefreshToken >= 3) {
-      const deleted = await RefreshToken.destroy({ where: { userId: id } });
-    } else {
+    try {
+        const id = req.user.id;
+
+        const numberOfRefreshToken = await RefreshToken.count({where: {userId: id}});
+        if (numberOfRefreshToken >= 3) {
+            const deleted = await RefreshToken.destroy({where: {userId: id}});
+        } else {
+        }
+        next();
+    } catch (e) {
+        next({status: 400, message: 'Invalid request'});
     }
-    next();
-  } catch (e) {
-    next({ status: 400, message: 'Invalid request' });
-  }
 };
 

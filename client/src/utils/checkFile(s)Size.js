@@ -12,4 +12,3 @@ export default (files, maxSize) => {
     }
 
 };
-//export default check;

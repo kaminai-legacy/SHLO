@@ -1,5 +1,5 @@
 .main {
-  //padding: 10px 20px 30px;
+
   max-width: 595px;
   margin: 100px auto 0 auto;
   width: 100vw;
@@ -7,10 +7,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  @media (min-width: 500px) { //padding: 10px 20px 30px;
-  }
   @media (max-width: 500px) {
-    //padding: 10px 10px 30px;
+
     margin-left: 0;
     margin-right: 0;
     width: auto

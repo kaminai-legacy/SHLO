@@ -1,7 +1,8 @@
 import 'babel-polyfill';
 import express from 'express';
 import multer from 'multer';
-const {ROLE_BUYER,ROLE_CREATIVE,CREATE, CHANGE, WATCH ,CONTESTS} = require('../utils/Consts');
+
+const {ROLE_BUYER, ROLE_CREATIVE, CREATE, CHANGE, WATCH, CONTESTS} = require('../utils/Consts');
 const RIGHTS_OF_USERS = require('../utils/Permisions');
 
 const router = express.Router();
@@ -30,28 +31,26 @@ var storage = multer.diskStorage({
 const upload = multer(storage);
 router.post('/user', userController.createUser);
 router.get('/user', verifyAccessToken.check, userController.getUser);
-router.get('/getAllUsers',verifyAccessToken.check, userController.getAllUsers);
-router.post('/refresh', verifyRefreshToken.check,refreshTokenFindAndCount.check, userController.refreshUser);
+router.get('/getAllUsers', verifyAccessToken.check, userController.getAllUsers);
+router.post('/refresh', verifyRefreshToken.check, refreshTokenFindAndCount.check, userController.refreshUser);
 router.post('/login', verifyUser.verify, checkCountRefreshToken.check, userController.loginUser);
-router.post('/contest/:id', upload.any(),contestController.createContest);
-router.put('/contest/:id', upload.any(),contestController.updateContest);
+router.post('/contest/:id', upload.any(), contestController.createContest);
+router.put('/contest/:id', upload.any(), contestController.updateContest);
 router.get('/contest/:id', contestController.receiveContestById);
 router.delete('/contest/:id', contestController.deleteContest);
 router.put('/changePassword', userController.changeUserPassword);
-router.post('/contestPayment',checkCardExists.check,contestController.payment);
-router.post('/banStatusUpdate/:id',verifyAccessToken.check, userController.updateUserBanStatus);
+router.post('/contestPayment', checkCardExists.check, contestController.payment);
+router.post('/banStatusUpdate/:id', verifyAccessToken.check, userController.updateUserBanStatus);
 router.delete('/logout', userController.logout);
 router.post('/userEmail', userController.hasEmail);
 router.post('/createLinkApi', mailServiceController.createLink);
 router.get('/service/:api', mailServiceController.receiveApi);
 router.get('/getUserContests/:id', contestController.receiveContests);
-router.get('/contestFilter',preparingDataForFilter.prepare, contestController.receiveFilterContests);
-router.post('/entry',verifyAccessToken.check, upload.any(),entriesController.createEntry);
-router.put('/entry/:id',verifyAccessToken.check,entriesController.changeStatus);
+router.get('/contestFilter', preparingDataForFilter.prepare, contestController.receiveFilterContests);
+router.post('/entry', verifyAccessToken.check, upload.any(), entriesController.createEntry);
+router.put('/entry/:id', verifyAccessToken.check, entriesController.changeStatus);
 router.get('/test', (req, res, next) => {
-    const result = role.verifyPermissions({ownerId:4},CONTESTS,CHANGE,{role:ROLE_BUYER,id:5});
+    const result = role.verifyPermissions({ownerId: 4}, CONTESTS, CHANGE, {role: ROLE_BUYER, id: 5});
     res.send(result);
 });
 module.exports = router;
-
-//createContest

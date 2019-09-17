@@ -3,7 +3,6 @@ import style from './Processing.module.scss';
 import {TEXT_PROGRESSING} from '../../../constants/consts';
 
 function Processing(props) {
-    //const text=props.selectedContestTypes[props.stage-1];
     const array = [];
     for (let i = 1; i <= props.number; i++) {
         if (i === props.stage) {

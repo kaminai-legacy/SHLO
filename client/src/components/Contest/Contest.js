@@ -112,17 +112,8 @@ const contest = (props) => {
 
         if (props.user.id === contest.userId) {
 
-            entries.map((item) => {
-
+            entries.forEach((item) => {
                 let entry;
-                // let background=null;
-                // background="url(images/accept.png)";
-                // if(item.status==="ACCEPTED"){
-                //     background="url(../../public/accept.png)"
-                // }
-                // if(item.status==="REJECTED"){
-                //
-                // }
                 if (item.prospectiveText) {
                     entry = item.prospectiveText;
                 } else {
@@ -185,7 +176,7 @@ const contest = (props) => {
                             </div>
                             <div className={`${style.container} ${style.info}`}>
                                 {(page === 1) && fieldsToRender}
-                                {/*<div>{button}</div>*/(page === 2) && entriesToRender}
+
                             </div>
                             {button && contest.status === "Active" && !contest.winner &&
                             <div className={style.startEntryBlock}>

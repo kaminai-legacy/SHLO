@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
 
         case ACTION.GET_MAIL_SERVICE_RESULT: {
             const email = (action.email) ? {email: action.email} : {};
-            console.log(action);
+
             return {
                 ...state,
                 msg: action.result,
@@ -22,7 +22,7 @@ export default function (state = initialState, action) {
             };
         }
         case ACTION.CREATE_LINK_FOR_MAIL: {
-            console.log(action);
+
             const email = (action.email) ? {email: action.email} : {};
             return {
                 ...state,
@@ -32,7 +32,7 @@ export default function (state = initialState, action) {
             };
         }
         case ACTION.RESET_API_MSG: {
-            console.log(action);
+
             return {
                 ...state,
                 msg: null,

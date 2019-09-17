@@ -16,25 +16,6 @@ function carouselElement() {
         setIndex(selectedIndex);
         setDirection(e.direction);
     };
-
-    /* const responsive = {
-         desktop: {
-             breakpoint: { max: 3000, min: 1170 },
-             items: 3,
-             slidesToSlide: 3, // optional, default to 1.
-
-         },
-         tablet: {
-             breakpoint: { max: 1170, min: 780 },
-             items: 2,
-             slidesToSlide: 2, // optional, default to 1.
-         },
-         mobile: {
-             breakpoint: { max: 780, min: 0 },
-             items: 1,
-             slidesToSlide: 1, // optional, default to 1.
-         },
-     };*/
     return (
         <div className={style.carousel}>
             <div className={style.content}>

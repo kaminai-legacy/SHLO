@@ -3,7 +3,6 @@ import style from './ContainerBody.module.scss';
 import Form from './Form/Form';
 import connect from 'react-redux/es/connect/connect';
 
-//const promises = () => new Promise(resolve => resolve());
 
 function ContainerBody(props) {
 

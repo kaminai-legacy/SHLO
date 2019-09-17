@@ -20,7 +20,6 @@ axios.interceptors.response.use(
         try {
             switch (error.response.status) {
                 case 401:
-                    //console.log(401);
                     localStorage.clear();
                     sessionStorage.clear();
                     history.push('/login');

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import style from './Form.module.scss';
 import {Field, reduxForm} from 'redux-form';
 import {checkEmail, setModalState} from '../../../../../actions/actionCreator';
@@ -28,7 +28,6 @@ const renderField = ({
 Modal.setAppElement('#root');
 
 function Form(props) {
-    const [viewModal, setViewModal] = useState(false);
     const {handleSubmit, submitting} = props;
     const baned = props.state.userReducers.banned ? 'block' : 'none';
     const login = props.state.userReducers.loginFailed ? 'block' : 'none';
@@ -130,5 +129,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
-
-//props.createLinkForMail({longTitle:{},title:{},email:props.fromStore})
