@@ -4,24 +4,22 @@ import BottomHeaderList from './StartPageBottomHeaderList/StartPageBottomHeaderL
 import BarMenu from './BarMenu/BarMenu';
 import connect from 'react-redux/es/connect/connect';
 import {Link} from 'react-router-dom';
-import {logout, contestProgressing, selectedContestType, setSiteNavigation} from "../../../actions/actionCreator";
+import {contestProgressing, logout, selectedContestType, setSiteNavigation} from "../../../actions/actionCreator";
 import {startValueContestProgressing} from '../../../constants/consts'
-import Accordion from 'react-bootstrap/Accordion';
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import history from "../../../boot/browserHistory";
 
 function HeaderBottom(props) {
     const [dashboardView, setDashboardView] = useState(false);
     const [barMenuView, setBarMenuView] = useState(false);
-    const toRedirect=history.location.pathname;
+    const toRedirect = history.location.pathname;
+
     function onClicked() {
         props.logout();
         setDashboardView(!dashboardView);
     }
 
     function onClickedStartContest() {
-        props.contestProgressing(startValueContestProgressing,null);
+        props.contestProgressing(startValueContestProgressing, null);
         props.selectedContestType([]);
     }
 
@@ -34,7 +32,7 @@ function HeaderBottom(props) {
     }
 
     const content = (!props.state.userReducers.user) ?
-        <Link to="/login" onClick={()=>props.setSiteNavigation({pageToRedirect:toRedirect})}>Login</Link> :
+        <Link to="/login" onClick={() => props.setSiteNavigation({pageToRedirect: toRedirect})}>Login</Link> :
         <span className={style.toClick} onClick={onClickedDashboard}>
           <div className={style.ava}/>
         <span className={style.hi}> <i className="fa fa-angle-down"/></span>
@@ -74,7 +72,7 @@ function HeaderBottom(props) {
     return (
         <div className={style.flex}>
             <div className={style.mainHeaderBottom}
-                 style={{borderBottom: ((!dashboardView && !barMenuView)||(dashboardView || barMenuView)) ? "none" : " 1px solid #ccc"}}>
+                 style={{borderBottom: ((!dashboardView && !barMenuView) || (dashboardView || barMenuView)) ? "none" : " 1px solid #ccc"}}>
                 <div className={style.mainHeaderBottomContainer}>
                     <div className={style.mainHeaderBottomRow}>
                         <div className={style.mainHeaderBottomLogo}>
@@ -85,7 +83,7 @@ function HeaderBottom(props) {
                         <div className={style.list}>
                             <BottomHeaderList/>
                         </div>
-                        <div className={style.button} ><Link to="/contest_creating_choose_type" >
+                        <div className={style.button}><Link to="/contest_creating_choose_type">
                             <div className={style.mainHeaderBottomButton} onClick={onClickedStartContest}>
                                 START CONTEST
                             </div>
@@ -112,13 +110,13 @@ function HeaderBottom(props) {
 const mapStateToProps = (state) => {
     return {
         state,
-        types:state.contestReducers.selectedContestTypes
+        types: state.contestReducers.selectedContestTypes
     };
 };
 const mapDispatchToProps = (dispatch) => ({
     logout: () => dispatch(logout()),
     selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
-    contestProgressing: (firstValue,secondValue) => dispatch(contestProgressing(firstValue,secondValue)),
+    contestProgressing: (firstValue, secondValue) => dispatch(contestProgressing(firstValue, secondValue)),
     setSiteNavigation: (data) => dispatch(setSiteNavigation(data)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderBottom);

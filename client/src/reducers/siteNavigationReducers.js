@@ -1,7 +1,7 @@
 import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
-  pageToRedirect:null
+    pageToRedirect: null
 };
 
 export default function (state = initialState, action) {

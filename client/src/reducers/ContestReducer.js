@@ -1,34 +1,35 @@
 import ACTION from '../actions/actiontsTypes';
-const _=require("lodash");
+
+const _ = require("lodash");
 
 const initialState = {
-    contest:null,
-    entries:null,
-    isFetching:false
+    contest: null,
+    entries: null,
+    isFetching: false
 };
 
 export default function (state = initialState, action) {
 
     switch (action.type) {
         case ACTION.CONTESTS_BY_ID_RESPONSE: {
-            console.log(action,action.contest);
+            console.log(action, action.contest);
             return {
                 ...state,
-                isFetching:false,
-                contest:action.contest,
-                entries:action.entries
+                isFetching: false,
+                contest: action.contest,
+                entries: action.entries
             };
         }
         case ACTION.CONTESTS_BY_ID_REQUEST: {
             return {
                 ...state,
-                isFetching:true,
+                isFetching: true,
             };
         }
         case ACTION.CONTEST_UPDATE: {
             return {
                 ...state,
-                contest:action.contest
+                contest: action.contest
             };
         }
         case ACTION.ENTRY_UPDATE: {
@@ -42,22 +43,22 @@ export default function (state = initialState, action) {
             // });
             return {
                 ...state,
-                entries:action.entry
+                entries: action.entry
             };
         }
         case ACTION.CHOOSE_WINNER: {
             console.log(action.entry);
-            const newEntries=state.entries.map((item)=>{
-               if(action.entry.id===item.id){
-                   return action.entry
-               }else{
-                   return item
-               }
+            const newEntries = state.entries.map((item) => {
+                if (action.entry.id === item.id) {
+                    return action.entry
+                } else {
+                    return item
+                }
             });
-            console.log("newEntries",newEntries)
+            console.log("newEntries", newEntries);
             return {
                 ...state,
-                entries:newEntries
+                entries: newEntries
             };
         }
         default: {

@@ -24,19 +24,19 @@ function ContainerBody(props) {
                     email: 'Email is not valid format',
                     _error: 'Login failed!',
                 });
-            }else if (!values.password) {
+            } else if (!values.password) {
                 throw new SubmissionError({
                     password: 'Required',
                     _error: 'Login failed!',
                 });
             }
-            console.log("ALL props", values);
+
             const dataToSend = {
                 email: values.email,
                 password: values.password,
                 rememberMe: (!!values.rememberMe)
             };
-            props.userLogin({dataToSend:dataToSend,pageToRedirect:props.pageToRedirect});
+            props.userLogin({dataToSend: dataToSend, pageToRedirect: props.pageToRedirect});
         });
     };
     return (
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
         state,
         fromStore: state.userReducers.data,
         error: state.userReducers.error,
-        pageToRedirect:state.siteNavigationReducers.pageToRedirect
+        pageToRedirect: state.siteNavigationReducers.pageToRedirect
     };
 };
 const mapDispatchToProps = (dispatch) => ({

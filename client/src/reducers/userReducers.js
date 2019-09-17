@@ -76,14 +76,14 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isFetching: true,
-                loginFailed:false
+                loginFailed: false
             };
         }
         case ACTION.NO_USER: {
             return {
                 ...state,
                 isFetching: false,
-                loginFailed:false
+                loginFailed: false
             };
         }
         default: {

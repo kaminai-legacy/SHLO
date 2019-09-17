@@ -2,7 +2,7 @@ import React from 'react';
 import {sendApiFromEmail} from '../../actions/actionCreator';
 import connect from "react-redux/es/connect/connect";
 
-const sendApiToServer = (props)=>{
+const sendApiToServer = (props) => {
     props.sendApiFromEmail(props.params);
     return null;
 };

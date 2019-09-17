@@ -1,30 +1,31 @@
-import React,{useEffect} from 'react';
-import DashboardContent from '../../components/Dashboard/DashboardContent/DashboardContent';
-import style from './ContestPage.module.scss';
+import React, {useEffect} from 'react';
 import Header from "../../components/commonToAll/Header/Header";
 import Footer from '../../components/commonToAll/Footer/footer';
 import HeaderBottom from "../../components/commonToAll/HeaderBottom/HeaderBottom";
 import Contest from "../../components/Contest/Contest";
 import connect from "react-redux/es/connect/connect";
 import {getContestById} from "../../actions/actionCreator";
-const _=require('lodash');
+
+const _ = require('lodash');
 
 function contest(props) {
-    useEffect(()=>{
-        if(props.user){  props.getContestById(props.id);
+    useEffect(() => {
+        if (props.user) {
+            props.getContestById(props.id);
         }
 
     });
     return (
-        <div >
+        <div>
             <Header/>
             <HeaderBottom/>
             <Contest/>
             <Footer/>
         </div>);
 }
+
 const mapStateToProps = (state) => ({
-    user:state.userReducers.user,
+    user: state.userReducers.user,
     filter: state.ActiveContestFilterReducer
 });
 
@@ -34,4 +35,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(contest);
+export default connect(mapStateToProps, mapDispatchToProps)(contest);

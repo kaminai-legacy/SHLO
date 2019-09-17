@@ -4,13 +4,12 @@ import {Link} from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
 import {setSiteNavigation} from "../../../../../../actions/actionCreator";
 import history from '../../../../../../boot/browserHistory';
-import {put} from "@redux-saga/core/effects";
-import ACTION from "../../../../../../actions/actiontsTypes";
 
 function SignUp(props) {
-    const toRedirect=history.location.pathname;
+    const toRedirect = history.location.pathname;
     const content = (props.state.userReducers.user === null || props.state.userReducers.user === undefined) ?
-        <Link className={style.anchor} onClick={()=>props.setSiteNavigation({pageToRedirect:toRedirect})} to="/signup"> Sign up</Link> :
+        <Link className={style.anchor} onClick={() => props.setSiteNavigation({pageToRedirect: toRedirect})}
+              to="/signup"> Sign up</Link> :
         <span>
         <span className={style.hi}><i className="far fa-envelope"/></span>
         </span>;
@@ -32,5 +31,5 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     setSiteNavigation: (data) => dispatch(setSiteNavigation(data)),
 });
-export default connect(mapStateToProps,mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
 

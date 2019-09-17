@@ -7,7 +7,6 @@ import Footer from '../../components/commonToAll/Footer/footer';
 import WhySquadhelp from '../../components/StartPageComponents/WhySquadhelp/WhySquadhelp';
 import GrowBusiness from '../../components/StartPageComponents/GrowBusiness/GrowBusiness';
 import HowItWorksHome from '../../components/StartPageComponents/HowItWorksHome/HowItWorksHome';
-import Carousel from '../../components/StartPageComponents/Carousel/carousel';
 
 
 function StartPage() {

@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
 import {TOKENS_KEY} from '../../constants/consts';
-import {userIsLogin, resetApiMsg, changeUserPassword, changeAppStatus,noUser,resetAppMsg} from '../../actions/actionCreator';
+import {
+    changeAppStatus,
+    changeUserPassword,
+    noUser,
+    resetApiMsg,
+    resetAppMsg,
+    userIsLogin
+} from '../../actions/actionCreator';
 import {toast} from "react-toastify";
 import Modal from 'react-modal';
 import style from "../LoginAndSignUp/MainLogin/ContainerBody/Form/Form.module.scss";
@@ -21,14 +28,14 @@ class UserLoader extends Component {
             position: toast.POSITION.BOTTOM_LEFT,
             autoClose: 6000,
         };
-        if(this.props.app.msg){
+        if (this.props.app.msg) {
             this.props.resetAppMsg();
-            if(this.props.app.error){
+            if (this.props.app.error) {
                 return toast.error(msg, props)
-            }else{
+            } else {
                 return toast.success(msg, props)
             }
-        }else if(this.props.mail.msg){
+        } else if (this.props.mail.msg) {
             this.props.resetApiMsg();
             if (this.props.mail.err) {
                 return toast.error(msg, props)
@@ -38,29 +45,19 @@ class UserLoader extends Component {
         }
 
 
-
-
     };
 
     componentWillMount() {
         const user = this.props.user;
         if (!user && (localStorage.getItem(TOKENS_KEY) || sessionStorage.getItem(TOKENS_KEY))) {
             this.props.userIsLogin();
-        }else{
+        } else {
             this.props.noUser();
         }
-        // if (this.props.app.needUpdate['user']){
-        //     console.log("HEHEHEHEHEHEHEHEH")
-        //     this.props.userIsLogin();
-        //     this.props.changeAppStatus({'user': false});
-        // }
     }
 
-//createAction={this.props.checkEmail}
-    render() {
-       // console.log(this.props.mail);
-        //  const func=(this.props.mail.msg)?this.notify(this.props.mail.msg):{};
 
+    render() {
         return (
             <>
                 <Modal
@@ -73,7 +70,7 @@ class UserLoader extends Component {
                     className={style.modal}
                     overlayClassName={style.modalOverlay}
                 >
-                    {console.log(this.props.app)}
+
                     <ReserPassword createAction={this.props.changeUserPassword} title={'Change Password'}
                                    preInput={'Enter and retype the new password'}
                                    button={'Click to change'} email={this.props.mail['email']}/>

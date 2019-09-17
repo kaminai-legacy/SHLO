@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm, formValueSelector,getFormValues,} from 'redux-form';
+import {reduxForm,} from 'redux-form';
 import 'react-widgets/dist/css/react-widgets.css';
 import style from './FilterForm.module.scss';
 import FormBlock from './FormBlock';
@@ -10,33 +10,32 @@ const promises = () => new Promise(resolve => resolve());
 
 
 let filterForm = props => {
-    const {previousPage,textSubmit,formContent,formValues} = props;
+    const {previousPage, textSubmit, formContent, formValues} = props;
     return (
         <form>
             <div className={style.allFormBlocks}>
                 {
-                    Content.FILTERS.map((item,id)=>
-                {return  <FormBlock key={id} title={item.title} fields={item.fields}/>})
-               }
+                    Content.FILTERS.map((item, id) => {
+                        return <FormBlock key={id} title={item.title} fields={item.fields}/>
+                    })
+                }
             </div>
         </form>
     );
 };
 
 filterForm = reduxForm({
-     //                 <------ same form name
-    destroyOnUnmount: true, //        <------ preserve form data
+
+    destroyOnUnmount: true,
     forceUnregisterOnUnmount: false,
     enableReinitialize: true,
-    // <------ unregister fields on unmount
-})(filterForm);
 
- // <-- same as form name
+})(filterForm);
 
 const mapStateToProps = (state) => {
     return {
         state,
-        formValues: getFormValues(filterForm)(state),
+        formValues: {Active: true},
     };
 };
 

@@ -1,14 +1,28 @@
 import React from 'react';
 import style from './DashboardContent.module.scss';
 import {Link} from "react-router-dom";
-import {contestProgressing, selectedContestType,createOrUpdateTempContest,deleteContest} from "../../../actions/actionCreator";
+import {
+    contestProgressing,
+    createOrUpdateTempContest,
+    deleteContest,
+    selectedContestType
+} from "../../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
 import timeAgo from '../../../utils/timeAgo'
+
 const _ = require("lodash");
 
 function contestBlock(props) {
-    const createdAt=_.cloneDeep(props.contest.createdAt);
+    const createdAt = _.cloneDeep(props.contest.createdAt);
     const duration = timeAgo(createdAt);
+    const cloneContest = _.cloneDeep(props.contest);
+    if (cloneContest.visualBrandStyle) {
+        cloneContest.visualBrandStyle = cloneContest.visualBrandStyle.join(", ")
+    } else if (cloneContest.preferenceForName) {
+        cloneContest.preferenceForName = cloneContest.preferenceForName.join(", ")
+    } else if (cloneContest.preferenceForTagline) {
+        cloneContest.preferenceForTagline = cloneContest.preferenceForTagline.join(", ")
+    }
     return (<div className={style.contestInDraft}>
             <div className={style.contestInDraftContainer}>
                 <div className={style.contestInDraftContainerInside}>
@@ -17,16 +31,22 @@ function contestBlock(props) {
                             <div className={style.contestInDraftContainerRowInsideColumn}>
                                 <div className={style.firstRow}>
                                     {/*<Link to={`/contest/${contest.id}`}>{contest.titleOfContest}</Link>*/}
-                                    <Link to={`/contest/${props.contest.id}`}> #{props.contest.id} - {props.contest.titleOfContest}</Link>
+                                    <Link
+                                        to={`/contest/${cloneContest.id}`}> #{cloneContest.id} - {cloneContest.titleOfContest}</Link>
                                 </div>
                                 <div className={style.secondRow}>
-                                    <Link to=""> {(props.contest.typeOfContest==="TAGLINE_OR_SLOGAN")?"Branding & identity":"Naming"} / {props.contest.typeOfContest.replace(/_/g, ' ')}</Link>
-                                    {" "}(Saved {(duration.humanize({precision: 4}).indexOf('ago')!==-1)?duration.humanize({precision: 4}):duration.humanize({precision: 4}) + "  ago"})
+                                    <Link
+                                        to=""> {(cloneContest.typeOfContest === "TAGLINE_OR_SLOGAN") ? "Branding & identity" : "Naming"} / {cloneContest.typeOfContest.replace(/_/g, ' ')}</Link>
+                                    {" "}(Saved {(duration.humanize({precision: 4}).indexOf('ago') !== -1) ? duration.humanize({precision: 4}) : duration.humanize({precision: 4}) + "  ago"})
                                 </div>
                             </div>
                             <div className={style.buttonPosition}>
-                                {(props.contest['status']==='Not Paid')&&<Link to="/contest_creating/" onClick={()=>{props.selectedContestType([props.contest.typeOfContest]);props.contestProgressing(2,props.contest.typeOfContest);
-                                    props.createOrUpdateTempContest(props.contest)}}>
+                                {(cloneContest['status'] === 'Not Paid') &&
+                                <Link to="/contest_creating/" onClick={() => {
+                                    props.selectedContestType([cloneContest.typeOfContest]);
+                                    props.contestProgressing(2, cloneContest.typeOfContest);
+                                    props.createOrUpdateTempContest(cloneContest)
+                                }}>
                                     <div className={style.button}>
                                         <i className="fas fa-pen-square"/> Continue Editing
                                     </div>
@@ -35,10 +55,11 @@ function contestBlock(props) {
                         <div className={style.contestInDraftContainerRow}>
                             <div className={style.contestInDraftContainerRowInsideColumn}>
                                 <div className={style.thirdRow}>
-                                    preferences : {props.contest.visualBrandStyle || props.contest.preferenceForName || props.contest.preferenceForTagline}
+                                    preferences
+                                    : {cloneContest.visualBrandStyle || cloneContest.preferenceForName || cloneContest.preferenceForTagline}
                                 </div>
                                 <div className={style.fourthRow}>
-                                    target customers : {props.contest.targetCustomers}
+                                    target customers : {cloneContest.targetCustomers}
                                 </div>
                             </div>
                             <div>
@@ -53,11 +74,13 @@ function contestBlock(props) {
                                     <i className="far fa-star"/>
                                     <i className="far fa-star"/>
                                     <i className="far fa-star"/>&nbsp;&nbsp; {props.nickName}   &nbsp;&nbsp;&nbsp; <i
-                                    className="far fa-gem"/> ${(props.contest['status']==='Not Paid')?0:props.contest.price}
+                                    className="far fa-gem"/> ${(cloneContest['status'] === 'Not Paid') ? 0 : cloneContest.price}
                                 </div>
                             </div>
                             <div className={style.sixthRow}>
-                                {(props.contest['status']==='Not Paid')&& <i onClick={()=>props.deleteContest(props.contest.id,props.user.id)} className={"fas fa-trash-alt "+`${style.trash}`}/>}
+                                {(cloneContest['status'] === 'Not Paid') &&
+                                <i onClick={() => props.deleteContest(cloneContest.id, props.user.id)}
+                                   className={"fas fa-trash-alt " + `${style.trash}`}/>}
                             </div>
                         </div>
                     </div>
@@ -66,6 +89,7 @@ function contestBlock(props) {
         </div>
     );
 }
+
 const mapStateToProps = (state) => {
     return {
         state,
@@ -74,9 +98,9 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => ({
     selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
-    contestProgressing: (currentStage,type) => dispatch(contestProgressing(currentStage,type)),
-    createOrUpdateTempContest: (currentStage,type) => dispatch(createOrUpdateTempContest(currentStage,type)),
-    deleteContest: (idContest,idUser) => dispatch(deleteContest(idContest,idUser)),
+    contestProgressing: (currentStage, type) => dispatch(contestProgressing(currentStage, type)),
+    createOrUpdateTempContest: (currentStage, type) => dispatch(createOrUpdateTempContest(currentStage, type)),
+    deleteContest: (idContest, idUser) => dispatch(deleteContest(idContest, idUser)),
 
 });
 export default connect(mapStateToProps, mapDispatchToProps)(contestBlock);

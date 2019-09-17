@@ -1,16 +1,17 @@
 import ACTION from '../actions/actiontsTypes';
-const _=require("lodash");
+
+const _ = require("lodash");
 
 const initialState = {
-    selectedTags:{
-        'id':null,
-        'Active':false,
-        'Closed':false,
-        'Categories':"All Categories",
-        'Industries':"All Industries",
+    selectedTags: {
+        'id': null,
+        'Active': false,
+        'Closed': false,
+        'Categories': "All Categories",
+        'Industries': "All Industries",
     },
-    confirmedContests:null,
-    isFetching:false
+    confirmedContests: null,
+    isFetching: false
 };
 
 export default function (state = initialState, action) {
@@ -21,21 +22,21 @@ export default function (state = initialState, action) {
             console.log(action.data);
             return {
                 ...state,
-                selectedTags:{...state.selectedTags,...action.data}
+                selectedTags: {...state.selectedTags, ...action.data}
             };
         }
         case ACTION.SET_FILTERED_CONTEST: {
             console.log(action.contests);
             return {
                 ...state,
-                confirmedContests:action.contests,
-                isFetching:false
+                confirmedContests: action.contests,
+                isFetching: false
             };
         }
         case ACTION.FILTERED_CONTEST_REQUEST: {
             return {
                 ...state,
-                isFetching:true
+                isFetching: true
             };
         }
         default: {

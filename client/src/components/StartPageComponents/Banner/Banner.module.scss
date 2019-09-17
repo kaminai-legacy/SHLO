@@ -26,11 +26,9 @@
   text-align: center;
   @media (max-width: 1200px) {
   }
-  //margin-bottom: ;
 }
 
 .bannerContent {
-  //width: 100%;
   padding: 0 15px;
   position: relative;
   color: #333;
@@ -63,7 +61,6 @@
   overflow: hidden;
   vertical-align: top;
   font-weight: 900;
-  //padding:2em 0;
   position: relative;
   text-align: left;
 }
@@ -81,7 +78,6 @@
   width: 0;
   background: #28d2d0;
   z-index: 2;
-  // transition: width .3s -0.1s
 }
 
 .underLoading {

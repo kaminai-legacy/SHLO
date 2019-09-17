@@ -8,7 +8,7 @@ export function formatCreditCardNumber(value) {
     if (!value) {
         return value;
     }
-    if(true){
+    if (true) {
         const issuer = Payment.fns.cardType(value);
         const clearValue = clearNumber(value);
         let nextValue;
@@ -34,7 +34,8 @@ export function formatCreditCardNumber(value) {
                 break;
         }
 
-        return nextValue.trim();}
+        return nextValue.trim();
+    }
 
 }
 

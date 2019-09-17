@@ -1,20 +1,14 @@
 import React, {useState} from 'react';
-//import { Carousel } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import style from './carousel.module.scss';
-//import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import {Carousel} from 'react-bootstrap';
-//import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 import MyCarousel from './carouselComponent/carousel';
-
 
 function carouselElement() {
 
     const prevIcon = <span className={style.carouselIconPrev}><i className="fas fa-chevron-left"/></span>;
     const nextIcon = <span className={style.carouselIconNext}><i className="fas fa-chevron-right"/></span>;
-
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState(null);
 

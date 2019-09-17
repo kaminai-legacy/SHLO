@@ -1,6 +1,5 @@
 .preBlueBanner {
   position: relative;
-  //top:-10px;
   min-width: 100%;
   background: #455a89;
 }
@@ -29,7 +28,7 @@
     margin: 0 30px;
   }
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   width: 50px;
   height: 50px;

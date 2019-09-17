@@ -6,8 +6,6 @@ import 'react-widgets/dist/css/react-widgets.css';
 import Select from 'react-select';
 import style from "./threeStepContestForm.module.scss";
 
-const forInputs = style.forInputs;
-//console.log(forInputs,"стиль",style, typeof style);
 const customStyles = {
     container: (base, state) => ({
         ...base,
@@ -56,19 +54,17 @@ const customStyles = {
         cursor: "pointer",
     }),
 };
-//({input: {value: omitValue, onChange, onBlur, ...inputProps},meta: omitMeta, touched, error,...props})
-//({input, placeholder, label, type, options, isMulti, defaultValue, meta: {touched, error, active}})
- const renderFileInput = ({input: {value: omitValue, onChange, onBlur, ...inputProps},meta: {touched, error},...props}) => {
-//const renderFileInput = ({input,meta ,...props}) => {
+
+const renderFileInput = ({input: {value: omitValue, onChange, onBlur, ...inputProps}, meta: {touched, error}, ...props}) => {
 
     const adaptFileEventToValue = delegate => e => delegate(e.target.files);
-   // console.log(input,meta);
+
     return (
         <div className={style.renderField}>
             <label className={style.forLabel}>{props.label}</label>
             <input className={style.inputFile}
-                    onChange={adaptFileEventToValue(onChange)}
-                    onBlur={adaptFileEventToValue(onBlur)}
+                   onChange={adaptFileEventToValue(onChange)}
+                   onBlur={adaptFileEventToValue(onBlur)}
                    type="file"
                    multiple={props.multiple}
                    value={inputProps.value}
@@ -81,7 +77,7 @@ const customStyles = {
 };
 
 const renderFieldSelect = ({input, placeholder, label, type, options, isMulti, defaultValue, meta: {touched, error, active}}) => {
-    //console.log(input);
+
     const color = active ? "#2f8dff" : "#d0d0d0";
     return <div className={style.renderFieldForSelect}>
         <label className={style.forLabel}>{label}</label>
@@ -106,7 +102,7 @@ const renderFieldSelect = ({input, placeholder, label, type, options, isMulti, d
 const renderField = ({input, placeholder, label, type, meta, meta: {touched, error, active}}) => {
 
     const color = active ? "#2f8dff" : "#d0d0d0";
-     console.log(color,error,meta);
+
     return <div className={style.renderField}>
         <label className={style.forLabel}>{label}</label>
         <div className={style.preForInputs} style={{borderColor: color}}>
@@ -132,7 +128,7 @@ const renderMultiselect = ({input, data, valueField, options, textField, label, 
             options={options}
             placeholder={placeholder}
             onBlur={() => input.onBlur()}
-            value={input.value || []} // requires value to be an array
+            value={input.value || []}
             data={data}
             valueField={valueField}
             textField={textField}

@@ -6,17 +6,17 @@ import renderField from './renderFieldForFilter';
 
 let filterForm = props => {
     return (
-                <div className={style.FormBlock}>
-                    <div className={style.title}>
-                        {props.title}
-                    </div>
-                    <div className={style.content}>
+        <div className={style.FormBlock}>
+            <div className={style.title}>
+                {props.title}
+            </div>
+            <div className={style.content}>
 
-                        {props.fields.map((field,id)=>{
-                            return  <Field key={id} {...field} component={renderField[field.component]}/>
-                        })}
-                    </div>
-                </div>
+                {props.fields.map((field, id) => {
+                    return <Field key={id} {...field} component={renderField[field.component]}/>
+                })}
+            </div>
+        </div>
     );
 };
 

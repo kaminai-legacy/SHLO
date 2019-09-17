@@ -52,17 +52,19 @@ function dashboardContent(props) {
 
         <div className={style.dashboardContent}>
             <DashboardContestStatus/>
-            {props.userContests.InDraft&& <DashboardContentBlock title={"Contests in Draft"}>
+            {props.userContests.InDraft && <DashboardContentBlock title={"Contests in Draft"}>
                 {
-                    props.userContests.InDraft.map((item,id)=>{
-                      return <DashboardContentContestBlock key={id} contest={item} nickName={(props.user)?props.user.displayName:null}/>
-                     })
+                    props.userContests.InDraft.map((item, id) => {
+                        return <DashboardContentContestBlock key={id} contest={item}
+                                                             nickName={(props.user) ? props.user.displayName : null}/>
+                    })
                 }
             </DashboardContentBlock>}
-            {props.userContests.InLaunch&& <DashboardContentBlock title={"Contests in Launch"}>
+            {props.userContests.InLaunch && <DashboardContentBlock title={"Contests in Launch"}>
                 {
-                    props.userContests.InLaunch.map((item,id)=>{
-                        return <DashboardContentContestBlock key={id} contest={item} nickName={(props.user)?props.user.displayName:null}/>
+                    props.userContests.InLaunch.map((item, id) => {
+                        return <DashboardContentContestBlock key={id} contest={item}
+                                                             nickName={(props.user) ? props.user.displayName : null}/>
                     })
                 }
             </DashboardContentBlock>}
@@ -110,7 +112,7 @@ function dashboardContent(props) {
 const mapStateToProps = (state) => {
     return {
         user: state.userReducers.user,
-        userContests:state.userContestsReducers,
+        userContests: state.userContestsReducers,
     };
 };
 export default connect(mapStateToProps)(dashboardContent);

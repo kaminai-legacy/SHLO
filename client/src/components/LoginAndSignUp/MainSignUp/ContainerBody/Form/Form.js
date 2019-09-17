@@ -83,19 +83,25 @@ function Form(props) {
             firstName: values.firstName,
             lastName: values.lastName,
             displayName: values.displayName,
-            role: (values.role)?values.role:"Buyer",
+            role: (values.role) ? values.role : "Buyer",
             email: values.email,
             password: values.password,
         };
-console.log(dataToSend,values);
-        props.userSignUp({dataToSend:dataToSend,pageToRedirect:props.pageToRedirect});
+
+        props.userSignUp({dataToSend: dataToSend, pageToRedirect: props.pageToRedirect});
     };
     const {handleSubmit, submitting} = props;
     return (
         <form onSubmit={handleSubmit(submit)}>
             <Fields names={['firstName', 'lastName', 'displayName', 'email', 'password', 'passwordConfirmation']}
-                    otherProps={[{type: "text", label: "First name"}, {type: "text", label: "Last name"}, {type: "text", label: "Display Name"},
-                        {type: "text", label: "Email Address"}, {type: "password", label: "Password"}, {type: "password", label: "Password Confirmation"}]}
+                    otherProps={[{type: "text", label: "First name"}, {type: "text", label: "Last name"}, {
+                        type: "text",
+                        label: "Display Name"
+                    },
+                        {type: "text", label: "Email Address"}, {
+                            type: "password",
+                            label: "Password"
+                        }, {type: "password", label: "Password Confirmation"}]}
                     component={renderFields}/>
             <div className={style.Row}>
                 <div className={style.preInsideRow}>
@@ -178,17 +184,17 @@ Form = reduxForm({
     form: 'register',
     destroyOnUnmount: true,
     asyncValidate,
-    asyncBlurFields: ['firstName','lastName','displayName','email','password','passwordConfirmation']
+    asyncBlurFields: ['firstName', 'lastName', 'displayName', 'email', 'password', 'passwordConfirmation']
 })(Form);
 
 const mapStateToProps = (state) => {
     return {
         state,
         fromStore: state.userReducers.data,
-        pageToRedirect:state.siteNavigationReducers.pageToRedirect,
+        pageToRedirect: state.siteNavigationReducers.pageToRedirect,
     };
 };
 const mapDispatchToProps = (dispatch) => ({
     userSignUp: (dataToSend) => dispatch(userSignUp(dataToSend)),
 });
-export default connect(mapStateToProps,mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

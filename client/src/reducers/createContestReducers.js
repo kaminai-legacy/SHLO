@@ -1,11 +1,11 @@
 import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
-    selectedContestTypes:[],
-    contestStage:1,
-    amountOfStages:1,
-    currentContestForm:null,
-    tempContests:{},
+    selectedContestTypes: [],
+    contestStage: 1,
+    amountOfStages: 1,
+    currentContestForm: null,
+    tempContests: {},
 };
 
 export default function (state = initialState, action) {
@@ -14,27 +14,27 @@ export default function (state = initialState, action) {
             console.log(action);
             return {
                 ...state,
-                selectedContestTypes:action.contestTypes,
-                amountOfStages:(action.contestTypes.length)?action.contestTypes.length+2:1
+                selectedContestTypes: action.contestTypes,
+                amountOfStages: (action.contestTypes.length) ? action.contestTypes.length + 2 : 1
             };
         }
         case ACTION.CONTEST_PROGRESSING: {
             console.log(action);
             return {
                 ...state,
-                contestStage:action.stage,
-                currentContestForm:action.form
+                contestStage: action.stage,
+                currentContestForm: action.form
             };
         }
         case ACTION.TEMP_CONTEST: {
             console.log(action);
-            const field=action['data']['typeOfContest'];
-            const oldTempContests=state.tempContests
+            const field = action['data']['typeOfContest'];
+            const oldTempContests = state.tempContests;
             return {
                 ...state,
-                tempContests:{
+                tempContests: {
                     ...oldTempContests,
-                    [field]:action.data
+                    [field]: action.data
                 },
             };
         }
@@ -42,7 +42,7 @@ export default function (state = initialState, action) {
             console.log('RESET_TEMP_CONTEST');
             return {
                 ...state,
-                tempContests:{},
+                tempContests: {},
             };
         }
         default: {

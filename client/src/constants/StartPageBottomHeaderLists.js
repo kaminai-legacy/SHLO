@@ -148,12 +148,11 @@ const BLOG = [
 ];
 
 
-
 module.exports =
     {
-         NAME_IDEALS,
-         CONTESTS,
-         OUR_WORK,
-         NAMES_FOR_SALE,
-         BLOG
+        NAME_IDEALS,
+        CONTESTS,
+        OUR_WORK,
+        NAMES_FOR_SALE,
+        BLOG
     };

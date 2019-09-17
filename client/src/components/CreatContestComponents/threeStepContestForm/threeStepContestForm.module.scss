@@ -1,33 +1,34 @@
-.displayForForm{
+.displayForForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.preBusinessStepForm{
-  width:100%;
+
+.preBusinessStepForm {
+  width: 100%;
   background: #f8f8f8;
   font-family: 'Raleway', sans-serif;
 }
 
 .businessStepForm {
   max-width: 1170px;
-  margin:0 auto;
+  margin: 0 auto;
   padding: 40px 15px 15px 15px;
 }
 
-.preButtonOnForm{
+.preButtonOnForm {
   position: relative;
-  width:100%;
+  width: 100%;
   padding: 30px 0;
   display: inline-block;
   background: white;
   font-family: 'Raleway', sans-serif;
 }
 
-.ButtonOnForm{
+.ButtonOnForm {
   max-width: 1170px;
-  margin:0 auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -35,22 +36,25 @@
   @media (max-width: 992px) {
     padding: 0 30px;
   }
-  .text{
+
+  .text {
     line-height: 25px;
     font-size: 17px;
     @media (max-width: 992px) {
-      display: none;  }
+      display: none;
+    }
   }
 
-  .buttons{
+  .buttons {
     @media (max-width: 992px) {
-    width:100%;
+      width: 100%;
     }
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    .next{
+
+    .next {
       cursor: pointer;
       background: #f3875d;
       width: 275px;
@@ -65,7 +69,8 @@
       text-transform: uppercase;
       text-align: center;
     }
-    .prev{
+
+    .prev {
       cursor: pointer;
       background: #888;
       font-size: 15px;
@@ -81,7 +86,7 @@
   }
 }
 
-.forLabel{
+.forLabel {
   font-size: 19px;
   color: #585859;
   font-weight: 700;
@@ -90,18 +95,19 @@
 }
 
 
-.preForInputs{
+.preForInputs {
   @media (max-width: 992px) {
-    max-width:100%;  }
-  width:100%;
-  max-width:50%;
+    max-width: 100%;
+  }
+  width: 100%;
+  max-width: 50%;
   border: 2px solid #d0d0d0;
   //padding: 0 8px;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-.forInputs{
+.forInputs {
   box-sizing: border-box;
   height: 48px;
   border-radius: 4px;
@@ -114,21 +120,22 @@
   //margin: 0 -16px 15px 0;
   //margin-bottom: 15px;
   font-size: 16px;
-  width:100%;
+  width: 100%;
   //max-width:50%!important;
 }
 
-.renderField{
+.renderField {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   //margin-left:-8px;
-  input{
+  input {
     @media (max-width: 992px) {
-      max-width:100%!important;  }
+      max-width: 100% !important;
+    }
     height: 48px;
-    border:none ;
+    border: none;
     box-shadow: none;
     //padding: 0 8px;
     //margin-bottom: 15px;
@@ -139,14 +146,15 @@
   }
 }
 
-.renderFieldForSelect{
+.renderFieldForSelect {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   //margin-right:-4px;
   box-sizing: border-box;
-  input{
+
+  input {
     min-height: 36px;
     box-shadow: none;
     //padding: 0 8px;
@@ -156,12 +164,12 @@
 }
 
 
-
-.forSelect{
+.forSelect {
   @media (max-width: 992px) {
-    max-width:100%!important;  }
-  width:100%;
-  max-width:50%!important;
+    max-width: 100% !important;
+  }
+  width: 100%;
+  max-width: 50% !important;
   min-height: 48px;
   box-shadow: none;
   //padding: 0 2px;
@@ -169,87 +177,92 @@
   box-sizing: border-box;
 }
 
-.errorMsg{
-  color:red;
-  font-size:18px;
-  padding:10px 10px 10px 0;
+.errorMsg {
+  color: red;
+  font-size: 18px;
+  padding: 10px 10px 10px 0;
   text-align: center;
   max-width: 50vw;
 }
 
-.inputFile{
-  margin:10px 20px 0 20px;
+.inputFile {
+  margin: 10px 20px 0 20px;
   max-height: 40px;
 }
 
-.forCardField{
+.forCardField {
   min-width: 70px;
   max-width: 220px;
   display: inline-block;
   width: auto;
 }
 
-.creditCard{
-  margin:20px 0;
+.creditCard {
+  margin: 20px 0;
 }
 
-.modal{
+.modal {
   position: absolute;
-  width:100vw;
-  height:100vh;
+  width: 100vw;
+  height: 100vh;
   background: white;
 }
-.modalOverlay{
+
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 20;
-  width:100vw;
-  height:100vh;
+  width: 100vw;
+  height: 100vh;
   background: white;
 }
 
-.formGetEmail{
+.formGetEmail {
   position: relative;
-  top:30vh;
-  margin:0 auto;
+  top: 30vh;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-    .title{
-      text-align: center;
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-    .preInput{
-      text-align: center;
-      font-size: 16px;
-      width: 33%;
-      margin: 0 auto!important;
-    }
-    .inputEmail{
-      box-sizing: border-box;
-      font-size: 16px;
-      padding: 10px ;
-      width: 33vw;
-      border:1px solid gray;
-      border-radius:5px;
-      margin:10px;
-      min-height: 55px;
-      min-width: 200px;
-    }
-  .button{
+
+  .title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .preInput {
+    text-align: center;
+    font-size: 16px;
+    width: 33%;
+    margin: 0 auto !important;
+  }
+
+  .inputEmail {
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 10px;
+    width: 33vw;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 10px;
+    min-height: 55px;
+    min-width: 200px;
+  }
+
+  .button {
     width: 33vw;
     display: block;
     background-color: #28d2d0;
     color: #fff;
     height: 45px;
-    margin:10px;
+    margin: 10px;
     font-size: 20px;
-    border-radius:5px;
+    border-radius: 5px;
     cursor: pointer;
     min-width: 200px;
   }

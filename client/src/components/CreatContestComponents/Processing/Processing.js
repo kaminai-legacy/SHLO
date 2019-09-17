@@ -26,9 +26,9 @@ function Processing(props) {
                         <div className={style.circleDone}>
                             <div className={style.label}/>
                             <div className={style.preTitle}>
-                            <div className={style.title}>
-                                {TEXT_PROGRESSING[props.text]}
-                            </div>
+                                <div className={style.title}>
+                                    {TEXT_PROGRESSING[props.text]}
+                                </div>
                             </div>
                         </div>
                         <div className={style.tube}/>
@@ -62,13 +62,13 @@ function Processing(props) {
 
     return (
         <div className={style.preProgressMain} key={TEXT_PROGRESSING['start']}>
-        <div className={style.progressMain}>
-            <div className={style.content}>
-                <div className={style.tubeFirst}/>
-                {array}
-                <div className={style.tubeFirst}/>
+            <div className={style.progressMain}>
+                <div className={style.content}>
+                    <div className={style.tubeFirst}/>
+                    {array}
+                    <div className={style.tubeFirst}/>
+                </div>
             </div>
-        </div>
         </div>
     );
 }

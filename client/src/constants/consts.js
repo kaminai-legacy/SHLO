@@ -3,8 +3,8 @@ const TOKENS_KEY = "TOKENS";
 const FILTER_TAGS = {
     originalName: {Industries: 'typeOfIndustry', Categories: 'typeOfContest'},
     label: ['Industries', 'Categories',],
-    toSend: ['typeOfIndustry', 'id', 'typeOfContest', 'status','price'],
-        categoriesAssociation: {
+    toSend: ['typeOfIndustry', 'id', 'typeOfContest', 'status', 'price'],
+    categoriesAssociation: {
         'Naming only': "NAME",
         'Logo only': "LOGO",
         'Tagline only': "TAGLINE_OR_SLOGAN",
@@ -12,21 +12,21 @@ const FILTER_TAGS = {
 };
 
 const FIELDS_NAME_HUMANIZE = {
-    typeOfContest:"Type of Contest",
-    typeOfIndustry:"Type of Industry",
-    whatVentureDoes:"What is your Business/ Brand about?",
-    inputNameOfTheirVenture:"The name of Venture",
-    targetCustomers:"Target Customers",
-    typeOfName:"Preferred Type of Name",
-    visualBrandStyle:"Preferred for Visual Style",
-    preferenceForName:"Preferred Style of Name",
-    preferenceForTagline:"Preferred Style of Tagline",
-    winner:"The Winner",
-    media:"Added files",
+    typeOfContest: "Type of Contest",
+    typeOfIndustry: "Type of Industry",
+    whatVentureDoes: "What is your Business/ Brand about?",
+    inputNameOfTheirVenture: "The name of Venture",
+    targetCustomers: "Target Customers",
+    typeOfName: "Preferred Type of Name",
+    visualBrandStyle: "Preferred for Visual Style",
+    preferenceForName: "Preferred Style of Name",
+    preferenceForTagline: "Preferred Style of Tagline",
+    winner: "The Winner",
+    media: "Added files",
 };
 
 
-const NO_NEEDED_FIELDS = ['createdAt','updatedAt','id','numberOfEntries','status','price','userId','titleOfContest'];
+const NO_NEEDED_FIELDS = ['createdAt', 'updatedAt', 'id', 'numberOfEntries', 'status', 'price', 'userId', 'titleOfContest'];
 const LOADING_ITEMS = ["a Company", "a Brand", "a Website", "a Service", "a Book", "a Business", "an App", "a Product", "a Startup"];
 const TEXT_PROGRESSING = {
     START: "Select Contest Type",

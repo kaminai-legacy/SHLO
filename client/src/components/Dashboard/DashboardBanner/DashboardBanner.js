@@ -7,11 +7,11 @@ function dashboardBanner(props) {
         <div className={style.preBlueBanner}>
             <div className={style.blueBanner}>
                 <div className={style.dashboardAva}
-                     style={{backgroundImage: "url(https://www.squadhelp.com/images/user_image/thumb/Ava-avatar.jpg)"}}>
+                     style={{backgroundImage: "url(http://www.simonhoegsberg.com/faces_of_new_york/images/11_faces.jpg)"}}>
                     <div className={style.upload}><i className="fa fa-camera"/>
                         <div className={style.uploadFile}>Upload Picture</div>
                     </div>
-                    {console.log(props)}
+
 
                 </div>
                 <div className={style.textBlock}>

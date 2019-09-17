@@ -12,11 +12,6 @@ import AppReducers from './AppReducers';
 import ActiveContestFilterReducer from './ActiveContestFilterReducer';
 import ContestReducer from './ContestReducer';
 
-
-
-
-//import manageElementsReducers from './manageElementsReducers';
-
 const appReducer = combineReducers({
     userReducers,
     getAllUsersReducer,
@@ -29,7 +24,6 @@ const appReducer = combineReducers({
     AppReducers,
     ActiveContestFilterReducer,
     ContestReducer,
-   // manageElementsReducers,
     form: formReducer,
 });
 

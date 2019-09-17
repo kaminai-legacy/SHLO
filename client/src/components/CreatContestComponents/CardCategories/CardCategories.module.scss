@@ -1,28 +1,29 @@
-.preCardCategories{
+.preCardCategories {
   //width:50%;
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0 25px 30px 25px;
   float: left;
   position: relative;
-  height:350px;
-  width:25%;
+  height: 350px;
+  width: 25%;
   @media (max-width: 992px) {
     padding: 0 5px 10px 5px;
     //min-height: 50vh;
-    width:50%;
+    width: 50%;
   }
   @media (max-width: 768px) {
     padding: 0 5px 10px 5px;
     //min-height: 50vh;
-    width:50%;
+    width: 50%;
   }
 
 
 }
+
 .cardCategories {
   background: #fff;
-  display: flex ;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -41,6 +42,7 @@
     min-width: 0;
 
   }
+
   hr {
 
     width: 60px;
@@ -66,7 +68,6 @@
 }
 
 
-
 .imageHover {
   margin: 20px 2px;
   width: 48px;
@@ -82,12 +83,11 @@
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 
 
-
   hr {
     border-top: 1px solid #28d2d0;
   }
 
-  .image{
+  .image {
     filter: none;
   }
 }

@@ -14,12 +14,14 @@ class AdminP extends Component {
             this.props.getAllUsers();
         }
     }
+
     render() {
         console.log(this.props.users);
-        if (!this.props.isFetching){
+        if (!this.props.isFetching) {
             if (this.props.user === null || (this.props.user.role !== "ADMIN")) {
-            return <Redirect to="/notFound"/>
-        }}
+                return <Redirect to="/notFound"/>
+            }
+        }
         return (
             <div className={style.adminPanel}>
                 {(this.props.users) ? <List users={this.props.users}/> : {}}

@@ -17,6 +17,7 @@
     line-height: 1.1;
     color: inherit;
   }
+
   p {
     font-size: 17px;
     margin: 0 0 10px;
@@ -26,6 +27,7 @@
     margin-inline-start: 0;
     margin-inline-end: 0;
   }
+
   hr {
     width: 100px;
     border: 1px solid #fff;
@@ -36,14 +38,14 @@
 }
 
 .flexCategories {
-  margin:0 auto ;
+  margin: 0 auto;
   max-width: 1200px;
   @media (max-width: 768px) {
     max-width: 100%;
     display: inline-block;
     text-align: center;
     width: 100%;
-    a{
+    a {
       //display: inline-block;
       //max-width: 25%;
       //@media (max-width: 768px) {

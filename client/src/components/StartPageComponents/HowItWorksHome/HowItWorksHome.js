@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import style from './HowItWorksHome.module.scss';
-import {BLOCKS} from './../../../constants/WhySquadhelp';
 import Title from "../../commonToAll/Title/Title";
 
 

@@ -1,12 +1,12 @@
 import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
-    contests:null,
-    numberInLaunch:0,
-    numberInDraft:0,
-    InLaunch:null,
-    InDraft:null,
-    latestContestInDraft:null,
+    contests: null,
+    numberInLaunch: 0,
+    numberInDraft: 0,
+    InLaunch: null,
+    InDraft: null,
+    latestContestInDraft: null,
 };
 
 export default function (state = initialState, action) {
@@ -15,12 +15,12 @@ export default function (state = initialState, action) {
             console.log(action);
             return {
                 ...state,
-                contests:action.data,
-                numberInDraft:action.numberInDraft,
-                numberInLaunch:action.numberInLaunch,
-                InLaunch:action.InLaunch,
-                InDraft:action.InDraft,
-                latestContestInDraft:action.latestContest
+                contests: action.data,
+                numberInDraft: action.numberInDraft,
+                numberInLaunch: action.numberInLaunch,
+                InLaunch: action.InLaunch,
+                InDraft: action.InDraft,
+                latestContestInDraft: action.latestContest
             };
         }
         default: {

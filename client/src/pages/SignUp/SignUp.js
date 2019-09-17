@@ -5,7 +5,7 @@ import {TOKENS_KEY} from '../../constants/consts';
 import {Redirect} from 'react-router';
 
 function SignUpPage() {
-    const user = localStorage.getItem(TOKENS_KEY)||sessionStorage.getItem(TOKENS_KEY);
+    const user = localStorage.getItem(TOKENS_KEY) || sessionStorage.getItem(TOKENS_KEY);
     if (user) return <Redirect to="/"/>;
 
     return (

@@ -1,8 +1,8 @@
 import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
-  confirmEmail:false,
-  resetPassword:false,
+    confirmEmail: false,
+    resetPassword: false,
 };
 
 export default function (state = initialState, action) {

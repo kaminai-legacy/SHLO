@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './carousel.module.scss';
 import {FIRST_CAROUSEL} from '../../../../constants/contestImgs';
 
@@ -14,7 +14,6 @@ function carouselElement() {
             } else if (window.innerWidth > 1134) {
                 setCountPictureForSlide(3);
             }
-            console.log(maxLeft, maxLeft + (left - 378 * countPictureForSlide));
             if (maxLeft + (left - 378 * countPictureForSlide) > 0) {
                 setLeft(left - 378 * countPictureForSlide)
             } else {

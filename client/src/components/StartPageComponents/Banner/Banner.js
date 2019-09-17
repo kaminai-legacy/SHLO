@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './Banner.module.scss';
 import {Link} from 'react-router-dom';
 import {LOADING_ITEMS, startValueContestProgressing} from '../../../constants/consts';
@@ -10,9 +10,10 @@ let number = 0;
 
 function Banner(props) {
     function onClickedStartContest() {
-        props.contestProgressing(startValueContestProgressing,null);
+        props.contestProgressing(startValueContestProgressing, null);
         props.selectedContestType([]);
     }
+
     const [text, setText] = useState(null);
     useEffect(() => {
         const timeout = setInterval(() => {
@@ -43,7 +44,7 @@ function Banner(props) {
                 <div className={style.flexList}>
                     <div className={style.item}>
                         <div className={style.itemIntermediateLayer}>
-                            <Link to="/contest_creating_choose_type/" >
+                            <Link to="/contest_creating_choose_type/">
                                 <div className={style.startContestButton} onClick={onClickedStartContest}>
                                     START A CONTEST
                                 </div>
@@ -68,16 +69,16 @@ function Banner(props) {
     )
 
 }
+
 const mapStateToProps = (state) => {
     return {
         state,
-        types:state.contestReducers.selectedContestTypes
+        types: state.contestReducers.selectedContestTypes
     };
 };
 const mapDispatchToProps = (dispatch) => ({
     selectedContestType: (contestTypes) => dispatch(selectedContestType(contestTypes)),
-    contestProgressing: (firstValue,secondValue) => dispatch(contestProgressing(firstValue,secondValue)),
+    contestProgressing: (firstValue, secondValue) => dispatch(contestProgressing(firstValue, secondValue)),
 });
-export default connect(mapStateToProps,mapDispatchToProps)(Banner);
+export default connect(mapStateToProps, mapDispatchToProps)(Banner);
 
-//export default Banner;

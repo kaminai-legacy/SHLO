@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import style from './Login.module.scss';
 import connect from 'react-redux/es/connect/connect';
 import {Link} from 'react-router-dom';
-import {logout,setSiteNavigation} from '../../../../../../actions/actionCreator';
+import {logout, setSiteNavigation} from '../../../../../../actions/actionCreator';
 import history from '../../../../../../boot/browserHistory';
 
 function Login(props) {
 
     const [dashboardView, setDashboardView] = useState(false);
-    const toRedirect=history.location.pathname;
+    const toRedirect = history.location.pathname;
+
     function onClicked() {
         props.logout();
         setDashboardView(!dashboardView);
@@ -36,7 +37,7 @@ function Login(props) {
         </ul>
     </div>;
     const content = (!props.state.userReducers.user) ?
-        <Link to="/login" onClick={()=>props.setSiteNavigation({pageToRedirect:toRedirect})}>Login</Link> :
+        <Link to="/login" onClick={() => props.setSiteNavigation({pageToRedirect: toRedirect})}>Login</Link> :
         <span className={style.toClick} onClick={onClickedDashboard}>
           <div className={style.ava}/>
         <span className={style.hi}>&nbsp; Hi, {props.state.userReducers.user.displayName} <i
@@ -60,6 +61,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => ({
     logout: () => dispatch(logout()),
-     setSiteNavigation: (data) => dispatch(setSiteNavigation(data)),
+    setSiteNavigation: (data) => dispatch(setSiteNavigation(data)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

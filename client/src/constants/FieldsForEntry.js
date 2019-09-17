@@ -1,4 +1,4 @@
-const FIELDS= {
+const FIELDS = {
     NAME: {
         type: "text",
         name: "nameEntry",
@@ -18,7 +18,7 @@ const FIELDS= {
         name: "logoEntry",
         component: "renderFileInput",
         label: "Please upload file here",
-        multiple:false
+        multiple: false
     },
 };
 

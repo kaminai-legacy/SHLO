@@ -1,7 +1,6 @@
 import React from 'react';
 import style from './ContainerBody.module.scss';
 import Form from './Form/Form';
-import {userSignUp} from '../../../../actions/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 
 //const promises = () => new Promise(resolve => resolve());

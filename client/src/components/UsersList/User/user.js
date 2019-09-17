@@ -22,12 +22,11 @@ function User(props) {
                 </div>
             </div>
             <div onClick={() => props.click(props.id, props.isBanned)}
-                style={{color: Color}}
-                className={style.icon}>
+                 style={{color: Color}}
+                 className={style.icon}>
                 {status}
             </div>
         </div>);
 }
 
 export default User;
-//console.log(props.click,props.click())

@@ -77,9 +77,6 @@ module.exports.changeStatus = async (req, res, next) => {
                         id : {[Op.ne]:params.id}
                     },transaction}
                 );
-                // console.log("\n\nupdatedEntries",updatedEntries,"\n\n");
-                // console.log("\n\nnewResult",newResult,"\n\n");
-                // console.log("\n\nupdatedContest",updatedContest,"\n\n");
                 updatedEntries.unshift(newResult);
 const entriesToSend=updatedEntries.map((item)=>{
     return  item.dataValues;
@@ -90,7 +87,6 @@ if(updatedEntries){
     transaction.rollback();
 }
                 const objectToSend={entry:entriesToSend,contest:updatedContest.dataValues};
-                // console.log("\n\nobjectToSend",objectToSend,"\n\n");
                 res.send(objectToSend)
             }
         }else{

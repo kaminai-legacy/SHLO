@@ -1,15 +1,15 @@
 import {takeLatest} from 'redux-saga/effects';
 import ACTION from '../actions/actiontsTypes';
-import {getLoginSaga, signUpSaga,checkUserEmail,changeUserPassword} from './usersSaga';
+import {changeUserPassword, checkUserEmail, getLoginSaga, signUpSaga} from './usersSaga';
 import {isLoginSaga} from './isLoginSaga';
 import {getAllUsersSaga} from './getAllUsersSaga';
 import {changeBanStatusSaga} from './changeBanStatusSaga';
 import {logoutSaga} from './logoutSaga';
-import {sendContest,receiveUserContests,deleteUserContest} from './contestSaga';
-import {sendEntry,managed} from './entrySaga';
+import {deleteUserContest, receiveUserContests, sendContest} from './contestSaga';
+import {managed, sendEntry} from './entrySaga';
 import {sendApiToServer} from './mailServicesSaga';
 import {sendRequisites} from './creditCardSaga';
-import {changeFilterTags,getStarterContests,sendFilterData,getById} from './ActiveContestFilterSaga';
+import {changeFilterTags, getById, getStarterContests, sendFilterData} from './ActiveContestFilterSaga';
 
 function* rootSaga() {
     yield takeLatest(ACTION.GET_ALL_USERS, getAllUsersSaga);
@@ -26,13 +26,11 @@ function* rootSaga() {
     yield takeLatest(ACTION.GET_USER_CONTESTS, receiveUserContests);
     yield takeLatest(ACTION.DELETE_CONTEST, deleteUserContest);
     yield takeLatest(ACTION.CHANGE_CONTEST_FILTER, changeFilterTags);
-    yield takeLatest(ACTION.GET_CONTESTS_BY_STARTER_FILTER,getStarterContests);
-    yield takeLatest(ACTION.SEND_FILTER_DATA,sendFilterData);
-    yield takeLatest(ACTION.CONTESTS_BY_ID_REQUEST,getById);
-    yield takeLatest(ACTION.SEND_ENTRY,sendEntry);
-    yield takeLatest(ACTION.ENTRY_MANAGED,managed);
-
-    //yield takeLatest(ACTION.CREATE_LINK_FOR_MAIL, createLink);
+    yield takeLatest(ACTION.GET_CONTESTS_BY_STARTER_FILTER, getStarterContests);
+    yield takeLatest(ACTION.SEND_FILTER_DATA, sendFilterData);
+    yield takeLatest(ACTION.CONTESTS_BY_ID_REQUEST, getById);
+    yield takeLatest(ACTION.SEND_ENTRY, sendEntry);
+    yield takeLatest(ACTION.ENTRY_MANAGED, managed);
 }
-//createLink
+
 export default rootSaga;

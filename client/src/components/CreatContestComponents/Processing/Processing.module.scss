@@ -1,5 +1,5 @@
 
-.preProgressMain{
+.preProgressMain {
   margin: 0 33px;
   @media (min-width: 768px) {
     max-width: 595px;
@@ -14,17 +14,19 @@
     justify-content: center;
   }
 }
+
 .progressMain {
 
-  padding-right:15px;
+  padding-right: 15px;
   width: 100%;
   //max-width: 60%;
 
 
-  .preTitle{
+  .preTitle {
     top: -45px;
     position: absolute;
   }
+
   .title {
     display: inline-block;
     text-align: center;

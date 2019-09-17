@@ -8,10 +8,10 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('BankAccounts', [
           {
-              balance:10000,
-              cvc:'777',
-              number:'7777777777777777',
-              expiry:'77/77',
+              balance:300,
+              cvc:cvc,
+              number:number,
+              expiry:expiry,
               createdAt: new Date(),
               updatedAt: new Date(),
           }
@@ -25,7 +25,7 @@ module.exports = {
 /*
 
     {
-          balance:150,
+          balance:300,
           cvc:cvc,
           number:number,
           expiry:expiry,
