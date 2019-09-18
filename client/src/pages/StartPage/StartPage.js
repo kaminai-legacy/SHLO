@@ -5,8 +5,6 @@ import HeaderBottom from '../../components/commonToAll/HeaderBottom/HeaderBottom
 import Banner from '../../components/StartPageComponents/Banner/Banner';
 import Footer from '../../components/commonToAll/Footer/footer';
 import WhySquadhelp from '../../components/StartPageComponents/WhySquadhelp/WhySquadhelp';
-import GrowBusiness from '../../components/StartPageComponents/GrowBusiness/GrowBusiness';
-import HowItWorksHome from '../../components/StartPageComponents/HowItWorksHome/HowItWorksHome';
 
 
 function StartPage() {
@@ -17,8 +15,8 @@ function StartPage() {
             <HeaderBottom/>
             <Banner/>
             <WhySquadhelp/>
-            <GrowBusiness/>
-            <HowItWorksHome/>
+            {/*<GrowBusiness/>*/}
+            {/*<HowItWorksHome/>*/}
             <Footer/>
         </div>
     );

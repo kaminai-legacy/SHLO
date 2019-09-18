@@ -2,8 +2,9 @@ const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const {User, RefreshToken} = require('../models/index');
 const {
-    OTHER_FIELDS
-} = require('../utils/Consts');
+    OTHER_FIELDS,
+    NO_NEEDED_FIELD_FOR_ADMIN_PANEL
+        } = require('../utils/Consts');
 const tokenController = require('./tokenController');
 
 
@@ -11,11 +12,11 @@ module.exports.createUser = async (req, res, next) => {
     const user = req.body;
     try {
         const password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8));
-        const DataToCreate = await Object.assign({}, user, {password: password});
+        const DataToCreate = Object.assign({}, user, {password: password});
         const createdUser = await User.create(DataToCreate);
         const id = createdUser.dataValues.id;
         const tokenPair = await tokenController.createTokenPair(id);
-        const userForSend = await _.omit(createdUser.dataValues, OTHER_FIELDS);
+        const userForSend = _.omit(createdUser.dataValues, OTHER_FIELDS);
         res.send({
             user: userForSend,
             tokenPair,
@@ -70,7 +71,7 @@ module.exports.hasEmail = async (req, res, next) => {
             res.send({result: 'hasn\'t Email'});
         }
     } catch (e) {
-console.log(e)
+        console.log(e)
     }
 };
 
@@ -81,7 +82,10 @@ module.exports.getAllUsers = async (req, res, next) => {
                 ['id', 'ASC'],
             ]
         });
-        res.send(result);
+        const dataToReceive=result.map((item)=>{
+            return _.omit(item.dataValues,NO_NEEDED_FIELD_FOR_ADMIN_PANEL)
+        });
+        res.send(dataToReceive);
     } catch (e) {
         next({status: 404, message: 'Users not found'});
     }
@@ -112,7 +116,7 @@ module.exports.changeUserPassword = async (req, res, next) => {
 };
 
 module.exports.logout = async (req, res, next) => {
-    const smt = await RefreshToken.destroy({
+    await RefreshToken.destroy({
         returning: true,
         where: {
             tokenString: req.body.data.token

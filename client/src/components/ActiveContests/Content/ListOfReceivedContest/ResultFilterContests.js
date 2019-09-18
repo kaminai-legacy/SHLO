@@ -4,6 +4,7 @@ import timeAgo from '../../../../utils/timeAgo';
 import connect from "react-redux/es/connect/connect";
 import {Link} from "react-router-dom";
 
+const _ = require("lodash");
 
 let resultFilterContests = props => {
 
@@ -20,11 +21,11 @@ let resultFilterContests = props => {
                 {(props.filter.confirmedContests) && props.filter.confirmedContests.map((contest, id) => {
                     const duration = timeAgo(contest.createdAt);
                     if (contest.visualBrandStyle) {
-                        contest.visualBrandStyle = contest.visualBrandStyle.join(", ")
+                        contest.newVisualBrandStyle = contest.visualBrandStyle.join(", ")
                     } else if (contest.preferenceForName) {
-                        contest.preferenceForName = contest.preferenceForName.join(", ")
+                        contest.newPreferenceForName = contest.preferenceForName.join(", ")
                     } else if (contest.preferenceForTagline) {
-                        contest.preferenceForTagline = contest.preferenceForTagline.join(", ")
+                        contest.newPreferenceForTagline = contest.preferenceForTagline.join(", ")
                     }
                     return <div key={id} className={style.contest}>
                         <div className={style.flexRow}>
@@ -41,7 +42,7 @@ let resultFilterContests = props => {
 
                                 <div className={style.preferences}>
                                     <div>preferences
-                                        : {contest.visualBrandStyle || contest.preferenceForName || contest.preferenceForTagline}   </div>
+                                        : {contest.newVisualBrandStyle || contest.newPreferenceForName || contest.newPreferenceForTagline}   </div>
                                     <div> target customers : {contest.targetCustomers}   </div>
                                 </div>
                                 <div className={style.rating}>

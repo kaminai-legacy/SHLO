@@ -1,10 +1,8 @@
-const bcrypt = require('bcrypt');
 const _ = require('lodash');
 const fs = require('fs');
 const {Contest, BankAccount, Entry, User} = require('../models/index');
 const uniqid = require('uniqid');
 const {sequelize} = require('../models');
-const Op = sequelize.Op;
 
 const pathsToFiles = async (files) => {
     try {
@@ -70,7 +68,6 @@ module.exports.updateContest = async (req, res, next) => {
     const payload = req.body;
     const id = req.params.id;
 
-
     try {
         const savedFiles = await pathsToFiles(files);
         const media = await JSON.parse(payload['media']);
@@ -81,7 +78,6 @@ module.exports.updateContest = async (req, res, next) => {
             contest: updatedContest.dataValues
         });
     } catch (e) {
-        console.log(e);
         next(e);
     }
 };
@@ -127,13 +123,13 @@ module.exports.receiveContests = async (req, res, next) => {
         const result = await Contest.findAll({where: {userId: id}});
         res.send(result)
     } catch (e) {
-        console.log(e);
         next(e);
     }
 };
 
 module.exports.receiveContestById = async (req, res, next) => {
     const {id} = req.params;
+    const {idUser} = req;
     try {
         const contest = await Contest.find({
             attributes: {include: ['"Contest".*', [sequelize.fn('count', sequelize.col('Entries.contestId')), 'numberOfEntries']]},
@@ -155,14 +151,16 @@ module.exports.receiveContestById = async (req, res, next) => {
                 });
                 contest.winner = dataValues.displayName;
             }
-
-            const entries = await Entry.findAll({
-                where: {contestId: id},
-            });
-            if (entries) {
-                res.send({contest: contest, entries: entries})
+            if (contest.userId === idUser) {
+                const entries = await Entry.findAll({
+                    where: {contestId: id},
+                });
+                if (entries) {
+                    res.send({contest: contest, entries: entries})
+                }
+            } else {
+                res.send({contest: contest, entries: null})
             }
-
         }
     } catch (e) {
         console.log(e);

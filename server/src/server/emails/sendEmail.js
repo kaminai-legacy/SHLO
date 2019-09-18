@@ -18,23 +18,24 @@ const createHtml = (href, title) => {
         '</table>'
 };
 
-module.exports.sendEmail =async (htmlTitle, confirmApi, subject, to) => {
+module.exports.sendEmail = async (htmlTitle, confirmApi, subject, to) => {
 
-try{
+    try {
 
-    const mailOptions = {
-        from: 'squadhelpservice@gmail.com',
-        to: 'squadhelpservice@gmail.com',
-        subject,
-        html: createHtml(confirmApi, htmlTitle),
-    };
-    await transporter.sendMail(mailOptions, function (err, info) {
-        if (err)
-            console.log(err);
-        else
-            console.log(info);
-    });}catch (e){
+        const mailOptions = {
+            from: 'squadhelpservice@gmail.com',
+            to,  //to: 'squadhelpservice@gmail.com',
+            subject,
+            html: createHtml(confirmApi, htmlTitle),
+        };
+        await transporter.sendMail(mailOptions, function (err, info) {
+            if (err)
+                console.log(err);
+            else
+                console.log(info);
+        });
+    } catch (e) {
 
-}
+    }
 
 };

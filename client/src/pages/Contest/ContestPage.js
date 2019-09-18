@@ -6,8 +6,6 @@ import Contest from "../../components/Contest/Contest";
 import connect from "react-redux/es/connect/connect";
 import {getContestById} from "../../actions/actionCreator";
 
-const _ = require('lodash');
-
 function contest(props) {
     useEffect(() => {
         if (props.user) {

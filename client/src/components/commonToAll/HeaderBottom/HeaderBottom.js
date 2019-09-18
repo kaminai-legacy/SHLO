@@ -35,7 +35,14 @@ function HeaderBottom(props) {
         <Link to="/login" onClick={() => props.setSiteNavigation({pageToRedirect: toRedirect})}>Login</Link> :
         <span className={style.toClick} onClick={onClickedDashboard}>
           <div className={style.ava}/>
-        <span className={style.hi}> <i className="fa fa-angle-down"/></span>
+        <span className={style.hi}>&nbsp;
+            {
+                (dashboardView) ?
+                    <i className="fa fa-angle-up"/>
+                    :
+                    <i className="fa fa-angle-down"/>
+            }
+        </span>
         </span>
     ;
 

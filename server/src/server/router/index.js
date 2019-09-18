@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import express from 'express';
 import multer from 'multer';
+
 const {ROLE_BUYER, ROLE_CREATIVE, CREATE, CHANGE, WATCH, CONTESTS} = require('../utils/Consts');
 const RIGHTS_OF_USERS = require('../utils/Permisions');
 const router = express.Router();
@@ -34,7 +35,7 @@ router.post('/refresh', verifyRefreshToken.check, refreshTokenFindAndCount.check
 router.post('/login', verifyUser.verify, checkCountRefreshToken.check, userController.loginUser);
 router.post('/contest/:id', upload.any(), contestController.createContest);
 router.put('/contest/:id', upload.any(), contestController.updateContest);
-router.get('/contest/:id', contestController.receiveContestById);
+router.get('/contest/:id', verifyAccessToken.check, contestController.receiveContestById);
 router.delete('/contest/:id', contestController.deleteContest);
 router.put('/changePassword', userController.changeUserPassword);
 router.post('/contestPayment', checkCardExists.check, contestController.payment);

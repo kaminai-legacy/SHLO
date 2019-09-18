@@ -17,11 +17,11 @@ function contestBlock(props) {
     const duration = timeAgo(createdAt);
     const cloneContest = _.cloneDeep(props.contest);
     if (cloneContest.visualBrandStyle) {
-        cloneContest.visualBrandStyle = cloneContest.visualBrandStyle.join(", ")
+        cloneContest.newVisualBrandStyle = cloneContest.visualBrandStyle.join(", ")
     } else if (cloneContest.preferenceForName) {
-        cloneContest.preferenceForName = cloneContest.preferenceForName.join(", ")
+        cloneContest.newPreferenceForName = cloneContest.preferenceForName.join(", ")
     } else if (cloneContest.preferenceForTagline) {
-        cloneContest.preferenceForTagline = cloneContest.preferenceForTagline.join(", ")
+        cloneContest.newPreferenceForTagline = cloneContest.preferenceForTagline.join(", ")
     }
     return (<div className={style.contestInDraft}>
             <div className={style.contestInDraftContainer}>
@@ -55,7 +55,7 @@ function contestBlock(props) {
                             <div className={style.contestInDraftContainerRowInsideColumn}>
                                 <div className={style.thirdRow}>
                                     preferences
-                                    : {cloneContest.visualBrandStyle || cloneContest.preferenceForName || cloneContest.preferenceForTagline}
+                                    : {cloneContest.newVisualBrandStyle || cloneContest.newPreferenceForName || cloneContest.newPreferenceForTagline}
                                 </div>
                                 <div className={style.fourthRow}>
                                     target customers : {cloneContest.targetCustomers}

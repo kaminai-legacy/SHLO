@@ -6,45 +6,44 @@ const _ = require('lodash');
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
+const getPriceFilter = (filterItem) => {
+    if (filterItem.indexOf('>') !== -1) {
+        const filterValue = filterItem.replace(/>/g, '');
+        return {[Op.gt]: filterValue};
+    } else {
+        const filterValue = filterItem.split('-');
+        return {[Op.between]: filterValue};
+    }
+};
+const reducer = (accumulator, currentValue, index, array) => {
+    if (index === array.length - 1) {
+        if (!accumulator[Op.or]) {
+            accumulator = getPriceFilter(currentValue);
+
+            return accumulator
+        } else {
+            const value = getPriceFilter(currentValue);
+
+            accumulator[Op.or].push(value);
+
+            return accumulator;
+        }
+    } else {
+        if (!accumulator[Op.or]) {
+            accumulator[Op.or] = [];
+
+        }
+        const value = getPriceFilter(currentValue);
+
+        accumulator[Op.or].push(value);
+
+        return accumulator;
+    }
+};
+
 module.exports.prepare = async (req, res, next) => {
     try {
-        const getPriceFilter = (filterItem) => {
-            if (filterItem.indexOf('>') !== -1) {
-                const filterValue = filterItem.replace(/>/g, '');
-                return {[Op.gt]: filterValue};
-            } else {
-                const filterValue = filterItem.split('-');
-                return {[Op.between]: filterValue};
-            }
-        };
-        const reducer = (accumulator, currentValue, index, array) => {
-            if (index === array.length - 1) {
-                if (!accumulator[Op.or]) {
-                    accumulator = getPriceFilter(currentValue);
-
-                    return accumulator
-                } else {
-                    const value = getPriceFilter(currentValue);
-
-                    const result = accumulator[Op.or].push(value);
-
-                    return accumulator;
-                }
-            } else {
-                if (!accumulator[Op.or]) {
-                    accumulator[Op.or] = [];
-
-                }
-                const value = getPriceFilter(currentValue);
-
-                const result = accumulator[Op.or].push(value);
-
-                return accumulator;
-            }
-        };
-
-
-        const {query} = req;
+              const {query} = req;
         const contestFilter = _.pick(query, FILTER_TAGS);
         if (contestFilter['status']) {
             if (contestFilter['status'].indexOf(',') !== -1) {

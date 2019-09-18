@@ -6,8 +6,6 @@ import ActiveContestContent from "../../components/ActiveContests/Content/Active
 import connect from "react-redux/es/connect/connect";
 import {getContestByFilter} from "../../actions/actionCreator";
 
-const _ = require('lodash');
-
 function activeContests(props) {
     useEffect(() => {
         if ((props.filter.confirmedContests === null) && (props.filter.isFetching === false)) {

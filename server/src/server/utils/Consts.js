@@ -5,6 +5,7 @@ const LIVE_TIME_ACCESS = '15s';
 const LIVE_TIME_REFRESH = '15d';
 const LIVE_TIME_MAIL = '1d';
 const ALGORITHM = 'HS256';
+const NO_NEEDED_FIELD_FOR_ADMIN_PANEL = ['balance', 'createdAt', 'updatedAt', 'password','emailConfirmed'];
 const OTHER_FIELDS = ['password', 'createdAt', 'updatedAt', 'isBaned'];
 const FILTER_TAGS = ['typeOfIndustry', 'id', 'typeOfContest', 'status', 'price'];
 const FILTER_TAGS_IN_NEED_CHANGED = ['typeOfIndustry', 'typeOfContest'];
@@ -38,5 +39,6 @@ module.exports = {
     ENTRIES,
     CONTESTS,
     FILTER_TAGS,
-    FILTER_TAGS_IN_NEED_CHANGED
+    FILTER_TAGS_IN_NEED_CHANGED,
+    NO_NEEDED_FIELD_FOR_ADMIN_PANEL
 };

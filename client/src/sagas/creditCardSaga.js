@@ -22,5 +22,5 @@ export function* sendRequisites({data}) {
 
     } catch (e) {
     }
-}
 
+}

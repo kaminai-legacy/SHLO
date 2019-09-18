@@ -67,7 +67,7 @@ const contest = (props) => {
     const [entryView, setEntryView] = useState(false);
     const [page, setPage] = useState(1);
     const {contest, entries} = props.contest;
-
+    console.log(entries);
     const fieldsToRender = [];
     const entriesToRender = [];
     let duration;
@@ -110,33 +110,41 @@ const contest = (props) => {
 
 
         if (props.user.id === contest.userId) {
-
-            entries.forEach((item) => {
-                let entry;
-                if (item.prospectiveText) {
-                    entry = item.prospectiveText;
-                } else {
-                    const fileName = item.media.split("_")[1];
-                    const filePath = item.media.split("Upload/")[1];
-                    entry = <a href={`${fileURL}/EntriesUpload/${filePath}`} download>{fileName}</a>
-                }
-                entriesToRender.push(<div key={item.id} className={style.entryContainer}>
-                    <div>Entry : {entry}</div>
-                    <div className={style.nickName}>NickName : {item.nickName}</div>
-                    <div className={style.nickName}>Status : {(item.status) ? item.status : null}</div>
-                    {(item.status === "NEUTRAL") && <div className={style.buttonContainer}>
-                        <div className={style.Accept}
-                             onClick={() => props.entryManaged({action: "ACCEPT", id: item.id})}>
-                            Accept
-                        </div>
-                        <div className={style.Reject}
-                             onClick={() => props.entryManaged({action: "REJECT", id: item.id})}>
-                            Reject
-                        </div>
-                    </div>}
-                </div>)
-            })
-
+            if (entries) {
+                entries.forEach((item) => {
+                    let color = "black";
+                    if (item.status === "ACCEPT") {
+                        color = "green";
+                    }
+                    if (item.status === "REJECT") {
+                        color = "red";
+                    }
+                    let entry;
+                    if (item.prospectiveText) {
+                        entry = item.prospectiveText;
+                    } else {
+                        const fileName = item.media.split("_")[1];
+                        const filePath = item.media.split("Upload/")[1];
+                        entry = <a href={`${fileURL}/EntriesUpload/${filePath}`} download>{fileName}</a>
+                    }
+                    entriesToRender.push(<div key={item.id} className={style.entryContainer}>
+                        <div>Entry : {entry}</div>
+                        <div className={style.nickName}>NickName : {item.nickName}</div>
+                        <div className={style.nickName}>Status : <span
+                            style={{color: color}}>{(item.status) ? item.status : null}</span></div>
+                        {(item.status === "NEUTRAL") && <div className={style.buttonContainer}>
+                            <div className={style.Accept}
+                                 onClick={() => props.entryManaged({action: "ACCEPT", id: item.id})}>
+                                Accept
+                            </div>
+                            <div className={style.Reject}
+                                 onClick={() => props.entryManaged({action: "REJECT", id: item.id})}>
+                                Reject
+                            </div>
+                        </div>}
+                    </div>)
+                })
+            }
         }
 
     }

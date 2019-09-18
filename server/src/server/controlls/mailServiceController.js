@@ -1,7 +1,5 @@
 import jwt from 'jsonwebtoken';
 import send from '../../server/emails/sendEmail';
-
-const bcrypt = require('bcrypt');
 const {User} = require('../models/index');
 const tokenController = require('./tokenController');
 

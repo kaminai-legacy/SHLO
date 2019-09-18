@@ -1,5 +1,3 @@
-import {put} from "@redux-saga/core/effects";
-
 export default {
     USER_LOGIN: 'USER_LOGIN',
     USER_SIGN_UP: 'USER_SIGN_UP',

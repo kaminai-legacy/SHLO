@@ -201,15 +201,18 @@
       .status {
         width: 100%;
         margin-bottom: 20px;
+
         @media (min-width: 992px) {
           width: 25%;
           margin: 0 15px;
+
         }
 
         padding: 0;
         box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.1);
 
         .block {
+          box-sizing: border-box;
 
           .header {
             background-color: #6b89b0;
