@@ -1,5 +1,5 @@
 import {put} from 'redux-saga/effects';
-import ACTION from '../actions/actiontsTypes';
+import ACTION from '../actions/actionsTypes/actiontsTypes';
 import {changeEntryStatus, createEntry} from '../api/rest/restContoller';
 
 export function* sendEntry({dataToSend}) {

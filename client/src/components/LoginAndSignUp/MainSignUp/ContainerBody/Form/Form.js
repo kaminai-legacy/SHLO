@@ -3,7 +3,7 @@ import style from './Form.module.scss';
 import {Field, Fields, reduxForm} from 'redux-form';
 import connect from 'react-redux/es/connect/connect';
 import asyncValidate from '../../../../../validations/asyncValidate';
-import {userSignUp} from "../../../../../actions/actionCreator";
+import {userSignUp} from "../../../../../actions/actionCreator/actionCreator";
 
 
 const renderTwoFields = (field1, field2, otherProps) => {

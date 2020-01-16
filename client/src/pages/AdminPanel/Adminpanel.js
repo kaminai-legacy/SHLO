@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import style from './Adminpanel.module.scss';
 import List from '../../components/UsersList/userList';
 import {Link} from 'react-router-dom';
-import {getAllUsers} from '../../actions/actionCreator';
+import {getAllUsers} from '../../actions/actionCreator/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 import {Redirect} from 'react-router';
 import 'react-toastify/dist/ReactToastify.css';

@@ -1,8 +1,11 @@
-import ACTION from './actiontsTypes';
-
+import ACTION from '../actionsTypes/actiontsTypes';
+import createToken from "../../utils/createToken";
+import {ALGORITHM, LIVE_TIME_RESET_PASSWORD, SECRETS_RESET_PASSWORD} from "../../constants/consts";
+const bcrypt = require('bcryptjs');
+console.log(ACTION);
 const {
     ARRAY_OF_OPTIONS,
-} = require('../constants/ContestsFormContet');
+} = require('../../constants/ContestsFormContet');
 const _ = require("lodash");
 
 export const createOrUpdateTempContest = (dataToSend) => {
@@ -143,10 +146,13 @@ export const setSiteNavigation = (data) => {
         data
     })
 };
-export const changeUserPassword = (dataToSend) => {
+export const changeUserPassword = async (dataToSend) => {
+    const {email,password}=dataToSend;
+    const result = await createToken({email,password},SECRETS_RESET_PASSWORD,LIVE_TIME_RESET_PASSWORD,ALGORITHM);
+    console.log(result);
     return ({
         type: ACTION.CHANGE_USER_PASSWORD,
-        dataToSend
+        token:result,
     })
 };
 export const getUserContests = (dataToSend) => {

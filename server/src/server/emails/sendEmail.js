@@ -8,7 +8,8 @@ const transporter = nodemailer.createTransport({
     }
 });
 const createHtml = (href, title) => {
-    const anchor = (href.length > 40) ? href.slice(0, 40) + '...' : href;
+    //const anchor = (href.length > 40) ? href.slice(0, 40) + '...' : href;
+    const anchor = "please click here";
     return '<table style="box-sizing:border-box;font-family:Raleway,sans-serif;background:#e9e9e9;padding:10px;text-align:center;">' +
         '<caption style="box-sizing:border-box;font-size:36px;color:#28d2d0;font-weight:600;background:#e9e9e9;">Squadhelp</caption>' +
         '<tbody><td><span style="font-size:24px;color:black;font-weight:600;margin-bottom:10px;">' + title + '</span></td></tr>' +

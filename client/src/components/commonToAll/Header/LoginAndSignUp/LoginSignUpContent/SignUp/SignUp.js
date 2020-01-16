@@ -2,7 +2,7 @@ import React from 'react';
 import style from './SignUp.module.scss';
 import {Link} from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
-import {setSiteNavigation} from "../../../../../../actions/actionCreator";
+import {setSiteNavigation} from "../../../../../../actions/actionCreator/actionCreator";
 import history from '../../../../../../boot/browserHistory';
 
 function SignUp(props) {

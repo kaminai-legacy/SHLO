@@ -24,7 +24,7 @@ module.exports.createLink = async (req, res, next) => {
                 expiresIn: LIVE_TIME_MAIL,
                 algorithm: ALGORITHM,
             });
-        await send.sendEmail(payload['longTitle'], `http://192.168.0.111:5000/service/${linkApi}`, payload['title'],
+        await send.sendEmail(payload['longTitle'], `http://192.168.1.101:5000/service/${linkApi}`, payload['title'],
             payload['email']);//aleksosnova_3@mail.ru'//payload['email']//'squadhelpservice@gmail.com'
         res.send(
             'The letter was sent to the mail ' + payload['email']

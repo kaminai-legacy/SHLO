@@ -11,6 +11,10 @@ const FILTER_TAGS = {
     }
 };
 
+const SECRETS_RESET_PASSWORD = 'secretForResetPassword';
+const LIVE_TIME_RESET_PASSWORD = '1m';
+const ALGORITHM = 'HS256';
+
 const FIELDS_NAME_HUMANIZE = {
     typeOfContest: "Type of Contest",
     typeOfIndustry: "Type of Industry",
@@ -71,5 +75,8 @@ module.exports =
         CONTEST_HEADER,
         FILTER_TAGS,
         NO_NEEDED_FIELDS,
-        FIELDS_NAME_HUMANIZE
+        FIELDS_NAME_HUMANIZE,
+        SECRETS_RESET_PASSWORD,
+        LIVE_TIME_RESET_PASSWORD,
+        ALGORITHM
     };

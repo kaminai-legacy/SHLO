@@ -1,7 +1,7 @@
 import React from 'react';
 import User from './User/user';
 import style from './userList.module.scss';
-import {userBaned} from '../../actions/actionCreator';
+import {userBaned} from '../../actions/actionCreator/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 import {toast} from 'react-toastify';
 

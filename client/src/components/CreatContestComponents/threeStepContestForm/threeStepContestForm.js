@@ -14,7 +14,7 @@ import {
     selectedContestType,
     sendCard,
     sendContest
-} from "../../../actions/actionCreator";
+} from "../../../actions/actionCreator/actionCreator";
 import connect from "react-redux/es/connect/connect";
 import history from '../../../boot/browserHistory';
 import Modal from 'react-modal';

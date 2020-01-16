@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './StatusBlock.module.scss';
 import {Link} from "react-router-dom";
-import {contestProgressing, createOrUpdateTempContest, selectedContestType} from "../../../../actions/actionCreator";
+import {contestProgressing, createOrUpdateTempContest, selectedContestType} from "../../../../actions/actionCreator/actionCreator";
 import connect from "react-redux/es/connect/connect";
 
 function statusBlock(props) {

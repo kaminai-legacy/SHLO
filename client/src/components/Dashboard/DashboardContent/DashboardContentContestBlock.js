@@ -6,7 +6,7 @@ import {
     createOrUpdateTempContest,
     deleteContest,
     selectedContestType
-} from "../../../actions/actionCreator";
+} from "../../../actions/actionCreator/actionCreator";
 import connect from "react-redux/es/connect/connect";
 import timeAgo from '../../../utils/timeAgo'
 

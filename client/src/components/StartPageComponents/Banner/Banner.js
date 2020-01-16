@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import style from './Banner.module.scss';
 import {Link} from 'react-router-dom';
 import {LOADING_ITEMS, startValueContestProgressing} from '../../../constants/consts';
-import {contestProgressing, selectedContestType} from "../../../actions/actionCreator";
+import {contestProgressing, selectedContestType} from "../../../actions/actionCreator/actionCreator";
 import connect from "react-redux/es/connect/connect";
 
 let number = 0;

@@ -1,5 +1,5 @@
 import {put} from 'redux-saga/effects';
-import ACTION from '../actions/actiontsTypes';
+import ACTION from '../actions/actionsTypes/actiontsTypes';
 import history from '../boot/browserHistory';
 import {logout} from '../api/rest/restContoller';
 import {TOKENS_KEY} from '../constants/consts';

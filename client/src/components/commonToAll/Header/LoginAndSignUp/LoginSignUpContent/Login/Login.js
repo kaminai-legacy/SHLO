@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import style from './Login.module.scss';
 import connect from 'react-redux/es/connect/connect';
 import {Link} from 'react-router-dom';
-import {logout, setSiteNavigation} from '../../../../../../actions/actionCreator';
+import {logout, setSiteNavigation} from '../../../../../../actions/actionCreator/actionCreator';
 import history from '../../../../../../boot/browserHistory';
 
 function Login(props) {

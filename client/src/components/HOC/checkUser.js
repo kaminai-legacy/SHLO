@@ -8,7 +8,7 @@ import {
     resetApiMsg,
     resetAppMsg,
     userIsLogin
-} from '../../actions/actionCreator';
+} from '../../actions/actionCreator/actionCreator';
 import {toast} from "react-toastify";
 import Modal from 'react-modal';
 import style from "../LoginAndSignUp/MainLogin/ContainerBody/Form/Form.module.scss";
@@ -117,12 +117,12 @@ const mapStateToProps = (state) => ({
     modal: state.modalReducers,
     app: state.AppReducers,
 });
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps =  (dispatch) => ({
     userIsLogin: () => dispatch(userIsLogin()),
     resetApiMsg: () => dispatch(resetApiMsg()),
     resetAppMsg: () => dispatch(resetAppMsg()),
 
-    changeUserPassword: (value) => dispatch(changeUserPassword(value)),
+    changeUserPassword: async (value) => dispatch(await changeUserPassword(value)),
     changeAppStatus: (value) => dispatch(changeAppStatus(value)),
     noUser: () => dispatch(noUser()),
 

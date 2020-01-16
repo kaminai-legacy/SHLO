@@ -3,7 +3,7 @@ import style from './ActiveContestContent.module.scss';
 import FilerForm from "./FilterForm/FilterForm";
 import Content from '../../../constants/formFilterContent';
 import ResultFilterContests from './ListOfReceivedContest/ResultFilterContests';
-import {changeFilterTags, sendFilterData} from "../../../actions/actionCreator";
+import {changeFilterTags, sendFilterData} from "../../../actions/actionCreator/actionCreator";
 import connect from "react-redux/es/connect/connect";
 import prepareData from "../dataPreparing";
 

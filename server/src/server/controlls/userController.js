@@ -3,10 +3,11 @@ const _ = require('lodash');
 const {User, RefreshToken} = require('../models/index');
 const {
     OTHER_FIELDS,
-    NO_NEEDED_FIELD_FOR_ADMIN_PANEL
+    NO_NEEDED_FIELD_FOR_ADMIN_PANEL,
+    SECRETS_RESET_PASSWORD
         } = require('../utils/Consts');
 const tokenController = require('./tokenController');
-
+import jwt from 'jsonwebtoken';
 
 module.exports.createUser = async (req, res, next) => {
     const user = req.body;
@@ -102,17 +103,28 @@ module.exports.updateUserBanStatus = async (req, res, next) => {
 };
 
 module.exports.changeUserPassword = async (req, res, next) => {
-    const password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8));
-    const result = await User.update(
-        {password: password},
-        {returning: true, where: {email: req.body.email}}
-    );
-    const [, [newResult]] = result;
-    if (newResult) {
-        res.send({linkToRedirect: "/", msg: "Password has been changed", err: false})
-    } else {
-        res.send({linkToRedirect: "/", msg: "Error something went wrong", err: true})
+    try{
+
+        const {token}=req.body;
+        console.log(token);
+        const decodedToken = await jwt.verify(token, SECRETS_RESET_PASSWORD);
+        console.log(decodedToken);
+        const password = bcrypt.hashSync(decodedToken.password, bcrypt.genSaltSync(8));
+        const result = await User.update(
+            {password: password},
+            {returning: true, where: {email:decodedToken.email }}
+        );
+        const [, [newResult]] = result;
+        if (newResult) {
+            res.send({linkToRedirect: "/", msg: "Password has been changed", err: false})
+        } else {
+            res.send({linkToRedirect: "/", msg: "Error something went wrong", err: true})
+        }
+
+    }catch (e) {
+        console.log(e);
     }
+
 };
 
 module.exports.logout = async (req, res, next) => {

@@ -7,18 +7,26 @@ import Footer from '../../components/commonToAll/Footer/footer';
 import Form from '../../components/CreatContestComponents/threeStepContestForm/threeStepContestForm'
 import connect from "react-redux/es/connect/connect";
 import {Redirect} from 'react-router';
-import {newMessageToUser} from "../../actions/actionCreator";
+import {newMessageToUser} from "../../actions/actionCreator/actionCreator";
 
 function CreateContest(props) {
     useEffect(() => {
-        if ((props.user.role !== "Buyer")) {
-            props.newMessageToUser({msg: "Sorry but you are Creative. You cannot create a Contest", error: true})
+
+        if ((props.user)) {
+            if ((props.user.role !== "Buyer")) {
+                props.newMessageToUser({msg: "Sorry but you are Creative. You cannot create a Contest", error: true})
+            }
         }
     });
+    console.log(props.user);
+    let redirect=<></>;
+    if(!!props.user){
+        let redirect = (props.user.role !== "Buyer") ? <Redirect to="/contest_creating_choose_type"/> : <></>;
+    }
     return (
         <div className={style.body}>
             {(props.stage === 1) ? <Redirect to="/contest_creating_choose_type"/> : <></>}
-            {(props.user.role !== "Buyer") ? <Redirect to="/contest_creating_choose_type"/> : <></>}
+            {redirect}
             <Header/>
             <HeaderBottom/>
             <HeaderCreateContest/>

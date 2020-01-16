@@ -8,7 +8,7 @@ import ContestCategories from '../../components/CreatContestComponents/contestCa
 import PackagesAndOther from '../../components/CreatContestComponents/PackagesAndOther/PackagesAndOther';
 import connect from "react-redux/es/connect/connect";
 import {startValueContestProgressing} from "../../constants/consts";
-import {contestProgressing, resetTempContests, selectedContestType} from "../../actions/actionCreator";
+import {contestProgressing, resetTempContests, selectedContestType} from "../../actions/actionCreator/actionCreator";
 
 const _ = require("lodash");
 

@@ -4,7 +4,7 @@ import BottomHeaderList from './StartPageBottomHeaderList/StartPageBottomHeaderL
 import BarMenu from './BarMenu/BarMenu';
 import connect from 'react-redux/es/connect/connect';
 import {Link} from 'react-router-dom';
-import {contestProgressing, logout, selectedContestType, setSiteNavigation} from "../../../actions/actionCreator";
+import {contestProgressing, logout, selectedContestType, setSiteNavigation} from "../../../actions/actionCreator/actionCreator";
 import {startValueContestProgressing} from '../../../constants/consts'
 import history from "../../../boot/browserHistory";
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Form.module.scss';
 import {Field, reduxForm} from 'redux-form';
-import {checkEmail, setModalState} from '../../../../../actions/actionCreator';
+import {checkEmail, setModalState} from '../../../../../actions/actionCreator/actionCreator';
 import connect from 'react-redux/es/connect/connect';
 import Modal from 'react-modal';
 import FormGetEmail from "../../../../ModalForm/formGetEmail";

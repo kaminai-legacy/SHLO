@@ -1,5 +1,5 @@
 import {takeLatest} from 'redux-saga/effects';
-import ACTION from '../actions/actiontsTypes';
+import ACTION from '../actions/actionsTypes/actiontsTypes';
 import {changeUserPassword, checkUserEmail, getLoginSaga, signUpSaga} from './usersSaga';
 import {isLoginSaga} from './isLoginSaga';
 import {getAllUsersSaga} from './getAllUsersSaga';

@@ -1,10 +1,11 @@
 import {put} from 'redux-saga/effects';
-import ACTION from '../actions/actiontsTypes';
+import ACTION from '../actions/actionsTypes/actiontsTypes';
 import {changePassword, checkEmail, createApiLink, getUserLogin, signUpLogin} from '../api/rest/restContoller';
 import {TOKENS_KEY} from '../constants/consts';
 import history from '../boot/browserHistory';
 
 const _ = require('lodash');
+
 
 export function* getLoginSaga({dataToSend}) {
     try {
@@ -103,11 +104,16 @@ export function* checkUserEmail({dataToSend}) {
     }
 }
 
-export function* changeUserPassword({dataToSend}) {
+export  function* changeUserPassword({token}) {
+
+
     try {
-        const {data} = yield changePassword(dataToSend);
-        yield put({type: ACTION.MODAL_STATE, data: {resetPassword: false}});
-        yield put({type: ACTION.GET_MAIL_SERVICE_RESULT, result: data.msg, err: data.err});
+
+            const {data} = yield changePassword({token});
+            yield put({type: ACTION.MODAL_STATE, data: {resetPassword: false}});
+            yield put({type: ACTION.GET_MAIL_SERVICE_RESULT, result: data.msg, err: data.err});
+
+
     } catch (e) {
 
     }

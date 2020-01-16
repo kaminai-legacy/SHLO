@@ -4,7 +4,7 @@ import Footer from '../../components/commonToAll/Footer/footer';
 import HeaderBottom from "../../components/commonToAll/HeaderBottom/HeaderBottom";
 import ActiveContestContent from "../../components/ActiveContests/Content/ActiveContestContent";
 import connect from "react-redux/es/connect/connect";
-import {getContestByFilter} from "../../actions/actionCreator";
+import {getContestByFilter} from "../../actions/actionCreator/actionCreator";
 
 function activeContests(props) {
     useEffect(() => {

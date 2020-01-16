@@ -4,7 +4,7 @@ import Footer from '../../components/commonToAll/Footer/footer';
 import HeaderBottom from "../../components/commonToAll/HeaderBottom/HeaderBottom";
 import Contest from "../../components/Contest/Contest";
 import connect from "react-redux/es/connect/connect";
-import {getContestById} from "../../actions/actionCreator";
+import {getContestById} from "../../actions/actionCreator/actionCreator";
 
 function contest(props) {
     useEffect(() => {

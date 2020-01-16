@@ -3,7 +3,7 @@ import style from './PackagesAndOther.module.scss';
 import Title from '../../commonToAll/Title/Title';
 import CardCategories from '../CardCategories/CardCategories';
 import {CONTEST_IMGS} from '../../../constants/contestImgs';
-import {contestProgressing, selectedContestType} from "../../../actions/actionCreator";
+import {contestProgressing, selectedContestType} from "../../../actions/actionCreator/actionCreator";
 import connect from "react-redux/es/connect/connect";
 
 function PackagesAndOther(props) {

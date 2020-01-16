@@ -8,7 +8,7 @@ import {
     createOrUpdateTempContest,
     getUserContests,
     selectedContestType
-} from "../../../actions/actionCreator";
+} from "../../../actions/actionCreator/actionCreator";
 
 
 function dashboardContestStatus(props) {

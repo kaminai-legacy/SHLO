@@ -1,5 +1,5 @@
 import {put} from 'redux-saga/effects';
-import ACTION from '../actions/actiontsTypes';
+import ACTION from '../actions/actionsTypes/actiontsTypes';
 import {contestFilter, getContestById} from '../api/rest/restContoller';
 
 export function* changeFilterTags({dataToSend}) {

@@ -3,7 +3,7 @@ import style from './Contest.module.scss';
 import {FIELDS_NAME_HUMANIZE, NO_NEEDED_FIELDS} from '../../constants/consts';
 import connect from "react-redux/es/connect/connect";
 import timeAgo from '../../utils/timeAgo';
-import {entryManaged, sendEntry} from '../../actions/actionCreator';
+import {entryManaged, sendEntry} from '../../actions/actionCreator/actionCreator';
 import FormForEntry from "./FormForEntry/FormForEntry";
 import check from '../../utils/checkFile(s)Size';
 import {SubmissionError} from "redux-form";
